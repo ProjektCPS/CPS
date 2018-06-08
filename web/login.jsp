@@ -16,7 +16,7 @@
     <form  action="/login" method="post">
         login-name: <input type="text" name="loginName" width="30">
         password: <input type="password" name="password" width="10">
-        <input type="submit" value="Login"/>
+        <input type="submit" value="login"/>
     </form>
 
     <p style="color: red">${errorMessage}</p>
