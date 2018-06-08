@@ -129,7 +129,7 @@
     <div class="row">
       <div class="col-md-8">
         <div class="copyright">
-          <p>&copy; 2018 eShop. All Rights Reserved. Coded with <i class="fa fa-heart"></i> by <a href="http://wpexpand.com" target="_blank">Michal Kormanak & Fuggy</a></p>
+          <p>&copy; 2018 eShop. All Rights Reserved. Coded with <i class="fa fa-heart"></i> by <a href="http://wpexpand.com" target="_blank">Tulipan & Kaktus</a></p>
         </div>
       </div>
 
