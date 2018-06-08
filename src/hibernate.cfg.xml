@@ -4,9 +4,55 @@
     "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
   <session-factory>
-    <property name="connection.url"/>
-    <property name="connection.driver_class"/>
-    <!-- <property name="connection.username"/> -->
+    <property name="connection.url">jdbc:mysql://localhost:3306/sprava_cien_project</property>
+    <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+      <mapping resource="model/CenovaZlavaEntity.hbm.xml"/>
+      <mapping class="model.CenovaZlavaEntity"/>
+      <mapping resource="model/DarcekEntity.hbm.xml"/>
+      <mapping class="model.DarcekEntity"/>
+      <mapping resource="model/DatumovaZlavaEntity.hbm.xml"/>
+      <mapping class="model.DatumovaZlavaEntity"/>
+      <mapping resource="model/FakturaEntity.hbm.xml"/>
+      <mapping class="model.FakturaEntity"/>
+      <mapping resource="model/FakturaciaPoloziekEntity.hbm.xml"/>
+      <mapping class="model.FakturaciaPoloziekEntity"/>
+      <mapping resource="model/FirmaEntity.hbm.xml"/>
+      <mapping class="model.FirmaEntity"/>
+      <mapping resource="model/KategorieEntity.hbm.xml"/>
+      <mapping class="model.KategorieEntity"/>
+      <mapping resource="model/KrajEntity.hbm.xml"/>
+      <mapping class="model.KrajEntity"/>
+      <mapping resource="model/KrajinaEntity.hbm.xml"/>
+      <mapping class="model.KrajinaEntity"/>
+      <mapping resource="model/KumulaciaZliavEntity.hbm.xml"/>
+      <mapping class="model.KumulaciaZliavEntity"/>
+      <mapping resource="model/KvantitovaZlavaEntity.hbm.xml"/>
+      <mapping class="model.KvantitovaZlavaEntity"/>
+      <mapping resource="model/MestoEntity.hbm.xml"/>
+      <mapping class="model.MestoEntity"/>
+      <mapping resource="model/ObjednavkaEntity.hbm.xml"/>
+      <mapping class="model.ObjednavkaEntity"/>
+      <mapping resource="model/OkresEntity.hbm.xml"/>
+      <mapping class="model.OkresEntity"/>
+      <mapping resource="model/OsobaEntity.hbm.xml"/>
+      <mapping class="model.OsobaEntity"/>
+      <mapping resource="model/PercentualnaZlavaEntity.hbm.xml"/>
+      <mapping class="model.PercentualnaZlavaEntity"/>
+      <mapping resource="model/PolozkaEntity.hbm.xml"/>
+      <mapping class="model.PolozkaEntity"/>
+      <mapping resource="model/PredmetPredajaEntity.hbm.xml"/>
+      <mapping class="model.PredmetPredajaEntity"/>
+      <mapping resource="model/RegistrovanyUzivatelEntity.hbm.xml"/>
+      <mapping class="model.RegistrovanyUzivatelEntity"/>
+      <mapping resource="model/TypPredmetuEntity.hbm.xml"/>
+      <mapping class="model.TypPredmetuEntity"/>
+      <mapping resource="model/TypZlavyEntity.hbm.xml"/>
+      <mapping class="model.TypZlavyEntity"/>
+      <mapping resource="model/UzivatelZlavyEntity.hbm.xml"/>
+      <mapping class="model.UzivatelZlavyEntity"/>
+      <mapping resource="model/ZlavaEntity.hbm.xml"/>
+      <mapping class="model.ZlavaEntity"/>
+      <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->
 
     <!-- DB schema will be updated if needed -->

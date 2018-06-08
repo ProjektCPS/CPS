@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="model.DatumovaZlavaEntity" table="datumova_zlava" schema="sprava_cien_project">
+        <id name="idDatumu">
+            <column name="id_datumu" sql-type="int(11)"/>
+        </id>
+        <property name="den">
+            <column name="den" sql-type="int(11)"/>
+        </property>
+        <property name="dlzkaTrvania">
+            <column name="dlzka_trvania" sql-type="double" precision="-1"/>
+        </property>
+        <property name="hodina">
+            <column name="hodina" sql-type="double" precision="-1" not-null="true"/>
+        </property>
+        <property name="frekvencia">
+            <column name="frekvencia" sql-type="int(11)" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

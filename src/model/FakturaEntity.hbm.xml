@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="model.FakturaEntity" table="faktura" schema="sprava_cien_project">
+        <id name="idFaktury">
+            <column name="id_faktury" sql-type="int(11)"/>
+        </id>
+        <property name="datumVystavenia">
+            <column name="datum_vystavenia" sql-type="date"/>
+        </property>
+        <property name="datumSplatnosti">
+            <column name="datum_splatnosti" sql-type="date"/>
+        </property>
+        <property name="datumUhrady">
+            <column name="datum_uhrady" sql-type="date" not-null="true"/>
+        </property>
+        <property name="urok">
+            <column name="urok" sql-type="double" precision="-1" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="model.ZlavaEntity" table="zlava" schema="sprava_cien_project">
+        <id name="idZlavy">
+            <column name="id_zlavy" sql-type="int(11)"/>
+        </id>
+        <property name="datOd">
+            <column name="dat_od" sql-type="date"/>
+        </property>
+        <property name="datDo">
+            <column name="dat_do" sql-type="date" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

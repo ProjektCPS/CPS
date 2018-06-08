@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="model.UzivatelZlavyEntity" table="uzivatel_zlavy" schema="sprava_cien_project">
+        <composite-id mapped="true" class="model.UzivatelZlavyEntityPK">
+            <key-property name="idZlavy">
+                <column name="id_zlavy" sql-type="int(11)"/>
+            </key-property>
+            <key-property name="idUzivatela">
+                <column name="id_uzivatela" sql-type="int(11)"/>
+            </key-property>
+        </composite-id>
+        <property name="aktivna">
+            <column name="aktivna" sql-type="char(1)" length="1"/>
+        </property>
+        <property name="kodZlavy">
+            <column name="kod_zlavy" sql-type="varchar(30)" length="30" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="model.FirmaEntity" table="firma" schema="sprava_cien_project">
+        <id name="ico">
+            <column name="ICO" sql-type="char(8)" length="8"/>
+        </id>
+        <property name="nazov">
+            <column name="nazov" sql-type="varchar(30)" length="30"/>
+        </property>
+        <property name="email">
+            <column name="email" sql-type="varchar(30)" length="30"/>
+        </property>
+    </class>
+</hibernate-mapping>
