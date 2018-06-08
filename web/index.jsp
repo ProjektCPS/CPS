@@ -13,6 +13,6 @@
   </head>
   <body>
   Hello world lak
-  <h2><strong>FUGGYYYYYYYYYYYYYYYYYYYYYY oujeaaaadd </strong> Current time is <%=  new Date().toString() %></h2>
+  <h2><strong>FUGGYYYYYYYYYYYYYYYYYYYYYY oujeaaaa </strong> Current time is <%=  new Date().toString() %></h2>
   </body>
 </html>
