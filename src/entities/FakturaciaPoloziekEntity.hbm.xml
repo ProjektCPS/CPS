@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="entities.FakturaciaPoloziekEntity" table="fakturacia_poloziek" schema="sprava_cien_project">
+        <composite-id mapped="true" class="entities.FakturaciaPoloziekEntityPK">
+            <key-property name="id">
+                <column name="id" sql-type="int(11)"/>
+            </key-property>
+            <key-property name="idFaktury">
+                <column name="id_faktury" sql-type="int(11)"/>
+            </key-property>
+        </composite-id>
+        <property name="mnozstvo">
+            <column name="mnozstvo" sql-type="double" precision="-1"/>
+        </property>
+    </class>
+</hibernate-mapping>
