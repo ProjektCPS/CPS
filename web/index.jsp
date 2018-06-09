@@ -20,15 +20,15 @@
   <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
 
   <!-- Bootstrap -->
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/base/bootstrap.min.css">
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 
   <!-- Custom CSS -->
   <link rel="stylesheet" href="css/owl.carousel.css">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/home/style.css">
+  <link rel="stylesheet" href="css/home/responsive.css">
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -79,7 +79,7 @@
     <div class="row">
       <div class="col-sm-6">
         <div class="logo">
-          <h1><a href="index.xhtml">e<span>SpravaCien</span></a></h1>
+          <h1><a href="index.jsp">e<span>SpravaCien</span></a></h1>
         </div>
       </div>
     </div>
@@ -146,19 +146,19 @@
 </div>
 
 <!-- Latest jQuery form server -->
-<script src="https://code.jquery.com/jquery.min.js"></script>
+<script src="js/base/jquery/jquery-3.2.1.min.js"></script>
 
 <!-- Bootstrap JS form CDN -->
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="js//base/bootstrap/bootstrap.min.js"></script>
 
 <!-- jQuery sticky menu -->
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/jquery.sticky.js"></script>
+<script src="js/base/owl.carousel.min.js"></script>
+<script src="js/base/jquery.sticky.js"></script>
 
 <!-- jQuery easing -->
-<script src="js/jquery.easing.1.3.min.js"></script>
+<script src="js/base/jquery/jquery.easing.1.3.min.js"></script>
 
 <!-- Main Script -->
-<script src="js/main.js"></script>
+<script src="js/home/home.js"></script>
 </body>
 </html>
