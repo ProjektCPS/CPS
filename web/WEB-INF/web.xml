@@ -8,7 +8,7 @@
         <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
 
-    <servlet>
+    <!--<servlet>
         <servlet-name>registrationController</servlet-name>
         <servlet-class>controllers.registrationController</servlet-class>
         <load-on-startup>1</load-on-startup>
@@ -16,17 +16,16 @@
     <servlet-mapping>
         <servlet-name>registrationController</servlet-name>
         <url-pattern>/registration</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>-->
 
 
     <servlet>
         <servlet-name>loginController</servlet-name>
         <servlet-class>controllers.loginController</servlet-class>
-        <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>loginController</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>/login</url-pattern>
     </servlet-mapping>
 
 </web-app>

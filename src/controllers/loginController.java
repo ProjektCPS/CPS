@@ -19,7 +19,7 @@ public class loginController extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        String page = "login.jsp";
+        String page = "/login.jsp";
         if (username.trim().length() >= 0 && username != null && password.trim().length() >= 0 && password != null) {
             BaseService loginService = new BaseServiceImplement();
             boolean flag = loginService.login(username, password);
@@ -27,17 +27,17 @@ public class loginController extends HttpServlet {
                 System.out.println("Login success!!!");
                 request.setAttribute("username", username);
                 request.setAttribute("msg", "Login Success.....");
-                page = "index.jsp";
+                page = "/index.jsp";
             } else {
                 request.setAttribute("msg", "Wrong Username or Password, Try again!!!");
             }
         } else {
             request.setAttribute("msg", "Please enter username and password...");
         }
-        request.getRequestDispatcher(page).include(request, response);
+        request.getRequestDispatcher(page).forward(request, response);
 }
 
     protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
-        response.sendRedirect("login.jsp");
+        response.sendRedirect("/login.jsp");
     }
 }

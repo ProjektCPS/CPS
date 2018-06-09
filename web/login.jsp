@@ -31,7 +31,7 @@
             </p>
                 <% } %>
         </h1>
-                    <form id="login-form-wrap" class="login collapse" method="post">
+                    <form id="login-form-wrap" class="login collapse" action="login" method="post">
                         <p class="form-row form-row-first">
                             <label for="username">Username or email <span class="required">*</span>
                             </label>
