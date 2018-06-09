@@ -6,6 +6,10 @@
         <element id="directory" name="classes">
           <element id="module-output" name="CPS" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="mysql:mysql-connector-java:8.0.11" />
+          <element id="library" level="project" name="Hibernate 5.2.16-5.2.16" />
+        </element>
       </element>
       <element id="javaee-facet-resources" facet="CPS/web/Web" />
     </root>

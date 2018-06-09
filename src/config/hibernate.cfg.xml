@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/sprava_cien_project?serverTimezone=UTC</property>
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.username">kormanak4</property>
+        <property name="hibernate.connection.password">monika</property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <mapping resource="entities/CenovaZlavaEntity.hbm.xml"/>
+        <mapping class="entities.CenovaZlavaEntity"/>
+        <mapping resource="entities/DarcekEntity.hbm.xml"/>
+        <mapping class="entities.DarcekEntity"/>
+        <mapping resource="entities/DatumovaZlavaEntity.hbm.xml"/>
+        <mapping class="entities.DatumovaZlavaEntity"/>
+        <mapping resource="entities/FakturaEntity.hbm.xml"/>
+        <mapping class="entities.FakturaEntity"/>
+        <!--<mapping resource="entities/FakturaciaPoloziekEntity.hbm.xml"/>
+        <mapping class="entities.FakturaciaPoloziekEntity"/>-->
+        <mapping resource="entities/FirmaEntity.hbm.xml"/>
+        <mapping class="entities.FirmaEntity"/>
+        <mapping resource="entities/KategorieEntity.hbm.xml"/>
+        <mapping class="entities.KategorieEntity"/>
+        <mapping resource="entities/KrajEntity.hbm.xml"/>
+        <mapping class="entities.KrajEntity"/>
+        <mapping resource="entities/KrajinaEntity.hbm.xml"/>
+        <mapping class="entities.KrajinaEntity"/>
+        <!--<mapping resource="entities/KumulaciaZliavEntity.hbm.xml"/>
+        <mapping class="entities.KumulaciaZliavEntity"/>-->
+        <mapping resource="entities/KvantitovaZlavaEntity.hbm.xml"/>
+        <mapping class="entities.KvantitovaZlavaEntity"/>
+        <mapping resource="entities/MestoEntity.hbm.xml"/>
+        <mapping class="entities.MestoEntity"/>
+        <mapping resource="entities/ObjednavkaEntity.hbm.xml"/>
+        <mapping class="entities.ObjednavkaEntity"/>
+        <mapping resource="entities/OkresEntity.hbm.xml"/>
+        <mapping class="entities.OkresEntity"/>
+        <mapping resource="entities/OsobaEntity.hbm.xml"/>
+        <mapping class="entities.OsobaEntity"/>
+        <mapping resource="entities/PercentualnaZlavaEntity.hbm.xml"/>
+        <mapping class="entities.PercentualnaZlavaEntity"/>
+        <!--<mapping resource="entities/PolozkaEntity.hbm.xml"/>
+        <mapping class="entities.PolozkaEntity"/>-->
+        <mapping resource="entities/PredmetPredajaEntity.hbm.xml"/>
+        <mapping class="entities.PredmetPredajaEntity"/>
+        <mapping resource="entities/RegistrovanyUzivatelEntity.hbm.xml"/>
+        <mapping class="entities.RegistrovanyUzivatelEntity"/>
+        <mapping resource="entities/TypPredmetuEntity.hbm.xml"/>
+        <mapping class="entities.TypPredmetuEntity"/>
+        <mapping resource="entities/TypZlavyEntity.hbm.xml"/>
+        <mapping class="entities.TypZlavyEntity"/>
+        <!--<mapping resource="entities/UzivatelZlavyEntity.hbm.xml"/>
+        <mapping class="entities.UzivatelZlavyEntity"/>-->
+        <mapping resource="entities/ZlavaEntity.hbm.xml"/>
+        <mapping class="entities.ZlavaEntity"/>
+    </session-factory>
+</hibernate-configuration>

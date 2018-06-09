@@ -13,12 +13,28 @@
 <body>
     <h1>Welcom, pleas login:</h1>
 
-    <form  action="/login" method="post">
-        login-name: <input type="text" name="loginName" width="30">
-        password: <input type="password" name="password" width="10">
-        <input type="submit" value="login"/>
-    </form>
+    </br> </br> </br>
+    <h1>
+        <div align="center">
+                <% if(request.getAttribute("msg") != null) { %>
+            <p style="color: red">
+                <%= request.getAttribute("msg") %>
+            </p>
+                <% } %>
+                <% if(request.getAttribute("msg2") != null) { %>
+            <p style="color: green;">
+                <%= request.getAttribute("msg2") %>
+            </p>
+                <% } %>
 
-    <p style="color: red">${errorMessage}</p>
+            <form action="login" method="POST">
+                <label>Enter Username : </label>
+                <input type="text" name="username"> <br> <br>
+                <label>Enter Password : </label>
+                <input type="password" name="password" > <br> <br>
+                <input type="submit" value="Login">
+            </form>
+    </h1>
+    </div>
 </body>
 </html>
