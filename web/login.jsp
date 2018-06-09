@@ -9,9 +9,13 @@
 <html>
 <head>
     <title>Login</title>
+
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
-    <h1>Welcom, pleas login:</h1>
+    <h1>Welcome, please login:</h1>
 
     </br> </br> </br>
     <h1>
@@ -26,15 +30,32 @@
                 <%= request.getAttribute("msg2") %>
             </p>
                 <% } %>
+        </h1>
+                    <form id="login-form-wrap" class="login collapse" method="post">
+                        <p class="form-row form-row-first">
+                            <label for="username">Username or email <span class="required">*</span>
+                            </label>
+                            <input type="text" id="username" name="username" class="input-text">
+                        </p>
+                        <p class="form-row form-row-last">
+                            <label for="password">Password <span class="required">*</span>
+                            </label>
+                            <input type="password" id="password" name="password" class="input-text">
+                        </p>
+                        <div class="clear"></div>
 
-            <form action="login" method="POST">
-                <label>Enter Username : </label>
-                <input type="text" name="username"> <br> <br>
-                <label>Enter Password : </label>
-                <input type="password" name="password" > <br> <br>
-                <input type="submit" value="Login">
-            </form>
-    </h1>
+
+                        <p class="form-row">
+                            <input type="submit" value="Login" name="login" class="button">
+                            <label class="inline" for="rememberme"><input type="checkbox" value="forever" id="rememberme" name="rememberme"> Remember me </label>
+                        </p>
+                        <p class="lost_password">
+                            <a href="#">Lost your password?</a>
+                        </p>
+
+                        <div class="clear"></div>
+                    </form>
+
     </div>
 </body>
 </html>
