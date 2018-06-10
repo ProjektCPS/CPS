@@ -3,6 +3,8 @@
     "use strict";
 
 
+
+
     /*==================================================================
     [ Focus Contact2 ]*/
     $('.input100').each(function(){
@@ -27,10 +29,11 @@
         for(var i=0; i<input.length; i++) {
             if(validate(input[i]) == false){
                 showValidate(input[i]);
-                check=false;
+             return  check=false;
             }
         }
 
+        $('#loginLoader').show();
         return check;
     });
 
@@ -65,6 +68,7 @@
 
         $(thisAlert).removeClass('alert-validate');
     }
-    
+
+
 
 })(jQuery);

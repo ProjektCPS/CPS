@@ -24,15 +24,13 @@ public class loginController extends HttpServlet {
             BaseService loginService = new BaseServiceImplement();
             boolean flag = loginService.login(username, password);
             if (flag) {
-                System.out.println("Login success!!!");
                 request.setAttribute("username", username);
-                request.setAttribute("msg", "Login Success.....");
                 page = "/index.jsp";
             } else {
-                request.setAttribute("msg", "Wrong Username or Password, Try again!!!");
+                request.setAttribute("msg", "Nesprávny email alebo heslo!");
             }
         } else {
-            request.setAttribute("msg", "Please enter username and password...");
+            request.setAttribute("msg", "Prosím zadajte email a heslo..");
         }
         request.getRequestDispatcher(page).forward(request, response);
 }

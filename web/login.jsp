@@ -48,6 +48,10 @@
     <div class="container-login100">
         <div class="wrap-login100 p-b-160 p-t-50">
             <form action="login" method="POST" class="login100-form validate-form">
+                <div class="center-block">
+                    <div id="loginLoader" class="loader" hidden></div>
+                </div>
+
 					<span class="login100-form-title p-b-43">
 						eSpravaCien
 					</span>
@@ -57,7 +61,7 @@
 					</span>
 
                 <div class="wrap-input100 rs1 validate-input" data-validate="Vyplňte email">
-                    <input class="input100" type="text" name="username">
+                    <input type="email" class="input100"  name="username">
                     <span class="label-input100">Email</span>
                 </div>
 
@@ -72,6 +76,14 @@
                         Prihlásiť sa
                     </button>
                 </div>
+
+                <% if (request.getAttribute("msg") != null) { %>
+                <div class="center-block w-full p-t-23 ">
+                    <div class="alert alert-danger m-b-0">
+                        ${msg}.
+                    </div>
+                </div>
+                <% } %>
 
                 <div class="text-center w-full p-t-23">
                     <a href="#" class="txt1">
