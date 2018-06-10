@@ -39,6 +39,8 @@
 </head>
 <body>
 
+
+
 <div class="header-area">
   <div class="container">
     <div class="row">
@@ -104,10 +106,8 @@
           <li><a href="#">Discount</a></li>
           <li><a href="#">Customer order</a></li>
           <li><a href="#">Profit</a></li>
-
-          <li></li>
-
-          <li><a href="#"><i class="fa fa-user"></i>Log out</a></li>
+          <li><a href=""><i class="fa fa-user" ></i>Log out</a></li>
+          <li><%= request.getAttribute("username") %></li>
         </ul>
       </div>
 

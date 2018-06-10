@@ -38,6 +38,12 @@
 </head>
 <body>
 
+<% if(request.getAttribute("message") != null) { %>
+<p style="color: red">
+    <%= request.getAttribute("message") %>
+</p>
+<% } %>
+
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100 p-b-160 p-t-50">

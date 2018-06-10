@@ -28,4 +28,13 @@
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>logoutControler</servlet-name>
+        <servlet-class>controllers.logoutControler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>logoutControler</servlet-name>
+        <url-pattern>/index</url-pattern>
+    </servlet-mapping>
+
 </web-app>
