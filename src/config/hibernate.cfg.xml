@@ -4,10 +4,10 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/sprava_cien_project?serverTimezone=UTC</property>
+        <property name="hibernate.connection.url">jdbc:mysql://158.193.138.60:3306/sprava_cien_project?serverTimezone=UTC</property>
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="hibernate.connection.username">kormanak4</property>
-        <property name="hibernate.connection.password">monika</property>
+        <property name="hibernate.connection.username">sprava_cien_project</property>
+        <property name="hibernate.connection.password">cps2018</property>
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
