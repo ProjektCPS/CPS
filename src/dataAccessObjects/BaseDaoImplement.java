@@ -3,6 +3,7 @@ package dataAccessObjects;
 import entities.RegistrovanyUzivatelEntity;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import utilities.HashPasswordUtil;
 import utilities.HibernateUtil;
 
 import javax.persistence.NoResultException;
@@ -23,8 +24,8 @@ public class BaseDaoImplement implements BaseDao{
                 query.select(root).where(builder.equal(root.get("email"), username));
 
                 RegistrovanyUzivatelEntity user = session.createQuery(query).getSingleResult();
-                if (password.equals(user.getHeslo())) {
-                    System.out.println("User: " + user.toString());
+                String hashPass =  HashPasswordUtil.hashPassword(password);
+                if (HashPasswordUtil.hashPassword(password).equals(user.getHeslo())) {
                     return true;
                 }
             }

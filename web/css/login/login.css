@@ -134,12 +134,13 @@ iframe {
 
 /*==================================================================
 [ Text ]*/
-.txt1 {
+a.txt1 {
   font-family: OpenSans-Regular;
   font-size: 13px;
   line-height: 1.4;
-  color: #cccccc;
+  color: #cccccc; !important;
 }
+
 
 
 
