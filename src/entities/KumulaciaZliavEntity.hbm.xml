@@ -13,5 +13,11 @@
                 <column name="id_zlavy" sql-type="int(11)"/>
             </key-property>
         </composite-id>
+        <property name="idKategorie">
+            <column name="id_kategorie" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="idPredmetu">
+            <column name="id_predmetu" sql-type="int(11)" not-null="true"/>
+        </property>
     </class>
 </hibernate-mapping>

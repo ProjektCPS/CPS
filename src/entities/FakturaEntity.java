@@ -5,9 +5,11 @@ import java.sql.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "faktura", schema = "sprava_cien_project")
+@Table(name = "faktura", schema = "sprava_cien_project", catalog = "")
 public class FakturaEntity {
     private int idFaktury;
+    private String ico;
+    private Integer idObjednavky;
     private Date datumVystavenia;
     private Date datumSplatnosti;
     private Date datumUhrady;
@@ -21,6 +23,26 @@ public class FakturaEntity {
 
     public void setIdFaktury(int idFaktury) {
         this.idFaktury = idFaktury;
+    }
+
+    @Basic
+    @Column(name = "ICO", nullable = false, length = 8)
+    public String getIco() {
+        return ico;
+    }
+
+    public void setIco(String ico) {
+        this.ico = ico;
+    }
+
+    @Basic
+    @Column(name = "id_objednavky", nullable = true)
+    public Integer getIdObjednavky() {
+        return idObjednavky;
+    }
+
+    public void setIdObjednavky(Integer idObjednavky) {
+        this.idObjednavky = idObjednavky;
     }
 
     @Basic
@@ -69,6 +91,8 @@ public class FakturaEntity {
         if (o == null || getClass() != o.getClass()) return false;
         FakturaEntity that = (FakturaEntity) o;
         return idFaktury == that.idFaktury &&
+                Objects.equals(ico, that.ico) &&
+                Objects.equals(idObjednavky, that.idObjednavky) &&
                 Objects.equals(datumVystavenia, that.datumVystavenia) &&
                 Objects.equals(datumSplatnosti, that.datumSplatnosti) &&
                 Objects.equals(datumUhrady, that.datumUhrady) &&
@@ -78,6 +102,6 @@ public class FakturaEntity {
     @Override
     public int hashCode() {
 
-        return Objects.hash(idFaktury, datumVystavenia, datumSplatnosti, datumUhrady, urok);
+        return Objects.hash(idFaktury, ico, idObjednavky, datumVystavenia, datumSplatnosti, datumUhrady, urok);
     }
 }

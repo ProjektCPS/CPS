@@ -5,10 +5,12 @@ import java.sql.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "objednavka", schema = "sprava_cien_project")
+@Table(name = "objednavka", schema = "sprava_cien_project", catalog = "")
 public class ObjednavkaEntity {
     private int idObjednavky;
     private Date datObjednavky;
+    private int predavajuci;
+    private int kupujuci;
     private String stav;
 
     @Id
@@ -32,6 +34,26 @@ public class ObjednavkaEntity {
     }
 
     @Basic
+    @Column(name = "predavajuci", nullable = false)
+    public int getPredavajuci() {
+        return predavajuci;
+    }
+
+    public void setPredavajuci(int predavajuci) {
+        this.predavajuci = predavajuci;
+    }
+
+    @Basic
+    @Column(name = "kupujuci", nullable = false)
+    public int getKupujuci() {
+        return kupujuci;
+    }
+
+    public void setKupujuci(int kupujuci) {
+        this.kupujuci = kupujuci;
+    }
+
+    @Basic
     @Column(name = "stav", nullable = true, length = 1)
     public String getStav() {
         return stav;
@@ -47,6 +69,8 @@ public class ObjednavkaEntity {
         if (o == null || getClass() != o.getClass()) return false;
         ObjednavkaEntity that = (ObjednavkaEntity) o;
         return idObjednavky == that.idObjednavky &&
+                predavajuci == that.predavajuci &&
+                kupujuci == that.kupujuci &&
                 Objects.equals(datObjednavky, that.datObjednavky) &&
                 Objects.equals(stav, that.stav);
     }
@@ -54,6 +78,6 @@ public class ObjednavkaEntity {
     @Override
     public int hashCode() {
 
-        return Objects.hash(idObjednavky, datObjednavky, stav);
+        return Objects.hash(idObjednavky, datObjednavky, predavajuci, kupujuci, stav);
     }
 }

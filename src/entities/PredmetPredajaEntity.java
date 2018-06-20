@@ -5,9 +5,10 @@ import java.sql.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "predmet_predaja", schema = "sprava_cien_project")
+@Table(name = "predmet_predaja", schema = "sprava_cien_project", catalog = "")
 public class PredmetPredajaEntity {
     private int idPredmetu;
+    private int idKategorie;
     private String nazov;
     private double cena;
     private String jednotka;
@@ -15,6 +16,7 @@ public class PredmetPredajaEntity {
     private String znacka;
     private String serioveCislo;
     private String popis;
+    private int idAdmin;
 
     @Id
     @Column(name = "id_predmetu", nullable = false)
@@ -24,6 +26,16 @@ public class PredmetPredajaEntity {
 
     public void setIdPredmetu(int idPredmetu) {
         this.idPredmetu = idPredmetu;
+    }
+
+    @Basic
+    @Column(name = "id_kategorie", nullable = false)
+    public int getIdKategorie() {
+        return idKategorie;
+    }
+
+    public void setIdKategorie(int idKategorie) {
+        this.idKategorie = idKategorie;
     }
 
     @Basic
@@ -96,13 +108,25 @@ public class PredmetPredajaEntity {
         this.popis = popis;
     }
 
+    @Basic
+    @Column(name = "id_admin", nullable = false)
+    public int getIdAdmin() {
+        return idAdmin;
+    }
+
+    public void setIdAdmin(int idAdmin) {
+        this.idAdmin = idAdmin;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PredmetPredajaEntity that = (PredmetPredajaEntity) o;
         return idPredmetu == that.idPredmetu &&
+                idKategorie == that.idKategorie &&
                 Double.compare(that.cena, cena) == 0 &&
+                idAdmin == that.idAdmin &&
                 Objects.equals(nazov, that.nazov) &&
                 Objects.equals(jednotka, that.jednotka) &&
                 Objects.equals(datumExpiracie, that.datumExpiracie) &&
@@ -114,6 +138,6 @@ public class PredmetPredajaEntity {
     @Override
     public int hashCode() {
 
-        return Objects.hash(idPredmetu, nazov, cena, jednotka, datumExpiracie, znacka, serioveCislo, popis);
+        return Objects.hash(idPredmetu, idKategorie, nazov, cena, jednotka, datumExpiracie, znacka, serioveCislo, popis, idAdmin);
     }
 }

@@ -1,13 +1,11 @@
 package dataAccessObjects;
 
-import entities.RegistrovanyUzivatelEntity;
-import org.hibernate.Criteria;
+import entities.UcetEntity;
 import org.hibernate.Session;
 import utilities.HashPasswordUtil;
 import utilities.HibernateUtil;
 
 import javax.persistence.NoResultException;
-import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -19,11 +17,11 @@ public class BaseDaoImplement implements BaseDao{
         if (session != null) {
             try {
                 CriteriaBuilder builder = session.getCriteriaBuilder();
-                CriteriaQuery<RegistrovanyUzivatelEntity> query = builder.createQuery(RegistrovanyUzivatelEntity.class);
-                Root<RegistrovanyUzivatelEntity> root = query.from(RegistrovanyUzivatelEntity.class);
+                CriteriaQuery<UcetEntity> query = builder.createQuery(UcetEntity.class);
+                Root<UcetEntity> root = query.from(UcetEntity.class);
                 query.select(root).where(builder.equal(root.get("email"), username));
 
-                RegistrovanyUzivatelEntity user = session.createQuery(query).getSingleResult();
+                UcetEntity user = session.createQuery(query).getSingleResult();
                 String hashPass =  HashPasswordUtil.hashPassword(password);
                 if (HashPasswordUtil.hashPassword(password).equals(user.getHeslo())) {
                     return true;
@@ -47,7 +45,7 @@ public class BaseDaoImplement implements BaseDao{
     }
 
     @Override
-    public String register(RegistrovanyUzivatelEntity user) {
+    public String register(UcetEntity user) {
         return null;
     }
 }

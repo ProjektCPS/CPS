@@ -8,6 +8,12 @@
         <id name="idFaktury">
             <column name="id_faktury" sql-type="int(11)"/>
         </id>
+        <property name="ico">
+            <column name="ICO" sql-type="char(8)" length="8"/>
+        </property>
+        <property name="idObjednavky">
+            <column name="id_objednavky" sql-type="int(11)" not-null="true"/>
+        </property>
         <property name="datumVystavenia">
             <column name="datum_vystavenia" sql-type="date"/>
         </property>

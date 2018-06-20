@@ -11,6 +11,12 @@
         <property name="datObjednavky">
             <column name="dat_objednavky" sql-type="date"/>
         </property>
+        <property name="predavajuci">
+            <column name="predavajuci" sql-type="int(11)"/>
+        </property>
+        <property name="kupujuci">
+            <column name="kupujuci" sql-type="int(11)"/>
+        </property>
         <property name="stav">
             <column name="stav" sql-type="char(1)" length="1" not-null="true"/>
         </property>

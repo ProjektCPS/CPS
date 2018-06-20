@@ -5,7 +5,7 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.url">jdbc:mysql://158.193.138.60:3306/sprava_cien_project?serverTimezone=UTC</property>
-        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.connection.username">sprava_cien_project</property>
         <property name="hibernate.connection.password">cps2018</property>
         <property name="hibernate.show_sql">true</property>
@@ -47,8 +47,8 @@
         <mapping class="entities.PolozkaEntity"/>-->
         <mapping resource="entities/PredmetPredajaEntity.hbm.xml"/>
         <mapping class="entities.PredmetPredajaEntity"/>
-        <mapping resource="entities/RegistrovanyUzivatelEntity.hbm.xml"/>
-        <mapping class="entities.RegistrovanyUzivatelEntity"/>
+        <mapping resource="entities/EshopUzivatelEntity.hbm.xml"/>
+        <mapping class="entities.EshopUzivatelEntity"/>
         <mapping resource="entities/TypPredmetuEntity.hbm.xml"/>
         <mapping class="entities.TypPredmetuEntity"/>
         <mapping resource="entities/TypZlavyEntity.hbm.xml"/>
@@ -57,5 +57,9 @@
         <mapping class="entities.UzivatelZlavyEntity"/>-->
         <mapping resource="entities/ZlavaEntity.hbm.xml"/>
         <mapping class="entities.ZlavaEntity"/>
+        <mapping resource="entities/TokenEntity.hbm.xml"/>
+        <mapping class="entities.TokenEntity"/>
+        <mapping resource="entities/UcetEntity.hbm.xml"/>
+        <mapping class="entities.UcetEntity"/>
     </session-factory>
 </hibernate-configuration>

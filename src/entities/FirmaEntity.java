@@ -4,9 +4,10 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "firma", schema = "sprava_cien_project")
+@Table(name = "firma", schema = "sprava_cien_project", catalog = "")
 public class FirmaEntity {
     private String ico;
+    private String psc;
     private String nazov;
     private String email;
 
@@ -18,6 +19,16 @@ public class FirmaEntity {
 
     public void setIco(String ico) {
         this.ico = ico;
+    }
+
+    @Basic
+    @Column(name = "PSC", nullable = false, length = 5)
+    public String getPsc() {
+        return psc;
+    }
+
+    public void setPsc(String psc) {
+        this.psc = psc;
     }
 
     @Basic
@@ -46,6 +57,7 @@ public class FirmaEntity {
         if (o == null || getClass() != o.getClass()) return false;
         FirmaEntity that = (FirmaEntity) o;
         return Objects.equals(ico, that.ico) &&
+                Objects.equals(psc, that.psc) &&
                 Objects.equals(nazov, that.nazov) &&
                 Objects.equals(email, that.email);
     }
@@ -53,6 +65,6 @@ public class FirmaEntity {
     @Override
     public int hashCode() {
 
-        return Objects.hash(ico, nazov, email);
+        return Objects.hash(ico, psc, nazov, email);
     }
 }

@@ -14,5 +14,11 @@
         <property name="priezvisko">
             <column name="priezvisko" sql-type="varchar(30)" length="30"/>
         </property>
+        <property name="psc">
+            <column name="PSC" sql-type="char(5)" length="5"/>
+        </property>
+        <property name="ico">
+            <column name="ICO" sql-type="char(8)" length="8" not-null="true"/>
+        </property>
     </class>
 </hibernate-mapping>

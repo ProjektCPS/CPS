@@ -4,11 +4,13 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "fakturacia_poloziek", schema = "sprava_cien_project")
+@Table(name = "fakturacia_poloziek", schema = "sprava_cien_project", catalog = "")
 @IdClass(FakturaciaPoloziekEntityPK.class)
 public class FakturaciaPoloziekEntity {
     private int id;
     private int idFaktury;
+    private int idPolozky;
+    private int idPredmetu;
     private double mnozstvo;
 
     @Id
@@ -32,6 +34,26 @@ public class FakturaciaPoloziekEntity {
     }
 
     @Basic
+    @Column(name = "id_polozky", nullable = false)
+    public int getIdPolozky() {
+        return idPolozky;
+    }
+
+    public void setIdPolozky(int idPolozky) {
+        this.idPolozky = idPolozky;
+    }
+
+    @Basic
+    @Column(name = "id_predmetu", nullable = false)
+    public int getIdPredmetu() {
+        return idPredmetu;
+    }
+
+    public void setIdPredmetu(int idPredmetu) {
+        this.idPredmetu = idPredmetu;
+    }
+
+    @Basic
     @Column(name = "mnozstvo", nullable = false, precision = 0)
     public double getMnozstvo() {
         return mnozstvo;
@@ -48,12 +70,14 @@ public class FakturaciaPoloziekEntity {
         FakturaciaPoloziekEntity that = (FakturaciaPoloziekEntity) o;
         return id == that.id &&
                 idFaktury == that.idFaktury &&
+                idPolozky == that.idPolozky &&
+                idPredmetu == that.idPredmetu &&
                 Double.compare(that.mnozstvo, mnozstvo) == 0;
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, idFaktury, mnozstvo);
+        return Objects.hash(id, idFaktury, idPolozky, idPredmetu, mnozstvo);
     }
 }

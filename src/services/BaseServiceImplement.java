@@ -2,7 +2,7 @@ package services;
 
 import dataAccessObjects.BaseDao;
 import dataAccessObjects.BaseDaoImplement;
-import entities.RegistrovanyUzivatelEntity;
+import entities.UcetEntity;
 
 public class BaseServiceImplement implements BaseService {
     private BaseDao loginDao = new BaseDaoImplement();
@@ -13,7 +13,7 @@ public class BaseServiceImplement implements BaseService {
     }
 
     @Override
-    public String registration(RegistrovanyUzivatelEntity user) {
+    public String registration(UcetEntity user) {
         return loginDao.register(user);
     }
 }

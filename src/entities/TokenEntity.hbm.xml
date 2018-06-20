@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="entities.TokenEntity" table="token" schema="sprava_cien_project">
+        <id name="idSerial">
+            <column name="id_serial" sql-type="int(11)"/>
+        </id>
+        <property name="idAdmin">
+            <column name="id_admin" sql-type="int(11)"/>
+        </property>
+        <property name="tokenHash">
+            <column name="token_hash" sql-type="varchar(100)" length="100"/>
+        </property>
+        <property name="tokenType">
+            <column name="token_type" sql-type="varchar(100)" length="100" not-null="true"/>
+        </property>
+        <property name="ipAdress">
+            <column name="ip_adress" sql-type="varchar(45)" length="45" not-null="true"/>
+        </property>
+        <property name="description">
+            <column name="description" sql-type="varchar(145)" length="145" not-null="true"/>
+        </property>
+        <property name="created">
+            <column name="created" sql-type="timestamp(6)" not-null="true"/>
+        </property>
+        <property name="expiration">
+            <column name="expiration" sql-type="timestamp(6)" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

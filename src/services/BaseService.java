@@ -1,9 +1,9 @@
 package services;
 
-import entities.RegistrovanyUzivatelEntity;
+import entities.UcetEntity;
 
 public interface BaseService {
     public boolean login(String username, String password);
 
-    public String registration(RegistrovanyUzivatelEntity user);
+    public String registration(UcetEntity user);
 }

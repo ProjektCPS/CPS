@@ -8,6 +8,9 @@
         <id name="ico">
             <column name="ICO" sql-type="char(8)" length="8"/>
         </id>
+        <property name="psc">
+            <column name="PSC" sql-type="char(5)" length="5"/>
+        </property>
         <property name="nazov">
             <column name="nazov" sql-type="varchar(30)" length="30"/>
         </property>

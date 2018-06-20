@@ -1,9 +1,9 @@
 package dataAccessObjects;
 
-import entities.RegistrovanyUzivatelEntity;
+import entities.UcetEntity;
 
 public interface BaseDao {
     public boolean login(String username, String password);
 
-    public String register(RegistrovanyUzivatelEntity user);
+    public String register(UcetEntity user);
 }

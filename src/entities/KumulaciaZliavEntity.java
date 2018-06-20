@@ -4,11 +4,13 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "kumulacia_zliav", schema = "sprava_cien_project")
+@Table(name = "kumulacia_zliav", schema = "sprava_cien_project", catalog = "")
 @IdClass(KumulaciaZliavEntityPK.class)
 public class KumulaciaZliavEntity {
     private int id;
     private int idZlavy;
+    private Integer idKategorie;
+    private Integer idPredmetu;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -30,18 +32,40 @@ public class KumulaciaZliavEntity {
         this.idZlavy = idZlavy;
     }
 
+    @Basic
+    @Column(name = "id_kategorie", nullable = true)
+    public Integer getIdKategorie() {
+        return idKategorie;
+    }
+
+    public void setIdKategorie(Integer idKategorie) {
+        this.idKategorie = idKategorie;
+    }
+
+    @Basic
+    @Column(name = "id_predmetu", nullable = true)
+    public Integer getIdPredmetu() {
+        return idPredmetu;
+    }
+
+    public void setIdPredmetu(Integer idPredmetu) {
+        this.idPredmetu = idPredmetu;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         KumulaciaZliavEntity that = (KumulaciaZliavEntity) o;
         return id == that.id &&
-                idZlavy == that.idZlavy;
+                idZlavy == that.idZlavy &&
+                Objects.equals(idKategorie, that.idKategorie) &&
+                Objects.equals(idPredmetu, that.idPredmetu);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, idZlavy);
+        return Objects.hash(id, idZlavy, idKategorie, idPredmetu);
     }
 }

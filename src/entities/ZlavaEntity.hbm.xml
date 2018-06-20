@@ -8,6 +8,21 @@
         <id name="idZlavy">
             <column name="id_zlavy" sql-type="int(11)"/>
         </id>
+        <property name="idKvantity">
+            <column name="id_kvantity" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="idTypu">
+            <column name="id_typu" sql-type="int(11)"/>
+        </property>
+        <property name="idDatumu">
+            <column name="id_datumu" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="idCenovejZlavy">
+            <column name="id_cenovej_zlavy" sql-type="varchar(30)" length="30" not-null="true"/>
+        </property>
+        <property name="idPerZlavy">
+            <column name="id_per_zlavy" sql-type="varchar(30)" length="30" not-null="true"/>
+        </property>
         <property name="datOd">
             <column name="dat_od" sql-type="date"/>
         </property>

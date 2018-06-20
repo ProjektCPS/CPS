@@ -8,11 +8,17 @@
         <id name="idKategorie">
             <column name="id_kategorie" sql-type="int(11)"/>
         </id>
+        <property name="idTypu">
+            <column name="id_typu" sql-type="int(11)"/>
+        </property>
         <property name="nazov">
             <column name="nazov" sql-type="varchar(30)" length="30"/>
         </property>
         <property name="popis">
             <column name="popis" sql-type="varchar(4000)" length="4000" not-null="true"/>
+        </property>
+        <property name="idAdmin">
+            <column name="id_admin" sql-type="int(11)"/>
         </property>
     </class>
 </hibernate-mapping>

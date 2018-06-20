@@ -4,11 +4,14 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "polozka", schema = "sprava_cien_project")
+@Table(name = "polozka", schema = "sprava_cien_project", catalog = "")
 @IdClass(PolozkaEntityPK.class)
 public class PolozkaEntity {
     private int idPolozky;
     private int idPredmetu;
+    private Integer idZlavy;
+    private int idObjednavky;
+    private Integer idDarceku;
     private double mnozstvo;
     private double cena;
 
@@ -30,6 +33,36 @@ public class PolozkaEntity {
 
     public void setIdPredmetu(int idPredmetu) {
         this.idPredmetu = idPredmetu;
+    }
+
+    @Basic
+    @Column(name = "id_zlavy", nullable = true)
+    public Integer getIdZlavy() {
+        return idZlavy;
+    }
+
+    public void setIdZlavy(Integer idZlavy) {
+        this.idZlavy = idZlavy;
+    }
+
+    @Basic
+    @Column(name = "id_objednavky", nullable = false)
+    public int getIdObjednavky() {
+        return idObjednavky;
+    }
+
+    public void setIdObjednavky(int idObjednavky) {
+        this.idObjednavky = idObjednavky;
+    }
+
+    @Basic
+    @Column(name = "id_darceku", nullable = true)
+    public Integer getIdDarceku() {
+        return idDarceku;
+    }
+
+    public void setIdDarceku(Integer idDarceku) {
+        this.idDarceku = idDarceku;
     }
 
     @Basic
@@ -59,13 +92,16 @@ public class PolozkaEntity {
         PolozkaEntity that = (PolozkaEntity) o;
         return idPolozky == that.idPolozky &&
                 idPredmetu == that.idPredmetu &&
+                idObjednavky == that.idObjednavky &&
                 Double.compare(that.mnozstvo, mnozstvo) == 0 &&
-                Double.compare(that.cena, cena) == 0;
+                Double.compare(that.cena, cena) == 0 &&
+                Objects.equals(idZlavy, that.idZlavy) &&
+                Objects.equals(idDarceku, that.idDarceku);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(idPolozky, idPredmetu, mnozstvo, cena);
+        return Objects.hash(idPolozky, idPredmetu, idZlavy, idObjednavky, idDarceku, mnozstvo, cena);
     }
 }
