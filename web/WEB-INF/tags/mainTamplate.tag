@@ -23,10 +23,11 @@
     <!-- Custom CSS -->
    <!-- <link rel="stylesheet" href="css/owl.carousel.css"> -->
     <link rel="stylesheet" href="css/home/style.css">
+    <link rel="stylesheet" href="css/base/util.css">
     <link rel="stylesheet" href="css/home/responsive.css">
 
     <!--- Component CSS -->
-    <link rel="stylesheet" type="text/css" href="css/base/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="css/base/semantic.css">
 
 
     <!-- Latest jQuery form server -->

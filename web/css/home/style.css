@@ -1031,3 +1031,26 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button{background
     background-color: #0a31e8;
     border-color: #ddd;
 }
+
+/* na odstranenie floatov do tejto class obalime floatovane elementy*/
+.group-contajner:before,
+.group-contajner:after{
+    content: " ";
+    display: table;
+}
+
+.group-contajner:after{
+    clear: both;
+}
+
+.group-contajner{
+    *zoom: 1;
+}
+
+.group-contajner {
+    margin: 30px auto;
+    width: 95%;
+    padding: 30px 40px;
+}
+
+/*toto je celeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee*/
