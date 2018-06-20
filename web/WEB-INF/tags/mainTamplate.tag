@@ -21,9 +21,24 @@
     <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/owl.carousel.css">
+   <!-- <link rel="stylesheet" href="css/owl.carousel.css"> -->
     <link rel="stylesheet" href="css/home/style.css">
     <link rel="stylesheet" href="css/home/responsive.css">
+
+    <!--- Component CSS -->
+    <link rel="stylesheet" type="text/css" href="css/base/semantic.min.css">
+
+
+    <!-- Latest jQuery form server -->
+    <script src="js/base/jquery/jquery.min.js"></script>
+    <!-- Bootstrap JS form CDN -->
+    <script src="js/base/bootstrap/bootstrap.min.js"></script>
+    <!-- jQuery sticky menu -->
+    <script src="js/base/owl.carousel.min.js"></script>
+    <script src="js/base/semantic.min.js"></script>
+
+    <!-- jQuery easing -->
+    <script src="js/base/jquery/jquery.easing.1.3.min.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -135,21 +150,5 @@
         </div>
     </div>
 </div>
-
-<!-- Latest jQuery form server -->
-<script src="js/base/jquery/jquery-3.2.1.min.js"></script>
-
-<!-- Bootstrap JS form CDN -->
-<script src="js//base/bootstrap/bootstrap.min.js"></script>
-
-<!-- jQuery sticky menu -->
-<script src="js/base/owl.carousel.min.js"></script>
-<script src="js/base/jquery.sticky.js"></script>
-
-<!-- jQuery easing -->
-<script src="js/base/jquery/jquery.easing.1.3.min.js"></script>
-
-<!-- Main Script -->
-<script src="js/home/home.js"></script>
 </body>
 </html>
