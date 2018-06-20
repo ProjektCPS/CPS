@@ -20,6 +20,15 @@
 
 
     <servlet>
+        <servlet-name>productsController</servlet-name>
+        <servlet-class>controllers.productsController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>productsController</servlet-name>
+        <url-pattern>/products</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>loginController</servlet-name>
         <servlet-class>controllers.loginController</servlet-class>
     </servlet>
