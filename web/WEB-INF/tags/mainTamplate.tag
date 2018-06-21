@@ -1,4 +1,4 @@
-<%@tag language="java" pageEncoding="UTF-8"%>
+<%@tag language="java" pageEncoding="UTF-8" %>
 <%@attribute name="title" required="true" rtexprvalue="true" %>
 <%@attribute name="content" fragment="true" %>
 
@@ -10,7 +10,8 @@
     <title>${title}</title>
 
     <!-- Google Fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet'
+          type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
 
@@ -21,7 +22,7 @@
     <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 
     <!-- Custom CSS -->
-   <!-- <link rel="stylesheet" href="css/owl.carousel.css"> -->
+    <!-- <link rel="stylesheet" href="css/owl.carousel.css"> -->
     <link rel="stylesheet" href="css/home/style.css">
     <link rel="stylesheet" href="css/base/util.css">
     <link rel="stylesheet" href="css/home/responsive.css">
@@ -55,7 +56,6 @@
 <body>
 
 
-
 <div class="header-area">
     <div class="container">
         <div class="row">
@@ -67,7 +67,9 @@
                 <div class="header-right">
                     <ul class="list-unstyled list-inline">
                         <li class="dropdown dropdown-small">
-                            <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">currency :</span><span class="value">EUR </span><b class="caret"></b></a>
+                            <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span
+                                    class="key">currency :</span><span class="value">EUR </span><b
+                                    class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#">USD</a></li>
                                 <li><a href="#">EUR</a></li>
@@ -76,7 +78,9 @@
                         </li>
 
                         <li class="dropdown dropdown-small">
-                            <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">language :</span><span class="value">English </span><b class="caret"></b></a>
+                            <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span
+                                    class="key">language :</span><span class="value">English </span><b
+                                    class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#">English</a></li>
                                 <li><a href="#">Slovak</a></li>
@@ -104,7 +108,29 @@
     </div>
 </div> <!-- End site branding area -->
 
-<div class="mainmenu-area">
+<div class=" ui inverted small menu">
+    <div class="container">
+        <a id="home" class="blue item ">Domov</a>
+        <div class="ui dropdown item">
+            Produkty <i class="dropdown icon"></i>
+            <div id="products" class="menu inverted">
+                <a class="inverted blue item">English</a>
+                <a class="inverted blue item">Russian</a>
+                <a class="inverted blue item">Spanish</a>
+            </div>
+        </div>
+        <a id="discount" class="blue item ">Zľavy</a>
+        <a id="orders" class="blue item ">Objednávky</a>
+        <a id="profit" class="blue item " href="#">Profit</a>
+        <div class="right menu">
+            <div class="item">
+                <div id class="ui primary button"><i class="fa fa-user"></i>Odhlásiť</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%--<div class="mainmenu-area">
     <div class="container">
         <div class="row">
             <div class="navbar-header">
@@ -122,18 +148,19 @@
                     <li id="discount"><a href="#">Zľavy</a></li>
                     <li id="orders"><a href="#">Objednávky</a></li>
                     <li id="profil"><a href="#">Profit</a></li>
-                    <li><a href=""><i class="fa fa-user" ></i>Log out</a></li>
-                    <li><%= request.getAttribute("username") %></li>
+                    <li><a href=""><i class="fa fa-user"></i>Log out</a></li>
+                    <li><%= request.getAttribute("username") %>
+                    </li>
                 </ul>
             </div>
 
         </div>
     </div>
-</div> <!-- End mainmenu area -->
+</div>--%> <!-- End mainmenu area -->
 
 
 <!-- main content -->
-<jsp:invoke fragment="content" />
+<jsp:invoke fragment="content"/>
 
 <!-- footer area -->
 <div class="footer-bottom-area">
@@ -141,7 +168,8 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="copyright">
-                    <p>&copy; 2018 eShop. All Rights Reserved. Coded with <i class="fa fa-heart"></i> by <a href="http://wpexpand.com" target="_blank">Tulipan & Kaktus</a></p>
+                    <p>&copy; 2018 eShop. All Rights Reserved. Coded with <i class="fa fa-heart"></i> by <a
+                            href="http://wpexpand.com" target="_blank">Tulipan & Kaktus</a></p>
                 </div>
             </div>
 
