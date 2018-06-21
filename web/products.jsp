@@ -40,6 +40,10 @@
                     <a href="https://www.facebook.com/">
                         <div class="image">
                             <div class="ui blurring inverted dimmer">
+                                <div class="content">
+                                    <div class="center">
+                                    </div>
+                                </div>
                             </div>
                             <img src="image/paris.jpg">
                         </div>
@@ -52,7 +56,6 @@
 
             <div class="col-md-3">
                 <div class="ui card card m-b-30">
-                    <a href="https://www.facebook.com/">
                         <a href="https://www.facebook.com/">
                         <div class="image">
                             <div class="ui blurring inverted dimmer">
@@ -65,7 +68,6 @@
                             <img src="image/plus.jpg">
                         </div>
                         </a>
-                    </a>
                 </div>
             </div>
 
