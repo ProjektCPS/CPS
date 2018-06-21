@@ -34,14 +34,12 @@
     <body>
     <div class="group-contajner">
         <div class="ui four cards ">
+
             <div class="col-md-3">
                 <div class="ui card card m-b-30">
                     <a href="https://www.facebook.com/">
                         <div class="image">
                             <div class="ui blurring inverted dimmer">
-                                <div class="content">
-
-                                </div>
                             </div>
                             <img src="image/paris.jpg">
                         </div>
@@ -54,75 +52,24 @@
 
             <div class="col-md-3">
                 <div class="ui card card m-b-30">
-                    <div class="image">
-                        <div class="ui blurring inverted dimmer">
-                            <div class="content">
-                                <div class="center">
-                                    <div class="ui teal button">Choose</div>
+                    <a href="https://www.facebook.com/">
+                        <a href="https://www.facebook.com/">
+                        <div class="image">
+                            <div class="ui blurring inverted dimmer">
+                                <div class="content">
+                                    <div class="center">
+                                        <div class="ui teal button">Add category</div>
+                                    </div>
                                 </div>
                             </div>
+                            <img src="image/plus.jpg">
                         </div>
-                        <img src="image/paris.jpg">
-                    </div>
-                    <div class="content">
-                        <div class="header">Title</div>
-                    </div>
+                        </a>
+                    </a>
                 </div>
             </div>
 
-            <div class="col-md-3">
-                <div class="ui card card m-b-30">
-                    <div class="image">
-                        <div class="ui blurring inverted dimmer">
-                            <div class="content">
-                                <div class="center">
-                                    <div class="ui teal button">Choose</div>
-                                </div>
-                            </div>
-                        </div>
-                        <img src="image/paris.jpg">
-                    </div>
-                    <div class="content">
-                        <div class="header">Title</div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="col-md-3">
-                <div class="ui card card m-b-30">
-                    <div class="image">
-                        <div class="ui blurring inverted dimmer">
-                            <div class="content">
-                                <div class="center">
-                                    <div class="ui teal button">Choose</div>
-                                </div>
-                            </div>
-                        </div>
-                        <img src="image/paris.jpg">
-                    </div>
-                    <div class="content">
-                        <div class="header">Title</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="ui card m-b-30">
-                    <div class="image">
-                        <div class="ui blurring inverted dimmer">
-                            <div class="content">
-                                <div class="center">
-                                    <div class="ui teal button">Choose</div>
-                                </div>
-                            </div>
-                        </div>
-                        <img src="image/paris.jpg">
-                    </div>
-                    <div class="content">
-                        <div class="header">Title</div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     </body>

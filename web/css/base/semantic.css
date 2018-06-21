@@ -27716,6 +27716,7 @@ Floated Menu / Item
 .ui.cards > .card,
 .ui.card {
   max-width: 100%;
+  max-height: 100%;
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -27725,7 +27726,7 @@ Floated Menu / Item
   -ms-flex-direction: column;
   flex-direction: column;
   min-width: 290px;
-  min-height: 0px;
+  min-height: 200px;
   background: #FFFFFF;
   padding: 0em;
   border: none;
