@@ -41,6 +41,10 @@
     <!-- jQuery easing -->
     <script src="js/base/jquery/jquery.easing.1.3.min.js"></script>
 
+    <!-- Main -->
+    <script src="js/base/main.js"></script>
+
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -95,6 +99,7 @@
                     <h1><a href="index.jsp">e<span>SpravaCien</span></a></h1>
                 </div>
             </div>
+            <input id="id_admin" type="text" value="${id_admin}">
         </div>
     </div>
 </div> <!-- End site branding area -->
@@ -111,12 +116,12 @@
                 </button>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="#">Domov</a></li>
-                    <li class="active"><a href="#">Produkty</a></li>
-                    <li><a href="#">Zľavy</a></li>
-                    <li><a href="#">Objednávky</a></li>
-                    <li><a href="#">Profit</a></li>
+                <ul id="nav-menu" class="nav navbar-nav">
+                    <li id="home"><a href="#">Domov</a></li>
+                    <li id="products" class="active"><a href="#">Produkty</a></li>
+                    <li id="discount"><a href="#">Zľavy</a></li>
+                    <li id="orders"><a href="#">Objednávky</a></li>
+                    <li id="profil"><a href="#">Profit</a></li>
                     <li><a href=""><i class="fa fa-user" ></i>Log out</a></li>
                     <li><%= request.getAttribute("username") %></li>
                 </ul>

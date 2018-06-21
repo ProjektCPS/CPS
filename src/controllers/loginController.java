@@ -1,5 +1,6 @@
 package controllers;
 
+import entities.UcetEntity;
 import services.BaseService;
 import services.BaseServiceImplement;
 
@@ -22,10 +23,11 @@ public class loginController extends HttpServlet {
         String page = "/login.jsp";
         if (username.trim().length() >= 0 && username != null && password.trim().length() >= 0 && password != null) {
             BaseService loginService = new BaseServiceImplement();
-            boolean flag = loginService.login(username, password);
-            if (flag) {
+            UcetEntity user = loginService.login(username, password);
+            if (user != null) {
                 request.setAttribute("username", username);
                 page = "/products.jsp";
+                request.setAttribute("id_admin", user.getIdAdmin());
             } else {
                 request.setAttribute("msg", "Nesprávny email alebo heslo!");
             }

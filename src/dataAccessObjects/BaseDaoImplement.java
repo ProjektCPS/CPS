@@ -12,7 +12,7 @@ import javax.persistence.criteria.Root;
 
 public class BaseDaoImplement implements BaseDao{
     @Override
-    public boolean login(String username, String password) {
+    public UcetEntity login(String username, String password) {
         Session session = HibernateUtil.getSession();
         if (session != null) {
             try {
@@ -24,24 +24,24 @@ public class BaseDaoImplement implements BaseDao{
                 UcetEntity user = session.createQuery(query).getSingleResult();
                 String hashPass =  HashPasswordUtil.hashPassword(password);
                 if (HashPasswordUtil.hashPassword(password).equals(user.getHeslo())) {
-                    return true;
+                    return user;
                 }
             }
             catch (NoResultException exception) {
                 System.out.println("Object not found"
                         + exception.getMessage());
-                return false;
+                return null;
             }
             catch (Exception exception) {
                 System.out.println("Exception occred while reading user data: "
                         + exception.getMessage());
-                return false;
+                return null;
             }
 
         } else {
             System.out.println("DB server down.....");
         }
-        return false;
+        return null;
     }
 
     @Override

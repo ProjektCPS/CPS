@@ -8,7 +8,7 @@ public class BaseServiceImplement implements BaseService {
     private BaseDao loginDao = new BaseDaoImplement();
 
     @Override
-    public boolean login(String username, String password) {
+    public UcetEntity login(String username, String password) {
         return loginDao.login(username, password);
     }
 
