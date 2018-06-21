@@ -56,18 +56,39 @@
 
             <div class="col-md-3">
                 <div class="ui card card m-b-30">
+                    <a href="https://www.facebook.com/">
+                        <div class="image">
+                            <div class="ui blurring inverted dimmer">
+                                <div class="content">
+                                    <div class="center">
+                                    </div>
+                                </div>
+                            </div>
+                            <img src="image/paris.jpg">
+                        </div>
+                    </a>
+                    <div class="content">
+                        <div class="header">Title</div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-3">
+                <div class="ui card card m-b-30">
                         <a href="https://www.facebook.com/">
                         <div class="image">
                             <div class="ui blurring inverted dimmer">
                                 <div class="content">
                                     <div class="center">
-                                        <div class="ui teal button">Add category</div>
+                                        <div class="ui teal button">Pridaj kategoriu</div>
                                     </div>
                                 </div>
                             </div>
                             <img src="image/plus.jpg">
                         </div>
                         </a>
+                    </div>
                 </div>
             </div>
 
