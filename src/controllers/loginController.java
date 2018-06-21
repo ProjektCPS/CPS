@@ -26,7 +26,7 @@ public class loginController extends HttpServlet {
             UcetEntity user = loginService.login(username, password);
             if (user != null) {
                 request.setAttribute("username", username);
-                page = "/products.jsp";
+                page = "/categories.jsp";
                 request.setAttribute("id_admin", user.getIdAdmin());
             } else {
                 request.setAttribute("msg", "Nesprávny email alebo heslo!");

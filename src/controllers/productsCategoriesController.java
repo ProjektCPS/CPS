@@ -14,6 +14,6 @@ public class productsCategoriesController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect("/products.jsp");
+        response.sendRedirect("/categories.jsp");
     }
 }
