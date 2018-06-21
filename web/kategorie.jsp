@@ -88,6 +88,9 @@
                             <img src="image/plus.jpg">
                         </div>
                         </a>
+                    <div class="content">
+                        <div class="header">Pridaj kategoriu</div>
+                    </div>
                     </div>
                 </div>
             </div>

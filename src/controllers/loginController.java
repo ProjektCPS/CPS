@@ -25,7 +25,7 @@ public class loginController extends HttpServlet {
             boolean flag = loginService.login(username, password);
             if (flag) {
                 request.setAttribute("username", username);
-                page = "/products.jsp";
+                page = "/kategorie.jsp";
             } else {
                 request.setAttribute("msg", "Nesprávny email alebo heslo!");
             }
