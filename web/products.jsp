@@ -61,22 +61,22 @@
     </div>
     <div class="col-md-2">
         <div class="container-button">
-            <button class="ui labeled icon button">
+            <button class="ui labeled icon button zelenac">
                 <div class="middle">
                     <i class="fa fa-plus"></i>
                     Pridaj
                 </div>
             </button>
-            <button class="ui labeled icon button">
+            <button class="ui labeled icon button cervenak">
                 <div class="middle">
                     <i class="fa fa-minus"></i>
-                    Uprav
+                    Odstran
                 </div>
             </button>
             <button class="ui labeled icon button">
                 <div class="middle">
                     <i class="fa fa-pencil"></i>
-                    Odstran
+                    Edituj
                 </div>
             </button>
 

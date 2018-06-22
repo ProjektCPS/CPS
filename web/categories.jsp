@@ -29,6 +29,10 @@
                     ;
                 })
             ;
+
+            $('.image')
+                .modal('show');
+
         </script>
     </head>
     <body>
@@ -37,7 +41,7 @@
 
             <div class="col-md-3">
                 <div class="ui card card m-b-30">
-                    <a href="https://www.facebook.com/">
+                    <a href="#">
                         <div class="image">
                             <div class="ui blurring inverted dimmer">
                                 <div class="content">
@@ -47,6 +51,7 @@
                             </div>
                             <img src="image/paris.jpg">
                         </div>
+
                     </a>
                     <div class="content">
                         <div class="header">Title</div>
@@ -56,7 +61,7 @@
 
             <div class="col-md-3">
                 <div class="ui card card m-b-30">
-                    <a href="https://www.facebook.com/">
+                    <a href="#">
                         <div class="image">
                             <div class="ui blurring inverted dimmer">
                                 <div class="content">
