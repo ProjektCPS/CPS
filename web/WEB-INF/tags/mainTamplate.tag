@@ -112,7 +112,7 @@
     <div class="container">
         <a id="home" class="blue item ">Domov</a>
         <div class="ui dropdown item">
-            Produkty <i class="dropdown icon"></i>
+            Produkty
             <div id="products" class="menu inverted">
                 <a class="inverted blue item">English</a>
                 <a class="inverted blue item">Russian</a>
