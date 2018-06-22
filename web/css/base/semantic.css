@@ -39933,3 +39933,7 @@ body.pushable > .pusher {
  .ui.button.cervenak:hover {
    background-color: #e80007;
  }
+
+ .ui.button.belasa:hover {
+   background-color: #83c9e8 !important;
+ }

@@ -73,7 +73,7 @@
                     Odstran
                 </div>
             </button>
-            <button class="ui labeled icon button">
+            <button class="ui labeled icon button belasa">
                 <div class="middle">
                     <i class="fa fa-pencil"></i>
                     Edituj
