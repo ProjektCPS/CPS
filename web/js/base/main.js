@@ -1,20 +1,18 @@
 jQuery(document).ready(function ($) {
 
-    $(document).on("click", "#products", function () { // When HTML DOM "click" event is invoked on element with ID "somebutton", execute the following function...
-        console.log($('#id_admin').val());
-        var id_admin = $('#id_admin').val();
+    $(document).on("click", "#products", function () {
         $.ajax({
             url: 'products',
             data: {
                 id_admin: $('#id_admin').val()
             },
             success: function (response) {
-                console.log(response);
-                $.each(response, function (index, item) {
-                    console.log(item);
-                    var $li = $("<li>").appendTo($('#nav-menu'));
-                    $('<a>').text(item).appendTo($li);
-                })
+                $("#products").find(".menu").empty();
+                if(response != null){
+                    $.each(response, function (index, item) {
+                        $('<a class="inverted blue item">').text(item).appendTo($("#products").find(".menu"));
+                    })
+                }
             },
             error: function (err) {
                 console.log("error");
@@ -28,7 +26,7 @@ jQuery(document).ready(function ($) {
     });
 
     $('.ui.menu .ui.dropdown').on('click', function () {
-        $(this).addClass('active').siblings().removeClass('active');
+        $(this).siblings().removeClass('active');
     });
 
     $('.ui.menu a.item').on('click', function () {

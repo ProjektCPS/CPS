@@ -4,16 +4,23 @@ import dataAccessObjects.BaseDao;
 import dataAccessObjects.BaseDaoImplement;
 import entities.UcetEntity;
 
+import java.util.List;
+
 public class BaseServiceImplement implements BaseService {
-    private BaseDao loginDao = new BaseDaoImplement();
+    private BaseDao baseDao = new BaseDaoImplement();
 
     @Override
     public UcetEntity login(String username, String password) {
-        return loginDao.login(username, password);
+        return baseDao.login(username, password);
     }
 
     @Override
     public String registration(UcetEntity user) {
-        return loginDao.register(user);
+        return baseDao.register(user);
+    }
+
+    @Override
+    public List<String> getProductCategories(int id_admin) {
+        return baseDao.getProductCategories(id_admin);
     }
 }

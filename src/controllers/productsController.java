@@ -2,7 +2,10 @@ package controllers;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import services.BaseService;
+import services.BaseServiceImplement;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,12 +25,23 @@ public class productsController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String json = null;
         String id_admin = request.getParameter("id_admin").trim();
-        List<String> list = new ArrayList<>();
-        list.add("item1");
-        list.add("item2");
-        list.add("item3");
-        String json = new Gson().toJson(list);
+        int id_adminInteger = 0;
+
+        try {
+            id_adminInteger = Integer.parseInt(id_admin);
+        }catch (NumberFormatException e){
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.setStatus(HttpServletResponse.SC_OK);
+            response.getWriter().write(json = new Gson().toJson(null));
+            return;
+        }
+
+        BaseService baseService = new BaseServiceImplement();
+        List<String> productItems = baseService.getProductCategories(id_adminInteger);
+        json = new Gson().toJson(productItems);
 
 
         response.setContentType("application/json");
