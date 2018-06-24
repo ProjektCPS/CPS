@@ -1,7 +1,6 @@
 <%@tag language="java" pageEncoding="UTF-8" %>
 <%@attribute name="title" required="true" rtexprvalue="true" %>
 <%@attribute name="content" fragment="true" %>
-
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -110,13 +109,13 @@
 
 <div class=" ui inverted small menu">
     <div class="container">
-        <a id="home" class="blue item ">Domov</a>
-        <div class="ui dropdown item">
+        <a id="home" class="blue item">Domov</a>
+        <div id="products" class="ui dropdown item">
             Produkty
-            <div id="products" class="menu inverted">
-                <a class="inverted blue item">English</a>
-                <a class="inverted blue item">Russian</a>
-                <a class="inverted blue item">Spanish</a>
+            <div class="menu inverted">
+                <a class="inverted blue item">
+                    <i class="fa fa-spinner fa-spin fa-2x fa-fw center"></i>
+                </a>
             </div>
         </div>
         <a id="discount" class="blue item ">Zľavy</a>
@@ -129,34 +128,7 @@
         </div>
     </div>
 </div>
-
-<%--<div class="mainmenu-area">
-    <div class="container">
-        <div class="row">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul id="nav-menu" class="nav navbar-nav">
-                    <li id="home"><a href="#">Domov</a></li>
-                    <li id="products" class="active"><a href="#">Produkty</a></li>
-                    <li id="discount"><a href="#">Zľavy</a></li>
-                    <li id="orders"><a href="#">Objednávky</a></li>
-                    <li id="profil"><a href="#">Profit</a></li>
-                    <li><a href=""><i class="fa fa-user"></i>Log out</a></li>
-                    <li><%= request.getAttribute("username") %>
-                    </li>
-                </ul>
-            </div>
-
-        </div>
-    </div>
-</div>--%> <!-- End mainmenu area -->
+<!-- End mainmenu area -->
 
 
 <!-- main content -->
