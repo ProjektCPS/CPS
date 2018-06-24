@@ -1052,5 +1052,17 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button{background
     width: 95%;
     padding: 30px 40px;
 }
+.filter-border{
+    border-top-color: rgba(34, 36, 38, 0.15);
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-right-color: rgba(34, 36, 38, 0.15);
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-left-color: rgba(34, 36, 38, 0.15);
+    border-left-style: solid;
+    border-left-width: 1px;
+}
+
 
 /*toto je celeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee*/

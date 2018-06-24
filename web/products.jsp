@@ -15,87 +15,87 @@
 </head>
 <body>
 
-<div class="group-contajner border">
-    <div class="row m-b-30">
-        <div class="col-md-3">
-            <div class="ui selection dropdown">
-                <input type="hidden" name="gender">
-                <i class="dropdown icon"></i>
-                <div class="default text">Značka</div>
-                <div class="menu">
-                    <div class="item" data-value="1">Male</div>
-                    <div class="item" data-value="0">Female</div>
+<div class="group-contajner m-t-0">
+    <div class="col-md-10 p-l-0 p-r-0">
+        <div class="filter-border m-l-15 m-r-15">
+            <div class="row m-b-30 p-l-15 p-r-15 m-t-15">
+                <div class="col-md-3">
+                    <div class="ui selection dropdown">
+                        <input type="hidden" name="gender">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Značka</div>
+                        <div class="menu">
+                            <div class="item" data-value="1">Male</div>
+                            <div class="item" data-value="0">Female</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 m-b-5">
+                    <div class="ui selection dropdown">
+                        <input type="hidden" name="gender">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Cena</div>
+                        <div class="menu">
+                            <div class="item" data-value="1">Male</div>
+                            <div class="item" data-value="0">Female</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="ui checkbox m-r-20">
+                        <input type="checkbox" name="example"/>
+                        <label>Zľavnené</label>
+                    </div>
+
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="example"/>
+                        <label>Nezľavnené</label>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="item">
+                        <div class="ui icon input">
+                            <input type="text" placeholder="Search...">
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-md-3 m-b-5">
-            <div class="ui selection dropdown">
-                <input type="hidden" name="gender">
-                <i class="dropdown icon"></i>
-                <div class="default text">Cena</div>
-                <div class="menu">
-                    <div class="item" data-value="1">Male</div>
-                    <div class="item" data-value="0">Female</div>
+            <div class="row">
+                <div class="col-md-3">
+
                 </div>
-            </div>
-        </div>
 
-        <div class="col-md-3">
-            <div class="ui checkbox m-r-20">
-                <input type="checkbox" name="example" />
-                <label>Zľavnené</label>
-            </div>
-
-            <div class="ui checkbox">
-                <input type="checkbox" name="example" />
-                <label>Nezľavnené</label>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="item">
-                <div class="ui icon input">
-                    <input type="text" placeholder="Search...">
+                <div class="col-md-3">
+                    <div class="container-button">
+                        <button class="ui labeled icon button border-button">
+                            <div class="middle">
+                                <i class="fa fa-search"></i>
+                                Hľadaj
+                            </div>
+                        </button>
+                    </div>
                 </div>
+                <div class="col-md-3">
+                    <div class="container-button">
+                        <button class="ui labeled icon button border-button">
+                            <div class="middle">
+                                <i class="fa fa-remove"></i>
+                                Resetni
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-3">
 
-        </div>
-
-        <div class="col-md-3">
-            <div class="container-button">
-                <button class="ui labeled icon button border-button">
-                    <div class="middle">
-                        <i class="fa fa-search"></i>
-                        Hľadaj
-                    </div>
-                </button>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="container-button">
-                <button class="ui labeled icon button border-button">
-                    <div class="middle">
-                        <i class="fa fa-remove"></i>
-                        Resetni
-                    </div>
-                </button>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-
-        </div>
-    </div>
-
-</div>
-
-<div class="group-contajner">
     <div class="col-md-10">
         <div class="column">
             <table class="ui celled selectable right aligned table">
