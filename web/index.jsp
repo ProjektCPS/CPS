@@ -10,6 +10,15 @@
 <%@taglib prefix="mt" tagdir="/WEB-INF/tags" %>
 <mt:mainTamplate title="Domov">
   <jsp:attribute name="content">
-    Content pre home page
+    <html>
+    <head>
+      <!---Javascript -->
+      <script src="js/home/home.js"></script>
+    </head>
+    <body>
+      Content pre home page
+    </body>
+    </html>
+
   </jsp:attribute>
 </mt:mainTamplate>

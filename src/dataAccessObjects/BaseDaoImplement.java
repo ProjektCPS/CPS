@@ -53,7 +53,7 @@ public class BaseDaoImplement implements BaseDao {
     }
 
     @Override
-    public List<String> getProductCategories(int id_admin) {
+    public List<String> getProductsType(int id_admin) {
         Session session = HibernateUtil.getSession();
         List<String> list = new ArrayList<>();
         if (session != null) {
@@ -67,6 +67,43 @@ public class BaseDaoImplement implements BaseDao {
                 criteriaQuery.select(typeRoot.get("nazov"));
                 criteriaQuery.where(builder.equal(catRoot.get("idAdmin"), id_admin)
                         , builder.equal(typeRoot.get("idTypu"), catRoot.get("idTypu")))
+                        .distinct(true);
+
+                list = session.createQuery(criteriaQuery).getResultList();
+            } catch (NoResultException exception) {
+                System.out.println("Object not found"
+                        + exception.getMessage());
+                return null;
+            } catch (Exception exception) {
+                System.out.println("Exception occred while reading user data: "
+                        + exception.getMessage());
+                return null;
+            }
+
+        } else {
+            System.out.println("DB server down.....");
+        }
+        return list;
+    }
+
+    @Override
+    public List<String> getProductCategories(int id_admin, String categoryName) {
+        Session session = HibernateUtil.getSession();
+        List<String> list = new ArrayList<>();
+        if (session != null) {
+            try {
+                CriteriaBuilder builder = session.getCriteriaBuilder();
+
+                // Using FROM and JOIN
+                CriteriaQuery<String> criteriaQuery = builder.createQuery(String.class);
+                Root<TypPredmetuEntity> typeRoot = criteriaQuery.from(TypPredmetuEntity.class);
+                Root<KategorieEntity> catRoot = criteriaQuery.from(KategorieEntity.class);
+                criteriaQuery.select(catRoot.get("nazov"));
+                criteriaQuery.where(
+                        builder.equal(catRoot.get("idAdmin"), id_admin),
+                        builder.equal(typeRoot.get("idTypu"), catRoot.get("idTypu")),
+                        builder.equal(typeRoot.get("nazov"), categoryName)
+                        )
                         .distinct(true);
 
                 list = session.createQuery(criteriaQuery).getResultList();

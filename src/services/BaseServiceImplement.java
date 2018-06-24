@@ -2,6 +2,7 @@ package services;
 
 import dataAccessObjects.BaseDao;
 import dataAccessObjects.BaseDaoImplement;
+import entities.KategorieEntity;
 import entities.UcetEntity;
 
 import java.util.List;
@@ -20,7 +21,12 @@ public class BaseServiceImplement implements BaseService {
     }
 
     @Override
-    public List<String> getProductCategories(int id_admin) {
-        return baseDao.getProductCategories(id_admin);
+    public List<String> getProductType(int id_admin) {
+        return baseDao.getProductsType(id_admin);
+    }
+
+    @Override
+    public List<String> getProductCategories(int id_admin, String categoryName) {
+        return baseDao.getProductCategories(id_admin, categoryName);
     }
 }

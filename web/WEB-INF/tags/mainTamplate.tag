@@ -1,7 +1,6 @@
 <%@tag language="java" pageEncoding="UTF-8" %>
 <%@attribute name="title" required="true" rtexprvalue="true" %>
 <%@attribute name="content" fragment="true" %>
-
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -103,18 +102,20 @@
                     <h1><a href="index.jsp">e<span>SpravaCien</span></a></h1>
                 </div>
             </div>
-            <input id="id_admin" type="text" value="${id_admin}" hidden>
+            <input id="id_admin" type="text" value="${id_admin}">
         </div>
     </div>
 </div> <!-- End site branding area -->
 
 <div class=" ui inverted small menu">
     <div class="container">
-        <a id="home" class="blue item ">Domov</a>
+        <a id="home" class="blue item">Domov</a>
         <div id="products" class="ui dropdown item">
             Produkty
             <div class="menu inverted">
-                <a class="inverted blue item"></a>
+                <a class="inverted blue item">
+                    <i class="fa fa-spinner fa-spin fa-2x fa-fw center"></i>
+                </a>
             </div>
         </div>
         <a id="discount" class="blue item ">Zľavy</a>

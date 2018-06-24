@@ -24866,6 +24866,11 @@ Floated Menu / Item
   color: #ffffff !important;
 }
 
+ .ui.inverted.menu .highlighted.item {
+   background: #0a31e8;
+   color: #ffffff !important;
+ }
+
 .ui.inverted.vertical.menu .item .menu .active.item {
   background: transparent;
   color: #FFFFFF;
