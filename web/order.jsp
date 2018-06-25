@@ -1,17 +1,17 @@
 <%--
   Created by IntelliJ IDEA.
   User: Michal
-  Date: 21.06.2018
-  Time: 14:25
+  Date: 25.06.2018
+  Time: 14:59
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="mt" tagdir="/WEB-INF/tags" %>
-<mt:mainTamplate title="Produkty">
+<mt:mainTamplate title="Objednavky">
   <jsp:attribute name="content">
 <html>
 <head>
-    <title>Produkty</title>
+    <title>Title</title>
 </head>
 <body>
 <div class="pozadie">
@@ -30,7 +30,7 @@
 
         <div class="row m-b-25">
             <div class="col-md-12">
-                <div class="center-align">
+                <div class="center-align dropdown">
                     <a data-toggle="collapse" href="#login-form-wrap" aria-expanded="false"
                        aria-controls="login-form-wrap">Pokročilé
                         vyhľádavanie</a>
@@ -45,7 +45,7 @@
                     <div class="ui selection dropdown">
                         <input type="hidden" name="gender">
                         <i class="dropdown icon"></i>
-                        <div class="default text">Značka</div>
+                        <div class="default text">Stav</div>
                         <div class="menu">
                             <div class="item" data-value="1">Male</div>
                             <div class="item" data-value="0">Female</div>
@@ -53,7 +53,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-3 m-b-5">
+                <div class="col-md-3 m-b-10">
                     <div class="ui selection dropdown">
                         <input type="hidden" name="gender">
                         <i class="dropdown icon"></i>
@@ -65,19 +65,20 @@
                     </div>
                 </div>
 
-                <div class="col-md-3">
-                    <div class="ui checkbox m-r-20">
-                        <input type="checkbox" name="example"/>
-                        <label>Zľavnené</label>
+                <div class="col-md-3 m-b-10">
+                    <div class="ui selection dropdown">
+                        <input type="hidden" name="gender">
+
+                        <div class="default text">Kupujúci</div>
                     </div>
 
-                    <div class="ui checkbox">
-                        <input type="checkbox" name="example"/>
-                        <label>Nezľavnené</label>
-                    </div>
                 </div>
 
                 <div class="col-md-3">
+                    <div class="ui checkbox m-r-20">
+                        <input type="checkbox" name="example"/>
+                        <label>Darček</label>
+                    </div>
                 </div>
             </div>
 
@@ -116,7 +117,7 @@
     </div>
 </div>
 <div class="group-contajner ">
-    <div class="col-md-10">
+    <div class="col-md-12">
         <div class="column">
             <table class="ui celled selectable right aligned table">
                 <thead>
@@ -160,33 +161,9 @@
             </table>
         </div>
     </div>
-    <div class="col-md-2">
-        <div class="container-button m-b-20">
-            <button class="ui labeled icon button  zelenac">
-                <div class="middle">
-                    <i class="fa fa-plus"></i>
-                    Pridaj
-                </div>
-            </button>
-            <button class="ui labeled icon button cervenak">
-                <div class="middle">
-                    <i class="fa fa-minus"></i>
-                    Odstran
-                </div>
-            </button>
-            <button class="ui labeled icon button belasa">
-                <div class="middle">
-                    <i class="fa fa-pencil"></i>
-                    Edituj
-                </div>
-            </button>
-
-            </button>
-        </div>
-
-    </div>
 </div>
 </body>
 </html>
 </jsp:attribute>
 </mt:mainTamplate>
+

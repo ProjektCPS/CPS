@@ -34,6 +34,7 @@
                     <a data-toggle="collapse" href="#login-form-wrap" aria-expanded="false"
                        aria-controls="login-form-wrap">Pokročilé
                         vyhľádavanie</a>
+                    <i class="fa fa-arrow-down"></i>
                 </div>
             </div>
         </div>
