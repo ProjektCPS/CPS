@@ -11,16 +11,17 @@ import java.io.PrintWriter;
 
 @WebServlet(name = "logoutControler")
 public class logoutControler extends HttpServlet {
-    String page = "/index.jsp";
+    String page = "/login.jsp";
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+            page = response.getContentType();
             response.setContentType(page);
             PrintWriter out=response.getWriter();
 
-            HttpSession session=request.getSession();
+            HttpSession session = request.getSession();
             session.invalidate();
             request.setAttribute("message", "You are successfully logged out!");
             page = "/login.jsp";

@@ -56,7 +56,7 @@
 					</span>
 
                 <span class="login100-form-sub-title p-b-30">
-						Pihlásenie
+						Prihlásenie
 					</span>
 
                 <div class="wrap-input100 rs1 validate-input" data-validate="Vyplňte email">

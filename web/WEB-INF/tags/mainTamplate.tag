@@ -123,7 +123,9 @@
         <a id="profit" class="blue item " href="#">Profit</a>
         <div class="right menu">
             <div class="item">
-                <div id class="ui primary button"><i class="fa fa-user"></i>Odhlásiť</div>
+                <a href="login">
+                    <div id class="ui primary button"><i class="fa fa-user"></i>Odhlásiť</div>
+                </a>
             </div>
         </div>
     </div>

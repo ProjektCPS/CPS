@@ -114,10 +114,10 @@
         <div class="column">
             <table class="ui celled selectable right aligned table">
                 <thead>
-                <th class="left aligned">Person</th>
-                <th>Calories</th>
-                <th>Fat</th>
-                <th>Protein</th>
+                <th class="left aligned">ID</th>
+                <th>Typ zľavy</th>
+                <th>Hodnota</th>
+                <th>Validná</th>
                 </thead>
                 <tbody>
                 <tr>
