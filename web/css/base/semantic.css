@@ -39899,16 +39899,19 @@ body.pushable > .pusher {
     margin-bottom: 15px;
 }
 
+.group-contajner h1{
+    text-align: center;
+    font-family: "Roboto Condensed", sans-serif;
+    text-decoration: unset;
+}
+
 .container-button button {
     width: 100%;
     position: relative;
-    margin-bottom: 20px !important;
+    margin-bottom: 10px !important;
     height: 40px;
 }
 
-midle i {
-    padding: 0 5px 0 0;
-}
 
 .middle {
     position: absolute;
@@ -39938,4 +39941,37 @@ midle i {
 
 .ui card card:hover{
     border: 1px dotted rgba(0, 0, 0, 0.57) !important;
+}
+
+
+.background-seda{
+    border-radius: 5px;
+   /* background: url("../../image/crossword.png") repeat scroll 0 0 #b8bcbd;*/
+}
+
+.background-ruzovkasta{
+    background-color: #b8bcbd;
+}
+
+.searcher{
+    width: 40%;
+    left:  30%;
+}
+
+.center-align {
+    text-align: center;
+}
+
+.center-align a{
+    color: #000;
+}
+
+.center-align a:hover{
+    text-decoration: underline;
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 16px;
+}
+
+.pozadie{
+    background: url("../../image/crossword.png") repeat scroll 0 0 #b8bcbd;
 }
