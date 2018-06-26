@@ -12,7 +12,7 @@ public interface BaseService {
 
     public List<String> getProductType(int id_admin);
 
-    public List<String> getProductCategories(int id_admin, String categoryName);
+    public List<KategorieEntity> getProductCategories(int id_admin, String categoryName);
 
     public List<String> getProduct(int id_admin, String categoryName);
 }

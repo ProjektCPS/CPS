@@ -1,6 +1,10 @@
 package filters;
 
+import config.UsefulData;
+import entities.UcetEntity;
 import org.glassfish.jersey.internal.util.Base64;
+import services.BaseService;
+import services.BaseServiceImplement;
 
 import java.io.IOException;
 import java.util.List;
@@ -29,16 +33,18 @@ public class SecurityFilter implements ContainerRequestFilter {
                 String username = tokenizer.nextToken();
                 String password = tokenizer.nextToken();
 
-                if ("user".equals(username) && "password".equals(password)) {
+                BaseService loginService = new BaseServiceImplement();
+                UcetEntity user = loginService.login(username, password);
+                if (user != null) {
+                    UsefulData.ID_ADMIN = user.getIdAdmin();
                     return;
                 }
             }
             Response unauthorizedStatus = Response
                     .status(Response.Status.UNAUTHORIZED)
-                    .entity("User cannot acces the resourece.")
+                    .entity("Užívateľ nema právo pristúpiť k dátam. Skotrolujte meno a heslo")
                     .build();
 
-            requestContext.abortWith(unauthorizedStatus);
-        }
+            requestContext.abortWith(unauthorizedStatus); }
     }
 }

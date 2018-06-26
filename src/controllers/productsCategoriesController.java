@@ -1,6 +1,7 @@
 package controllers;
 
 import com.google.gson.Gson;
+import entities.KategorieEntity;
 import services.BaseService;
 import services.BaseServiceImplement;
 import utilities.Validator;
@@ -27,7 +28,10 @@ public class productsCategoriesController extends HttpServlet {
         List<String> categoryItems = new ArrayList<>();
         if(Validator.isStringNumber(id_admin)!= null && !Validator.isStringNullOrEmpty(categoryName)){
             BaseService baseService = new BaseServiceImplement();
-            categoryItems = baseService.getProductCategories(Integer.parseInt(id_admin),categoryName);
+            List<KategorieEntity> listCategoriesObjects = baseService.getProductCategories(Integer.parseInt(id_admin),categoryName);
+            for (KategorieEntity category: listCategoriesObjects) {
+                categoryItems.add(category.getNazov());
+            }
         } else {
             response.setStatus(HttpServletResponse.SC_OK);
         }

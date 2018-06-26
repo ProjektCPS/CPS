@@ -12,9 +12,8 @@ public class Aplication extends Application {
         Set<Class<?>> s = new HashSet<Class<?>>();
 
         // Annotated @Path endpoint
-        s.add(SecuredResource.class);
         s.add(filters.SecurityFilter.class);
-
+        s.add(SecuredResource.class);
         return s;
     }
 }
