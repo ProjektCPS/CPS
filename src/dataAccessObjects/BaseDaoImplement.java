@@ -125,15 +125,15 @@ public class BaseDaoImplement implements BaseDao {
     }
 
     @Override
-    public List<String> getProduct(int id_admin, String categoryName) {
+    public List<Object[]> getProduct(int id_admin, String categoryName) {
         Session session = HibernateUtil.getSession();
-        List<String> list = new ArrayList<>();
+        List<Object[]> list = new ArrayList<>();
         if (session != null) {
             try {
                 CriteriaBuilder builder = session.getCriteriaBuilder();
 
                 // Using FROM and JOIN
-                CriteriaQuery<String> criteriaQuery = builder.createQuery(String.class);
+                CriteriaQuery<Object[]> criteriaQuery = builder.createQuery(Object[].class);
                 Root<PredmetPredajaEntity> predmetRoot = criteriaQuery.from(PredmetPredajaEntity.class);
                 Root<KategorieEntity> catRoot = criteriaQuery.from(KategorieEntity.class);
                 criteriaQuery.multiselect(predmetRoot.get("nazov"),

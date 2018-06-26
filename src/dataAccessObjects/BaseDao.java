@@ -14,5 +14,5 @@ public interface BaseDao {
 
     public List<KategorieEntity> getProductCategories(int id_admin, String categoryName);
 
-    public List<String> getProduct(int id_admin, String categoryName);
+    public List<Object[]> getProduct(int id_admin, String categoryName);
 }

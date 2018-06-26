@@ -31,7 +31,7 @@ public class BaseServiceImplement implements BaseService {
     }
 
     @Override
-    public List<String> getProduct(int id_admin, String categoryName) {
+    public List<Object[]> getProduct(int id_admin, String categoryName) {
         return baseDao.getProduct(id_admin, categoryName);
     }
 }

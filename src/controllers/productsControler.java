@@ -1,5 +1,6 @@
 package controllers;
 
+import com.google.gson.Gson;
 import services.BaseService;
 import services.BaseServiceImplement;
 import utilities.Validator;
@@ -23,14 +24,15 @@ public class productsControler extends HttpServlet {
         String json = null;
         String id_admin = request.getParameter("id_admin").trim();
         String categoryName = request.getParameter("categoryName").trim();
-        List<String> productsItems = new ArrayList<>();
+        List<Object[]> productsItems = new ArrayList<>();
         if(Validator.isStringNumber(id_admin)!= null && !Validator.isStringNullOrEmpty(categoryName)){
             BaseService baseService = new BaseServiceImplement();
             productsItems = baseService.getProduct(Integer.parseInt(id_admin),categoryName);
         } else {
             response.setStatus(HttpServletResponse.SC_OK);
         }
-        request.setAttribute("nazov", productsItems);
+        json = new Gson().toJson(productsItems);
+        request.setAttribute("productsItems", productsItems);
         request.setAttribute("id_admin",request.getParameter("id_admin"));
         request.getRequestDispatcher("/products.jsp").forward(request, response);
     }

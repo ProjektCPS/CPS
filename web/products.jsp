@@ -5,9 +5,13 @@
   Time: 14:25
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="java.util.List"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="mt" tagdir="/WEB-INF/tags" %>
+<% List eList = (List)session.getAttribute("productsItems");
+    request.setAttribute("eList", eList);
+%>
 <mt:mainTamplate title="Produkty">
   <jsp:attribute name="content">
 <html>
@@ -118,6 +122,7 @@
         </form>
 
 <div class="group-contajner ">
+    <H1>${productsItems}</H1>
     <div class="col-md-10">
         <div class="column">
             <table class="ui celled selectable right aligned table">
@@ -128,14 +133,14 @@
                 <th>Cena</th>
                 </thead>
                 <tbody>
-                <c:forEach items="${nazov}" var="item">
-                     <tr>
-                         <td class="left aligned">${item.nazov}</td>
-                         <td>${item.znacka}</td>
-                         <td>${item.nazovCat}</td>
-                         <td>${item.cena}</td>
-
-                     </tr>
+                <c:forEach items="${productsItems}" var="prodct">
+                <tr>
+                    <td class="left aligned">2</td>
+                    <td><c:out value="${productsItems.nazov}"/></td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>100</td>
+                </tr>
                 </c:forEach>
                 </tbody>
             </table>
