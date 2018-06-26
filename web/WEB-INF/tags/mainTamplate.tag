@@ -118,8 +118,8 @@
                 </a>
             </div>
         </div>
-        <a id="discount" class="blue item ">Zľavy</a>
-        <a id="orders" class="blue item ">Objednávky</a>
+        <a id="discount" class="blue item " href="discount_categories.jsp">Zľavy</a>
+        <a id="orders" class="blue item " href="order.jsp">Objednávky</a>
         <a id="profit" class="blue item " href="#">Profit</a>
         <div class="right menu">
             <div class="item">

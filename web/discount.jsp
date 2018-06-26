@@ -38,7 +38,8 @@
                 </div>
             </div>
         </div>
-
+    </div>
+</div>
         <form id="login-form-wrap" class="login collapse" method="post">
             <div class="row m-b-30">
                 <div class="col-md-3">
@@ -106,8 +107,7 @@
 
 
         </form>
-    </div>
-</div>
+
 
 <div class="group-contajner">
     <div class="col-md-10">
@@ -121,34 +121,34 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <td class="left aligned">Tasia</td>
-                    <td>12</td>
-                    <td>7g</td>
-                    <td>21g</td>
+                    <td class="left aligned">1</td>
+                    <td>cenova</td>
+                    <td>10</td>
+                    <td>ano</td>
                 </tr>
                 <tr>
-                    <td class="left aligned">Ronnie</td>
-                    <td>38</td>
-                    <td>37g</td>
-                    <td>38g</td>
+                    <td class="left aligned">3</td>
+                    <td>cenova</td>
+                    <td>25</td>
+                    <td>ano</td>
                 </tr>
                 <tr>
-                    <td class="left aligned">Gabriel</td>
-                    <td>30</td>
-                    <td>46g</td>
-                    <td>46g</td>
+                    <td class="left aligned">4</td>
+                    <td>cenova</td>
+                    <td>50</td>
+                    <td>ano</td>
                 </tr>
                 <tr>
-                    <td class="left aligned">Logan</td>
-                    <td>12</td>
-                    <td>21g</td>
-                    <td>39g</td>
+                    <td class="left aligned">5</td>
+                    <td>cenova</td>
+                    <td>20</td>
+                    <td>ano</td>
                 </tr>
                 <tr>
-                    <td class="left aligned">Clare</td>
-                    <td>39</td>
-                    <td>41g</td>
-                    <td>2g</td>
+                    <td class="left aligned">6</td>
+                    <td>cenova</td>
+                    <td>6</td>
+                    <td>nie</td>
                 </tr>
                 </tbody>
             </table>

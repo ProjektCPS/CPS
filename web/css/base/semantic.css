@@ -39974,5 +39974,6 @@ body.pushable > .pusher {
 }
 
 .pozadie{
-    background: url("../../image/crossword.png") repeat scroll 0 0 #b8bcbd;
+    margin-top: -30px;
+    background: url("../../image/crossword.png") repeat scroll 0 0 #4183C4;;
 }

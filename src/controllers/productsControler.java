@@ -30,11 +30,7 @@ public class productsControler extends HttpServlet {
         } else {
             response.setStatus(HttpServletResponse.SC_OK);
         }
-
-        request.setAttribute("nazov", productsItems.get(0));
-        request.setAttribute("znacka", productsItems.get(1));
-        request.setAttribute("nazovCat", productsItems.get(2));
-        request.setAttribute("cena", productsItems.get(3));
+        request.setAttribute("nazov", productsItems);
         request.setAttribute("id_admin",request.getParameter("id_admin"));
         request.getRequestDispatcher("/products.jsp").forward(request, response);
     }

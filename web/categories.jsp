@@ -13,6 +13,7 @@
     <html>
     <head>
         <!---Javascript -->
+        <script src="js/productCategories/main.js"></script>
         <script src="js/productCategories/categories.js"></script>
     </head>
     <body>
@@ -21,8 +22,8 @@
 
             <c:forEach items="${categories}" var="item">
                  <div class="col-md-3">
-                     <div class="ui card card m-b-30">
-                         <a href="#">
+                     <div id="categorie" class="ui card card m-b-30">
+                         <a href="/products?categoryName=${item}&id_admin=${id_admin}">
                              <div class="image">
                                  <div class="ui blurring inverted dimmer">
                                      <div class="content">

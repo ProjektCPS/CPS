@@ -5,6 +5,7 @@
   Time: 14:25
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="mt" tagdir="/WEB-INF/tags" %>
 <mt:mainTamplate title="Produkty">
@@ -39,6 +40,8 @@
             </div>
         </div>
 
+    </div>
+</div>
         <form id="login-form-wrap" class="login collapse" method="post">
             <div class="row m-b-30">
                 <div class="col-md-3 m-b-10">
@@ -59,8 +62,9 @@
                         <i class="dropdown icon"></i>
                         <div class="default text">Cena</div>
                         <div class="menu">
-                            <div class="item" data-value="1">Male</div>
-                            <div class="item" data-value="0">Female</div>
+                                <div class="item" data-value="1">100- 200</div>
+                                <div class="item" data-value="0">200 a viac</div>
+                            
                         </div>
                     </div>
                 </div>
@@ -113,8 +117,6 @@
             </div>
         </form>
 
-    </div>
-</div>
 <div class="group-contajner ">
     <div class="col-md-10">
         <div class="column">
@@ -128,10 +130,10 @@
                 <tbody>
                 <c:forEach items="${nazov}" var="item">
                      <tr>
-                         <td class="left aligned">${nazov}</td>
-                         <td>${znacka}</td>
-                         <td>${nazovCat}</td>
-                         <td>${cena}</td>
+                         <td class="left aligned">${item.nazov}</td>
+                         <td>${item.znacka}</td>
+                         <td>${item.nazovCat}</td>
+                         <td>${item.cena}</td>
 
                      </tr>
                 </c:forEach>
