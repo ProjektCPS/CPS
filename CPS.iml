@@ -30,11 +30,13 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="Tomcat 9.0.4" level="application_server_libraries" />
-    <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
     <orderEntry type="library" name="Hibernate 5.2.16-5.2.16" level="project" />
     <orderEntry type="library" name="mysql:mysql-connector-java:8.0.11" level="project" />
     <orderEntry type="library" name="com.google.code.gson:gson:2.8.5" level="project" />
     <orderEntry type="library" name="javax.servlet.jsp.jstl" level="project" />
     <orderEntry type="library" name="standard" level="project" />
+    <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
+    <orderEntry type="library" name="org.jboss.forge.addon:javaee-api:3.9.0.Final" level="project" />
+    <orderEntry type="library" name="org.glassfish.jersey.bundles:jaxrs-ri:2.22.2" level="project" />
   </component>
 </module>

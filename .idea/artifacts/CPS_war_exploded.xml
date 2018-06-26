@@ -12,6 +12,7 @@
           <element id="library" level="project" name="com.google.code.gson:gson:2.8.5" />
           <element id="library" level="project" name="javax.servlet.jsp.jstl" />
           <element id="library" level="project" name="standard" />
+          <element id="library" level="project" name="org.glassfish.jersey.bundles:jaxrs-ri:2.22.2" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="CPS/web/Web" />
