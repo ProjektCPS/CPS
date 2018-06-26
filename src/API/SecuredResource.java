@@ -3,6 +3,7 @@ package API;
 import com.google.gson.Gson;
 import config.UsefulData;
 import entities.KategorieEntity;
+import entities.PredmetPredajaEntity;
 import services.BaseService;
 import services.BaseServiceImplement;
 
@@ -33,6 +34,16 @@ public class SecuredResource {
         BaseService baseService = new BaseServiceImplement();
         List<KategorieEntity> listCategoriesObjects = baseService.getProductCategories(UsefulData.ID_ADMIN,productTypeName);
         String json = new Gson().toJson(listCategoriesObjects);
+        return json;
+    }
+
+    @GET
+    @Path("products")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getProducts(@QueryParam("productCategoryName") String productTypeName) {
+        BaseService baseService = new BaseServiceImplement();
+        List<PredmetPredajaEntity> productsItems = baseService.getProduct(UsefulData.ID_ADMIN,productTypeName);
+        String json = new Gson().toJson(productsItems);
         return json;
     }
 }

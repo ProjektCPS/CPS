@@ -3,6 +3,7 @@ package services;
 import dataAccessObjects.BaseDao;
 import dataAccessObjects.BaseDaoImplement;
 import entities.KategorieEntity;
+import entities.PredmetPredajaEntity;
 import entities.UcetEntity;
 
 import java.util.List;
@@ -31,7 +32,7 @@ public class BaseServiceImplement implements BaseService {
     }
 
     @Override
-    public List<Object[]> getProduct(int id_admin, String categoryName) {
+    public List<PredmetPredajaEntity> getProduct(int id_admin, String categoryName) {
         return baseDao.getProduct(id_admin, categoryName);
     }
 }

@@ -1,6 +1,7 @@
 package controllers;
 
 import com.google.gson.Gson;
+import entities.PredmetPredajaEntity;
 import services.BaseService;
 import services.BaseServiceImplement;
 import utilities.Validator;
@@ -24,7 +25,7 @@ public class productsControler extends HttpServlet {
         String json = null;
         String id_admin = request.getParameter("id_admin").trim();
         String categoryName = request.getParameter("categoryName").trim();
-        List<Object[]> productsItems = new ArrayList<>();
+        List<PredmetPredajaEntity> productsItems = new ArrayList<>();
         if(Validator.isStringNumber(id_admin)!= null && !Validator.isStringNullOrEmpty(categoryName)){
             BaseService baseService = new BaseServiceImplement();
             productsItems = baseService.getProduct(Integer.parseInt(id_admin),categoryName);

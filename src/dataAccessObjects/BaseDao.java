@@ -1,6 +1,7 @@
 package dataAccessObjects;
 
 import entities.KategorieEntity;
+import entities.PredmetPredajaEntity;
 import entities.UcetEntity;
 
 import java.util.List;
@@ -14,5 +15,5 @@ public interface BaseDao {
 
     public List<KategorieEntity> getProductCategories(int id_admin, String categoryName);
 
-    public List<Object[]> getProduct(int id_admin, String categoryName);
+    public List<PredmetPredajaEntity> getProduct(int id_admin, String categoryName);
 }
