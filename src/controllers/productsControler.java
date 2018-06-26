@@ -1,6 +1,5 @@
 package controllers;
 
-import com.google.gson.Gson;
 import services.BaseService;
 import services.BaseServiceImplement;
 import utilities.Validator;
@@ -11,32 +10,33 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "productsController")
-public class productsController extends HttpServlet {
-    private static final long serialVersionUID = 1L;
-
+@WebServlet(name = "productsControler")
+public class productsControler extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
-    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String json = null;
         String id_admin = request.getParameter("id_admin").trim();
-
-        if(Validator.isStringNumber(id_admin)!= null){
+        String categoryName = request.getParameter("categoryName").trim();
+        List<String> productsItems = new ArrayList<>();
+        if(Validator.isStringNumber(id_admin)!= null && !Validator.isStringNullOrEmpty(categoryName)){
             BaseService baseService = new BaseServiceImplement();
-            List<String> productItems = baseService.getProductType(Integer.parseInt(id_admin));
-            json = new Gson().toJson(productItems);
+            productsItems = baseService.getProduct(Integer.parseInt(id_admin),categoryName);
         } else {
             response.setStatus(HttpServletResponse.SC_OK);
-            json = new Gson().toJson(null);
         }
 
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-        response.getWriter().write(json);
+        request.setAttribute("nazov", productsItems.get(0));
+        request.setAttribute("znacka", productsItems.get(1));
+        request.setAttribute("nazovCat", productsItems.get(2));
+        request.setAttribute("cena", productsItems.get(3));
+        request.setAttribute("id_admin",request.getParameter("id_admin"));
+        request.getRequestDispatcher("/products.jsp").forward(request, response);
     }
+
 }

@@ -13,4 +13,6 @@ public interface BaseDao {
     public List<String> getProductsType(int id_admin);
 
     public List<String> getProductCategories(int id_admin, String categoryName);
+
+    public List<String> getProduct(int id_admin, String categoryName);
 }

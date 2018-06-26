@@ -19,11 +19,20 @@
     </servlet-mapping>-->
 
     <servlet>
-        <servlet-name>productsController</servlet-name>
-        <servlet-class>controllers.productsController</servlet-class>
+        <servlet-name>productsTypeController</servlet-name>
+        <servlet-class>controllers.productsTypeController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>productsController</servlet-name>
+        <servlet-name>productsTypeController</servlet-name>
+        <url-pattern>/products-type</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>productsControler</servlet-name>
+        <servlet-class>controllers.productsControler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>productsControler</servlet-name>
         <url-pattern>/products</url-pattern>
     </servlet-mapping>
 

@@ -3,7 +3,7 @@ jQuery(document).ready(function ($) {
     // get categories for product menu by id_admin
     $(document).on("click", "#products", function () {
         $.ajax({
-            url: 'products',
+            url: 'products-type',
             data: {
                 id_admin: $('#id_admin').val()
             },

@@ -29,4 +29,9 @@ public class BaseServiceImplement implements BaseService {
     public List<String> getProductCategories(int id_admin, String categoryName) {
         return baseDao.getProductCategories(id_admin, categoryName);
     }
+
+    @Override
+    public List<String> getProduct(int id_admin, String categoryName) {
+        return baseDao.getProduct(id_admin, categoryName);
+    }
 }
