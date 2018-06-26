@@ -38,7 +38,8 @@
                 </div>
             </div>
         </div>
-
+    </div>
+</div>
         <form id="login-form-wrap" class="login collapse" method="post">
             <div class="row m-b-30">
                 <div class="col-md-3 m-b-10">
@@ -114,49 +115,28 @@
             </div>
         </form>
 
-    </div>
-</div>
+
+
 <div class="group-contajner ">
     <div class="col-md-12">
         <div class="column">
             <table class="ui celled selectable right aligned table">
                 <thead>
-                <th class="left aligned">Person</th>
-                <th>Calories</th>
-                <th>Fat</th>
-                <th>Protein</th>
+                <th class="left aligned">Id</th>
+                <th>stav</th>
+                <th>pocet poloziek</th>
+                <th>zlava</th>
+                <th>cena</th>
                 </thead>
                 <tbody>
                 <tr>
-                    <td class="left aligned">Tasia</td>
-                    <td>12</td>
-                    <td>7g</td>
-                    <td>21g</td>
+                    <td class="left aligned">2</td>
+                    <td>vyfakturovana</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>100</td>
                 </tr>
-                <tr>
-                    <td class="left aligned">Ronnie</td>
-                    <td>38</td>
-                    <td>37g</td>
-                    <td>38g</td>
-                </tr>
-                <tr>
-                    <td class="left aligned">Gabriel</td>
-                    <td>30</td>
-                    <td>46g</td>
-                    <td>46g</td>
-                </tr>
-                <tr>
-                    <td class="left aligned">Logan</td>
-                    <td>12</td>
-                    <td>21g</td>
-                    <td>39g</td>
-                </tr>
-                <tr>
-                    <td class="left aligned">Clare</td>
-                    <td>39</td>
-                    <td>41g</td>
-                    <td>2g</td>
-                </tr>
+
                 </tbody>
             </table>
         </div>

@@ -142,7 +142,8 @@ public class BaseDaoImplement implements BaseDao {
                         predmetRoot.get("cena"));
                 criteriaQuery.where(
                         builder.equal(catRoot.get("idAdmin"), id_admin),
-                        builder.equal(predmetRoot.get("idTypu"), catRoot.get("idTypu")),
+                        builder.equal(predmetRoot.get("idKategorie"), catRoot.get("idKategorie")),
+                        builder.equal(predmetRoot.get("idAdmin"), catRoot.get("idAdmin")),
                         builder.equal(catRoot.get("nazov"), categoryName)
                 )
                         .distinct(true);

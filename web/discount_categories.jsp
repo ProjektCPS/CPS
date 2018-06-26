@@ -20,7 +20,7 @@
 
         <div class="col-md-4">
             <div class="ui card card m-b-30">
-                <a href="#">
+                <a href="discount.jsp">
                     <div class="image">
                         <div class="ui blurring inverted dimmer">
                             <div class="content">
@@ -40,7 +40,7 @@
 
         <div class="col-md-4">
             <div class="ui card card m-b-30">
-                <a href="#">
+                <a href="discount.jsp">
                     <div class="image">
                         <div class="ui blurring inverted dimmer">
                             <div class="content">
@@ -60,7 +60,7 @@
 
         <div class="col-md-4">
             <div class="ui card card m-b-30">
-                <a href="#">
+                <a href="discount.jsp">
                     <div class="image">
                         <div class="ui blurring inverted dimmer">
                             <div class="content">
