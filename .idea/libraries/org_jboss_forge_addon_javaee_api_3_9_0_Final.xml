@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="org.jboss.forge.addon:javaee-api:3.9.0.Final" type="repository">
+    <properties maven-id="org.jboss.forge.addon:javaee-api:3.9.0.Final" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/javaee-api-3.9.0.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javaee-spi-3.9.0.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javaee-api-7.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javax.mail-1.5.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/activation-1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javax.json-1.0.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javaee-descriptors-api-0.0.6.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/shrinkwrap-descriptors-api-base-2.0.0-alpha-7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/shrinkwrap-descriptors-spi-2.0.0-alpha-7.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
