@@ -4,14 +4,13 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "eshop_uzivatel", schema = "sprava_cien_project", catalog = "")
+@Table(name = "eshop_uzivatel")
 public class EshopUzivatelEntity {
     private int idUzivatela;
     private String email;
     private String heslo;
     private String rodCislo;
     private String ico;
-    private int idAdmin;
 
     @Id
     @Column(name = "id_uzivatela", nullable = false)
@@ -63,23 +62,12 @@ public class EshopUzivatelEntity {
         this.ico = ico;
     }
 
-    @Basic
-    @Column(name = "id_admin", nullable = false)
-    public int getIdAdmin() {
-        return idAdmin;
-    }
-
-    public void setIdAdmin(int idAdmin) {
-        this.idAdmin = idAdmin;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         EshopUzivatelEntity that = (EshopUzivatelEntity) o;
         return idUzivatela == that.idUzivatela &&
-                idAdmin == that.idAdmin &&
                 Objects.equals(email, that.email) &&
                 Objects.equals(heslo, that.heslo) &&
                 Objects.equals(rodCislo, that.rodCislo) &&
@@ -89,6 +77,6 @@ public class EshopUzivatelEntity {
     @Override
     public int hashCode() {
 
-        return Objects.hash(idUzivatela, email, heslo, rodCislo, ico, idAdmin);
+        return Objects.hash(idUzivatela, email, heslo, rodCislo, ico);
     }
 }

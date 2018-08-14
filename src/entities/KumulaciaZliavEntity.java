@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "kumulacia_zliav", schema = "sprava_cien_project", catalog = "")
+@Table(name = "kumulacia_zliav")
 @IdClass(KumulaciaZliavEntityPK.class)
 public class KumulaciaZliavEntity {
     private int id;

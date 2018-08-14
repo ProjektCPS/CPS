@@ -9,6 +9,7 @@ import org.hibernate.criterion.Projection;
 import org.hibernate.query.Query;
 import utilities.HashPasswordUtil;
 import utilities.HibernateUtil;
+import utilities.multitenancy.CurrentTenantIdentifierResolverImpl;
 
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
@@ -19,7 +20,7 @@ import java.util.List;
 public class BaseDaoImplement implements BaseDao {
     @Override
     public UcetEntity login(String username, String password) {
-        Session session = HibernateUtil.getSession();
+        Session session = HibernateUtil.getSessionByTenant(CurrentTenantIdentifierResolverImpl.DEFAULT_TENANT_ID);
         if (session != null) {
             try {
                 CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -40,8 +41,11 @@ public class BaseDaoImplement implements BaseDao {
                 System.out.println("Exception occred while reading user data: "
                         + exception.getMessage());
                 return null;
+            } finally {
+                if (session != null) {
+                    session.close();
+                }
             }
-
         } else {
             System.out.println("DB server down.....");
         }
@@ -79,6 +83,10 @@ public class BaseDaoImplement implements BaseDao {
                 System.out.println("Exception occred while reading user data: "
                         + exception.getMessage());
                 return null;
+            } finally {
+                if (session != null) {
+                    session.close();
+                }
             }
 
         } else {
@@ -104,7 +112,7 @@ public class BaseDaoImplement implements BaseDao {
                         builder.equal(catRoot.get("idAdmin"), id_admin),
                         builder.equal(typeRoot.get("idTypu"), catRoot.get("idTypu")),
                         builder.equal(typeRoot.get("nazov"), categoryName)
-                        )
+                )
                         .distinct(true);
 
                 list = session.createQuery(criteriaQuery).getResultList();
@@ -116,6 +124,10 @@ public class BaseDaoImplement implements BaseDao {
                 System.out.println("Exception occred while reading user data: "
                         + exception.getMessage());
                 return null;
+            } finally {
+                if (session != null) {
+                    session.close();
+                }
             }
 
         } else {
@@ -155,6 +167,10 @@ public class BaseDaoImplement implements BaseDao {
                 System.out.println("Exception occred while reading user data: "
                         + exception.getMessage());
                 return null;
+            } finally {
+                if (session != null) {
+                    session.close();
+                }
             }
 
         } else {

@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "ucet", schema = "sprava_cien_project", catalog = "")
+@Table(name = "Ucet")
 public class UcetEntity {
     private int idAdmin;
     private String rodCislo;
@@ -12,7 +12,7 @@ public class UcetEntity {
     private String uzivatel;
     private String heslo;
     private String email;
-    private Byte aktivny;
+    private Integer active;
 
     @Id
     @Column(name = "id_admin", nullable = false)
@@ -45,7 +45,7 @@ public class UcetEntity {
     }
 
     @Basic
-    @Column(name = "uzivatel", nullable = false, length = 45)
+    @Column(name = "uzivatel", nullable = false, length = 30)
     public String getUzivatel() {
         return uzivatel;
     }
@@ -55,7 +55,7 @@ public class UcetEntity {
     }
 
     @Basic
-    @Column(name = "heslo", nullable = false, length = 65)
+    @Column(name = "heslo", nullable = false, length = 30)
     public String getHeslo() {
         return heslo;
     }
@@ -65,7 +65,7 @@ public class UcetEntity {
     }
 
     @Basic
-    @Column(name = "email", nullable = false, length = 45)
+    @Column(name = "email", nullable = false, length = 30)
     public String getEmail() {
         return email;
     }
@@ -75,13 +75,13 @@ public class UcetEntity {
     }
 
     @Basic
-    @Column(name = "aktivny", nullable = true)
-    public Byte getAktivny() {
-        return aktivny;
+    @Column(name = "active", nullable = true)
+    public Integer getActive() {
+        return active;
     }
 
-    public void setAktivny(Byte aktivny) {
-        this.aktivny = aktivny;
+    public void setActive(Integer active) {
+        this.active = active;
     }
 
     @Override
@@ -95,12 +95,12 @@ public class UcetEntity {
                 Objects.equals(uzivatel, that.uzivatel) &&
                 Objects.equals(heslo, that.heslo) &&
                 Objects.equals(email, that.email) &&
-                Objects.equals(aktivny, that.aktivny);
+                Objects.equals(active, that.active);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(idAdmin, rodCislo, ico, uzivatel, heslo, email, aktivny);
+        return Objects.hash(idAdmin, rodCislo, ico, uzivatel, heslo, email, active);
     }
 }

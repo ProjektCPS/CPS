@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="entities.UzivatelZlavyEntity" table="uzivatel_zlavy" schema="sprava_cien_project">
+    <class name="entities.UzivatelZlavyEntity" table="uzivatel_zlavy">
         <composite-id mapped="true" class="entities.UzivatelZlavyEntityPK">
             <key-property name="idZlavy">
                 <column name="id_zlavy" sql-type="int(11)"/>

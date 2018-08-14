@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="entities.UcetEntity" table="ucet" schema="sprava_cien_project">
+    <class name="entities.UcetEntity" table="Ucet">
         <id name="idAdmin">
             <column name="id_admin" sql-type="int(11)"/>
         </id>
@@ -15,16 +15,16 @@
             <column name="ICO" sql-type="char(8)" length="8" not-null="true"/>
         </property>
         <property name="uzivatel">
-            <column name="uzivatel" sql-type="varchar(45)" length="45"/>
+            <column name="uzivatel" sql-type="varchar(30)" length="30"/>
         </property>
         <property name="heslo">
-            <column name="heslo" sql-type="varchar(65)" length="65"/>
+            <column name="heslo" sql-type="varchar(30)" length="30"/>
         </property>
         <property name="email">
-            <column name="email" sql-type="varchar(45)" length="45"/>
+            <column name="email" sql-type="varchar(30)" length="30"/>
         </property>
-        <property name="aktivny">
-            <column name="aktivny" sql-type="tinyint(4)" not-null="true"/>
+        <property name="active">
+            <column name="active" sql-type="int(11)" not-null="true"/>
         </property>
     </class>
 </hibernate-mapping>

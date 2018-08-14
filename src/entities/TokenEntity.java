@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
-@Table(name = "token", schema = "sprava_cien_project", catalog = "")
+@Table(name = "Token")
 public class TokenEntity {
     private int idSerial;
     private int idAdmin;
@@ -57,7 +57,7 @@ public class TokenEntity {
     }
 
     @Basic
-    @Column(name = "ip_adress", nullable = true, length = 45)
+    @Column(name = "ip_adress", nullable = true, length = 50)
     public String getIpAdress() {
         return ipAdress;
     }

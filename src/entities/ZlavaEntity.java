@@ -5,7 +5,7 @@ import java.sql.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "zlava", schema = "sprava_cien_project", catalog = "")
+@Table(name = "zlava")
 public class ZlavaEntity {
     private int idZlavy;
     private Integer idKvantity;
