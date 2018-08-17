@@ -17,16 +17,12 @@ public class logoutControler extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            page = response.getContentType();
-            response.setContentType(page);
-            PrintWriter out=response.getWriter();
-
-            HttpSession session = request.getSession();
+        //invalidate the session if exists
+        HttpSession session = request.getSession(false);
+        if (session != null) {
             session.invalidate();
-            request.setAttribute("message", "You are successfully logged out!");
-            page = "/login.jsp";
-            request.getRequestDispatcher(page).forward(request, response);
-
-            out.close();
         }
+        request.setAttribute("message", "You are successfully logged out!");
+        response.sendRedirect(page);
+    }
 }

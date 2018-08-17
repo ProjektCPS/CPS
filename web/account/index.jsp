@@ -13,7 +13,7 @@
     <html>
     <head>
       <!---Javascript -->
-      <script src="js/home/home.js"></script>
+      <script src="../js/home/home.js"></script>
     </head>
     <body>
       Content pre home page

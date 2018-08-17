@@ -1,14 +1,13 @@
 package controllers;
 
+import config.Constants;
 import entities.UcetEntity;
 import services.BaseService;
 import services.BaseServiceImplement;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -25,8 +24,26 @@ public class loginController extends HttpServlet {
             BaseService loginService = new BaseServiceImplement();
             UcetEntity user = loginService.login(username, password);
             if (user != null) {
+                //get the old session and invalidate
+                HttpSession oldSession = request.getSession(false);
+                if (oldSession != null) {
+                    oldSession.invalidate();
+                }
+                //generate a new session
+                HttpSession newSession = request.getSession(true);
+
+                //setting session to expiry in 5 mins
+                newSession.setMaxInactiveInterval(5*60);
+                newSession.setAttribute(Constants.USER_NAME, username);
+                newSession.setAttribute(Constants.TENANT_ID, user.getUzivatel());
+                newSession.setAttribute(Constants.ADMIN_ID, user.getIdAdmin());
+
+
+                Cookie message = new Cookie("message", "Welcome");
+                response.addCookie(message);
+
                 request.setAttribute("username", username);
-                page = "/index.jsp";
+                page = "account/index.jsp";
                 request.setAttribute("id_admin", user.getIdAdmin());
             } else {
                 request.setAttribute("msg", "Nesprávny email alebo heslo!");

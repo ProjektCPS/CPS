@@ -21,6 +21,16 @@
         <url-pattern>/webapi/*</url-pattern>
     </servlet-mapping>
 
+    <!--for all URI start with "/account" prefix will be applicated  filter-->
+    <filter>
+        <filter-name>AuthenticationFilter</filter-name>
+        <filter-class>filters.Authentication</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthenticationFilter</filter-name>
+        <url-pattern>/account/*</url-pattern>
+    </filter-mapping>
+
     <!--<servlet>
         <servlet-name>registrationController</servlet-name>
         <servlet-class>controllers.registrationController</servlet-class>
@@ -31,13 +41,14 @@
         <url-pattern>/registration</url-pattern>
     </servlet-mapping>-->
 
+    <!--all security url must start with "/account" prefix-->
     <servlet>
         <servlet-name>productsTypeController</servlet-name>
         <servlet-class>controllers.productsTypeController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>productsTypeController</servlet-name>
-        <url-pattern>/products-type</url-pattern>
+        <url-pattern>/account/products-type</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -46,7 +57,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>productsControler</servlet-name>
-        <url-pattern>/products</url-pattern>
+        <url-pattern>/account/products</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -55,7 +66,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>productsCategoriesController</servlet-name>
-        <url-pattern>/productCategories</url-pattern>
+        <url-pattern>/account/productCategories</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -73,7 +84,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>logoutControler</servlet-name>
-        <url-pattern>/logout</url-pattern>
+        <url-pattern>/account/logout</url-pattern>
     </servlet-mapping>
 
 </web-app>

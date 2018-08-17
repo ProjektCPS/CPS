@@ -28,7 +28,7 @@
                                 </div>
                             </div>
                         </div>
-                        <img src="image/price.jpg">
+                        <img src="../image/price.jpg">
                     </div>
 
                 </a>
@@ -48,7 +48,7 @@
                                 </div>
                             </div>
                         </div>
-                        <img src="image/percent.jpg">
+                        <img src="../image/percent.jpg">
                     </div>
 
                 </a>
@@ -68,7 +68,7 @@
                                 </div>
                             </div>
                         </div>
-                        <img src="image/balance.jpg">
+                        <img src="../image/balance.jpg">
                     </div>
 
                 </a>

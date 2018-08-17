@@ -1,5 +1,7 @@
 package API;
 
+import filters.SecurityFilterAPI;
+
 import javax.ws.rs.core.Application;
 import javax.ws.rs.ApplicationPath;
 import java.util.HashSet;
@@ -12,7 +14,7 @@ public class Aplication extends Application {
         Set<Class<?>> s = new HashSet<Class<?>>();
 
         // Annotated @Path endpoint
-        s.add(filters.SecurityFilter.class);
+        s.add(SecurityFilterAPI.class);
         s.add(SecuredResource.class);
         return s;
     }

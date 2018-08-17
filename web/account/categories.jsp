@@ -13,8 +13,8 @@
     <html>
     <head>
         <!---Javascript -->
-        <script src="js/productCategories/main.js"></script>
-        <script src="js/productCategories/categories.js"></script>
+        <script src="../js/productCategories/main.js"></script>
+        <script src="../js/productCategories/categories.js"></script>
     </head>
     <body>
     <div class="group-contajner">
@@ -54,7 +54,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <img src="image/plus.jpg">
+                            <img src="../image/plus.jpg">
                         </div>
                     </a>
                     <div class="content">

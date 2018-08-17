@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.Provider;
 
 @Provider
-public class SecurityFilter implements ContainerRequestFilter {
+public class SecurityFilterAPI implements ContainerRequestFilter {
 
     private static final String AUTHORIZATION_HEADER_KEY = "Authorization";
     private static final String AUTHORIZATION_HEADER_PREFIX = "Basic";
@@ -37,6 +37,7 @@ public class SecurityFilter implements ContainerRequestFilter {
                 UcetEntity user = loginService.login(username, password);
                 if (user != null) {
                     UsefulData.ID_ADMIN = user.getIdAdmin();
+                    UsefulData.ID_TENANT = user.getEmail();
                     return;
                 }
             }

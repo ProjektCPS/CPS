@@ -35,7 +35,7 @@ public class productsControler extends HttpServlet {
         json = new Gson().toJson(productsItems);
         request.setAttribute("productsItems", productsItems);
         request.setAttribute("id_admin",request.getParameter("id_admin"));
-        request.getRequestDispatcher("/products.jsp").forward(request, response);
+        request.getRequestDispatcher("/account/products.jsp").forward(request, response);
     }
 
 }

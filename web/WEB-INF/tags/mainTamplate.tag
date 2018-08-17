@@ -15,34 +15,34 @@
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet">
     <!-- Bootstrap -->
-    <link rel="stylesheet" type="text/css" href="css/base/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/base/bootstrap.min.css">
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 
     <!-- Custom CSS -->
     <!-- <link rel="stylesheet" href="css/owl.carousel.css"> -->
-    <link rel="stylesheet" href="css/home/style.css">
-    <link rel="stylesheet" href="css/base/util.css">
-    <link rel="stylesheet" href="css/home/responsive.css">
+    <link rel="stylesheet" href="/css/home/style.css">
+    <link rel="stylesheet" href="/css/base/util.css">
+    <link rel="stylesheet" href="/css/home/responsive.css">
 
     <!--- Component CSS -->
-    <link rel="stylesheet" type="text/css" href="css/base/semantic.css">
+    <link rel="stylesheet" type="text/css" href="/css/base/semantic.css">
 
 
     <!-- Latest jQuery form server -->
-    <script src="js/base/jquery/jquery.min.js"></script>
+    <script src="/js/base/jquery/jquery.min.js"></script>
     <!-- Bootstrap JS form CDN -->
-    <script src="js/base/bootstrap/bootstrap.min.js"></script>
+    <script src="/js/base/bootstrap/bootstrap.min.js"></script>
     <!-- jQuery sticky menu -->
-    <script src="js/base/owl.carousel.min.js"></script>
-    <script src="js/base/semantic.min.js"></script>
+    <script src="/js/base/owl.carousel.min.js"></script>
+    <script src="/js/base/semantic.min.js"></script>
 
     <!-- jQuery easing -->
-    <script src="js/base/jquery/jquery.easing.1.3.min.js"></script>
+    <script src="/js/base/jquery/jquery.easing.1.3.min.js"></script>
 
     <!-- Main -->
-    <script src="js/base/main.js"></script>
+    <script src="/js/base/main.js"></script>
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -99,7 +99,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="logo">
-                    <h1><a href="index.jsp">e<span>SpravaCien</span></a></h1>
+                    <h1><a href="/account/index.jsp">e<span>SpravaCien</span></a></h1>
                 </div>
             </div>
             <input id="id_admin" type="text" value="${id_admin}">
@@ -118,12 +118,12 @@
                 </a>
             </div>
         </div>
-        <a id="discount" class="blue item " href="discount_categories.jsp">Zľavy</a>
-        <a id="orders" class="blue item " href="order.jsp">Objednávky</a>
+        <a id="discount" class="blue item " href="/account/discount_categories.jsp">Zľavy</a>
+        <a id="orders" class="blue item " href="/account/order.jsp">Objednávky</a>
         <a id="profit" class="blue item " href="#">Profit</a>
         <div class="right menu">
             <div class="item">
-                <a href="login">
+                <a href="/account/logout">
                     <div id class="ui primary button"><i class="fa fa-user"></i>Odhlásiť</div>
                 </a>
             </div>

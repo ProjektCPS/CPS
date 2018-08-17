@@ -37,6 +37,6 @@ public class productsCategoriesController extends HttpServlet {
         }
         request.setAttribute("categories", categoryItems);
         request.setAttribute("id_admin",request.getParameter("id_admin"));
-        request.getRequestDispatcher("/categories.jsp").forward(request, response);
+        request.getRequestDispatcher("/account/categories.jsp").forward(request, response);
     }
 }

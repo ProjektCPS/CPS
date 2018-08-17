@@ -1,0 +1,55 @@
+package filters;
+
+import config.Constants;
+
+import java.io.IOException;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.List;
+
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+
+public class Authentication implements Filter {
+    private ServletContext context;
+
+    public void init(FilterConfig fConfig) throws ServletException {
+        this.context = fConfig.getServletContext();
+        this.context.log("AuthenticationFilter initialized");
+    }
+
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+
+        HttpServletRequest req = (HttpServletRequest) request;
+        HttpServletResponse res = (HttpServletResponse) response;
+
+        HttpSession session = req.getSession(false);
+
+        //checking whether the session exists
+        if (session == null ||
+                !session.getAttributeNames().hasMoreElements() ||
+                session.getAttribute(Constants.USER_NAME) == null ||
+                session.getAttribute(Constants.TENANT_ID) == null ||
+                session.getAttribute(Constants.ADMIN_ID) == null) {
+
+            this.context.log("Unauthorized access request");
+            res.sendRedirect("/login.jsp");
+        } else {
+            // pass the request along the filter chain
+            chain.doFilter(request, response);
+        }
+    }
+
+    public void destroy() {
+        //close any resources here
+    }
+}
