@@ -62,11 +62,11 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>productsControler</servlet-name>
+        <servlet-name>productsController</servlet-name>
         <servlet-class>controllers.productsControler</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>productsControler</servlet-name>
+        <servlet-name>productsController</servlet-name>
         <url-pattern>/account/products</url-pattern>
     </servlet-mapping>
 
@@ -89,12 +89,21 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>logoutControler</servlet-name>
-        <servlet-class>controllers.logoutControler</servlet-class>
+    <servlet-name>logoutController</servlet-name>
+    <servlet-class>controllers.logoutControler</servlet-class>
+</servlet>
+    <servlet-mapping>
+        <servlet-name>logoutController</servlet-name>
+        <url-pattern>/account/logout</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>accountsController</servlet-name>
+        <servlet-class>controllers.adminConrollers.accountsController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>logoutControler</servlet-name>
-        <url-pattern>/account/logout</url-pattern>
+        <servlet-name>accountsController</servlet-name>
+        <url-pattern>/account/admin/accounts</url-pattern>
     </servlet-mapping>
 
 </web-app>

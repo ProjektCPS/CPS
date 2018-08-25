@@ -119,20 +119,31 @@
         <div class="column">
             <table class="ui celled selectable right aligned table">
                 <thead>
-                <th class="left aligned">Nazov</th>
-                <th>Značka</th>
-                <th>Seriové číslo</th>
-                <th>Jednotka</th>
-                <th>Cena</th>
+                <th class="left aligned">Meno užívateľa / tenant id</th>
+                <th>Email</th>
+                <th>Rola</th>
+                <th>Aktívny</th>
                 </thead>
                 <tbody>
-                <c:forEach items="${productsItems}" var="product">
+                <c:forEach items="${accountsList}" var="accounts">
                 <tr>
-                    <td class="left aligned">${product.nazov}</td>
-                    <td>${product.znacka}</td>
-                    <td>${product.serioveCislo}</td>
-                    <td>${product.jednotka}</td>
-                    <td>${product.cena}</td>
+                    <td class="left aligned">${accounts.uzivatel}</td>
+                    <td>${accounts.email}</td>
+                    <td>${accounts.rola}</td>
+
+                    <td>
+                        <c:choose>
+                            <c:when test="${accounts.active == 1}">
+                                <i class="fa fa-check" style="color:green;"></i>
+                            </c:when>
+                            <c:when test="${accounts.active == 0}">
+                                <i class="fa fa-ban" style="color:red;"></i>
+                            </c:when>
+                            <c:otherwise>
+                                <i class="fa fa-ban" style="color:red;"></i>
+                             </c:otherwise>
+                        </c:choose>
+                    </td>
                 </tr>
                 </c:forEach>
                 </tbody>
@@ -150,7 +161,7 @@
             <button class="ui labeled icon button cervenak">
                 <div class="middle">
                     <i class="fa fa-minus"></i>
-                    Odstran
+                    Odstráň
                 </div>
             </button>
             <button class="ui labeled icon button belasa">

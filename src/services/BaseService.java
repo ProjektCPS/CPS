@@ -16,4 +16,6 @@ public interface BaseService {
     public List<KategorieEntity> getProductCategories(int id_admin, String categoryName);
 
     public List<PredmetPredajaEntity> getProduct(int id_admin, String categoryName);
+
+    public List<UcetEntity> getAcounts();
 }

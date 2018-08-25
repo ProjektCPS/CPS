@@ -123,7 +123,7 @@
         <a id="orders" class="blue item " href="/account/order.jsp">Objednávky</a>
         <a id="profit" class="blue item " href="#">Profit</a>
         <c:if test="${sessionScope.role == 'admin'}">
-            <c:out value=""/><a id="accounts" class="blue item " href="/account/admin/admins.jsp">Účty</a>
+            <c:out value=""/><a id="accounts" class="blue item " href="/account/admin/accounts">Účty</a>
         </c:if>
         <div class="right menu">
             <div class="item">
