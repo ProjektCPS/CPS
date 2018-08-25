@@ -13,6 +13,7 @@ public class UcetEntity {
     private String heslo;
     private String email;
     private Integer active;
+    private String rola;
 
     @Id
     @Column(name = "id_admin", nullable = false)
@@ -55,7 +56,7 @@ public class UcetEntity {
     }
 
     @Basic
-    @Column(name = "heslo", nullable = false, length = 30)
+    @Column(name = "heslo", nullable = false, length = 255)
     public String getHeslo() {
         return heslo;
     }
@@ -84,6 +85,16 @@ public class UcetEntity {
         this.active = active;
     }
 
+    @Basic
+    @Column(name = "rola", nullable = false, length = 45)
+    public String getRola() {
+        return rola;
+    }
+
+    public void setRola(String rola) {
+        this.rola = rola;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -95,12 +106,13 @@ public class UcetEntity {
                 Objects.equals(uzivatel, that.uzivatel) &&
                 Objects.equals(heslo, that.heslo) &&
                 Objects.equals(email, that.email) &&
-                Objects.equals(active, that.active);
+                Objects.equals(active, that.active) &&
+                Objects.equals(rola, that.rola);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(idAdmin, rodCislo, ico, uzivatel, heslo, email, active);
+        return Objects.hash(idAdmin, rodCislo, ico, uzivatel, heslo, email, active, rola);
     }
 }

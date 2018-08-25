@@ -5,34 +5,33 @@
   Time: 22:53
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page session="true" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <title>Login</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+    <link rel="icon" type="image/png" href="/images/icons/favicon.ico"/>
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="css/base/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/base/bootstrap.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <link rel="stylesheet" type="text/css" href="/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="css/base/animate.css">
+    <link rel="stylesheet" type="text/css" href="/css/base/animate.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="css/base/hamburgers.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/base/hamburgers.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="css/base/animsition.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/base/animsition.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="css/base/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/base/select2.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="css/base/daterangepicker.css">
+    <link rel="stylesheet" type="text/css" href="/css/base/daterangepicker.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="css/base/util.css">
-    <link rel="stylesheet" type="text/css" href="css/login/login.css">
+    <link rel="stylesheet" type="text/css" href="/css/base/util.css">
+    <link rel="stylesheet" type="text/css" href="/css/login/login.css">
     <!--===============================================================================================-->
 </head>
 <body>
@@ -76,14 +75,13 @@
                     </button>
                 </div>
 
-                <% if (request.getAttribute("msg") != null) { %>
+                <% if (request.getAttribute("msg") != null || request.getSession().getAttribute("msg") != null) { %>
                 <div class="center-block w-full p-t-23 ">
                     <div class="alert alert-danger m-b-0">
-                        ${msg}.
+                        ${msg}
                     </div>
                 </div>
                 <% } %>
-
                 <div class="text-center w-full p-t-23">
                     <a href="#" class="txt1">
                         Zabudol si heslo?

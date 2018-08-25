@@ -32,21 +32,30 @@ public class Authentication implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
 
-        HttpSession session = req.getSession(false);
-
-        //checking whether the session exists
-        if (session == null ||
-                !session.getAttributeNames().hasMoreElements() ||
-                session.getAttribute(Constants.USER_NAME) == null ||
-                session.getAttribute(Constants.TENANT_ID) == null ||
-                session.getAttribute(Constants.ADMIN_ID) == null) {
-
-            this.context.log("Unauthorized access request");
-            res.sendRedirect("/login.jsp");
-        } else {
+        if (authenticate(this.context, req,res)) {
             // pass the request along the filter chain
             chain.doFilter(request, response);
         }
+    }
+
+    public static boolean authenticate(ServletContext context, HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+        HttpSession session = req.getSession(false);
+        if (session == null) {
+            context.log("Unauthorized access request");
+            res.sendRedirect("/login.jsp");
+            return false;
+        } else if (!session.getAttributeNames().hasMoreElements() ||
+                session.getAttribute(Constants.USER_NAME) == null ||
+                session.getAttribute(Constants.TENANT_ID) == null ||
+                session.getAttribute(Constants.ADMIN_ID) == null) {
+            session.invalidate();
+            context.log("Unauthorized access request");
+            res.sendRedirect("/login.jsp");
+            return false;
+        } else {
+            return true;
+        }
+
     }
 
     public void destroy() {

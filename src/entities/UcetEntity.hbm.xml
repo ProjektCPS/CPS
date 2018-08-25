@@ -18,13 +18,16 @@
             <column name="uzivatel" sql-type="varchar(30)" length="30"/>
         </property>
         <property name="heslo">
-            <column name="heslo" sql-type="varchar(30)" length="30"/>
+            <column name="heslo" sql-type="varchar(255)" not-null="true"/>
         </property>
         <property name="email">
             <column name="email" sql-type="varchar(30)" length="30"/>
         </property>
         <property name="active">
             <column name="active" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="rola">
+            <column name="rola" sql-type="varchar(45)" length="45"/>
         </property>
     </class>
 </hibernate-mapping>

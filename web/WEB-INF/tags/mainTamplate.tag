@@ -1,6 +1,7 @@
 <%@tag language="java" pageEncoding="UTF-8" %>
 <%@attribute name="title" required="true" rtexprvalue="true" %>
 <%@attribute name="content" fragment="true" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -121,6 +122,9 @@
         <a id="discount" class="blue item " href="/account/discount_categories.jsp">Zľavy</a>
         <a id="orders" class="blue item " href="/account/order.jsp">Objednávky</a>
         <a id="profit" class="blue item " href="#">Profit</a>
+        <c:if test="${sessionScope.role == 'admin'}">
+            <c:out value=""/><a id="accounts" class="blue item " href="/account/admin/admins.jsp">Účty</a>
+        </c:if>
         <div class="right menu">
             <div class="item">
                 <a href="/account/logout">

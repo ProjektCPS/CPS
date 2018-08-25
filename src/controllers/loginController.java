@@ -37,6 +37,7 @@ public class loginController extends HttpServlet {
                 newSession.setAttribute(Constants.USER_NAME, username);
                 newSession.setAttribute(Constants.TENANT_ID, user.getUzivatel());
                 newSession.setAttribute(Constants.ADMIN_ID, user.getIdAdmin());
+                newSession.setAttribute(Constants.ROLE, user.getRola());
 
 
                 Cookie message = new Cookie("message", "Welcome");
