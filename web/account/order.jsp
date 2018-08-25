@@ -28,8 +28,8 @@
         <div class="row m-b-25">
             <div class="col-md-12">
                 <div class="center-align dropdown">
-                    <a data-toggle="collapse" href="#filer-background" aria-expanded="false"
-                       aria-controls="filer-background">Pokročilé
+                    <a data-toggle="collapse" href="#filter-background" aria-expanded="false"
+                       aria-controls="filter-background">Pokročilé
                         vyhľádavanie</a>
                     <i class="fa fa-arrow-down"></i>
                 </div>
@@ -37,7 +37,8 @@
         </div>
     </div>
 </div>
-        <form id="filer-background" class="collapse" method="post">
+        <form id="filter-background" class="collapse" method="post">
+            <hr class="horizontal-separator">
             <div class="row m-b-30">
                 <div class="col-md-3 m-b-10">
                     <div class="ui selection dropdown">

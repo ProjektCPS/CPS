@@ -39977,10 +39977,20 @@ body.pushable > .pusher {
     margin-top: -30px;
     background: url("/image/crossword.png") repeat scroll 0 0 #4183C4;;
 }
-#filer-background{
+#filter-background{
     background: -webkit-linear-gradient(left, #5e96cd, #0a31e80d);
     margin-top: -30px;
     margin-bottom: 30px;
     padding: 25px;
-    border-top: 1px solid #000;
+}
+
+hr.horizontal-separator {
+    height: 10px;
+    border: 0;
+    box-shadow: 0 10px 10px -10px #5f5f5f inset;
+    position: relative;
+    top: -25px;
+    left: -25px;
+    width: 105%;
+    margin: 0;
 }
