@@ -41,8 +41,6 @@
         <url-pattern>/account/*</url-pattern>
     </filter-mapping>
 
-
-
     <!--<servlet>
         <servlet-name>registrationController</servlet-name>
         <servlet-class>controllers.registrationController</servlet-class>

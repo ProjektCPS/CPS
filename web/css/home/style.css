@@ -991,12 +991,9 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button{background
   width: 40%;
 }
 
-/*michal customizoval border back a margin*/
 #login-form-wrap, #coupon-collapse-wrap {
-    background: none repeat scroll 0 0 #e2e9f7;
-    margin-top: -30px;
+    background: none repeat scroll 0 0 #f4f4f4;
     margin-bottom: 30px;
-    border-top: 1px solid #000;
     padding: 25px;
     z-index: 100000;
 }

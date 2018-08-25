@@ -39973,7 +39973,14 @@ body.pushable > .pusher {
     font-size: 16px;
 }
 
-.pozadie{
+.search-background{
     margin-top: -30px;
-    background: url("../../image/crossword.png") repeat scroll 0 0 #4183C4;;
+    background: url("/image/crossword.png") repeat scroll 0 0 #4183C4;;
+}
+#filer-background{
+    background: -webkit-linear-gradient(left, #5e96cd, #0a31e80d);
+    margin-top: -30px;
+    margin-bottom: 30px;
+    padding: 25px;
+    border-top: 1px solid #000;
 }

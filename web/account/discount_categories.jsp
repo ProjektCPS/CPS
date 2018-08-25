@@ -10,9 +10,6 @@
 <mt:mainTamplate title="Zlavy kategorie">
   <jsp:attribute name="content">
 <html>
-<head>
-    <title>Kategorie zlavy</title>
-</head>
 <body>
 
 <div class="group-contajner">

@@ -10,11 +10,8 @@
 <mt:mainTamplate title="Zlavy">
   <jsp:attribute name="content">
 <html>
-<head>
-    <title>Zľavy</title>
-</head>
 <body>
-<div class="pozadie">
+<div class="search-background">
     <div class="group-contajner">
         <div class="row m-b-25">
             <div class="col-md-12">
@@ -31,8 +28,8 @@
         <div class="row m-b-25">
             <div class="col-md-12">
                 <div class="center-align">
-                    <a data-toggle="collapse" href="#login-form-wrap" aria-expanded="false"
-                       aria-controls="login-form-wrap">Pokročilé
+                    <a data-toggle="collapse" href="#filer-background" aria-expanded="false"
+                       aria-controls="filer-background">Pokročilé
                         vyhľádavanie</a>
                     <i class="fa fa-arrow-down"></i>
                 </div>
@@ -40,7 +37,7 @@
         </div>
     </div>
 </div>
-        <form id="login-form-wrap" class="login collapse" method="post">
+        <form id="filer-background" class="collapse" method="post">
             <div class="row m-b-30">
                 <div class="col-md-3">
                     <div class="ui selection dropdown">
