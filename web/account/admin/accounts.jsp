@@ -127,7 +127,7 @@
                 </thead>
                 <tbody>
                 <c:forEach items="${accountsList}" var="accounts">
-                <tr>
+                <tr data-id="${accounts.idAdmin}">
                     <td class="left aligned">${accounts.uzivatel}</td>
                     <td>${accounts.email}</td>
                     <td>${accounts.rola}</td>

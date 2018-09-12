@@ -26178,7 +26178,7 @@ Floated Menu / Item
 
 .ui.table thead th {
     cursor: auto;
-    background: #F9FAFB;
+    background: #f2f2f2;
     text-align: inherit;
     color: rgba(0, 0, 0, 0.87);
     padding: 0.92857143em 0.78571429em;
@@ -26669,9 +26669,15 @@ Floated Menu / Item
    Selectable
 ---------------*/
 
-.ui.selectable.table tbody tr:hover,
-.ui.table tbody tr td.selectable:hover {
-    background: rgba(0, 0, 0, 0.05) !important;
+.ui.table tbody tr:hover {
+    cursor: pointer;
+}
+.ui.table tbody tr:not(.selected):nth-child(odd){
+    background-color: #F9FAFB;
+}
+
+.ui.table tbody tr:not(.selected):hover {
+    background: #e8f4ff !important;
     color: rgba(0, 0, 0, 0.95) !important;
 }
 
@@ -39887,7 +39893,6 @@ body.pushable > .pusher {
 
 /**************************************************
  customize code
- --michal tabulka v produktoch
   ******************************************************/
 .column {
     margin-bottom: 35px;
@@ -39977,6 +39982,7 @@ body.pushable > .pusher {
     margin-top: -30px;
     background: url("/image/crossword.png") repeat scroll 0 0 #4183C4;;
 }
+
 #filter-background{
     background: -webkit-linear-gradient(left, #5e96cd, #0a31e80d);
     margin-top: -30px;
@@ -39993,4 +39999,9 @@ hr.horizontal-separator {
     left: -25px;
     width: 105%;
     margin: 0;
+}
+
+.selected {
+    background-color: #bbddff;
+    color: #000;
 }

@@ -39,4 +39,14 @@ jQuery(document).ready(function ($) {
         $(this).addClass('active').siblings().removeClass('active');
         $(this).addClass('highlighted').siblings().removeClass('highlighted');
     });
+
+    $("table tr").click(function(){
+        $(this).addClass('selected').siblings().removeClass('selected');
+        var value=$(this).data("id");
+        alert(value);
+    });
+
+    $('.ok').on('click', function(e){
+        alert($("#table tr.selected td:first").html());
+    });
 });

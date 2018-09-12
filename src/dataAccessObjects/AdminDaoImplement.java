@@ -8,6 +8,7 @@ import utilities.multitenancy.CurrentTenantIdentifierResolverImpl;
 import javax.persistence.NoResultException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Order;
 import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,7 @@ public class AdminDaoImplement implements AdminDao {
                 // Using FROM
                 CriteriaQuery<UcetEntity> criteriaQuery = builder.createQuery(UcetEntity.class);
                 Root<UcetEntity> root = criteriaQuery.from(UcetEntity.class);
-                criteriaQuery.select(root);
+                criteriaQuery.select(root).orderBy((builder.asc(root.get("uzivatel"))));
 
                 list = session.createQuery(criteriaQuery).getResultList();
             } catch (NoResultException exception) {
