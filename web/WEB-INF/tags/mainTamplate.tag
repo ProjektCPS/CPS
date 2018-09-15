@@ -38,6 +38,9 @@
     <!-- jQuery sticky menu -->
     <script src="/js/base/owl.carousel.min.js"></script>
     <script src="/js/base/semantic.min.js"></script>
+    <script src="/js/base/dropdown.js"></script>
+    <script src="/js/base/checkbox.js"></script>
+
 
     <!-- jQuery easing -->
     <script src="/js/base/jquery/jquery.easing.1.3.min.js"></script>

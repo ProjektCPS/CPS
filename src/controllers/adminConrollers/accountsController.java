@@ -1,10 +1,8 @@
 package controllers.adminConrollers;
 
-import com.google.gson.Gson;
 import entities.UcetEntity;
 import services.BaseService;
 import services.BaseServiceImplement;
-import utilities.Validator;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,11 +20,9 @@ public class accountsController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String json = null;
         List<UcetEntity> accountsList = new ArrayList<>();
         BaseService baseService = new BaseServiceImplement();
-        accountsList = baseService.getAcounts();
-        json = new Gson().toJson(accountsList);
+        accountsList = baseService.getAccounts();
         request.setAttribute("accountsList", accountsList);
         request.getRequestDispatcher("/account/admin/accounts.jsp").forward(request, response);
     }

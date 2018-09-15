@@ -49,4 +49,8 @@ jQuery(document).ready(function ($) {
     $('.ok').on('click', function(e){
         alert($("#table tr.selected td:first").html());
     });
+
+    $('.ui.selection.dropdown').dropdown();
+
+    $('.ui.checkbox').checkbox();
 });

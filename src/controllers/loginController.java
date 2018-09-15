@@ -32,8 +32,8 @@ public class loginController extends HttpServlet {
                 //generate a new session
                 HttpSession newSession = request.getSession(true);
 
-                //setting session to expiry in 5 mins
-                newSession.setMaxInactiveInterval(5*60);
+                //setting session to expiry in 30 mins
+                newSession.setMaxInactiveInterval(30*60);
                 newSession.setAttribute(Constants.USER_NAME, username);
                 newSession.setAttribute(Constants.TENANT_ID, user.getUzivatel());
                 newSession.setAttribute(Constants.ADMIN_ID, user.getIdAdmin());

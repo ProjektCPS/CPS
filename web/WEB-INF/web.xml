@@ -98,12 +98,21 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>accountsController</servlet-name>
-        <servlet-class>controllers.adminConrollers.accountsController</servlet-class>
-    </servlet>
+    <servlet-name>accountsController</servlet-name>
+    <servlet-class>controllers.adminConrollers.accountsController</servlet-class>
+</servlet>
     <servlet-mapping>
         <servlet-name>accountsController</servlet-name>
         <url-pattern>/account/admin/accounts</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>accountController</servlet-name>
+        <servlet-class>controllers.adminConrollers.accountController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>accountController</servlet-name>
+        <url-pattern>/account/admin/account</url-pattern>
     </servlet-mapping>
 
 </web-app>

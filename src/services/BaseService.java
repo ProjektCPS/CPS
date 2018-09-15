@@ -1,5 +1,6 @@
 package services;
 
+import dataAccessObjects.BusinessStates;
 import entities.KategorieEntity;
 import entities.PredmetPredajaEntity;
 import entities.UcetEntity;
@@ -17,5 +18,7 @@ public interface BaseService {
 
     public List<PredmetPredajaEntity> getProduct(int id_admin, String categoryName);
 
-    public List<UcetEntity> getAcounts();
+    public List<UcetEntity> getAccounts();
+
+    public Object[] getAccount(int adminId, BusinessStates state);
 }

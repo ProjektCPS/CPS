@@ -1,9 +1,6 @@
 package services;
 
-import dataAccessObjects.AdminDao;
-import dataAccessObjects.AdminDaoImplement;
-import dataAccessObjects.BaseDao;
-import dataAccessObjects.BaseDaoImplement;
+import dataAccessObjects.*;
 import entities.KategorieEntity;
 import entities.PredmetPredajaEntity;
 import entities.UcetEntity;
@@ -40,7 +37,12 @@ public class BaseServiceImplement implements BaseService {
     }
 
     @Override
-    public List<UcetEntity> getAcounts() {
+    public List<UcetEntity> getAccounts() {
         return adminDao.getAccounts();
+    }
+
+    @Override
+    public Object[] getAccount(int adminId, BusinessStates state) {
+        return adminDao.getAccount(adminId, state);
     }
 }
