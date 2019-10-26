@@ -1,6 +1,7 @@
 package controllers;
 
 import com.google.gson.Gson;
+import config.Constants;
 import services.BaseService;
 import services.BaseServiceImplement;
 import utilities.Validator;
@@ -23,17 +24,11 @@ public class productsTypeController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String json = null;
-        String id_admin = request.getParameter("id_admin").trim();
+        String id_tenant = (String) request.getSession().getAttribute(Constants.TENANT_ID);
 
-        if(Validator.isStringNumber(id_admin)!= null){
-            BaseService baseService = new BaseServiceImplement();
-            List<String> productItems = baseService.getProductType(Integer.parseInt(id_admin));
-            json = new Gson().toJson(productItems);
-        } else {
-            response.setStatus(HttpServletResponse.SC_OK);
-            json = new Gson().toJson(null);
-        }
+        BaseService baseService = new BaseServiceImplement();
+        List<String> productItems = baseService.getProductType(id_tenant);
+        String json = new Gson().toJson(productItems);
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");

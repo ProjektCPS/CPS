@@ -58,8 +58,10 @@ public class BaseDaoImplement implements BaseDao {
     }
 
     @Override
-    public List<String> getProductsType(int id_admin) {
-        Session session = HibernateUtil.getSession();
+    public List<String> getProductsType(String id_Tenant) {
+        // Session session = HibernateUtil.getSessionByTenant(id_Tenant);
+        Session session = HibernateUtil.getSessionByTenant("sprava_cien_project");
+
         List<String> list = new ArrayList<>();
         if (session != null) {
             try {
@@ -70,8 +72,7 @@ public class BaseDaoImplement implements BaseDao {
                 Root<TypPredmetuEntity> typeRoot = criteriaQuery.from(TypPredmetuEntity.class);
                 Root<KategorieEntity> catRoot = criteriaQuery.from(KategorieEntity.class);
                 criteriaQuery.select(typeRoot.get("nazov"));
-                criteriaQuery.where(builder.equal(catRoot.get("idAdmin"), id_admin)
-                        , builder.equal(typeRoot.get("idTypu"), catRoot.get("idTypu")))
+                criteriaQuery.where(builder.equal(typeRoot.get("idTypu"), catRoot.get("idTypu")))
                         .distinct(true);
 
                 list = session.createQuery(criteriaQuery).getResultList();

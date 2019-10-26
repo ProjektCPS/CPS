@@ -12,26 +12,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="/images/icons/favicon.ico"/>
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/css/base/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/base/bootstrap.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/css/base/animate.css">
+    <link rel="stylesheet" type="text/css" href="css/base/animate.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/css/base/hamburgers.min.css">
+    <link rel="stylesheet" type="text/css" href="css/base/hamburgers.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/css/base/animsition.min.css">
+    <link rel="stylesheet" type="text/css" href="css/base/animsition.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/css/base/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="css/base/select2.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/css/base/daterangepicker.css">
+    <link rel="stylesheet" type="text/css" href="css/base/daterangepicker.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/css/base/util.css">
-    <link rel="stylesheet" type="text/css" href="/css/login/login.css">
+    <link rel="stylesheet" type="text/css" href="css/base/util.css">
+    <link rel="stylesheet" type="text/css" href="css/login/login.css">
     <!--===============================================================================================-->
 </head>
 <body>
@@ -111,4 +111,3 @@
 <script src="js/login/login.js"></script>
 
 </body>
-</html>

@@ -5,6 +5,12 @@ import java.security.NoSuchAlgorithmException;
 
 public class HashPasswordUtil {
 
+//    public static void main(String[] args){
+//       String hashPasswort = hashPassword("cps2019");
+//      System.out.printf("hashPasswort: " + hashPasswort);
+//
+//    }
+
     public static String hashPassword(String passwordToHash) {
         String generatedPassword = null;
         try {

@@ -37,7 +37,7 @@ public class SecurityFilterAPI implements ContainerRequestFilter {
                 UcetEntity user = loginService.login(username, password);
                 if (user != null) {
                     UsefulData.ID_ADMIN = user.getIdAdmin();
-                    UsefulData.ID_TENANT = user.getEmail();
+                    UsefulData.ID_TENANT = user.getUzivatel();
                     return;
                 }
             }

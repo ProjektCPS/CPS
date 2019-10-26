@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+// TODO: use some framework for support of role in the system. This solution is terrify :D
+
 public class RoleAdmin implements Filter {
     private ServletContext context;
     private final String ADMIN_ROLE = "admin";

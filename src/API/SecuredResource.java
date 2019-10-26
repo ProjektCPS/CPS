@@ -22,7 +22,7 @@ public class SecuredResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String getProductTypes() {
         BaseService baseService = new BaseServiceImplement();
-        List<String> productItems = baseService.getProductType(UsefulData.ID_ADMIN);
+        List<String> productItems = baseService.getProductType(UsefulData.ID_TENANT);
         String json = new Gson().toJson(productItems);
         return json;
     }

@@ -12,7 +12,7 @@ public interface BaseService {
 
     public String registration(UcetEntity user);
 
-    public List<String> getProductType(int id_admin);
+    public List<String> getProductType(String id_tenant);
 
     public List<KategorieEntity> getProductCategories(int id_admin, String categoryName);
 

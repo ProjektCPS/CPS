@@ -15,7 +15,7 @@ public class ConnectionProviderImpl implements ConnectionProvider {
     public ConnectionProviderImpl(String database) {
 
         // these should come from a property file
-        this.basicDataSource.setUrl("jdbc:mysql://158.193.138.60:3306/" + database + "?serverTimezone=UTC");
+        this.basicDataSource.setUrl("jdbc:mysql://127.0.0.1/" + database + "?serverTimezone=UTC");
         this.basicDataSource.setUser("sprava_cien_project");
         this.basicDataSource.setPassword("cps2018");
     }

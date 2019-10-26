@@ -22,8 +22,8 @@ public class BaseServiceImplement implements BaseService {
     }
 
     @Override
-    public List<String> getProductType(int id_admin) {
-        return baseDao.getProductsType(id_admin);
+    public List<String> getProductType(String id_tenant) {
+        return baseDao.getProductsType(id_tenant);
     }
 
     @Override

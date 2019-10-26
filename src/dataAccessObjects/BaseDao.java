@@ -11,7 +11,7 @@ public interface BaseDao {
 
     public String register(UcetEntity user);
 
-    public List<String> getProductsType(int id_admin);
+    public List<String> getProductsType(String id_tenant);
 
     public List<KategorieEntity> getProductCategories(int id_admin, String categoryName);
 
