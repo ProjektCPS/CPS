@@ -3,12 +3,12 @@ jQuery(document).ready(function ($) {
     // get categories for product menu
     $(document).on("click", "#products", function () {
         $.ajax({
-            url: 'products-type',
+            url: '../../account/products-type',
             success: function (response) {
                 $("#products").find(".menu").empty();
                 if(response != null){
                     $.each(response, function (index, item) {
-                        var urlHref = "productCategories?categoryName="+ item;
+                        var urlHref = "../../account/productCategories?categoryName="+ item;
                         $('<a class="inverted blue item">').text(item)
                             .prop("href", urlHref)
                             .appendTo($("#products").find(".menu"));
@@ -36,12 +36,6 @@ jQuery(document).ready(function ($) {
     $('.ui.menu a.item').on('click', function () {
         $(this).addClass('active').siblings().removeClass('active');
         $(this).addClass('highlighted').siblings().removeClass('highlighted');
-    });
-
-    $("table tr").click(function(){
-        $(this).addClass('selected').siblings().removeClass('selected');
-        var value=$(this).data("id");
-        alert(value);
     });
 
     $('.ok').on('click', function(e){

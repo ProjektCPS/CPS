@@ -12,7 +12,7 @@
   <jsp:attribute name="content">
 <html>
 <header>
-    <script src="../../js/admin/account.js"></script>
+    <script src="../../js/admin/accounts.js"></script>
 </header>
 <body>
 <div class="search-background">
@@ -121,7 +121,7 @@
 <div class="group-contajner ">
     <div class="col-md-10">
         <div class="column">
-            <table class="ui celled selectable right aligned table">
+            <table id="accounts-table" class="ui celled selectable right aligned table">
                 <thead>
                 <th class="left aligned">Meno užívateľa / tenant id</th>
                 <th>Email</th>
@@ -164,13 +164,13 @@
                     </div>
                 </button>
             </a>
-            <button class="ui labeled inverted red icon button cervenak">
+            <button id="delete-account" class="ui labeled inverted red icon button cervenak">
                 <div class="middle">
                     <i class="fa fa-minus"></i>
                     Odstráň
                 </div>
             </button>
-            <button class="ui labeled inverted blue icon button belasa">
+            <button id="edit-account" class="ui labeled inverted blue icon button belasa">
                 <div class="middle">
                     <i class="fa fa-pencil"></i>
                     Edituj

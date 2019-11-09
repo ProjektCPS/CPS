@@ -1,13 +1,13 @@
 package utilities;
 
 public class Validator {
-    public static String isStringNumber(String value){
+    public static Boolean isStringNumber(String value){
         try {
              Integer.parseInt(value);
         }catch (NumberFormatException e){
-            return null;
+            return false;
         }
-        return  value;
+        return true;
     }
 
     public static boolean isStringNullOrEmpty(String value){
