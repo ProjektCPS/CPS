@@ -10,6 +10,9 @@
 <mt:mainTamplate title="Objednavky">
   <jsp:attribute name="content">
 <html>
+<header>
+    <script src="../js/orders/orders.js"></script>
+</header>
 <body>
 <div class="search-background">
     <div class="group-contajner">
@@ -18,7 +21,7 @@
                 <h1>Vyhľadávanie</h1>
                 <div class="ui action input searcher">
                     <input type="text" placeholder="Search...">
-                    <button class="ui button belasa">
+                    <button class="ui button black">
                         <i class="fa fa-search"></i>
                     </button>
                 </div>

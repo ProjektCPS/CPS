@@ -97,8 +97,8 @@ public class BaseDaoImplement implements BaseDao {
     }
 
     @Override
-    public List<KategorieEntity> getProductCategories(int id_admin, String categoryName) {
-        Session session = HibernateUtil.getSession();
+    public List<KategorieEntity> getProductCategories(String categoryName) {
+        Session session = HibernateUtil.getSessionByTenant("sprava_cien_project");
         List<KategorieEntity> list = new ArrayList<>();
         if (session != null) {
             try {
@@ -110,7 +110,6 @@ public class BaseDaoImplement implements BaseDao {
                 Root<KategorieEntity> catRoot = criteriaQuery.from(KategorieEntity.class);
                 criteriaQuery.select(catRoot);
                 criteriaQuery.where(
-                        builder.equal(catRoot.get("idAdmin"), id_admin),
                         builder.equal(typeRoot.get("idTypu"), catRoot.get("idTypu")),
                         builder.equal(typeRoot.get("nazov"), categoryName)
                 )
@@ -138,8 +137,8 @@ public class BaseDaoImplement implements BaseDao {
     }
 
     @Override
-    public List<PredmetPredajaEntity> getProduct(int id_admin, String categoryName) {
-        Session session = HibernateUtil.getSession();
+    public List<PredmetPredajaEntity> getProduct(String categoryName) {
+        Session session = HibernateUtil.getSessionByTenant("sprava_cien_project");
         List<PredmetPredajaEntity> list = new ArrayList<>();
         if (session != null) {
             try {
@@ -152,9 +151,7 @@ public class BaseDaoImplement implements BaseDao {
 
                 criteriaQuery.select(predmetRoot);
                 criteriaQuery.where(
-                        builder.equal(catRoot.get("idAdmin"), id_admin),
                         builder.equal(predmetRoot.get("idKategorie"), catRoot.get("idKategorie")),
-                        builder.equal(predmetRoot.get("idAdmin"), catRoot.get("idAdmin")),
                         builder.equal(catRoot.get("nazov"), categoryName)
                 )
                         .distinct(true);

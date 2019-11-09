@@ -16,7 +16,6 @@ public class PredmetPredajaEntity {
     private String znacka;
     private String serioveCislo;
     private String popis;
-    private int idAdmin;
 
     @Id
     @Column(name = "id_predmetu", nullable = false)
@@ -108,16 +107,6 @@ public class PredmetPredajaEntity {
         this.popis = popis;
     }
 
-    @Basic
-    @Column(name = "id_admin", nullable = false)
-    public int getIdAdmin() {
-        return idAdmin;
-    }
-
-    public void setIdAdmin(int idAdmin) {
-        this.idAdmin = idAdmin;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -126,7 +115,6 @@ public class PredmetPredajaEntity {
         return idPredmetu == that.idPredmetu &&
                 idKategorie == that.idKategorie &&
                 Double.compare(that.cena, cena) == 0 &&
-                idAdmin == that.idAdmin &&
                 Objects.equals(nazov, that.nazov) &&
                 Objects.equals(jednotka, that.jednotka) &&
                 Objects.equals(datumExpiracie, that.datumExpiracie) &&
@@ -138,6 +126,6 @@ public class PredmetPredajaEntity {
     @Override
     public int hashCode() {
 
-        return Objects.hash(idPredmetu, idKategorie, nazov, cena, jednotka, datumExpiracie, znacka, serioveCislo, popis, idAdmin);
+        return Objects.hash(idPredmetu, idKategorie, nazov, cena, jednotka, datumExpiracie, znacka, serioveCislo, popis);
     }
 }

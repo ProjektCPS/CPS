@@ -1,17 +1,14 @@
 jQuery(document).ready(function ($) {
 
-    // get categories for product menu by id_admin
+    // get categories for product menu
     $(document).on("click", "#products", function () {
         $.ajax({
             url: 'products-type',
-            data: {
-                id_admin: $('#id_admin').val()
-            },
             success: function (response) {
                 $("#products").find(".menu").empty();
                 if(response != null){
                     $.each(response, function (index, item) {
-                        var urlHref = "productCategories?categoryName="+ item + "&id_admin=" + $('#id_admin').val();
+                        var urlHref = "productCategories?categoryName="+ item;
                         $('<a class="inverted blue item">').text(item)
                             .prop("href", urlHref)
                             .appendTo($("#products").find(".menu"));
@@ -26,6 +23,7 @@ jQuery(document).ready(function ($) {
     });
 
 
+    // menu dropdown
     $('.ui.menu .ui.dropdown').dropdown({
         on: 'click'
     });
@@ -53,4 +51,15 @@ jQuery(document).ready(function ($) {
     $('.ui.selection.dropdown').dropdown();
 
     $('.ui.checkbox').checkbox();
+
+    // scripts for cards
+    $('.special.card .image').dimmer({
+        on: 'hover'
+    });
+
+    $('.star.rating').rating();
+
+    $('.card .dimmer').dimmer({
+        on: 'hover'
+    });
 });

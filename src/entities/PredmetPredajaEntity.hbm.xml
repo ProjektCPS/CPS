@@ -32,8 +32,5 @@
         <property name="popis">
             <column name="popis" sql-type="varchar(4000)" length="4000" not-null="true"/>
         </property>
-        <property name="idAdmin">
-            <column name="id_admin" sql-type="int(11)"/>
-        </property>
     </class>
 </hibernate-mapping>

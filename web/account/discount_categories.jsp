@@ -10,13 +10,13 @@
 <mt:mainTamplate title="Zlavy kategorie">
   <jsp:attribute name="content">
 <html>
+<header>
+    <script src="../js/discounts/discount_categories.js"></script>
+</header>
 <body>
-
-<div class="group-contajner">
-    <div class="ui four cards ">
-
-        <div class="col-md-4">
-            <div class="ui card card m-b-30">
+<div class="container m-t-15">
+    <div class="ui three stackable cards">
+            <div class="ui card">
                 <a href="discount.jsp">
                     <div class="image">
                         <div class="ui blurring inverted dimmer">
@@ -33,10 +33,8 @@
                     <div class="header">Cenová</div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-md-4">
-            <div class="ui card card m-b-30">
+            <div class="ui card">
                 <a href="discount.jsp">
                     <div class="image">
                         <div class="ui blurring inverted dimmer">
@@ -53,10 +51,8 @@
                     <div class="header">Percentuálna</div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-md-4">
-            <div class="ui card card m-b-30">
+            <div class="ui card">
                 <a href="discount.jsp">
                     <div class="image">
                         <div class="ui blurring inverted dimmer">
@@ -73,12 +69,8 @@
                     <div class="header">Kvantitatívna</div>
                 </div>
             </div>
-        </div>
-
     </div>
 </div>
-
-
 </body>
 </html>
 </jsp:attribute>

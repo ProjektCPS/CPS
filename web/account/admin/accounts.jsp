@@ -11,6 +11,9 @@
 <mt:mainTamplate title="Účty">
   <jsp:attribute name="content">
 <html>
+<header>
+    <script src="../../js/admin/account.js"></script>
+</header>
 <body>
 <div class="search-background">
     <div class="group-contajner">
@@ -19,7 +22,7 @@
                 <h1>Vyhľadávanie</h1>
                 <div class="ui action input searcher">
                     <input type="text" placeholder="Search...">
-                    <button class="ui button belasa">
+                    <button class="ui button black">
                         <i class="fa fa-search"></i>
                     </button>
                 </div>
@@ -153,19 +156,21 @@
     </div>
     <div class="col-md-2">
         <div class="container-button m-b-20">
-            <button class="ui labeled icon button  zelenac">
-                <div class="middle">
-                    <i class="fa fa-plus"></i>
-                    Pridaj
-                </div>
-            </button>
-            <button class="ui labeled icon button cervenak">
+            <a href="./account.jsp">
+                <button class="ui labeled inverted green icon button  zelenac">
+                    <div class="middle">
+                        <i class="fa fa-plus"></i>
+                        Pridaj
+                    </div>
+                </button>
+            </a>
+            <button class="ui labeled inverted red icon button cervenak">
                 <div class="middle">
                     <i class="fa fa-minus"></i>
                     Odstráň
                 </div>
             </button>
-            <button class="ui labeled icon button belasa">
+            <button class="ui labeled inverted blue icon button belasa">
                 <div class="middle">
                     <i class="fa fa-pencil"></i>
                     Edituj

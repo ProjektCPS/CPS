@@ -1,0 +1,43 @@
+.ui.menu .ui.dropdown .menu.inverted > .item {
+    background: black !important;
+    color: white !important;
+}
+
+.ui.menu .ui.dropdown .menu.inverted > .item:hover {
+    background: #2185D0 !important;
+    color: #FFFFFF !important;
+    border-color: #2185D0 !important;
+}
+
+.ui.menu .ui.dropdown .menu.inverted > .selected.item {
+    background: #0a31e8!important;
+    color: #FFFFFF !important;
+}
+
+.ui.menu .dropdown.item .menu {
+    border: 0;
+}
+
+.ui.inverted.menu .active.item:hover {
+    background: #0a31e8!important;
+}
+
+.ui.link.inverted.menu .item:hover,
+.ui.inverted.menu .dropdown.item:hover,
+.ui.inverted.menu .link.item:hover,
+.ui.inverted.menu a.item:hover {
+    background: #0a31e8!important;
+}
+
+.ui.inverted.menu a.item:active,
+.ui.inverted.menu .link.item:active {
+    background: #0a31e8!important;
+}
+
+.ui.inverted.menu .active.item {
+    background: #0a31e8!important;
+}
+
+.ui.inverted.menu .highlighted.item {
+    background: #0a31e8!important;
+}

@@ -11,6 +11,9 @@
 <mt:mainTamplate title="Detail účtu">
   <jsp:attribute name="content">
 <html>
+<header>
+    <script src="../../js/admin/account.js"></script>
+</header>
 <body>
 <div class="ui form container p-t-15 p-b-15">
 
@@ -25,7 +28,8 @@
         <div class="two fields">
             <div class="field">
                 <label>Tenant ID / Užívateľ <i class="red-star">*</i></label>
-                <input type="text" name="tenant-id" placeholder="Názov" value="${account != null ? account.uzivatel : ''}">
+                <input type="text" name="tenant-id" placeholder="Názov"
+                       value="${account != null ? account.uzivatel : ''}">
             </div>
 
             <div class="field">
@@ -56,15 +60,18 @@
         <div class="three fields">
             <div class="field">
                 <label>Krstné meno <i class="red-star">*</i></label>
-                <input type="text" name="fist-name" placeholder="Krstné meno" value="${person != null ? person.meno : ''}">
+                <input type="text" name="fist-name" placeholder="Krstné meno"
+                       value="${person != null ? person.meno : ''}">
             </div>
             <div class="field">
                 <label>Priezvisko <i class="red-star">*</i></label>
-                <input type="text" name="last-name" placeholder="Priezvisko" value="${person != null ? person.priezvisko : ''}">
+                <input type="text" name="last-name" placeholder="Priezvisko"
+                       value="${person != null ? person.priezvisko : ''}">
             </div>
             <div class="field">
                 <label>Rodné číslo <i class="red-star">*</i></label>
-                <input type="text" name="RC" placeholder="Rodné číslo " value="${person != null ? person.rodCislo : ''}">
+                <input type="text" name="RC" placeholder="Rodné číslo "
+                       value="${person != null ? person.rodCislo : ''}">
             </div>
         </div>
 
@@ -87,10 +94,12 @@
             <label>Ulica <i class="red-star">*</i></label>
             <div class="two fields">
                 <div class="twelve wide field">
-                    <input type="text" name="billing_adress_1" placeholder="Ulica" value="${city != null ? city.ulica : ''}">
+                    <input type="text" name="billing_adress_1" placeholder="Ulica"
+                           value="${city != null ? city.ulica : ''}">
                 </div>
                 <div class="four wide field">
-                    <input type="text" name="billing_adress_1" placeholder="Apartmán, suita, byt atď. (voliteľné)" value="${city != null ? city.cisloDomu : ''}">
+                    <input type="text" name="billing_adress_1" placeholder="Apartmán, suita, byt atď. (voliteľné)"
+                           value="${city != null ? city.cisloDomu : ''}">
                 </div>
             </div>
         </div>
@@ -98,7 +107,8 @@
         <div class="two fields">
             <div class="field">
                 <label>Mesto <i class="red-star">*</i></label>
-                <input type="text" name="city" placeholder="Názov mesta / obce" value="${city != null ? city.nazov : ''}">
+                <input type="text" name="city" placeholder="Názov mesta / obce"
+                       value="${city != null ? city.nazov : ''}">
             </div>
             <div class="field">
                 <label>PSČ <i class="red-star">*</i></label>
@@ -122,7 +132,7 @@
             <div class="field">
                 <label>Kraj <i class="red-star">*</i></label>
                 <div class="ui fluid search selection dropdown">
-                    <input type="hidden" name="state"value="${state != null ? state.nazov : ''}">
+                    <input type="hidden" name="state" value="${state != null ? state.nazov : ''}">
                     <i class="dropdown icon"></i>
                     <div class="default text">Vyber kraj</div>
                     <div class="menu">
@@ -230,7 +240,9 @@
         </div>
     </div>
     <div class="modal-footer">
-        <div class="ui inverted blue button">Zrušiť</div>
+        <a href="./accounts">
+            <div class="ui inverted blue button">Zrušiť</div>
+        </a>
         <div class="ui positive button">Uložiť</div>
     </div>
 

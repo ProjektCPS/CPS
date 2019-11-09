@@ -13,7 +13,7 @@ public interface BaseDao {
 
     public List<String> getProductsType(String id_tenant);
 
-    public List<KategorieEntity> getProductCategories(int id_admin, String categoryName);
+    public List<KategorieEntity> getProductCategories(String categoryName);
 
-    public List<PredmetPredajaEntity> getProduct(int id_admin, String categoryName);
+    public List<PredmetPredajaEntity> getProduct(String categoryName);
 }

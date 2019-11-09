@@ -23,12 +23,11 @@ public class productsCategoriesController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String json = null;
-        String id_admin = request.getParameter("id_admin").trim();
         String categoryName = request.getParameter("categoryName").trim();
         List<String> categoryItems = new ArrayList<>();
-        if(Validator.isStringNumber(id_admin)!= null && !Validator.isStringNullOrEmpty(categoryName)){
+        if(!Validator.isStringNullOrEmpty(categoryName)){
             BaseService baseService = new BaseServiceImplement();
-            List<KategorieEntity> listCategoriesObjects = baseService.getProductCategories(Integer.parseInt(id_admin),categoryName);
+            List<KategorieEntity> listCategoriesObjects = baseService.getProductCategories(categoryName);
             for (KategorieEntity category: listCategoriesObjects) {
                 categoryItems.add(category.getNazov());
             }
@@ -36,7 +35,6 @@ public class productsCategoriesController extends HttpServlet {
             response.setStatus(HttpServletResponse.SC_OK);
         }
         request.setAttribute("categories", categoryItems);
-        request.setAttribute("id_admin",request.getParameter("id_admin"));
         request.getRequestDispatcher("/account/categories.jsp").forward(request, response);
     }
 }

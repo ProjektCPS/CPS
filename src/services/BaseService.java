@@ -14,9 +14,9 @@ public interface BaseService {
 
     public List<String> getProductType(String id_tenant);
 
-    public List<KategorieEntity> getProductCategories(int id_admin, String categoryName);
+    public List<KategorieEntity> getProductCategories(String categoryName);
 
-    public List<PredmetPredajaEntity> getProduct(int id_admin, String categoryName);
+    public List<PredmetPredajaEntity> getProduct(String categoryName);
 
     public List<UcetEntity> getAccounts();
 

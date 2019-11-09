@@ -32,7 +32,7 @@ public class SecuredResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String getProductCategories(@QueryParam("productTypeName") String productTypeName) {
         BaseService baseService = new BaseServiceImplement();
-        List<KategorieEntity> listCategoriesObjects = baseService.getProductCategories(UsefulData.ID_ADMIN,productTypeName);
+        List<KategorieEntity> listCategoriesObjects = baseService.getProductCategories(productTypeName);
         String json = new Gson().toJson(listCategoriesObjects);
         return json;
     }
@@ -42,7 +42,7 @@ public class SecuredResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String getProducts(@QueryParam("productCategoryName") String productTypeName) {
         BaseService baseService = new BaseServiceImplement();
-        List<PredmetPredajaEntity> productsItems = baseService.getProduct(UsefulData.ID_ADMIN,productTypeName);
+        List<PredmetPredajaEntity> productsItems = baseService.getProduct(productTypeName);
         String json = new Gson().toJson(productsItems);
         return json;
     }

@@ -17,13 +17,11 @@
         <script src="../js/productCategories/categories.js"></script>
     </head>
     <body>
-    <div class="group-contajner">
-        <div class="ui four cards ">
-
+        <div class="container m-t-15">
+            <div class="ui four stackable cards">
             <c:forEach items="${categories}" var="item">
-                 <div class="col-md-3">
-                     <div id="categorie" class="ui card card m-b-30">
-                         <a href="/products?categoryName=${item}&id_admin=${id_admin}">
+                     <div id="categorie" class="ui card">
+                         <a href="products?categoryName=${item}">
                              <div class="image">
                                  <div class="ui blurring inverted dimmer">
                                      <div class="content">
@@ -31,7 +29,8 @@
                                          </div>
                                      </div>
                                  </div>
-                                 <img src="image/${item}${id_admin}.jpg" onerror="this.onerror=null;this.src='image/placeholder-image.jpg';">
+                                 <img src="../image/${item}.jpg"
+                                      onerror="this.onerror=null;this.src='../image/placeholder-image.jpg';">
                              </div>
 
                          </a>
@@ -39,12 +38,10 @@
                              <div class="header"> ${item}</div>
                          </div>
                      </div>
-                 </div>
                <br>
             </c:forEach>
 
-            <div class="col-md-3">
-                <div class="ui card card m-b-30">
+                <div class="ui card">
                     <a href="https://www.facebook.com/">
                         <div class="image">
                             <div class="ui blurring inverted dimmer">
@@ -63,8 +60,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    </div>
     </body>
     </html>
   </jsp:attribute>

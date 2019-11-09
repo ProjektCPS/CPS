@@ -19,7 +19,7 @@
                 <h1>Vyhľadávanie</h1>
                 <div class="ui action input searcher">
                     <input type="text" placeholder="Search...">
-                    <button class="ui button belasa">
+                    <button class="ui button black">
                         <i class="fa fa-search"></i>
                     </button>
                 </div>
@@ -142,19 +142,19 @@
     </div>
     <div class="col-md-2">
         <div class="container-button m-b-20">
-            <button class="ui labeled icon button  zelenac">
+            <button class="ui labeled green inverted icon button zelenac">
                 <div class="middle">
                     <i class="fa fa-plus"></i>
                     Pridaj
                 </div>
             </button>
-            <button class="ui labeled icon button cervenak">
+            <button class="ui labeled red inverted icon button cervenak">
                 <div class="middle">
                     <i class="fa fa-minus"></i>
                     Odstran
                 </div>
             </button>
-            <button class="ui labeled icon button belasa">
+            <button class="ui labeled blue inverted icon button belasa">
                 <div class="middle">
                     <i class="fa fa-pencil"></i>
                     Edituj

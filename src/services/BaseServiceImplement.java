@@ -27,13 +27,13 @@ public class BaseServiceImplement implements BaseService {
     }
 
     @Override
-    public List<KategorieEntity> getProductCategories(int id_admin, String categoryName) {
-        return baseDao.getProductCategories(id_admin, categoryName);
+    public List<KategorieEntity> getProductCategories(String categoryName) {
+        return baseDao.getProductCategories(categoryName);
     }
 
     @Override
-    public List<PredmetPredajaEntity> getProduct(int id_admin, String categoryName) {
-        return baseDao.getProduct(id_admin, categoryName);
+    public List<PredmetPredajaEntity> getProduct(String categoryName) {
+        return baseDao.getProduct(categoryName);
     }
 
     @Override
