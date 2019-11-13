@@ -40,7 +40,6 @@ public class FakturaciaPoloziekEntityPK implements Serializable {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(id, idFaktury);
     }
 }

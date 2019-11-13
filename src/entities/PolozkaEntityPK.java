@@ -40,7 +40,6 @@ public class PolozkaEntityPK implements Serializable {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(idPolozky, idPredmetu);
     }
 }

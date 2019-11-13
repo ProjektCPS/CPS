@@ -1,4 +1,4 @@
-package controllers.adminConrollers;
+package controllers.externalSystemAccountsControllers;
 
 import dataAccessObjects.BusinessStates;
 import entities.*;
@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "accountController")
-public class accountController extends HttpServlet {
+@WebServlet(name = "externalSystemAccountController")
+public class externalSystemAccountController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
@@ -25,7 +25,7 @@ public class accountController extends HttpServlet {
         String accountId = request.getParameter("accountId").trim();
 
         if(!Validator.isStringNullOrEmpty(accountId) && Validator.isStringNumber(accountId)){
-            Object[] userAllInformation = baseService.getAdminAccount(Integer.parseInt(accountId), BusinessStates.PERSON);
+            Object[] userAllInformation = baseService.getExternalSystemAccount(Integer.parseInt(accountId), BusinessStates.PERSON);
 
             for (Object o :userAllInformation) {
                 if(o instanceof UcetEntity){
@@ -51,7 +51,7 @@ public class accountController extends HttpServlet {
                 }
             }
         }
-        request.getRequestDispatcher("/account/admin/account.jsp").forward(request, response);
+        request.getRequestDispatcher("/account/externalSystemAccounts/externalSystemAccount.jsp").forward(request, response);
     }
 
     protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

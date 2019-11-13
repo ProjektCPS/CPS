@@ -64,7 +64,6 @@ public class KategorieEntity {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(idKategorie, idTypu, nazov, popis);
     }
 }

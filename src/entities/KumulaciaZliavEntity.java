@@ -65,7 +65,6 @@ public class KumulaciaZliavEntity {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(id, idZlavy, idKategorie, idPredmetu);
     }
 }

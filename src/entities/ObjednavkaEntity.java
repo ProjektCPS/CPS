@@ -77,7 +77,6 @@ public class ObjednavkaEntity {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(idObjednavky, datObjednavky, predavajuci, kupujuci, stav);
     }
 }

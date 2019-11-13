@@ -52,7 +52,6 @@ public class OkresEntity {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(idOkresu, nazov, idKraja);
     }
 }

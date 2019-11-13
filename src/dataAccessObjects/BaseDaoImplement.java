@@ -1,18 +1,13 @@
 package dataAccessObjects;
 
-import entities.KategorieEntity;
-import entities.PredmetPredajaEntity;
-import entities.TypPredmetuEntity;
-import entities.UcetEntity;
+import entities.*;
 import org.hibernate.Session;
-import org.hibernate.criterion.Projection;
-import org.hibernate.query.Query;
+
 import utilities.HashPasswordUtil;
 import utilities.HibernateUtil;
 import utilities.multitenancy.CurrentTenantIdentifierResolverImpl;
 
 import javax.persistence.NoResultException;
-import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -175,5 +170,117 @@ public class BaseDaoImplement implements BaseDao {
             System.out.println("DB server down.....");
         }
         return list;
+    }
+
+    @Override
+    public List<RegistrovanyUzivatelEntity> getExternalSystemAccounts() {
+        Session session = HibernateUtil.getSessionByTenant("sprava_cien_project");
+        List<RegistrovanyUzivatelEntity> list = new ArrayList<>();
+        if (session != null) {
+            try {
+                CriteriaBuilder builder = session.getCriteriaBuilder();
+
+                // Using FROM
+                CriteriaQuery<RegistrovanyUzivatelEntity> criteriaQuery = builder.createQuery(RegistrovanyUzivatelEntity.class);
+                Root<RegistrovanyUzivatelEntity> root = criteriaQuery.from(RegistrovanyUzivatelEntity.class);
+                criteriaQuery.select(root).orderBy((builder.asc(root.get("email"))));
+
+                list = session.createQuery(criteriaQuery).getResultList();
+            } catch (NoResultException exception) {
+                System.out.println("Object not found"
+                        + exception.getMessage());
+                return null;
+            } catch (Exception exception) {
+                System.out.println("Exception occred while reading user data: "
+                        + exception.getMessage());
+                return null;
+            } finally {
+                if (session != null) {
+                    session.close();
+                }
+            }
+
+        } else {
+            System.out.println("DB server down.....");
+        }
+        return list;
+    }
+
+    @Override
+    public Object[] getExternalSystemAccount(int adminId, BusinessStates state) {
+        Session session = HibernateUtil.getSessionByTenant("sprava_cien_project");
+        Object[] userAllInformation = null;
+        if (session != null) {
+            try {
+                CriteriaBuilder builder = session.getCriteriaBuilder();
+
+                // Using FROM
+                CriteriaQuery<Object[]> criteriaQuery = builder.createQuery(Object[].class);
+                Root<RegistrovanyUzivatelEntity> rootAccount = criteriaQuery.from(RegistrovanyUzivatelEntity.class);
+                Root<OsobaEntity> rootPerson = criteriaQuery.from(OsobaEntity.class);
+                Root<MestoEntity> rootCity = criteriaQuery.from(MestoEntity.class);
+                Root<OkresEntity> rootRegion = criteriaQuery.from(OkresEntity.class);
+                Root<KrajEntity> rootState = criteriaQuery.from(KrajEntity.class);
+                Root<KrajinaEntity> rootCountry = criteriaQuery.from(KrajinaEntity.class);
+                switch (state) {
+                    case PERSON:
+                        criteriaQuery.multiselect(rootAccount, rootPerson, rootCity, rootRegion, rootState, rootCountry);
+                        criteriaQuery.where(
+                                builder.equal(rootAccount.get("rodCislo"), rootPerson.get("rodCislo"))
+                                , builder.equal(rootPerson.get("psc"), rootCity.get("psc"))
+                                , builder.equal(rootCity.get("idOkresu"), rootRegion.get("idOkresu"))
+                                , builder.equal(rootRegion.get("idKraja"), rootState.get("idKraja"))
+                                , builder.equal(rootState.get("idKrajiny"), rootCountry.get("idKrajiny"))
+                                , builder.equal(rootAccount.get("idUzivatela"), adminId)
+                        );
+                        break;
+                    case COMPANY:
+                        Root<FirmaEntity> rootCompany = criteriaQuery.from(FirmaEntity.class);
+                        criteriaQuery.multiselect(rootAccount, rootCompany, rootCity, rootRegion, rootState, rootCountry);
+                        criteriaQuery.where(
+                                builder.equal(rootAccount.get("ico"), rootCompany.get("ico"))
+                                , builder.equal(rootCompany.get("psc"), rootCity.get("psc"))
+                                , builder.equal(rootCity.get("idOkresu"), rootRegion.get("idOkresu"))
+                                , builder.equal(rootRegion.get("idKraja"), rootState.get("idKraja"))
+                                , builder.equal(rootState.get("idKrajiny"), rootCountry.get("idKrajiny"))
+                                , builder.equal(rootAccount.get("idUzivatela"), adminId)
+                        );
+                        break;
+                    case SELF_EMPLOYED:
+                        rootCompany = criteriaQuery.from(FirmaEntity.class);
+                        criteriaQuery.multiselect(rootAccount, rootPerson, rootCompany, rootCity, rootRegion, rootState, rootCountry);
+                        criteriaQuery.where(
+                                builder.equal(rootAccount.get("rodCislo"), rootPerson.get("rodCislo"))
+                                , builder.equal(rootAccount.get("ico"), rootCompany.get("ico"))
+                                , builder.equal(rootCompany.get("ico"), rootPerson.get("ico"))
+                                , builder.equal(rootPerson.get("psc"), rootCity.get("psc"))
+                                , builder.equal(rootCity.get("idOkresu"), rootRegion.get("idOkresu"))
+                                , builder.equal(rootRegion.get("idKraja"), rootState.get("idKraja"))
+                                , builder.equal(rootState.get("idKrajiny"), rootCountry.get("idKrajiny"))
+                                , builder.equal(rootAccount.get("idUzivatela"), adminId)
+                        );
+                        break;
+                }
+
+
+                userAllInformation = session.createQuery(criteriaQuery).getSingleResult();
+            } catch (NoResultException exception) {
+                System.out.println("Object not found"
+                        + exception.getMessage());
+                return null;
+            } catch (Exception exception) {
+                System.out.println("Exception occred while reading user data: "
+                        + exception.getMessage());
+                return null;
+            } finally {
+                if (session != null) {
+                    session.close();
+                }
+            }
+
+        } else {
+            System.out.println("DB server down.....");
+        }
+        return userAllInformation;
     }
 }

@@ -125,7 +125,6 @@ public class PredmetPredajaEntity {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(idPredmetu, idKategorie, nazov, cena, jednotka, datumExpiracie, znacka, serioveCislo, popis);
     }
 }

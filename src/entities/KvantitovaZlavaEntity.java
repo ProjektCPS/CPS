@@ -40,7 +40,6 @@ public class KvantitovaZlavaEntity {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(idKvantity, mnozstvo);
     }
 }

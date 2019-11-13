@@ -40,7 +40,6 @@ public class KumulaciaZliavEntityPK implements Serializable {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(id, idZlavy);
     }
 }

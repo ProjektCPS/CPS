@@ -52,7 +52,6 @@ public class KrajEntity {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(idKraja, nazov, idKrajiny);
     }
 }

@@ -52,7 +52,6 @@ public class TypZlavyEntity {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(idTypu, nazovTypu, popis);
     }
 }

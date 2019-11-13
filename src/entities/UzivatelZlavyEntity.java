@@ -65,7 +65,6 @@ public class UzivatelZlavyEntity {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(idZlavy, idUzivatela, aktivna, kodZlavy);
     }
 }

@@ -113,7 +113,6 @@ public class ZlavaEntity {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(idZlavy, idKvantity, idTypu, idDatumu, idCenovejZlavy, idPerZlavy, datOd, datDo);
     }
 }

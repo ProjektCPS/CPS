@@ -40,7 +40,6 @@ public class PercentualnaZlavaEntity {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(idPerZlavy, percentZlavy);
     }
 }

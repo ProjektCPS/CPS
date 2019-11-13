@@ -4,7 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306/sprava_cien_konto?serverTimezone=UTC</property>
+        <property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306/sprava_cien_project?serverTimezone=UTC</property>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.connection.username">sprava_cien_project</property>
         <property name="hibernate.connection.password">cps2018</property>
@@ -52,8 +52,8 @@
         <mapping class="entities.PolozkaEntity"/>-->
         <mapping resource="entities/PredmetPredajaEntity.hbm.xml"/>
         <mapping class="entities.PredmetPredajaEntity"/>
-        <mapping resource="entities/EshopUzivatelEntity.hbm.xml"/>
-        <mapping class="entities.EshopUzivatelEntity"/>
+        <mapping resource="entities/RegistrovanyUzivatelEntity.hbm.xml"/>
+        <mapping class="entities.RegistrovanyUzivatelEntity"/>
         <mapping resource="entities/TypPredmetuEntity.hbm.xml"/>
         <mapping class="entities.TypPredmetuEntity"/>
         <mapping resource="entities/TypZlavyEntity.hbm.xml"/>

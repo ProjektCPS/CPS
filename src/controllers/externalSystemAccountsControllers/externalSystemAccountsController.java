@@ -1,6 +1,6 @@
-package controllers.adminConrollers;
+package controllers.externalSystemAccountsControllers;
 
-import entities.UcetEntity;
+import entities.RegistrovanyUzivatelEntity;
 import services.BaseService;
 import services.BaseServiceImplement;
 
@@ -10,20 +10,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "accountsController")
-public class accountsController extends HttpServlet {
+@WebServlet(name = "externalSystemAccountsController")
+public class externalSystemAccountsController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<UcetEntity> accountsList = new ArrayList<>();
+        List<RegistrovanyUzivatelEntity> accountsList;
         BaseService baseService = new BaseServiceImplement();
-        accountsList = baseService.geAdminAccounts();
+        accountsList = baseService.getExternalSystemAccounts();
         request.setAttribute("accountsList", accountsList);
-        request.getRequestDispatcher("/account/admin/accounts.jsp").forward(request, response);
+        request.getRequestDispatcher("/account/externalSystemAccounts/externalSystemAccounts.jsp").forward(request, response);
     }
 }

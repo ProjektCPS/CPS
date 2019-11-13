@@ -1,6 +1,7 @@
 package services;
 
 import dataAccessObjects.BusinessStates;
+import entities.RegistrovanyUzivatelEntity;
 import entities.KategorieEntity;
 import entities.PredmetPredajaEntity;
 import entities.UcetEntity;
@@ -18,7 +19,11 @@ public interface BaseService {
 
     public List<PredmetPredajaEntity> getProduct(String categoryName);
 
-    public List<UcetEntity> getAccounts();
+    public List<UcetEntity> geAdminAccounts();
 
-    public Object[] getAccount(int adminId, BusinessStates state);
+    public Object[] getAdminAccount(int adminId, BusinessStates state);
+
+    public List<RegistrovanyUzivatelEntity> getExternalSystemAccounts();
+
+    public Object[] getExternalSystemAccount(int adminId, BusinessStates state);
 }

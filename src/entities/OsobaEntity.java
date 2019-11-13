@@ -76,7 +76,6 @@ public class OsobaEntity {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(rodCislo, meno, priezvisko, psc, ico);
     }
 }

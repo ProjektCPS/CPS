@@ -77,7 +77,6 @@ public class FakturaciaPoloziekEntity {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(id, idFaktury, idPolozky, idPredmetu, mnozstvo);
     }
 }

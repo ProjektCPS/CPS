@@ -76,7 +76,6 @@ public class DatumovaZlavaEntity {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(idDatumu, den, dlzkaTrvania, hodina, frekvencia);
     }
 }

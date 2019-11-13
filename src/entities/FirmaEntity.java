@@ -64,7 +64,6 @@ public class FirmaEntity {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(ico, psc, nazov, email);
     }
 }

@@ -49,7 +49,7 @@
       <imported>true</imported>
       <remarks>$PROJECT_DIR$/src/config/hibernate.cfg.xml</remarks>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://158.193.138.60:3306/sprava_cien_project?serverTimezone=UTC</jdbc-url>
+      <jdbc-url>jdbc:mysql://127.0.0.1:3306/sprava_cien_project?serverTimezone=UTC</jdbc-url>
       <driver-properties>
         <property name="autoReconnect" value="true" />
         <property name="zeroDateTimeBehavior" value="convertToNull" />

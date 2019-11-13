@@ -8,11 +8,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="mt" tagdir="/WEB-INF/tags" %>
-<mt:mainTamplate title="Admin účty">
+<mt:mainTamplate title="Účty">
   <jsp:attribute name="content">
 <html>
 <header>
-    <script src="../../js/admin/accounts.js"></script>
+    <script src="../../js/externalSystemAccounts/externalSystemAccounts.js"></script>
 </header>
 <body>
 <div class="search-background">
@@ -121,25 +121,25 @@
 <div class="group-contajner ">
     <div class="col-md-10">
         <div class="column">
-            <table id="accounts-table" class="ui celled selectable right aligned table">
+            <table id="externalSystemAccounts-table" class="ui celled selectable right aligned table">
                 <thead>
-                <th class="left aligned">Meno užívateľa / tenant id</th>
                 <th>Email</th>
-                <th>Rola</th>
+                <th>Rodné číslo</th>
+                <th>ICO</th>
                 <th>Aktívny</th>
                 </thead>
                 <tbody>
                 <c:forEach items="${accountsList}" var="accounts">
-                <tr data-id="${accounts.idAdmin}">
-                    <td class="left aligned">${accounts.uzivatel}</td>
+                <tr data-id="${accounts.idUzivatela}">
                     <td>${accounts.email}</td>
-                    <td>${accounts.rola}</td>
+                    <td>${accounts.rodCislo}</td>
+                    <td>${accounts.ico}</td>
                     <td>
                         <c:choose>
-                            <c:when test="${accounts.active == 1}">
+                            <c:when test="${1 == 1}">
                                 <i class="fa fa-check" style="color:green;"></i>
                             </c:when>
-                            <c:when test="${accounts.active == 0}">
+                            <c:when test="${4 == 0}">
                                 <i class="fa fa-ban" style="color:red;"></i>
                             </c:when>
                             <c:otherwise>
@@ -155,7 +155,7 @@
     </div>
     <div class="col-md-2">
         <div class="container-button m-b-20">
-            <a href="./account.jsp">
+            <a href="./externalSystemAccount.jsp">
                 <button class="ui labeled inverted green icon button  zelenac">
                     <div class="middle">
                         <i class="fa fa-plus"></i>
@@ -163,13 +163,13 @@
                     </div>
                 </button>
             </a>
-            <button id="delete-account" class="ui labeled inverted red icon button cervenak">
+            <button id="delete-externalSystemAccount" class="ui labeled inverted red icon button cervenak">
                 <div class="middle">
                     <i class="fa fa-minus"></i>
                     Odstráň
                 </div>
             </button>
-            <button id="edit-account" class="ui labeled inverted blue icon button belasa">
+            <button id="edit-externalSystemAccount" class="ui labeled inverted blue icon button belasa">
                 <div class="middle">
                     <i class="fa fa-pencil"></i>
                     Edituj

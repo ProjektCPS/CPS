@@ -1,6 +1,7 @@
 package services;
 
 import dataAccessObjects.*;
+import entities.RegistrovanyUzivatelEntity;
 import entities.KategorieEntity;
 import entities.PredmetPredajaEntity;
 import entities.UcetEntity;
@@ -37,12 +38,22 @@ public class BaseServiceImplement implements BaseService {
     }
 
     @Override
-    public List<UcetEntity> getAccounts() {
+    public List<RegistrovanyUzivatelEntity> getExternalSystemAccounts() {
+        return baseDao.getExternalSystemAccounts();
+    }
+
+    @Override
+    public Object[] getExternalSystemAccount(int adminId, BusinessStates state) {
+        return baseDao.getExternalSystemAccount(adminId, state);
+    }
+
+    @Override
+    public List<UcetEntity> geAdminAccounts() {
         return adminDao.getAccounts();
     }
 
     @Override
-    public Object[] getAccount(int adminId, BusinessStates state) {
+    public Object[] getAdminAccount(int adminId, BusinessStates state) {
         return adminDao.getAccount(adminId, state);
     }
 }

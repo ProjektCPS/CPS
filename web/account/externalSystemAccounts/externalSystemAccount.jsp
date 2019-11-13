@@ -8,22 +8,39 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="mt" tagdir="/WEB-INF/tags" %>
-<mt:mainTamplate title="Detail admin účtu">
+<mt:mainTamplate title="Detail účtu">
   <jsp:attribute name="content">
 <html>
 <header>
-    <script src="../../js/admin/account.js"></script>
+    <script src="../../js/externalSystemAccounts/externalSystemAccount.js"></script>
 </header>
 <body>
 <div class="ui form container m-t-15 p-t-15 p-b-15">
 
     <div class="group-contajner m-t-0 p-t-0">
-            <div class="ui toggle checkbox float-r">
-                <label>Aktívny</label>
-                <input type="checkbox" name="active" class="hidden">
-            </div>
+        <div class="ui toggle checkbox float-r">
+            <label>Aktívny</label>
+            <input type="checkbox" name="active" class="hidden">
+        </div>
 
         <h3 class="ui dividing header">Základné informácie</h3>
+
+        <div class="ui form ">
+            <div class="inline fields flex-r">
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="state" checked="checked">
+                        <label>Osoba</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="state">
+                        <label>Firma / Živnostník</label>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="two fields">
             <div class="field">
@@ -43,6 +60,17 @@
                         <div class="item" data-value="user">Užívateľ</div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="two fields">
+            <div class="field">
+                <label>Názov firmy <i class="red-star">*</i></label>
+                <input type="text" name="company-name" placeholder="Názov firmy">
+            </div>
+            <div class="field">
+                <label>IČO <i class="red-star">*</i></label>
+                <input type="number" name="ICO" placeholder="IČO ">
             </div>
         </div>
 
@@ -67,7 +95,8 @@
         <div class="two fields">
             <div class="field">
                 <label>E-mail <i class="red-star">*</i></label>
-                <input type="email" name="email" placeholder="E-mail" value="${account != null ? account.email : ''}">
+                <input type="email" name="email" placeholder="E-mail"
+                       value="${account != null ? account.email : ''}">
             </div>
             <div class="field">
                 <label>Telefón</label>
@@ -229,7 +258,7 @@
         </div>
     </div>
     <div class="modal-footer">
-        <a href="./accounts">
+        <a href="./externalSystemAccounts">
             <div class="ui inverted blue button">Zrušiť</div>
         </a>
         <div class="ui positive button">Uložiť</div>

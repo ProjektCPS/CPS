@@ -40,7 +40,6 @@ public class TypPredmetuEntity {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(idTypu, nazov);
     }
 }

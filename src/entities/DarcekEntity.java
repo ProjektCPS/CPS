@@ -64,7 +64,6 @@ public class DarcekEntity {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(idDarceku, idPredmetu, mnozstvo, popis);
     }
 }

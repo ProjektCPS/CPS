@@ -76,7 +76,6 @@ public class MestoEntity {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(psc, idOkresu, nazov, ulica, cisloDomu);
     }
 }

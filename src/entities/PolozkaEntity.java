@@ -101,7 +101,6 @@ public class PolozkaEntity {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(idPolozky, idPredmetu, idZlavy, idObjednavky, idDarceku, mnozstvo, cena);
     }
 }

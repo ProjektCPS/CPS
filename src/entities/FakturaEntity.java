@@ -101,7 +101,6 @@ public class FakturaEntity {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(idFaktury, ico, idObjednavky, datumVystavenia, datumSplatnosti, datumUhrady, urok);
     }
 }
