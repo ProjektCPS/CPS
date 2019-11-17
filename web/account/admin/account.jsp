@@ -18,22 +18,22 @@
 <div class="ui form container m-t-15 p-t-15 p-b-15">
 
     <div class="group-contajner m-t-0 p-t-0">
-            <div class="ui toggle checkbox float-r">
+            <div id="checkbox-active" data-active="${account.active}" class="ui toggle checkbox float-r">
                 <label>Aktívny</label>
-                <input type="checkbox" name="active" class="hidden">
+                <input cla type="checkbox" name="active">
             </div>
 
         <h3 class="ui dividing header">Základné informácie</h3>
 
         <div class="two fields">
-            <div class="field">
-                <label>Tenant ID / Užívateľ <i class="red-star">*</i></label>
+            <div class="field required">
+                <label>Tenant ID / Užívateľ</label>
                 <input type="text" name="tenant-id" placeholder="Názov"
                        value="${account != null ? account.uzivatel : ''}">
             </div>
 
-            <div class="field">
-                <label>Rola <i class="red-star">*</i></label>
+            <div id="test" class="field required">
+                <label>Rola</label>
                 <div class="ui fluid search selection dropdown">
                     <input type="hidden" name="role" value="${account != null ? account.rola : ''}">
                     <i class="dropdown icon"></i>
@@ -47,26 +47,26 @@
         </div>
 
         <div class="three fields">
-            <div class="field">
-                <label>Krstné meno <i class="red-star">*</i></label>
-                <input type="text" name="fist-name" placeholder="Krstné meno"
+            <div class="field required">
+                <label>Krstné meno</label>
+                <input type="text" name="first-name" placeholder="Krstné meno"
                        value="${person != null ? person.meno : ''}">
             </div>
-            <div class="field">
-                <label>Priezvisko <i class="red-star">*</i></label>
+            <div class="field required">
+                <label>Priezvisko</label>
                 <input type="text" name="last-name" placeholder="Priezvisko"
                        value="${person != null ? person.priezvisko : ''}">
             </div>
-            <div class="field">
-                <label>Rodné číslo <i class="red-star">*</i></label>
+            <div class="field required">
+                <label>Rodné číslo</label>
                 <input type="text" name="RC" placeholder="Rodné číslo "
                        value="${person != null ? person.rodCislo : ''}">
             </div>
         </div>
 
         <div class="two fields">
-            <div class="field">
-                <label>E-mail <i class="red-star">*</i></label>
+            <div class="field required">
+                <label>E-mail</label>
                 <input type="email" name="email" placeholder="E-mail" value="${account != null ? account.email : ''}">
             </div>
             <div class="field">
@@ -79,35 +79,35 @@
     <div class="group-contajner p-t-0">
         <h3 class="ui dividing header">Adresa</h3>
 
-        <div class="field">
-            <label>Ulica <i class="red-star">*</i></label>
+        <div class="field required">
+            <label>Ulica</label>
             <div class="two fields">
                 <div class="twelve wide field">
-                    <input type="text" name="billing_adress_1" placeholder="Ulica"
+                    <input type="text" name="street" placeholder="Ulica"
                            value="${city != null ? city.ulica : ''}">
                 </div>
                 <div class="four wide field">
-                    <input type="text" name="billing_adress_1" placeholder="Apartmán, suita, byt atď. (voliteľné)"
+                    <input type="text" name="streetNumber" placeholder="Apartmán, suita, byt atď. (voliteľné)"
                            value="${city != null ? city.cisloDomu : ''}">
                 </div>
             </div>
         </div>
 
         <div class="two fields">
-            <div class="field">
-                <label>Mesto <i class="red-star">*</i></label>
+            <div class="field required">
+                <label>Mesto</label>
                 <input type="text" name="city" placeholder="Názov mesta / obce"
                        value="${city != null ? city.nazov : ''}">
             </div>
-            <div class="field">
-                <label>PSČ <i class="red-star">*</i></label>
+            <div class="field required">
+                <label>PSČ</label>
                 <input type="number" name="postcode" placeholder="PSČ" value="${city != null ? city.psc : ''}">
             </div>
         </div>
 
         <div class="three fields">
-            <div class="field">
-                <label>Krajina <i class="red-star">*</i></label>
+            <div class="field required">
+                <label>Krajina</label>
                 <div class="ui fluid search selection dropdown">
                     <input type="hidden" name="country" value="${country != null ? country.nazov : ''}">
                     <i class="dropdown icon"></i>
@@ -118,8 +118,8 @@
                     </div>
                 </div>
             </div>
-            <div class="field">
-                <label>Kraj <i class="red-star">*</i></label>
+            <div class="field required">
+                <label>Kraj</label>
                 <div class="ui fluid search selection dropdown">
                     <input type="hidden" name="state" value="${state != null ? state.nazov : ''}">
                     <i class="dropdown icon"></i>
@@ -136,8 +136,8 @@
                     </div>
                 </div>
             </div>
-            <div class="field">
-                <label>Okres <i class="red-star">*</i></label>
+            <div class="field required">
+                <label>Okres</label>
                 <div class="ui fluid search selection dropdown">
                     <input type="hidden" name="region" value="${region != null ? region.nazov : ''}">
                     <i class="dropdown icon"></i>
@@ -232,7 +232,7 @@
         <a href="./accounts">
             <div class="ui inverted blue button">Zrušiť</div>
         </a>
-        <div class="ui positive button">Uložiť</div>
+        <div id="account-save" class="ui positive button">Uložiť</div>
     </div>
 
 </div>

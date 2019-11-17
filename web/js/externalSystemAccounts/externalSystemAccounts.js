@@ -13,8 +13,7 @@ jQuery(document).ready(function($){
         if (selectedRowId) {
             document.location.href="./externalSystemAccount?accountId=" + selectedRowId;
         } else {
-            // TODO: create file for All consts in javascipt
-            alert("Vyberte riadok prosim");
+            alert(warningMessages.selectRow);
         }
 
     });

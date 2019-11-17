@@ -40,6 +40,8 @@
     <script src="../../js/base/semantic.min.js"></script>
     <script src="../../js/base/dropdown.js"></script>
     <script src="../../js/base/checkbox.js"></script>
+    <script src="../../js/base/popup.js"></script>
+    <script src="../../js/base/constants/constants.js"></script>
 
 
     <!-- jQuery easing -->

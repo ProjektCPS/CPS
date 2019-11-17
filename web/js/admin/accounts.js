@@ -7,14 +7,13 @@ jQuery(document).ready(function($){
 
 
     $("#edit-account").click(function(){
-        var selectedRow = $("#accounts-table tr.selected");
+        let selectedRow = $("#accounts-table tr.selected");
 
-        var selectedRowId = selectedRow.data("id");
+        let selectedRowId = selectedRow.data("id");
         if (selectedRowId) {
             document.location.href="./account?accountId=" + selectedRowId;
         } else {
-            // TODO: create file for All consts in javascipt
-            alert("Vyberte riadok prosim");
+            alert(warningMessages.selectRow);
         }
 
     });
