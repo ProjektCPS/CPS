@@ -21,15 +21,15 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" type="text/css" href="../../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 
+    <!--- Component CSS -->
+    <link rel="stylesheet" href="../../css/base/semantic.css">
+
     <!-- Custom CSS -->
     <!-- <link rel="stylesheet" href="css/owl.carousel.css"> -->
     <link rel="stylesheet" href="../../css/base/main.css">
     <link rel="stylesheet" href="../../css/base/util.css">
     <link rel="stylesheet" href="../../css/base/responsive.css">
     <link rel="stylesheet" href="../../css/base/customSemantic..css">
-
-    <!--- Component CSS -->
-    <link rel="stylesheet" href="../../css/base/semantic.css">
 
     <!-- Latest jQuery form server -->
     <script src="../../js/base/jquery/jquery.min.js"></script>
@@ -42,6 +42,7 @@
     <script src="../../js/base/checkbox.js"></script>
     <script src="../../js/base/popup.js"></script>
     <script src="../../js/base/constants/constants.js"></script>
+    <script src="../../js/utils/helpers.js"></script>
 
 
     <!-- jQuery easing -->

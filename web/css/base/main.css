@@ -1583,3 +1583,7 @@ hr.horizontal-separator {
     background-color: #0a31e8 !important;
 }
 
+table.ui {
+    margin-bottom: 15px !important;
+}
+

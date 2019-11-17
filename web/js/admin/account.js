@@ -5,14 +5,28 @@ jQuery(document).ready(function ($) {
     $('#account-save').click(onAccountSave);
 });
 
+function isUpdate() {
+    let param = getParamFromUrl("accountId");
+    return param && !isNaN(parseInt(param))
+}
+
+function updateAccount() {
+    alert("updated")
+}
+
+function insertAccount() {
+    alert("inserted")
+
+}
+
 onAccountSave = function () {
     let validateResults = validateAll();
 
     if (validateResults.length > 0) {
-        validateResults.forEach( function (item) {
-           $(item.itemInput).popup({
-               content: item.messages.toString().replace(",", "\n")
-           });
+        validateResults.forEach(function (item) {
+            $(item.itemInput).popup({
+                content: item.messages.toString().replace(",", "\n")
+            });
             $(item.item).addClass("error")
         });
 
@@ -20,7 +34,11 @@ onAccountSave = function () {
         return;
     }
 
-    alert("saved")
+    if (isUpdate()) {
+        updateAccount();
+    } else {
+        insertAccount();
+    }
 };
 
 function validateAll() {
@@ -61,10 +79,10 @@ function validateAll() {
                 if (itemValue === "") {
                     messages.push("Vyplňte rodné číslo")
                 }
-                if(isNaN(itemValue)){
+                if (isNaN(itemValue)) {
                     messages.push("Rodné číslo musí byť číslo")
                 }
-                if(itemValue.includes("\\")){
+                if (itemValue.includes("\\")) {
                     messages.push("Rodné číslo nesmie obsahovať lomítko (\\)")
                 }
                 break;
