@@ -10,7 +10,7 @@ jQuery(document).ready(function($){
         let selectedRow = $("#accounts-table tr.selected");
 
         let selectedRowId = selectedRow.data("id");
-        if (selectedRowId) {
+        if (selectedRowId !== undefined) {
             document.location.href="./account?accountId=" + selectedRowId;
         } else {
             alert(warningMessages.selectRow);

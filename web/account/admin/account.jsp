@@ -16,20 +16,25 @@
 </header>
 <body>
 <div class="ui form container m-t-15 p-t-15 p-b-15">
-
     <div class="group-contajner m-t-0 p-t-0">
             <div id="checkbox-active" data-active="${account.active}" class="ui toggle checkbox float-r">
                 <label>Aktívny</label>
-                <input cla type="checkbox" name="active">
+                <input type="checkbox" name="active">
             </div>
 
         <h3 class="ui dividing header">Základné informácie</h3>
 
-        <div class="two fields">
+        <div class="three fields">
             <div class="field required">
                 <label>Tenant ID / Užívateľ</label>
                 <input type="text" name="tenant-id" placeholder="Názov"
                        value="${account != null ? account.uzivatel : ''}">
+            </div>
+
+            <div id="password" class="field required">
+                <label>Heslo</label>
+                <input type="text" name="password" placeholder="Heslo"
+                       value="">
             </div>
 
             <div id="test" class="field required">
@@ -115,6 +120,9 @@
                     <div class="menu">
                         <div class="item" data-value="Czech Republic"><i class="cz flag"></i>Czech Republic</div>
                         <div class="item" data-value="Slovakia"><i class="sk flag"></i>Slovakia</div>
+                        <div class="item" data-value="Slovakia2"><i class="sk flag"></i>Slovakia2</div>
+                        <div class="item" data-value="Slovakia3"><i class="sk flag"></i>Slovakia3</div>
+                        <div class="item" data-value="Slovakia4"><i class="sk flag"></i>Slovakia4</div>
                     </div>
                 </div>
             </div>

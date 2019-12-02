@@ -36,7 +36,7 @@ public class UcetEntity {
     }
 
     @Basic
-    @Column(name = "ICO", nullable = true, length = 8)
+    @Column(name = "ICO", length = 8)
     public String getIco() {
         return ico;
     }

@@ -10,13 +10,44 @@ function isUpdate() {
     return param && !isNaN(parseInt(param))
 }
 
-function updateAccount() {
-    alert("updated")
+function updateAccount(id) {
+    let data = getData();
+    $.ajax({
+        type: "POST",
+        url: '../../account/admin/account?accountId=' + id,
+        data: data,
+        beforeSend: function() {
+            console.log("beforeSend");
+        },
+        success: function (response) {
+            alert("updated")
+        },
+        error: function (err) {
+            console.log("error");
+            console.log(err);
+        }
+    })
+    ;
 }
 
 function insertAccount() {
-    alert("inserted")
-
+    let data = getData();
+    $.ajax({
+        type: "POST",
+        url: '../../account/admin/account',
+        data: data,
+        beforeSend: function() {
+            console.log("beforeSend");
+        },
+        success: function (response) {
+            alert("inserted")
+        },
+        error: function (err) {
+            console.log("error");
+            console.log(err);
+        }
+    })
+    ;
 }
 
 onAccountSave = function () {
@@ -35,11 +66,27 @@ onAccountSave = function () {
     }
 
     if (isUpdate()) {
-        updateAccount();
+        updateAccount(getParamFromUrl("accountId"));
     } else {
         insertAccount();
     }
 };
+
+function getData() {
+    let data = $('.field').toArray().map(item => {
+        return {
+            name: $(item).find("input").attr("name"),
+            value: $(item).find("input").val().trim()
+        }
+    });
+
+    data.push({
+        name: "active",
+        value:  $('#checkbox-active').checkbox('is checked') ? 1 : 0
+    });
+
+    return data;
+}
 
 function validateAll() {
     let data = $('.field');
@@ -58,6 +105,11 @@ function validateAll() {
             case "tenant-id":
                 if (itemValue === "") {
                     messages.push("Vyplňte tenant-id / Užívateľa")
+                }
+                break;
+            case "password":
+                if (!isUpdate() && itemValue === "") {
+                    messages.push("Vyplňte heslo")
                 }
                 break;
             case "role":
@@ -144,6 +196,10 @@ function validateAll() {
 function init() {
     $('#accounts').addClass('highlighted');
     setActiveState();
+
+    if(isUpdate()) {
+        $('#password').remove();
+    }
 }
 
 function setActiveState() {

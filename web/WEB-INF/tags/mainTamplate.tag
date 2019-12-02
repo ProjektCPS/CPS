@@ -61,7 +61,6 @@
 </head>
 <body>
 <div class="dis-flex flex-col h-full">
-
     <div class="site-branding-area m-t-30">
         <div class="container">
             <div class="row">
@@ -88,7 +87,8 @@
             <a id="discounts" class="blue item " href="/account/discount_categories.jsp">Zľavy</a>
             <a id="orders" class="blue item " href="/account/order.jsp">Objednávky</a>
             <a id="profit" class="blue item " href="#">Profit</a>
-            <a id="externalSystemAccounts" class="blue item " href="/account/externalSystemAccounts/externalSystemAccounts">Účty</a>
+            <a id="externalSystemAccounts" class="blue item "
+               href="/account/externalSystemAccounts/externalSystemAccounts">Účty</a>
             <c:if test="${sessionScope.role == 'admin'}">
                 <c:out value=""/><a id="accounts" class="blue item " href="/account/admin/accounts">Admin účty</a>
             </c:if>

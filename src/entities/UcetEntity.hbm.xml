@@ -12,7 +12,7 @@
             <column name="rod_cislo" sql-type="char(11)" length="11" not-null="true"/>
         </property>
         <property name="ico">
-            <column name="ICO" sql-type="char(8)" length="8" not-null="true"/>
+            <column name="ICO" sql-type="char(8)" length="8"/>
         </property>
         <property name="uzivatel">
             <column name="uzivatel" sql-type="varchar(30)" length="30"/>

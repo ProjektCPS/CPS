@@ -6,7 +6,9 @@ import entities.KategorieEntity;
 import entities.PredmetPredajaEntity;
 import entities.UcetEntity;
 
+import javax.json.JsonObject;
 import java.util.List;
+import java.util.Map;
 
 public class BaseServiceImplement implements BaseService {
     private BaseDao baseDao = new BaseDaoImplement();
@@ -45,6 +47,16 @@ public class BaseServiceImplement implements BaseService {
     @Override
     public Object[] getExternalSystemAccount(int adminId, BusinessStates state) {
         return baseDao.getExternalSystemAccount(adminId, state);
+    }
+
+    @Override
+    public void insertAccount(Map<String, String> accountData) {
+        adminDao.insertOrUpdateAccount(-1, accountData);
+    }
+
+    @Override
+    public void updateAccount(int adminId, Map<String, String> accountData) {
+        adminDao.insertOrUpdateAccount(adminId , accountData);
     }
 
     @Override

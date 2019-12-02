@@ -6,7 +6,9 @@ import entities.KategorieEntity;
 import entities.PredmetPredajaEntity;
 import entities.UcetEntity;
 
+import javax.json.JsonObject;
 import java.util.List;
+import java.util.Map;
 
 public interface BaseService {
     public UcetEntity login(String username, String password);
@@ -26,4 +28,8 @@ public interface BaseService {
     public List<RegistrovanyUzivatelEntity> getExternalSystemAccounts();
 
     public Object[] getExternalSystemAccount(int adminId, BusinessStates state);
+
+    public void insertAccount(Map<String, String> accountData);
+
+    public void updateAccount(int adminId, Map<String, String> accountData);
 }

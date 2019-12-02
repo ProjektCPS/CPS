@@ -6,11 +6,14 @@ import java.util.Objects;
 @Entity
 @Table(name = "krajina")
 public class KrajinaEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idKrajiny;
     private String nazov;
 
     @Id
     @Column(name = "id_krajiny", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getIdKrajiny() {
         return idKrajiny;
     }
