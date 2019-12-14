@@ -14,6 +14,7 @@ public class UcetEntity {
     private String email;
     private Integer active;
     private String rola;
+    private int tenantId;
 
     @Id
     @Column(name = "id_admin", nullable = false)
@@ -107,12 +108,23 @@ public class UcetEntity {
                 Objects.equals(heslo, that.heslo) &&
                 Objects.equals(email, that.email) &&
                 Objects.equals(active, that.active) &&
+                Objects.equals(tenantId, that.tenantId) &&
                 Objects.equals(rola, that.rola);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(idAdmin, rodCislo, ico, uzivatel, heslo, email, active, rola);
+        return Objects.hash(idAdmin, rodCislo, ico, uzivatel, heslo, email, active, rola, tenantId);
+    }
+
+    @Basic
+    @Column(name = "tenant_id", nullable = false)
+    public int getTenantId() {
+        return tenantId;
+    }
+
+    public void setTenantId(int tenantId) {
+        this.tenantId = tenantId;
     }
 }

@@ -29,5 +29,8 @@
         <property name="rola">
             <column name="rola" sql-type="varchar(45)" length="45"/>
         </property>
+        <property name="tenantId">
+            <column name="tenant_id" sql-type="int(11)"/>
+        </property>
     </class>
 </hibernate-mapping>
