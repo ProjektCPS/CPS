@@ -1,10 +1,7 @@
 package services;
 
 import dataAccessObjects.BusinessStates;
-import entities.RegistrovanyUzivatelEntity;
-import entities.KategorieEntity;
-import entities.PredmetPredajaEntity;
-import entities.UcetEntity;
+import entities.*;
 
 import javax.json.JsonObject;
 import java.util.List;
@@ -25,11 +22,13 @@ public interface BaseService {
 
     public Object[] getAdminAccount(int adminId, BusinessStates state);
 
+    public List<TenantEntity> getTenants();
+
     public List<RegistrovanyUzivatelEntity> getExternalSystemAccounts();
 
     public Object[] getExternalSystemAccount(int adminId, BusinessStates state);
 
-    public void insertAccount(Map<String, String> accountData);
+    public Map<String, String> insertAccount(Map<String, String> accountData);
 
-    public void updateAccount(int adminId, Map<String, String> accountData);
+    public Map<String, String> updateAccount(int adminId, Map<String, String> accountData);
 }

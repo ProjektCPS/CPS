@@ -1,5 +1,6 @@
 package dataAccessObjects;
 
+import entities.TenantEntity;
 import entities.UcetEntity;
 
 import javax.json.JsonObject;
@@ -11,5 +12,7 @@ public interface AdminDao {
 
     public Object[] getAccount(int adminId, BusinessStates state);
 
-    void insertOrUpdateAccount(int adminId, Map<String, String> accountData);
+    Map<String, String> insertOrUpdateAccount(int adminId, Map<String, String> accountData);
+
+    List<TenantEntity> getTenants();
 }

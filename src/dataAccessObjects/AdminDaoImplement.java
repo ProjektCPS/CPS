@@ -133,7 +133,7 @@ public class AdminDaoImplement implements AdminDao {
     }
 
     @Override
-    public void insertOrUpdateAccount(int adminId, Map<String, String> accountData) {
+    public Map<String, String> insertOrUpdateAccount(int adminId, Map<String, String> accountData) {
         boolean isUpdate = adminId != -1;
         //TODO: neda sa zmenit nazov Mesta pre jedinece PSC. Asi treba spravit kompozitny primarny kluc (Nazov mesta, psc)
         Session session = HibernateUtil.getSessionByTenant(CurrentTenantIdentifierResolverImpl.DEFAULT_TENANT_ID);
@@ -162,7 +162,7 @@ public class AdminDaoImplement implements AdminDao {
         newOsobaEntity.setRodCislo(accountData.get("RC"));
 
         newUcetEntity.setRodCislo(accountData.get("RC"));
-        newUcetEntity.setUzivatel(accountData.get("tenant-id"));
+        newUcetEntity.setTenantId(isStringNumber(accountData.get("tenant-id")) ? Integer.parseInt(accountData.get("tenant-id")) : -1);
         newUcetEntity.setEmail(accountData.get("email"));
         newUcetEntity.setRola(accountData.get("role"));
         newUcetEntity.setHeslo(hashPassword(accountData.get("password") == null ? "" : accountData.get("password")));
@@ -177,7 +177,7 @@ public class AdminDaoImplement implements AdminDao {
                     //Todo: send to client
                     System.out.println("Ucet uz existuje. Zadajte jedinecy email, rodne cislo a tenant id");
                     response.put("err", "Ucet uz existuje. Zadajte jedinecy email, rodne cislo a tenant id");
-                    return;
+                    return response;
                 }
 
                 KrajinaEntity country = insertCountryIfNotExistByName(newKrajinaEntity);
@@ -196,18 +196,18 @@ public class AdminDaoImplement implements AdminDao {
                 if (!personInserted) {
                     System.out.println("Nepodarilo sa insertovat do tabulky osoba - osobu s rodnym cislom : " + newOsobaEntity.getRodCislo());
                     response.put("err", "Nepodarilo sa vytvorit ucet");
-                    return;
+                    return response;
                 }
 
                 boolean accountInserted = insertAccount(newUcetEntity);
                 if (!accountInserted) {
                     System.out.println("Nepodarilo sa insertovat do tabulky ucet - osobu s rodnym cislom : " + newOsobaEntity.getRodCislo());
                     response.put("err", "Nepodarilo sa vytvorit ucet");
-                    return;
+                    return response;
                 }
 
             } else {
-               Object[] userAllInformation = getAccount(adminId, BusinessStates.PERSON);
+                Object[] userAllInformation = getAccount(adminId, BusinessStates.PERSON);
 
                 // create entities
                 KrajinaEntity krajinaEntity = new KrajinaEntity();
@@ -255,22 +255,59 @@ public class AdminDaoImplement implements AdminDao {
                 if (!personUpdated) {
                     System.out.println("Nepodarilo sa updatnut tabulku osoba - osobu s rodnym cislom : " + newOsobaEntity.getRodCislo());
                     response.put("err", "Nepodarilo sa updatnut ucet");
-                    return;
+                    return response;
                 }
 
                 newUcetEntity.setHeslo(ucetEntity.getHeslo());
                 newUcetEntity.setRodCislo(ucetEntity.getRodCislo());
                 newUcetEntity.setIdAdmin(ucetEntity.getIdAdmin());
+                newUcetEntity.setUzivatel(ucetEntity.getUzivatel());
                 boolean accountInserted = updateAccount(newUcetEntity);
                 if (!accountInserted) {
                     System.out.println("Nepodarilo sa updatnut tabulku ucet - osobu s rodnym cislom : " + newOsobaEntity.getRodCislo());
                     response.put("err", "Nepodarilo sa updatnut ucet");
-                    return;
+                    return response;
                 }
             }
         } else {
             System.out.println("DB server down.....");
         }
+
+        return response;
+    }
+
+    @Override
+    public List<TenantEntity> getTenants() {
+        Session session = HibernateUtil.getSessionByTenant(CurrentTenantIdentifierResolverImpl.DEFAULT_TENANT_ID);
+
+        List<TenantEntity> list = new ArrayList<>();
+        if (session != null) {
+            try {
+                CriteriaBuilder builder = session.getCriteriaBuilder();
+
+                CriteriaQuery<TenantEntity> criteriaQuery = builder.createQuery(TenantEntity.class);
+                Root<TenantEntity> root = criteriaQuery.from(TenantEntity.class);
+                criteriaQuery.select(root);
+
+                list = session.createQuery(criteriaQuery).getResultList();
+            } catch (NoResultException exception) {
+                System.out.println("Object not found"
+                        + exception.getMessage());
+                return null;
+            } catch (Exception exception) {
+                System.out.println("Exception occred while reading user data: "
+                        + exception.getMessage());
+                return null;
+            } finally {
+                if (session != null) {
+                    session.close();
+                }
+            }
+
+        } else {
+            System.out.println("DB server down.....");
+        }
+        return list;
     }
 
     private boolean updateAccount(UcetEntity newUcetEntity) {
@@ -282,7 +319,7 @@ public class AdminDaoImplement implements AdminDao {
             session.update(newUcetEntity);
             session.getTransaction().commit();
         } catch (Exception exception) {
-            System.out.println("Exception occurred while reading user data: "
+            System.out.println("Exception occurred while updating user data: "
                     + exception.getMessage());
             return false;
         } finally {
@@ -531,28 +568,3 @@ public class AdminDaoImplement implements AdminDao {
         return mestoEntity;
     }
 }
-
-//    private Map<String, Object> getCountryByName(String name) {
-//        Session session = HibernateUtil.getSessionByTenant(CurrentTenantIdentifierResolverImpl.DEFAULT_TENANT_ID);
-//        CriteriaBuilder builder = session.getCriteriaBuilder();
-//
-//        CriteriaQuery<KrajinaEntity> query = builder.createQuery(KrajinaEntity.class);
-//        Root<KrajinaEntity> root = query.from(KrajinaEntity.class);
-//        query.select(root).where(builder.equal(root.get("nazov"), name));
-//
-//        Map<String, Object> result = new HashMap<>();
-//        try {
-//            result.put("succ", session.createQuery(query).getSingleResult());
-//        } catch (NoResultException exception) {
-//            System.out.println("Object not found"
-//                    + exception.getMessage());
-//            result.put("succ",null);
-//        } catch (Exception exception) {
-//            System.out.println("Exception occurred while reading user data: "
-//                    + exception.getMessage());
-//            result.put("err", exception);
-//        } finally {
-//            session.close();
-//        }
-//        return result;
-//    }

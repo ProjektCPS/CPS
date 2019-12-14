@@ -11,6 +11,6 @@ public class Validator {
     }
 
     public static boolean isStringNullOrEmpty(String value){
-        return  value.isEmpty()|| value == null;
+        return value == null || value.isEmpty();
     }
 }

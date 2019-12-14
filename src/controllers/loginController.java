@@ -18,30 +18,35 @@ public class loginController extends HttpServlet {
         String password = request.getParameter("password");
 
         String pageLogin = "/login.jsp";
-        if (username.trim().length() >= 0 && username != null && password.trim().length() >= 0 && password != null) {
+        if (username != null && username.trim().length() >= 0 && password != null && password.trim().length() >= 0) {
             BaseService loginService = new BaseServiceImplement();
             UcetEntity user = loginService.login(username, password);
             if (user != null) {
-                //get the old session and invalidate
-                HttpSession oldSession = request.getSession(false);
-                if (oldSession != null) {
-                    oldSession.invalidate();
+                if(user.getActive() == 1) {
+                    //get the old session and invalidate
+                    HttpSession oldSession = request.getSession(false);
+                    if (oldSession != null) {
+                        oldSession.invalidate();
+                    }
+                    //generate a new session
+                    HttpSession newSession = request.getSession(true);
+
+                    //setting session to expiry in 30 mins
+                    newSession.setMaxInactiveInterval(30 * 60);
+                    newSession.setAttribute(Constants.USER_NAME, username);
+                    newSession.setAttribute(Constants.TENANT_ID, user.getUzivatel());
+                    newSession.setAttribute(Constants.ADMIN_ID, user.getIdAdmin());
+                    newSession.setAttribute(Constants.ROLE, user.getRola());
+
+                    Cookie message = new Cookie("message", "Welcome");
+                    response.addCookie(message);
+
+                    request.setAttribute("username", username);
+                    request.setAttribute("id_admin", user.getIdAdmin());
+                } else {
+                    request.setAttribute("msg", "Používateľ nieje aktívny. Kontaktujte prosím poskytovateľa.");
+                    request.getRequestDispatcher(pageLogin).forward(request, response);
                 }
-                //generate a new session
-                HttpSession newSession = request.getSession(true);
-
-                //setting session to expiry in 30 mins
-                newSession.setMaxInactiveInterval(30 * 60);
-                newSession.setAttribute(Constants.USER_NAME, username);
-                newSession.setAttribute(Constants.TENANT_ID, user.getUzivatel());
-                newSession.setAttribute(Constants.ADMIN_ID, user.getIdAdmin());
-                newSession.setAttribute(Constants.ROLE, user.getRola());
-
-                Cookie message = new Cookie("message", "Welcome");
-                response.addCookie(message);
-
-                request.setAttribute("username", username);
-                request.setAttribute("id_admin", user.getIdAdmin());
             } else {
                 request.setAttribute("msg", "Nesprávny email alebo heslo!");
                 request.getRequestDispatcher(pageLogin).forward(request, response);

@@ -123,7 +123,7 @@
         <div class="column">
             <table id="accounts-table" class="ui celled selectable right aligned table">
                 <thead>
-                <th class="left aligned">Meno užívateľa / tenant id</th>
+                <th class="left aligned">Tenant id</th>
                 <th>Email</th>
                 <th>Rola</th>
                 <th>Aktívny</th>
@@ -131,7 +131,7 @@
                 <tbody>
                 <c:forEach items="${accountsList}" var="accounts">
                 <tr data-id="${accounts.idAdmin}">
-                    <td class="left aligned">${accounts.uzivatel}</td>
+                    <td class="left aligned">${accounts.tenantId}</td>
                     <td>${accounts.email}</td>
                     <td>${accounts.rola}</td>
                     <td>
@@ -155,7 +155,7 @@
     </div>
     <div class="col-md-2">
         <div class="container-button m-b-20">
-            <a href="./account.jsp">
+            <a href="./account">
                 <button class="ui labeled inverted green icon button  zelenac">
                     <div class="middle">
                         <i class="fa fa-plus"></i>

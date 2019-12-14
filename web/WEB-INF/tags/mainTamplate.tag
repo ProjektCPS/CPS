@@ -61,12 +61,21 @@
 </head>
 <body>
 <div class="dis-flex flex-col h-full">
-    <div class="site-branding-area m-t-30">
+    <div class="site-branding-area">
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
                     <div class="logo">
                         <h1><a href="/">e<span>SpravaCien</span></a></h1>
+                    </div>
+                </div>
+                <div class="col-sm-6 flex-r h-full">
+                    <div class="avatarWrapper">
+                        <div class="avatar">
+                            <img class="ui small circular image avatarImg"
+                                 src=${sessionScope.role == 'admin' ? "../../image/admin.png" : "../../image/user.png"}>
+                        </div>
+                        <span class="avatarName">${sessionScope.userName}</span>
                     </div>
                 </div>
             </div>

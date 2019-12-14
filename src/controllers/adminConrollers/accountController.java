@@ -1,5 +1,6 @@
 package controllers.adminConrollers;
 
+import com.google.gson.Gson;
 import dataAccessObjects.BusinessStates;
 import entities.*;
 import services.BaseService;
@@ -12,12 +13,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @WebServlet(name = "accountController")
 public class accountController extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String adminId = request.getParameter("accountId");
         int adminIdNumber = Validator.isStringNumber(adminId) ? Integer.parseInt(adminId) : -1;
 
@@ -26,18 +29,27 @@ public class accountController extends HttpServlet {
 
         BaseService baseService = new BaseServiceImplement();
 
+        Map<String, String> serviceResponse;
+
         if(adminIdNumber == -1) {
-            baseService.insertAccount(accountData);
+            serviceResponse = baseService.insertAccount(accountData);
         } else {
-            baseService.updateAccount(adminIdNumber, accountData);
+            serviceResponse = baseService.updateAccount(adminIdNumber, accountData);
         }
 
+        if(serviceResponse.get("err") != null) {
+            PrintWriter pw = response.getWriter();
+            response.setContentType("application/json");
+            response.setStatus(500);
+            pw.print(serviceResponse.get("err"));
+            pw.flush();
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         BaseService baseService = new BaseServiceImplement();
 
-        String accountId = request.getParameter("accountId").trim();
+        String accountId = request.getParameter("accountId") != null ?  request.getParameter("accountId").trim() : null;
 
         if (!Validator.isStringNullOrEmpty(accountId) && Validator.isStringNumber(accountId)) {
             Object[] userAllInformation = baseService.getAdminAccount(Integer.parseInt(accountId), BusinessStates.PERSON);
@@ -66,6 +78,10 @@ public class accountController extends HttpServlet {
                 }
             }
         }
+
+        List<TenantEntity> tenants = baseService.getTenants();
+
+        request.setAttribute("tenants", tenants);
         request.getRequestDispatcher("/account/admin/account.jsp").forward(request, response);
     }
 

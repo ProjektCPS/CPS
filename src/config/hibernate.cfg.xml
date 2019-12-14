@@ -66,5 +66,7 @@
         <mapping class="entities.TokenEntity"/>
         <mapping resource="entities/UcetEntity.hbm.xml"/>
         <mapping class="entities.UcetEntity"/>
+        <mapping resource="entities/TenantEntity.hbm.xml"/>
+        <mapping class="entities.TenantEntity"/>
     </session-factory>
 </hibernate-configuration>

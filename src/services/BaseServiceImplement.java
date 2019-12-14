@@ -1,10 +1,7 @@
 package services;
 
 import dataAccessObjects.*;
-import entities.RegistrovanyUzivatelEntity;
-import entities.KategorieEntity;
-import entities.PredmetPredajaEntity;
-import entities.UcetEntity;
+import entities.*;
 
 import javax.json.JsonObject;
 import java.util.List;
@@ -50,13 +47,13 @@ public class BaseServiceImplement implements BaseService {
     }
 
     @Override
-    public void insertAccount(Map<String, String> accountData) {
-        adminDao.insertOrUpdateAccount(-1, accountData);
+    public Map<String, String> insertAccount(Map<String, String> accountData) {
+        return adminDao.insertOrUpdateAccount(-1, accountData);
     }
 
     @Override
-    public void updateAccount(int adminId, Map<String, String> accountData) {
-        adminDao.insertOrUpdateAccount(adminId , accountData);
+    public Map<String, String> updateAccount(int adminId, Map<String, String> accountData) {
+        return adminDao.insertOrUpdateAccount(adminId, accountData);
     }
 
     @Override
@@ -67,5 +64,10 @@ public class BaseServiceImplement implements BaseService {
     @Override
     public Object[] getAdminAccount(int adminId, BusinessStates state) {
         return adminDao.getAccount(adminId, state);
+    }
+
+    @Override
+    public List<TenantEntity> getTenants() {
+        return adminDao.getTenants();
     }
 }

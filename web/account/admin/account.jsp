@@ -26,9 +26,17 @@
 
         <div class="three fields">
             <div class="field required">
-                <label>Tenant ID / Užívateľ</label>
-                <input type="text" name="tenant-id" placeholder="Názov"
-                       value="${account != null ? account.uzivatel : ''}">
+                <label>Tenant DB</label>
+                <div class="ui fluid search selection dropdown">
+                    <input type="hidden" name="tenant-id" value="${account != null ? account.tenantId : ''}">
+                    <i class="dropdown icon"></i>
+                    <div class="default text">Vyber tenanta</div>
+                    <div class="menu">
+                        <c:forEach items="${tenants}" var="tenant">
+                            <div class="item" data-value=${tenant.tenantId}>${tenant.nazov}</div>
+                        </c:forEach>
+                    </div>
+                </div>
             </div>
 
             <div id="password" class="field required">

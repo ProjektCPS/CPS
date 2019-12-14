@@ -12,6 +12,7 @@ function isUpdate() {
 
 function updateAccount(id) {
     let data = getData();
+    console.log(data);
     $.ajax({
         type: "POST",
         url: '../../account/admin/account?accountId=' + id,
@@ -20,11 +21,15 @@ function updateAccount(id) {
             console.log("beforeSend");
         },
         success: function (response) {
-            alert("updated")
+            alert("updated");
+            window.location.href = "./accounts";
         },
         error: function (err) {
-            console.log("error");
             console.log(err);
+            let msg = err.responseText ? err.responseText : 'nespecifikovana chyba';
+
+            alert("Nepodarilo sa ulozit uzivatel. Nastala chyba status: " + err.status + "."
+            + "\r\nChyba info: " + msg);
         }
     })
     ;
@@ -40,11 +45,15 @@ function insertAccount() {
             console.log("beforeSend");
         },
         success: function (response) {
-            alert("inserted")
+            alert("inserted");
+            window.location.href = "./accounts";
         },
         error: function (err) {
-            console.log("error");
             console.log(err);
+            let msg = err.responseText ? err.responseText : 'nespecifikovana chyba';
+
+            alert("Nepodarilo sa vytvorit uzivatela. Nastala chyba status: " + err.status + "."
+                + "\r\nChyba info: " + msg);
         }
     })
     ;
@@ -104,7 +113,7 @@ function validateAll() {
         switch (itemInput.attr("name")) {
             case "tenant-id":
                 if (itemValue === "") {
-                    messages.push("Vyplňte tenant-id / Užívateľa")
+                    messages.push("Vyplňte tenanta")
                 }
                 break;
             case "password":
