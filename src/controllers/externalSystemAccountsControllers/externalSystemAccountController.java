@@ -1,5 +1,6 @@
 package controllers.externalSystemAccountsControllers;
 
+import config.Constants;
 import dataAccessObjects.BusinessStates;
 import entities.*;
 import services.BaseService;
@@ -11,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(name = "externalSystemAccountController")
@@ -20,7 +22,9 @@ public class externalSystemAccountController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        BaseService baseService = new BaseServiceImplement();
+        HttpSession currentSession = request.getSession(false);
+
+        BaseService baseService = new BaseServiceImplement((Integer) currentSession.getAttribute(Constants.TENANT_ID));
 
         String accountId = request.getParameter("accountId").trim();
 

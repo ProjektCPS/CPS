@@ -3,8 +3,8 @@ package filters;
 import config.UsefulData;
 import entities.UcetEntity;
 import org.glassfish.jersey.internal.util.Base64;
-import services.BaseService;
-import services.BaseServiceImplement;
+import services.BaseAdminService;
+import services.BaseAdminServiceImpl;
 
 import java.io.IOException;
 import java.util.List;
@@ -33,7 +33,7 @@ public class SecurityFilterAPI implements ContainerRequestFilter {
                 String username = tokenizer.nextToken();
                 String password = tokenizer.nextToken();
 
-                BaseService loginService = new BaseServiceImplement();
+                BaseAdminService loginService = new BaseAdminServiceImpl();
                 UcetEntity user = loginService.login(username, password);
                 if (user != null) {
                     UsefulData.ID_ADMIN = user.getIdAdmin();

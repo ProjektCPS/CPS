@@ -4,13 +4,13 @@ import com.google.gson.Gson;
 import config.Constants;
 import services.BaseService;
 import services.BaseServiceImplement;
-import utilities.Validator;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -24,10 +24,11 @@ public class productsTypeController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String id_tenant = (String) request.getSession().getAttribute(Constants.TENANT_ID);
+        HttpSession curentSession = request.getSession(false);
 
-        BaseService baseService = new BaseServiceImplement();
-        List<String> productItems = baseService.getProductType(id_tenant);
+        BaseService baseService = new BaseServiceImplement((Integer) curentSession.getAttribute(Constants.TENANT_ID));
+
+        List<String> productItems = baseService.getProductType();
         String json = new Gson().toJson(productItems);
 
         response.setContentType("application/json");

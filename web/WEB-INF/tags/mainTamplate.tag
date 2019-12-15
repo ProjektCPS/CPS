@@ -72,7 +72,7 @@
                 <div class="col-sm-6 flex-r h-full">
                     <div class="avatarWrapper">
                         <div class="avatar">
-                            <img class="ui small circular image avatarImg"
+                            <img class="ui small circular avatarImg"
                                  src=${sessionScope.role == 'admin' ? "../../image/admin.png" : "../../image/user.png"}>
                         </div>
                         <span class="avatarName">${sessionScope.userName}</span>

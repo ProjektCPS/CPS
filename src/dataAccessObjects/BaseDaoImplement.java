@@ -3,9 +3,7 @@ package dataAccessObjects;
 import entities.*;
 import org.hibernate.Session;
 
-import utilities.HashPasswordUtil;
 import utilities.HibernateUtil;
-import utilities.multitenancy.CurrentTenantIdentifierResolverImpl;
 
 import javax.persistence.NoResultException;
 import javax.persistence.criteria.*;
@@ -13,49 +11,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BaseDaoImplement implements BaseDao {
-    @Override
-    public UcetEntity login(String username, String password) {
-        Session session = HibernateUtil.getSessionByTenant(CurrentTenantIdentifierResolverImpl.DEFAULT_TENANT_ID);
-        if (session != null) {
-            try {
-                CriteriaBuilder builder = session.getCriteriaBuilder();
-                CriteriaQuery<UcetEntity> query = builder.createQuery(UcetEntity.class);
-                Root<UcetEntity> root = query.from(UcetEntity.class);
-                query.select(root).where(builder.equal(root.get("email"), username));
+    private int tenantId;
 
-                UcetEntity user = session.createQuery(query).getSingleResult();
-                String hashPass = HashPasswordUtil.hashPassword(password);
-                if (HashPasswordUtil.hashPassword(password).equals(user.getHeslo())) {
-                    return user;
-                }
-            } catch (NoResultException exception) {
-                System.out.println("Object not found"
-                        + exception.getMessage());
-                return null;
-            } catch (Exception exception) {
-                System.out.println("Exception occred while reading user data: "
-                        + exception.getMessage());
-                return null;
-            } finally {
-                if (session != null) {
-                    session.close();
-                }
-            }
-        } else {
-            System.out.println("DB server down.....");
-        }
-        return null;
+    public BaseDaoImplement() {
+        this.tenantId = -1;
+    }
+
+    public BaseDaoImplement(int tenantId) {
+        this.tenantId = tenantId;
+    }
+
+    private String getStringId(){
+        return String.valueOf(tenantId);
     }
 
     @Override
-    public String register(UcetEntity user) {
-        return null;
-    }
-
-    @Override
-    public List<String> getProductsType(String id_Tenant) {
-        // Session session = HibernateUtil.getSessionByTenant(id_Tenant);
-        Session session = HibernateUtil.getSessionByTenant("sprava_cien_project");
+    public List<String> getProductsType() {
+        Session session = HibernateUtil.getSessionByTenant(getStringId());
 
         List<String> list = new ArrayList<>();
         if (session != null) {
@@ -65,10 +37,7 @@ public class BaseDaoImplement implements BaseDao {
                 // Using FROM and JOIN
                 CriteriaQuery<String> criteriaQuery = builder.createQuery(String.class);
                 Root<TypPredmetuEntity> typeRoot = criteriaQuery.from(TypPredmetuEntity.class);
-                Root<KategorieEntity> catRoot = criteriaQuery.from(KategorieEntity.class);
                 criteriaQuery.select(typeRoot.get("nazov"));
-                criteriaQuery.where(builder.equal(typeRoot.get("idTypu"), catRoot.get("idTypu")))
-                        .distinct(true);
 
                 list = session.createQuery(criteriaQuery).getResultList();
             } catch (NoResultException exception) {
@@ -93,7 +62,7 @@ public class BaseDaoImplement implements BaseDao {
 
     @Override
     public List<KategorieEntity> getProductCategories(String categoryName) {
-        Session session = HibernateUtil.getSessionByTenant("sprava_cien_project");
+        Session session = HibernateUtil.getSessionByTenant(getStringId());
         List<KategorieEntity> list = new ArrayList<>();
         if (session != null) {
             try {
@@ -133,7 +102,7 @@ public class BaseDaoImplement implements BaseDao {
 
     @Override
     public List<PredmetPredajaEntity> getProduct(String categoryName) {
-        Session session = HibernateUtil.getSessionByTenant("sprava_cien_project");
+        Session session = HibernateUtil.getSessionByTenant(getStringId());
         List<PredmetPredajaEntity> list = new ArrayList<>();
         if (session != null) {
             try {
@@ -174,7 +143,7 @@ public class BaseDaoImplement implements BaseDao {
 
     @Override
     public List<RegistrovanyUzivatelEntity> getExternalSystemAccounts() {
-        Session session = HibernateUtil.getSessionByTenant("sprava_cien_project");
+        Session session = HibernateUtil.getSessionByTenant(getStringId());
         List<RegistrovanyUzivatelEntity> list = new ArrayList<>();
         if (session != null) {
             try {
@@ -208,7 +177,7 @@ public class BaseDaoImplement implements BaseDao {
 
     @Override
     public Object[] getExternalSystemAccount(int adminId, BusinessStates state) {
-        Session session = HibernateUtil.getSessionByTenant("sprava_cien_project");
+        Session session = HibernateUtil.getSessionByTenant(getStringId());
         Object[] userAllInformation = null;
         if (session != null) {
             try {

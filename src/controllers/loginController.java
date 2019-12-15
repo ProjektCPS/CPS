@@ -2,8 +2,8 @@ package controllers;
 
 import config.Constants;
 import entities.UcetEntity;
-import services.BaseService;
-import services.BaseServiceImplement;
+import services.BaseAdminService;
+import services.BaseAdminServiceImpl;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
@@ -19,7 +19,7 @@ public class loginController extends HttpServlet {
 
         String pageLogin = "/login.jsp";
         if (username != null && username.trim().length() >= 0 && password != null && password.trim().length() >= 0) {
-            BaseService loginService = new BaseServiceImplement();
+            BaseAdminService loginService = new BaseAdminServiceImpl();
             UcetEntity user = loginService.login(username, password);
             if (user != null) {
                 if(user.getActive() == 1) {
@@ -34,7 +34,7 @@ public class loginController extends HttpServlet {
                     //setting session to expiry in 30 mins
                     newSession.setMaxInactiveInterval(30 * 60);
                     newSession.setAttribute(Constants.USER_NAME, username);
-                    newSession.setAttribute(Constants.TENANT_ID, user.getUzivatel());
+                    newSession.setAttribute(Constants.TENANT_ID, user.getTenantId());
                     newSession.setAttribute(Constants.ADMIN_ID, user.getIdAdmin());
                     newSession.setAttribute(Constants.ROLE, user.getRola());
 

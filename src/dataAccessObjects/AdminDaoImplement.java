@@ -1,8 +1,8 @@
 package dataAccessObjects;
 
 import entities.*;
-import org.hibernate.JDBCException;
 import org.hibernate.Session;
+import utilities.HashPasswordUtil;
 import utilities.HibernateUtil;
 import utilities.multitenancy.CurrentTenantIdentifierResolverImpl;
 
@@ -22,6 +22,46 @@ import static utilities.HashPasswordUtil.hashPassword;
 import static utilities.Validator.isStringNumber;
 
 public class AdminDaoImplement implements AdminDao {
+
+    @Override
+    public UcetEntity login(String username, String password) {
+        Session session = HibernateUtil.getSessionByTenant(CurrentTenantIdentifierResolverImpl.DEFAULT_TENANT_ID);
+        if (session != null) {
+            try {
+                CriteriaBuilder builder = session.getCriteriaBuilder();
+                CriteriaQuery<UcetEntity> query = builder.createQuery(UcetEntity.class);
+                Root<UcetEntity> root = query.from(UcetEntity.class);
+                query.select(root).where(builder.equal(root.get("email"), username));
+
+                UcetEntity user = session.createQuery(query).getSingleResult();
+                String hashPass = HashPasswordUtil.hashPassword(password);
+                if (HashPasswordUtil.hashPassword(password).equals(user.getHeslo())) {
+                    return user;
+                }
+            } catch (NoResultException exception) {
+                System.out.println("Object not found"
+                        + exception.getMessage());
+                return null;
+            } catch (Exception exception) {
+                System.out.println("Exception occred while reading user data: "
+                        + exception.getMessage());
+                return null;
+            } finally {
+                if (session != null) {
+                    session.close();
+                }
+            }
+        } else {
+            System.out.println("DB server down.....");
+        }
+        return null;
+    }
+
+    @Override
+    public String register(UcetEntity user) {
+        return null;
+    }
+
     @Override
     public List<UcetEntity> getAccounts() {
         Session session = HibernateUtil.getSessionByTenant(CurrentTenantIdentifierResolverImpl.DEFAULT_TENANT_ID);

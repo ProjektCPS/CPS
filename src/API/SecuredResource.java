@@ -1,7 +1,6 @@
 package API;
 
 import com.google.gson.Gson;
-import config.UsefulData;
 import entities.KategorieEntity;
 import entities.PredmetPredajaEntity;
 import services.BaseService;
@@ -16,13 +15,14 @@ import java.util.List;
 
 @Path("secured")
 public class SecuredResource {
+//Todo: treba prepmisliet ako budeme posielat tenantId ci ho budeme posielat s kazdym requestom alebo ho budem drzat niekde v session.
 
     @GET
     @Path("productTypes")
     @Produces(MediaType.APPLICATION_JSON)
     public String getProductTypes() {
         BaseService baseService = new BaseServiceImplement();
-        List<String> productItems = baseService.getProductType(UsefulData.ID_TENANT);
+        List<String> productItems = baseService.getProductType();
         String json = new Gson().toJson(productItems);
         return json;
     }

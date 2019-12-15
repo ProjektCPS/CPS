@@ -14,7 +14,7 @@ public class CurrentTenantIdentifierResolverImpl implements CurrentTenantIdentif
             tenantId = DEFAULT_TENANT_ID;
         }
 
-        System.out.println("ThreadLocal tenantId is: " + tenantId);
+        //System.out.println("ThreadLocal tenantId is: " + tenantId);
         return tenantId;
     }
 

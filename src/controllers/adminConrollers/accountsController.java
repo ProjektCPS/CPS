@@ -1,8 +1,8 @@
 package controllers.adminConrollers;
 
 import entities.UcetEntity;
-import services.BaseService;
-import services.BaseServiceImplement;
+import services.BaseAdminService;
+import services.BaseAdminServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,7 +21,7 @@ public class accountsController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<UcetEntity> accountsList = new ArrayList<>();
-        BaseService baseService = new BaseServiceImplement();
+        BaseAdminService baseService = new BaseAdminServiceImpl();
         accountsList = baseService.geAdminAccounts();
         request.setAttribute("accountsList", accountsList);
         request.getRequestDispatcher("/account/admin/accounts.jsp").forward(request, response);
