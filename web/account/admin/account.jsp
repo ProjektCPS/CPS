@@ -25,13 +25,14 @@
         <h3 class="ui dividing header">Základné informácie</h3>
 
         <div class="three fields">
-            <div class="field required">
+            <div class="field">
                 <label>Tenant DB</label>
                 <div class="ui fluid search selection dropdown">
                     <input type="hidden" name="tenant-id" value="${account != null ? account.tenantId : ''}">
                     <i class="dropdown icon"></i>
                     <div class="default text">Vyber tenanta</div>
                     <div class="menu">
+                        <div class="item" data-value=''>Žiadny tenant</div>
                         <c:forEach items="${tenants}" var="tenant">
                             <div class="item" data-value=${tenant.tenantId}>${tenant.nazov}</div>
                         </c:forEach>

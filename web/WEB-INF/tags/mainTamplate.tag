@@ -73,6 +73,7 @@
                     <div class="avatarWrapper">
                         <div class="avatar">
                             <img class="ui small circular avatarImg"
+                                 data-html="<p>Rola: ${sessionScope.role}</br> Tenant id: ${sessionScope.tenantId == null || sessionScope.tenantId == -1 ? "žiadny" : sessionScope.tenantId}</p>"
                                  src=${sessionScope.role == 'admin' ? "../../image/admin.png" : "../../image/user.png"}>
                         </div>
                         <span class="avatarName">${sessionScope.userName}</span>
@@ -85,19 +86,21 @@
     <div class="ui menuCustom inverted small menu">
         <div class="container">
             <a id="home" href="/" class="blue item">Domov</a>
-            <div id="products" class="ui dropdown item">
-                Produkty
-                <div class="menu inverted">
-                    <a class="inverted blue item">
-                        <i class="fa fa-spinner fa-spin fa-2x fa-fw center"></i>
-                    </a>
+            <c:if test="${sessionScope.tenantId != -1 && sessionScope.tenantId != null}">
+                <div id="products" class="ui dropdown item">
+                    Produkty
+                    <div class="menu inverted">
+                        <a class="inverted blue item">
+                            <i class="fa fa-spinner fa-spin fa-2x fa-fw center"></i>
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <a id="discounts" class="blue item " href="/account/discount_categories.jsp">Zľavy</a>
-            <a id="orders" class="blue item " href="/account/order.jsp">Objednávky</a>
-            <a id="profit" class="blue item " href="#">Profit</a>
-            <a id="externalSystemAccounts" class="blue item "
-               href="/account/externalSystemAccounts/externalSystemAccounts">Účty</a>
+                <a id="discounts" class="blue item " href="/account/discount_categories.jsp">Zľavy</a>
+                <a id="orders" class="blue item " href="/account/order.jsp">Objednávky</a>
+                <a id="profit" class="blue item " href="#">Profit</a>
+                <a id="externalSystemAccounts" class="blue item "
+                   href="/account/externalSystemAccounts/externalSystemAccounts">Účty</a>
+            </c:if>
             <c:if test="${sessionScope.role == 'admin'}">
                 <c:out value=""/><a id="accounts" class="blue item " href="/account/admin/accounts">Admin účty</a>
             </c:if>

@@ -14,7 +14,7 @@ public class UcetEntity {
     private String email;
     private Integer active;
     private String rola;
-    private int tenantId;
+    private Integer tenantId;
 
     @Id
     @Column(name = "id_admin", nullable = false)
@@ -102,13 +102,13 @@ public class UcetEntity {
         if (o == null || getClass() != o.getClass()) return false;
         UcetEntity that = (UcetEntity) o;
         return idAdmin == that.idAdmin &&
+                tenantId == that.tenantId &&
                 Objects.equals(rodCislo, that.rodCislo) &&
                 Objects.equals(ico, that.ico) &&
                 Objects.equals(uzivatel, that.uzivatel) &&
                 Objects.equals(heslo, that.heslo) &&
                 Objects.equals(email, that.email) &&
                 Objects.equals(active, that.active) &&
-                Objects.equals(tenantId, that.tenantId) &&
                 Objects.equals(rola, that.rola);
     }
 
@@ -120,11 +120,11 @@ public class UcetEntity {
 
     @Basic
     @Column(name = "tenant_id", nullable = false)
-    public int getTenantId() {
+    public Integer getTenantId() {
         return tenantId;
     }
 
-    public void setTenantId(int tenantId) {
+    public void setTenantId(Integer tenantId) {
         this.tenantId = tenantId;
     }
 }

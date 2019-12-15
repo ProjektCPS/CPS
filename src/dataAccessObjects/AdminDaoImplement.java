@@ -202,7 +202,7 @@ public class AdminDaoImplement implements AdminDao {
         newOsobaEntity.setRodCislo(accountData.get("RC"));
 
         newUcetEntity.setRodCislo(accountData.get("RC"));
-        newUcetEntity.setTenantId(isStringNumber(accountData.get("tenant-id")) ? Integer.parseInt(accountData.get("tenant-id")) : -1);
+        newUcetEntity.setTenantId(isStringNumber(accountData.get("tenant-id")) ? Integer.parseInt(accountData.get("tenant-id")) : null);
         newUcetEntity.setEmail(accountData.get("email"));
         newUcetEntity.setRola(accountData.get("role"));
         newUcetEntity.setHeslo(hashPassword(accountData.get("password") == null ? "" : accountData.get("password")));

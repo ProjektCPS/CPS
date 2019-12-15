@@ -1598,6 +1598,7 @@ table.ui {
 
 .ui.small.avatarImg {
     width: 80px;
+    cursor: pointer;
     border-radius: 500rem;
     background: -moz-linear-gradient(left, #e6eaff, #5698ff);
     background: -webkit-linear-gradient(left, #e6eaff, #5698ff);

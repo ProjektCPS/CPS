@@ -98,7 +98,7 @@ function getData() {
 }
 
 function validateAll() {
-    let data = $('.field');
+    let data = $('.field.required');
 
     let result = [];
     data.toArray().forEach(function (item) {

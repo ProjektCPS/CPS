@@ -6,9 +6,9 @@ jQuery(document).ready(function ($) {
             url: '../../account/products-type',
             success: function (response) {
                 $("#products").find(".menu").empty();
-                if(response != null){
+                if (response != null) {
                     $.each(response, function (index, item) {
-                        var urlHref = "../../account/productCategories?categoryName="+ item;
+                        var urlHref = "../../account/productCategories?categoryName=" + item;
                         $('<a class="inverted blue item">').text(item)
                             .prop("href", urlHref)
                             .appendTo($("#products").find(".menu"));
@@ -21,7 +21,6 @@ jQuery(document).ready(function ($) {
             }
         });
     });
-
 
     // menu dropdown
     $('.ui.menu .ui.dropdown').dropdown({
@@ -38,10 +37,6 @@ jQuery(document).ready(function ($) {
         $(this).addClass('highlighted').siblings().removeClass('highlighted');
     });
 
-    $('.ok').on('click', function(e){
-        alert($("#table tr.selected td:first").html());
-    });
-
     $('.ui.selection.dropdown').dropdown();
 
     $('.ui.checkbox').checkbox();
@@ -56,4 +51,9 @@ jQuery(document).ready(function ($) {
     $('.card .dimmer').dimmer({
         on: 'hover'
     });
+
+    $('.ui.avatarImg').popup({
+        position: 'left center'
+        }
+    );
 });
