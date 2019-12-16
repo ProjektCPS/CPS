@@ -21,4 +21,6 @@ public interface BaseAdminService {
     Map<String, String> insertAccount(Map<String, String> accountData);
 
     Map<String, String> updateAccount(int adminId, Map<String, String> accountData);
+
+    TenantEntity getTenant(int parseInt);
 }

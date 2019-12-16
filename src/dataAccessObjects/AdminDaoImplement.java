@@ -350,6 +350,40 @@ public class AdminDaoImplement implements AdminDao {
         return list;
     }
 
+    @Override
+    public TenantEntity getTenant(int tenantId) {
+        Session session = HibernateUtil.getSessionByTenant(CurrentTenantIdentifierResolverImpl.DEFAULT_TENANT_ID);
+
+        TenantEntity tenant = null;
+        if (session != null) {
+            try {
+                CriteriaBuilder builder = session.getCriteriaBuilder();
+
+                CriteriaQuery<TenantEntity> criteriaQuery = builder.createQuery(TenantEntity.class);
+                Root<TenantEntity> root = criteriaQuery.from(TenantEntity.class);
+                criteriaQuery.select(root).where(builder.equal(root.get("tenantId"), tenantId));
+
+                tenant = session.createQuery(criteriaQuery).getSingleResult();
+            } catch (NoResultException exception) {
+                System.out.println("Object not found"
+                        + exception.getMessage());
+                return null;
+            } catch (Exception exception) {
+                System.out.println("Exception occred while reading user data: "
+                        + exception.getMessage());
+                return null;
+            } finally {
+                if (session != null) {
+                    session.close();
+                }
+            }
+
+        } else {
+            System.out.println("DB server down.....");
+        }
+        return tenant;
+    }
+
     private boolean updateAccount(UcetEntity newUcetEntity) {
         Session session = HibernateUtil.getSessionByTenant(CurrentTenantIdentifierResolverImpl.DEFAULT_TENANT_ID);
 

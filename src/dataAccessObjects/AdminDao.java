@@ -19,4 +19,6 @@ public interface AdminDao {
     Map<String, String> insertOrUpdateAccount(int adminId, Map<String, String> accountData);
 
     List<TenantEntity> getTenants();
+
+    TenantEntity getTenant(int tenantId);
 }

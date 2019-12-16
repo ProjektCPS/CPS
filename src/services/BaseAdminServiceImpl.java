@@ -34,6 +34,11 @@ public class BaseAdminServiceImpl implements BaseAdminService{
     }
 
     @Override
+    public TenantEntity getTenant(int tenantId) {
+        return adminDao.getTenant(tenantId);
+    }
+
+    @Override
     public List<UcetEntity> geAdminAccounts() {
         return adminDao.getAccounts();
     }
