@@ -105,10 +105,7 @@
         <servlet-name>accountsController</servlet-name>
         <url-pattern>/account/admin/accounts</url-pattern>
     </servlet-mapping>
-    <servlet>
-        <servlet-name>accountController</servlet-name>
-        <servlet-class>controllers.adminConrollers.accountController</servlet-class>
-    </servlet>
+
     <servlet-mapping>
         <servlet-name>tenantsController</servlet-name>
         <url-pattern>/account/admin/tenants</url-pattern>
@@ -117,6 +114,7 @@
         <servlet-name>tenantsController</servlet-name>
         <servlet-class>controllers.adminConrollers.tenantsController</servlet-class>
     </servlet>
+
     <servlet-mapping>
         <servlet-name>tenantController</servlet-name>
         <url-pattern>/account/admin/tenant</url-pattern>
@@ -125,10 +123,16 @@
         <servlet-name>tenantController</servlet-name>
         <servlet-class>controllers.adminConrollers.tenantController</servlet-class>
     </servlet>
+
     <servlet-mapping>
         <servlet-name>accountController</servlet-name>
         <url-pattern>/account/admin/account</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>accountController</servlet-name>
+        <servlet-class>controllers.adminConrollers.accountController</servlet-class>
+    </servlet>
+
     <servlet>
         <servlet-name>externalSystemAccountsController</servlet-name>
         <servlet-class>controllers.externalSystemAccountsControllers.externalSystemAccountsController</servlet-class>
@@ -146,5 +150,14 @@
         <servlet-name>externalSystemAccountController</servlet-name>
         <url-pattern>/account/externalSystemAccounts/externalSystemAccount</url-pattern>
     </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>profileController</servlet-name>
+        <url-pattern>/account/profile</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>profileController</servlet-name>
+        <servlet-class>controllers.profileController</servlet-class>
+    </servlet>
 
 </web-app>

@@ -105,6 +105,9 @@
                 <c:out value=""/><a id="accounts" class="blue item " href="/account/admin/accounts">Admin účty</a>
                 <a id="tenants" class="blue item " href="/account/admin/tenants">Tenanti</a>
             </c:if>
+            <c:if test="${sessionScope.tenantId != -1 && sessionScope.tenantId != null}">
+                <a id="profile" class="blue item " href="/account/profile">Profil</a>
+            </c:if>
             <div class="right menu">
                 <div class="item">
                     <a href="/account/logout">

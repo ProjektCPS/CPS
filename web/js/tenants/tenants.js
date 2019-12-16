@@ -46,10 +46,7 @@ jQuery(document).ready(function ($) {
             alert(warningMessages.selectRow);
         }
     });
-
-
-})
-;
+});
 
 function onHideTenantModal() {
     $('#tenant-modal.ui.modal input[name=tenant-id]').val("automaticky generovany");
@@ -73,5 +70,4 @@ function getTenant(id) {
             alert("Nepodarilo sa nacitat tenanta.")
         }
     })
-    ;
 }

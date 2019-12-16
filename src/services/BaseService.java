@@ -8,6 +8,8 @@ import java.util.List;
 public interface BaseService {
     List<String> getProductType();
 
+    List<TypPredmetuEntity> getProductTypes();
+
     List<KategorieEntity> getProductCategories(String categoryName);
 
     List<PredmetPredajaEntity> getProduct(String categoryName);

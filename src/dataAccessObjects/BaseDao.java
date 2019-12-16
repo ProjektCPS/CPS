@@ -3,16 +3,19 @@ package dataAccessObjects;
 import entities.RegistrovanyUzivatelEntity;
 import entities.KategorieEntity;
 import entities.PredmetPredajaEntity;
+import entities.TypPredmetuEntity;
 
 import java.util.List;
 
 public interface BaseDao {
 
-    public List<String> getProductsType();
+    List<String> getProductsType();
 
-    public List<KategorieEntity> getProductCategories(String categoryName);
+    List<TypPredmetuEntity> getProductsTypes();
 
-    public List<PredmetPredajaEntity> getProduct(String categoryName);
+    List<KategorieEntity> getProductCategories(String categoryName);
+
+    List<PredmetPredajaEntity> getProduct(String categoryName);
 
     List<RegistrovanyUzivatelEntity> getExternalSystemAccounts();
 

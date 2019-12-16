@@ -27,9 +27,8 @@ public class productsControler extends HttpServlet {
         String categoryName = request.getParameter("categoryName").trim();
         List<PredmetPredajaEntity> productsItems = new ArrayList<>();
         if(!Validator.isStringNullOrEmpty(categoryName)){
-            HttpSession curentSession = request.getSession(false);
-
-            BaseService baseService = new BaseServiceImplement((Integer) curentSession.getAttribute(Constants.TENANT_ID));
+            HttpSession currentSession = request.getSession(false);
+            BaseService baseService = new BaseServiceImplement((Integer) currentSession.getAttribute(Constants.TENANT_ID));
             productsItems = baseService.getProduct(categoryName);
         } else {
             response.setStatus(HttpServletResponse.SC_OK);

@@ -21,7 +21,7 @@ public class BaseDaoImplement implements BaseDao {
         this.tenantId = tenantId;
     }
 
-    private String getStringId(){
+    private String getStringId() {
         return String.valueOf(tenantId);
     }
 
@@ -49,11 +49,40 @@ public class BaseDaoImplement implements BaseDao {
                         + exception.getMessage());
                 return null;
             } finally {
-                if (session != null) {
-                    session.close();
-                }
+                session.close();
             }
+        } else {
+            System.out.println("DB server down.....");
+        }
+        return list;
+    }
 
+    @Override
+    public List<TypPredmetuEntity> getProductsTypes() {
+        Session session = HibernateUtil.getSessionByTenant(getStringId());
+
+        List<TypPredmetuEntity> list = null;
+        if (session != null) {
+            try {
+                CriteriaBuilder builder = session.getCriteriaBuilder();
+
+                // Using FROM and JOIN
+                CriteriaQuery<TypPredmetuEntity> criteriaQuery = builder.createQuery(TypPredmetuEntity.class);
+                Root<TypPredmetuEntity> typeRoot = criteriaQuery.from(TypPredmetuEntity.class);
+                criteriaQuery.select(typeRoot);
+
+                list = session.createQuery(criteriaQuery).getResultList();
+            } catch (NoResultException exception) {
+                System.out.println("Object not found"
+                        + exception.getMessage());
+                return null;
+            } catch (Exception exception) {
+                System.out.println("Exception occred while reading user data: "
+                        + exception.getMessage());
+                return null;
+            } finally {
+                session.close();
+            }
         } else {
             System.out.println("DB server down.....");
         }
@@ -89,9 +118,7 @@ public class BaseDaoImplement implements BaseDao {
                         + exception.getMessage());
                 return null;
             } finally {
-                if (session != null) {
-                    session.close();
-                }
+                session.close();
             }
 
         } else {
@@ -130,9 +157,7 @@ public class BaseDaoImplement implements BaseDao {
                         + exception.getMessage());
                 return null;
             } finally {
-                if (session != null) {
-                    session.close();
-                }
+                session.close();
             }
 
         } else {
@@ -242,9 +267,7 @@ public class BaseDaoImplement implements BaseDao {
                         + exception.getMessage());
                 return null;
             } finally {
-                if (session != null) {
-                    session.close();
-                }
+                session.close();
             }
 
         } else {

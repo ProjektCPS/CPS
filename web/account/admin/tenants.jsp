@@ -165,9 +165,8 @@
 </div>
 
 <div id="tenant-modal" class="ui modal customModal">
-    <i class="close icon"></i>
     <div class="header">
-        Nový tenant
+        Tenant
     </div>
     <div class="ui form content">
         <div class="two fields">

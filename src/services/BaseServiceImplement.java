@@ -22,6 +22,11 @@ public class BaseServiceImplement implements BaseService {
     }
 
     @Override
+    public List<TypPredmetuEntity> getProductTypes() {
+        return baseDao.getProductsTypes();
+    }
+
+    @Override
     public List<KategorieEntity> getProductCategories(String categoryName) {
         return baseDao.getProductCategories(categoryName);
     }
