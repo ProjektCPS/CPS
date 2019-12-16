@@ -160,4 +160,13 @@
         <servlet-class>controllers.profileController</servlet-class>
     </servlet>
 
+    <servlet-mapping>
+        <servlet-name>productTypeController</servlet-name>
+        <url-pattern>/account/productType</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>productTypeController</servlet-name>
+        <servlet-class>controllers.productTypeController</servlet-class>
+    </servlet>
+
 </web-app>

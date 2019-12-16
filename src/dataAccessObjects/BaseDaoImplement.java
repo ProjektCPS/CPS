@@ -8,7 +8,9 @@ import utilities.HibernateUtil;
 import javax.persistence.NoResultException;
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BaseDaoImplement implements BaseDao {
     private int tenantId;
@@ -55,6 +57,38 @@ public class BaseDaoImplement implements BaseDao {
             System.out.println("DB server down.....");
         }
         return list;
+    }
+
+    @Override
+    public TypPredmetuEntity getMainCategory(int mainCategoryId) {
+        Session session = HibernateUtil.getSessionByTenant(getStringId());
+
+        TypPredmetuEntity mainCategory = null;
+        if (session != null) {
+            try {
+                CriteriaBuilder builder = session.getCriteriaBuilder();
+
+                CriteriaQuery<TypPredmetuEntity> criteriaQuery = builder.createQuery(TypPredmetuEntity.class);
+                Root<TypPredmetuEntity> root = criteriaQuery.from(TypPredmetuEntity.class);
+                criteriaQuery.select(root).where(builder.equal(root.get("idTypu"), mainCategoryId));
+
+                mainCategory = session.createQuery(criteriaQuery).getSingleResult();
+            } catch (NoResultException exception) {
+                System.out.println("Object not found"
+                        + exception.getMessage());
+                return null;
+            } catch (Exception exception) {
+                System.out.println("Exception occred while reading user data: "
+                        + exception.getMessage());
+                return null;
+            } finally {
+                session.close();
+            }
+
+        } else {
+            System.out.println("DB server down.....");
+        }
+        return mainCategory;
     }
 
     @Override
@@ -274,5 +308,49 @@ public class BaseDaoImplement implements BaseDao {
             System.out.println("DB server down.....");
         }
         return userAllInformation;
+    }
+
+    @Override
+    public Map<String, String> insertMainCategory(Map<String, String> data) {
+        Map<String, String> response = new HashMap<>();
+
+        try (Session session = HibernateUtil.getSessionByTenant(getStringId())) {
+            TypPredmetuEntity newMainCategory = new TypPredmetuEntity();
+            newMainCategory.setNazov(data.get("main-category-name"));
+            System.out.println("Inserting: " + newMainCategory.getNazov());
+            session.beginTransaction();
+            session.save(newMainCategory);
+            session.getTransaction().commit();
+        } catch (Exception exception) {
+            System.out.println("Exception occurred while reading user data: "
+                    + exception.getMessage());
+            response.put("err", "Nepodarilo sa vlozit hlavnu kategoriu.");
+            return response;
+        }
+
+        return response;
+    }
+
+    @Override
+    public Map<String, String> updateMainCategory(String mainCategoryId, Map<String, String> data) {
+        Map<String, String> response = new HashMap<>();
+
+        try (Session session = HibernateUtil.getSessionByTenant(getStringId())) {
+            TypPredmetuEntity newMainCategory = new TypPredmetuEntity();
+            newMainCategory.setNazov(data.get("main-category-name"));
+            newMainCategory.setIdTypu(Integer.parseInt(data.get("mainCategoryId")));
+
+            System.out.println("Updating: " + newMainCategory.getNazov());
+            session.beginTransaction();
+            session.update(newMainCategory);
+            session.getTransaction().commit();
+        } catch (Exception exception) {
+            System.out.println("Exception occurred while reading user data: "
+                    + exception.getMessage());
+            response.put("err", "Nepodarilo sa editovat hlavnu kategoriu.");
+            return response;
+        }
+
+        return response;
     }
 }

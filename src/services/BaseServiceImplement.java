@@ -4,6 +4,7 @@ import dataAccessObjects.*;
 import entities.*;
 
 import java.util.List;
+import java.util.Map;
 
 public class BaseServiceImplement implements BaseService {
     private BaseDao baseDao;
@@ -27,6 +28,11 @@ public class BaseServiceImplement implements BaseService {
     }
 
     @Override
+    public TypPredmetuEntity getMainCategory(int mainCategoryId) {
+        return baseDao.getMainCategory(mainCategoryId);
+    }
+
+    @Override
     public List<KategorieEntity> getProductCategories(String categoryName) {
         return baseDao.getProductCategories(categoryName);
     }
@@ -44,5 +50,15 @@ public class BaseServiceImplement implements BaseService {
     @Override
     public Object[] getExternalSystemAccount(int adminId, BusinessStates state) {
         return baseDao.getExternalSystemAccount(adminId, state);
+    }
+
+    @Override
+    public Map<String, String> insertMainCategory(Map<String, String> data) {
+        return baseDao.insertMainCategory(data);
+    }
+
+    @Override
+    public Map<String, String> updateMainCategory(String mainCategoryId, Map<String, String> data) {
+        return baseDao.updateMainCategory(mainCategoryId, data);
     }
 }

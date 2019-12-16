@@ -6,13 +6,10 @@ import utilities.HashPasswordUtil;
 import utilities.HibernateUtil;
 import utilities.multitenancy.CurrentTenantIdentifierResolverImpl;
 
-import javax.json.JsonObject;
 import javax.persistence.NoResultException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import javax.xml.transform.Result;
-import javax.xml.ws.Response;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -47,9 +44,7 @@ public class AdminDaoImplement implements AdminDao {
                         + exception.getMessage());
                 return null;
             } finally {
-                if (session != null) {
-                    session.close();
-                }
+                session.close();
             }
         } else {
             System.out.println("DB server down.....");
@@ -85,9 +80,7 @@ public class AdminDaoImplement implements AdminDao {
                         + exception.getMessage());
                 return null;
             } finally {
-                if (session != null) {
-                    session.close();
-                }
+                session.close();
             }
 
         } else {
@@ -373,9 +366,7 @@ public class AdminDaoImplement implements AdminDao {
                         + exception.getMessage());
                 return null;
             } finally {
-                if (session != null) {
-                    session.close();
-                }
+                session.close();
             }
 
         } else {

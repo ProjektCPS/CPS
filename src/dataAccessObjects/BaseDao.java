@@ -6,10 +6,13 @@ import entities.PredmetPredajaEntity;
 import entities.TypPredmetuEntity;
 
 import java.util.List;
+import java.util.Map;
 
 public interface BaseDao {
 
     List<String> getProductsType();
+
+    TypPredmetuEntity getMainCategory(int mainCategoryId);
 
     List<TypPredmetuEntity> getProductsTypes();
 
@@ -20,4 +23,8 @@ public interface BaseDao {
     List<RegistrovanyUzivatelEntity> getExternalSystemAccounts();
 
     Object[] getExternalSystemAccount(int adminId, BusinessStates state);
+
+    Map<String, String> insertMainCategory(Map<String, String> data);
+
+    Map<String, String> updateMainCategory(String mainCategoryId, Map<String, String> data);
 }

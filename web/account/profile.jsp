@@ -93,6 +93,7 @@
             Uložiť
         </div>
     </div>
+    <input hidden type="text" name="main-category-id" value="">
 </div>
 <div id="delete-main-category-modal" class="ui basic modal customModal">
     <div class="header">
