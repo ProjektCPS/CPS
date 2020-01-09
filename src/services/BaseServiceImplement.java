@@ -28,6 +28,11 @@ public class BaseServiceImplement implements BaseService {
     }
 
     @Override
+    public List<TypZlavyEntity> getAllDiscount() {
+        return baseDao.getAllDiscountsTypes();
+    }
+
+    @Override
     public TypPredmetuEntity getMainCategory(int mainCategoryId) {
         return baseDao.getMainCategory(mainCategoryId);
     }

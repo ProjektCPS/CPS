@@ -51,7 +51,9 @@ public class profileController extends HttpServlet {
         }
 
         List<TypPredmetuEntity> mainCategories =  baseService.getProductTypes();
+        List<TypZlavyEntity> mainDiscounts =  baseService.getAllDiscount();
         request.setAttribute("mainCategories", mainCategories);
+        request.setAttribute("discountsType", mainDiscounts);
         request.getRequestDispatcher("/account/profile.jsp").forward(request, response);
     }
 }

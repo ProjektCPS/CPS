@@ -1,9 +1,6 @@
 package dataAccessObjects;
 
-import entities.RegistrovanyUzivatelEntity;
-import entities.KategorieEntity;
-import entities.PredmetPredajaEntity;
-import entities.TypPredmetuEntity;
+import entities.*;
 
 import java.util.List;
 import java.util.Map;
@@ -27,4 +24,6 @@ public interface BaseDao {
     Map<String, String> insertMainCategory(Map<String, String> data);
 
     Map<String, String> updateMainCategory(String mainCategoryId, Map<String, String> data);
+
+    List<TypZlavyEntity> getAllDiscountsTypes();
 }

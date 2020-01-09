@@ -353,4 +353,36 @@ public class BaseDaoImplement implements BaseDao {
 
         return response;
     }
+
+    @Override
+    public List<TypZlavyEntity> getAllDiscountsTypes() {
+        Session session = HibernateUtil.getSessionByTenant(getStringId());
+
+        List<TypZlavyEntity> list = null;
+        if (session != null) {
+            try {
+                CriteriaBuilder builder = session.getCriteriaBuilder();
+
+                // Using FROM and JOIN
+                CriteriaQuery<TypZlavyEntity> criteriaQuery = builder.createQuery(TypZlavyEntity.class);
+                Root<TypZlavyEntity> typeRoot = criteriaQuery.from(TypZlavyEntity.class);
+                criteriaQuery.select(typeRoot);
+
+                list = session.createQuery(criteriaQuery).getResultList();
+            } catch (NoResultException exception) {
+                System.out.println("Object not found"
+                        + exception.getMessage());
+                return null;
+            } catch (Exception exception) {
+                System.out.println("Exception occred while reading user data: "
+                        + exception.getMessage());
+                return null;
+            } finally {
+                session.close();
+            }
+        } else {
+            System.out.println("DB server down.....");
+        }
+        return list;
+    }
 }

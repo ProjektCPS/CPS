@@ -14,6 +14,9 @@ public interface BaseService {
     // Hlavne kategorie
     List<TypPredmetuEntity> getProductTypes();
 
+    // Daj vsetky zlavy
+    List<TypZlavyEntity> getAllDiscount();
+
     List<KategorieEntity> getProductCategories(String categoryName);
 
     List<PredmetPredajaEntity> getProduct(String categoryName);
