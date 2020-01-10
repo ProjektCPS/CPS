@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 public interface BaseService {
-    List<String> getProductType();
 
     TypPredmetuEntity getMainCategory(int mainCategoryId);
 
@@ -18,6 +17,12 @@ public interface BaseService {
     List<TypZlavyEntity> getAllDiscount();
 
     List<KategorieEntity> getProductCategories(String categoryName);
+
+    KategorieEntity getProductCategory(int categoryId);
+
+    Map<String, String> insertProductCategory(Map<String, String> data);
+
+    Map<String, String> updateProductCategory(int id, Map<String, String> data);
 
     List<PredmetPredajaEntity> getProduct(String categoryName);
 

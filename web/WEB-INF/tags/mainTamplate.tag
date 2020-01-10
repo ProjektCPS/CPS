@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html lang="en">
 <head>
+    <link rel="icon" href="../../image/icon.png">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="text/html">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -102,7 +103,7 @@
                    href="/account/externalSystemAccounts/externalSystemAccounts">Účty</a>
             </c:if>
             <c:if test="${sessionScope.role == 'admin'}">
-                <c:out value=""/><a id="accounts" class="blue item " href="/account/admin/accounts">Admin účty</a>
+                <c:out value=""/><a id="accounts" class="blue item " href="/account/admin/accounts">Správa cien účty</a>
                 <a id="tenants" class="blue item " href="/account/admin/tenants">Tenanti</a>
             </c:if>
             <c:if test="${sessionScope.tenantId != -1 && sessionScope.tenantId != null}">

@@ -80,7 +80,7 @@ function getMainCategory(selectedRowId) {
                 .modal('show');
         },
         error: function (err) {
-            alert("Nepodarilo sa nacitat tenanta.")
+            alert("Nepodarilo sa nacitat hlavnu kategoriu.")
         }
     })
 }
@@ -126,8 +126,7 @@ function updateMainCategory(id) {
         beforeSend: function () {
         },
         success: function (response) {
-            alert("updated");
-            window.location.href = "../account/profile";
+            reloadPage();
         },
         error: function (err) {
             console.log(err);
@@ -149,8 +148,7 @@ function insertMainCategory() {
         beforeSend: function () {
         },
         success: function (response) {
-            alert("inserted");
-            window.location.href = "../account/profile";
+            reloadPage()
         },
         error: function (err) {
             console.log(err);

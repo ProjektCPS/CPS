@@ -119,6 +119,7 @@
     </div>
 </div>
 
+<%--modals--%>
 <div id="main-category-modal" class="ui mini modal customModal">
     <div class="header">
         Hlavná kategória
@@ -143,24 +144,6 @@
         </div>
     </div>
     <input hidden type="text" name="main-category-id" value="">
-</div>
-<div id="delete-main-category-modal" class="ui basic modal customModal">
-    <div class="header">
-        Odstrániť hlavnú kategoriu
-    </div>
-    <div class="content">
-        <p>Naozaj chcete odstrániť vybranú kategóriu?</p>
-    </div>
-    <div class="actions">
-        <div class="ui red basic cancel inverted button">
-            <i class="fa fa-sign-out"></i>
-            Nie
-        </div>
-        <div class="ui green ok inverted button">
-            <i class="fa fa-trash"></i>
-            Áno
-        </div>
-    </div>
 </div>
 <div id="delete-discounts-type-modal" class="ui basic modal customModal">
     <div class="header">

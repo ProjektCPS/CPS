@@ -17,49 +17,114 @@
         <script src="../js/productCategories/categories.js"></script>
     </head>
     <body>
-        <div class="container m-t-15">
-            <div class="ui four stackable cards">
+    <div id="allCategories" data-main-category-id="${categoryId}" class="container m-t-15">
+        <div class="ui four stackable cards">
             <c:forEach items="${categories}" var="item">
-                     <div id="categorie" class="ui card">
-                         <a href="products?categoryName=${item}">
-                             <div class="image">
-                                 <div class="ui blurring inverted dimmer">
-                                     <div class="content">
-                                         <div class="center">
+                     <div name="product-category-name" class="ui card">
+                         <div class="flex-row">
+                             <a href="products?categoryName=${item.nazov}">
+                                 <div class="image">
+                                     <div class="ui blurring inverted dimmer">
+                                         <div class="content">
+                                             <div class="center">
+                                             </div>
                                          </div>
                                      </div>
+                                     <img src="../image/${item.nazov}.jpg"
+                                          onerror="this.onerror=null;this.src='../image/placeholder-image.jpg';">
                                  </div>
-                                 <img src="../image/${item}.jpg"
-                                      onerror="this.onerror=null;this.src='../image/placeholder-image.jpg';">
+                             </a>
+                             <div class="flex-col actions">
+                                 <div class="action">
+                                     <button class="circular ui google plus icon button delete-category">
+                                         <i class="fa fa-trash"></i>
+                                     </button>
+                                 </div>
+                                 <div class="action">
+                                     <button data-product-category-id="${item.idKategorie}" class="circular ui edit icon button edit-category">
+                                         <i class="fa fa-edit"></i>
+                                     </button>
+                                 </div>
+                                 <div class="action">
+                                     <button class="circular ui linkedin icon button">
+                                         <i class="fa fa-percent"></i>
+                                     </button>
+                                 </div>
                              </div>
-
-                         </a>
+                         </div>
                          <div class="content">
-                             <div class="header"> ${item}</div>
+                             <div class="header"> ${item.nazov}</div>
                          </div>
                      </div>
                <br>
             </c:forEach>
 
-                <div class="ui card">
-                    <a href="https://www.facebook.com/">
-                        <div class="image">
-                            <div class="ui blurring inverted dimmer">
-                                <div class="content">
-                                    <div class="center">
-                                        <div class="ui teal button">Pridaj kategoriu</div>
-                                    </div>
+            <div class="ui card">
+                <a id="new-category">
+                    <div class="image">
+                        <div class="ui blurring inverted dimmer">
+                            <div class="content">
+                                <div class="center">
+                                    <div class="ui teal button">Pridaj kategoriu</div>
                                 </div>
                             </div>
-                            <img src="../image/plus.jpg">
                         </div>
-                    </a>
-                    <div class="content">
-                        <div class="header">Pridaj kategoriu</div>
+                        <img src="../image/add.jpg">
                     </div>
+                </a>
+                <div class="content">
+                    <div class="header">Pridaj kategoriu</div>
                 </div>
             </div>
         </div>
+    </div>
+
+        <%--modals--%>
+    <div id="delete-category-modal" class="ui basic modal customModal">
+        <div class="header">
+            Odstrániť hlavnú kategoriu
+        </div>
+        <div class="content">
+            <p>Naozaj chcete odstrániť vybranú kategóriu?</p>
+        </div>
+        <div class="actions">
+            <div class="ui red basic cancel inverted button">
+                <i class="fa fa-sign-out"></i>
+                Nie
+            </div>
+            <div class="ui green ok inverted button">
+                <i class="fa fa-trash"></i>
+                Áno
+            </div>
+        </div>
+    </div>
+
+    <div id="category-modal" class="ui mini modal customModal">
+        <div class="header">
+            Hlavná kategória
+        </div>
+        <div class="ui form content">
+            <div class="one field">
+                <div class="field required">
+                    <label>Názov</label>
+                    <input type="text" name="category-name" placeholder="Názov kategórie"
+                           value="">
+                </div>
+            </div>
+        </div>
+        <div class="actions">
+            <div class="ui black cancel button">
+                <i class="fa fa-sign-out"></i>
+                Zrušiť
+            </div>
+            <div class="ui positive ok right button">
+                <i class="fa fa-check"></i>
+                Uložiť
+            </div>
+        </div>
+        <input hidden type="text" name="category-id" value="">
+    </div>
+
     </body>
     </html>
   </jsp:attribute>

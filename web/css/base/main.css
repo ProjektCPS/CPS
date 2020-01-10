@@ -1623,3 +1623,30 @@ table.ui {
 .fa.icon {
     font-family: "Font Awesome 5 Brands";
 }
+
+button.circular .fa {
+    padding: 0;
+}
+
+.ui.card .actions {
+    position: absolute;
+    z-index: 11;
+    right: 0;
+}
+
+.ui.card .actions .action {
+    padding: 3px;
+}
+
+.ui.card .actions .action .ui.button {
+    width: 100%;
+}
+
+button.ui.icon.edit {
+    background-color: #9ADD39;
+    color: #FFFFFF;
+}
+
+button.ui.icon.edit:hover {
+    background-color: #98d734;
+}

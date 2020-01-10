@@ -28,38 +28,6 @@ public class BaseDaoImplement implements BaseDao {
     }
 
     @Override
-    public List<String> getProductsType() {
-        Session session = HibernateUtil.getSessionByTenant(getStringId());
-
-        List<String> list = new ArrayList<>();
-        if (session != null) {
-            try {
-                CriteriaBuilder builder = session.getCriteriaBuilder();
-
-                // Using FROM and JOIN
-                CriteriaQuery<String> criteriaQuery = builder.createQuery(String.class);
-                Root<TypPredmetuEntity> typeRoot = criteriaQuery.from(TypPredmetuEntity.class);
-                criteriaQuery.select(typeRoot.get("nazov"));
-
-                list = session.createQuery(criteriaQuery).getResultList();
-            } catch (NoResultException exception) {
-                System.out.println("Object not found"
-                        + exception.getMessage());
-                return null;
-            } catch (Exception exception) {
-                System.out.println("Exception occred while reading user data: "
-                        + exception.getMessage());
-                return null;
-            } finally {
-                session.close();
-            }
-        } else {
-            System.out.println("DB server down.....");
-        }
-        return list;
-    }
-
-    @Override
     public TypPredmetuEntity getMainCategory(int mainCategoryId) {
         Session session = HibernateUtil.getSessionByTenant(getStringId());
 
@@ -159,6 +127,85 @@ public class BaseDaoImplement implements BaseDao {
             System.out.println("DB server down.....");
         }
         return list;
+    }
+
+    @Override
+    public KategorieEntity getProductCategory(int categoryId) {
+        Session session = HibernateUtil.getSessionByTenant(getStringId());
+
+        KategorieEntity productCategory = null;
+        if (session != null) {
+            try {
+                CriteriaBuilder builder = session.getCriteriaBuilder();
+
+                CriteriaQuery<KategorieEntity> criteriaQuery = builder.createQuery(KategorieEntity.class);
+                Root<KategorieEntity> root = criteriaQuery.from(KategorieEntity.class);
+                criteriaQuery.select(root).where(builder.equal(root.get("idKategorie"), categoryId));
+
+                productCategory = session.createQuery(criteriaQuery).getSingleResult();
+            } catch (NoResultException exception) {
+                System.out.println("Object not found"
+                        + exception.getMessage());
+                return null;
+            } catch (Exception exception) {
+                System.out.println("Exception occred while reading user data: "
+                        + exception.getMessage());
+                return null;
+            } finally {
+                session.close();
+            }
+
+        } else {
+            System.out.println("DB server down.....");
+        }
+        return productCategory;
+    }
+
+    @Override
+    public Map<String, String> insertProductCategory(Map<String, String> data) {
+        Map<String, String> response = new HashMap<>();
+
+        try (Session session = HibernateUtil.getSessionByTenant(getStringId())) {
+            KategorieEntity newKategorieEntity = new KategorieEntity();
+            newKategorieEntity.setNazov(data.get("category-name"));
+            newKategorieEntity.setIdTypu(Integer.parseInt(data.get("mainCategoryId")));
+
+            System.out.println("Inserting: " + newKategorieEntity.getNazov());
+            session.beginTransaction();
+            session.save(newKategorieEntity);
+            session.getTransaction().commit();
+        } catch (Exception exception) {
+            System.out.println("Exception occurred while reading user data: "
+                    + exception.getMessage());
+            response.put("err", "Nepodarilo sa vlozit kategoriu.");
+            return response;
+        }
+
+        return response;
+    }
+
+    @Override
+    public Map<String, String> updateProductCategory(int id, Map<String, String> data) {
+        Map<String, String> response = new HashMap<>();
+
+        try (Session session = HibernateUtil.getSessionByTenant(getStringId())) {
+            KategorieEntity newKategorieEntity = new KategorieEntity();
+            newKategorieEntity.setNazov(data.get("category-name"));
+            newKategorieEntity.setIdKategorie(id);
+            newKategorieEntity.setIdTypu(Integer.parseInt(data.get("mainCategoryId")));
+
+            System.out.println("Updating: " + newKategorieEntity.getNazov());
+            session.beginTransaction();
+            session.update(newKategorieEntity);
+            session.getTransaction().commit();
+        } catch (Exception exception) {
+            System.out.println("Exception occurred while reading user data: "
+                    + exception.getMessage());
+            response.put("err", "Nepodarilo sa editovat kategoriu.");
+            return response;
+        }
+
+        return response;
     }
 
     @Override
@@ -332,7 +379,7 @@ public class BaseDaoImplement implements BaseDao {
     }
 
     @Override
-    public Map<String, String> updateMainCategory(String mainCategoryId, Map<String, String> data) {
+    public Map<String, String> updateMainCategory(String productCategoryIdNumber, Map<String, String> data) {
         Map<String, String> response = new HashMap<>();
 
         try (Session session = HibernateUtil.getSessionByTenant(getStringId())) {

@@ -8,8 +8,8 @@ jQuery(document).ready(function ($) {
                 $("#products").find(".menu").empty();
                 if (response != null) {
                     $.each(response, function (index, item) {
-                        var urlHref = "../../account/productCategories?categoryName=" + item;
-                        $('<a class="inverted blue item">').text(item)
+                        var urlHref = "../../account/productCategories?categoryName=" + item.nazov + "&categoryId=" + item.idTypu;
+                        $('<a class="inverted blue item">').text(item.nazov)
                             .prop("href", urlHref)
                             .appendTo($("#products").find(".menu"));
                     })

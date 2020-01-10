@@ -76,6 +76,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>productCategoryController</servlet-name>
+        <servlet-class>controllers.productCategoryController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>productCategoryController</servlet-name>
+        <url-pattern>/account/productCategory</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>loginController</servlet-name>
         <servlet-class>controllers.loginController</servlet-class>
     </servlet>

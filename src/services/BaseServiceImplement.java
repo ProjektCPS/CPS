@@ -18,11 +18,6 @@ public class BaseServiceImplement implements BaseService {
     }
 
     @Override
-    public List<String> getProductType() {
-        return baseDao.getProductsType();
-    }
-
-    @Override
     public List<TypPredmetuEntity> getProductTypes() {
         return baseDao.getProductsTypes();
     }
@@ -40,6 +35,21 @@ public class BaseServiceImplement implements BaseService {
     @Override
     public List<KategorieEntity> getProductCategories(String categoryName) {
         return baseDao.getProductCategories(categoryName);
+    }
+
+    @Override
+    public KategorieEntity getProductCategory(int categoryId) {
+        return baseDao.getProductCategory(categoryId);
+    }
+
+    @Override
+    public Map<String, String> insertProductCategory(Map<String, String> data) {
+        return baseDao.insertProductCategory(data);
+    }
+
+    @Override
+    public Map<String, String> updateProductCategory(int id, Map<String, String> data) {
+        return baseDao.updateProductCategory(id, data);
     }
 
     @Override

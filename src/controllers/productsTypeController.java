@@ -2,6 +2,7 @@ package controllers;
 
 import com.google.gson.Gson;
 import config.Constants;
+import entities.TypPredmetuEntity;
 import services.BaseService;
 import services.BaseServiceImplement;
 
@@ -28,7 +29,7 @@ public class productsTypeController extends HttpServlet {
 
         BaseService baseService = new BaseServiceImplement((Integer) curentSession.getAttribute(Constants.TENANT_ID));
 
-        List<String> productItems = baseService.getProductType();
+        List<TypPredmetuEntity> productItems = baseService.getProductTypes();
         String json = new Gson().toJson(productItems);
 
         response.setContentType("application/json");

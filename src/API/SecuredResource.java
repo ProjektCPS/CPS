@@ -3,6 +3,7 @@ package API;
 import com.google.gson.Gson;
 import entities.KategorieEntity;
 import entities.PredmetPredajaEntity;
+import entities.TypPredmetuEntity;
 import services.BaseService;
 import services.BaseServiceImplement;
 
@@ -22,7 +23,7 @@ public class SecuredResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String getProductTypes() {
         BaseService baseService = new BaseServiceImplement();
-        List<String> productItems = baseService.getProductType();
+        List<TypPredmetuEntity> productItems = baseService.getProductTypes();
         String json = new Gson().toJson(productItems);
         return json;
     }

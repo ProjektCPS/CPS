@@ -1,17 +1,19 @@
+const SELECTOR = 'div[name=product-category-name]';
+
 jQuery(document).ready(function ($) {
 
         // get categories for product menu
-        $(document).on("click", "#categorie", function () {
+        $(document).on("click", SELECTOR, function () {
             $.ajax({
                 url: 'products',
                 success: function (response) {
-                    $("#categorie").find(".menu").empty();
+                    $(SELECTOR).find(".menu").empty();
                     if (response != null) {
                         $.each(response, function (index, item) {
                             var urlHref = "productCategories?categoryName=" + item;
                             $('<a class="inverted blue item">').text(item)
                                 .prop("href", urlHref)
-                                .appendTo($("#categorie").find(".menu"));
+                                .appendTo($(SELECTOR).find(".menu"));
                         })
                     }
                 },

@@ -23,20 +23,19 @@ public class productsCategoriesController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String json = null;
         String categoryName = request.getParameter("categoryName").trim();
-        List<String> categoryItems = new ArrayList<>();
+        String categoryId = request.getParameter("categoryId").trim();
+
+        List<KategorieEntity> categoryItems = new ArrayList<>();
         if(!Validator.isStringNullOrEmpty(categoryName)){
             HttpSession curentSession = request.getSession(false);
             BaseService baseService = new BaseServiceImplement((Integer) curentSession.getAttribute(Constants.TENANT_ID));
-            List<KategorieEntity> listCategoriesObjects = baseService.getProductCategories(categoryName);
-            for (KategorieEntity category: listCategoriesObjects) {
-                categoryItems.add(category.getNazov());
-            }
+            categoryItems = baseService.getProductCategories(categoryName);
         } else {
             response.setStatus(HttpServletResponse.SC_OK);
         }
         request.setAttribute("categories", categoryItems);
+        request.setAttribute("categoryId", categoryId);
         request.getRequestDispatcher("/account/categories.jsp").forward(request, response);
     }
 }
