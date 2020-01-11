@@ -38,12 +38,12 @@ jQuery(document).ready(function ($) {
 
 });
 
-onNew = function () {
+const onNew = function () {
     $(MODAL_DETAIL_ID + ".ui.modal")
         .modal('show');
 };
 
-onEdit = function () {
+const onEdit = function () {
     let selectedRow = $(TABLE_ID + " tr.selected");
 
     let selectedRowId = selectedRow.data("id");
@@ -54,7 +54,7 @@ onEdit = function () {
     }
 };
 
-onDelete = function () {
+const onDelete = function () {
     let selectedRow = $(TABLE_ID + " tr.selected");
 
     let selectedRowId = selectedRow.data("id");

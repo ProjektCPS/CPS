@@ -1,13 +1,12 @@
 const DELETE_BUTTON_SELECTOR = ".delete-category";
 const EDIT_BUTTON_SELECTOR = ".edit-category";
 const NEW_BUTTON_ID = "#new-category";
-const DISCOUNT_BUTTON_ID = "#new-category";
 const ALL_CATEGORIES_ID = "#allCategories";
 const MODAL_DELETE_ID = "#delete-category-modal";
 const MODAL_DETAIL_ID = "#category-modal";
 
 const MODAL_DETAIL_SELECTED_ITEM_NAME_ID = "category-id";
-const DATA_PRODUCT_CATEGORY_ID = 'product-category-id';
+const DATA_PRODUCT_CATEGORY = 'product-category-id';
 
 const URL_PARAMS = [
     "productCategoryId"
@@ -42,17 +41,17 @@ function init() {
     $('#products').addClass('highlighted');
 }
 
-onNew = function () {
+const onNew = function () {
     $(MODAL_DETAIL_ID + ".ui.modal").modal('show');
 };
 
-onEdit = function () {
-    let productCategoryId = $(this).data(DATA_PRODUCT_CATEGORY_ID);
+const onEdit = function () {
+    let productCategoryId = $(this).data(DATA_PRODUCT_CATEGORY);
     getCategory(productCategoryId);
 };
 
 
-onDelete = function () {
+const onDelete = function () {
     $(MODAL_DELETE_ID + ".ui.modal").modal('show');
 };
 

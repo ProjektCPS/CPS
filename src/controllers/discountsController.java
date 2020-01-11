@@ -1,8 +1,8 @@
 package controllers;
 
-import com.google.gson.Gson;
 import config.Constants;
-import entities.PredmetPredajaEntity;
+import dataAccessObjects.DiscountTypes;
+import entities.customEntities.Discount;
 import services.BaseService;
 import services.BaseServiceImplement;
 import utilities.Validator;
@@ -17,25 +17,22 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "productsControler")
-public class productsControler extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
+@WebServlet(name = "discountsController")
+public class discountsController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String categoryName = request.getParameter("categoryName").trim();
-        List<PredmetPredajaEntity> productsItems = new ArrayList<>();
-        if(!Validator.isStringNullOrEmpty(categoryName)){
+        String discountType = request.getParameter("type").trim();
+        List<Discount> discounts = new ArrayList<>();
+        if(!Validator.isStringNullOrEmpty(discountType) || !DiscountTypes.contains(discountType)){
             HttpSession currentSession = request.getSession(false);
             BaseService baseService = new BaseServiceImplement((Integer) currentSession.getAttribute(Constants.TENANT_ID));
-            productsItems = baseService.getProduct(categoryName);
+            discounts = baseService.getDiscounts(DiscountTypes.getIfExists(discountType));
         } else {
-            response.setStatus(HttpServletResponse.SC_OK);
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
 
-        String json = new Gson().toJson(productsItems);
-        request.setAttribute("productsItems", productsItems);
-        request.getRequestDispatcher("/account/products.jsp").forward(request, response);
+        request.setAttribute("discounts", discounts);
+        request.setAttribute("discountType", discountType);
+        request.getRequestDispatcher("/account/discounts.jsp").forward(request, response);
     }
 }

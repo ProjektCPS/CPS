@@ -13,14 +13,14 @@
     <html>
     <head>
         <!---Javascript -->
-        <script src="../js/productCategories/main.js"></script>
         <script src="../js/productCategories/categories.js"></script>
+        <script src="../js/productCategories/categoryDicount.js"></script>
     </head>
     <body>
     <div id="allCategories" data-main-category-id="${categoryId}" class="container m-t-15">
         <div class="ui four stackable cards">
             <c:forEach items="${categories}" var="item">
-                     <div name="product-category-name" class="ui card">
+                     <div class="ui card">
                          <div class="flex-row">
                              <a href="products?categoryName=${item.nazov}">
                                  <div class="image">
@@ -46,7 +46,7 @@
                                      </button>
                                  </div>
                                  <div class="action">
-                                     <button class="circular ui linkedin icon button">
+                                     <button data-product-category-id="${item.idKategorie}" class="circular ui linkedin icon button category-discount-edit">
                                          <i class="fa fa-percent"></i>
                                      </button>
                                  </div>
@@ -102,6 +102,32 @@
     <div id="category-modal" class="ui mini modal customModal">
         <div class="header">
             Hlavná kategória
+        </div>
+        <div class="ui form content">
+            <div class="one field">
+                <div class="field required">
+                    <label>Názov</label>
+                    <input type="text" name="category-name" placeholder="Názov kategórie"
+                           value="">
+                </div>
+            </div>
+        </div>
+        <div class="actions">
+            <div class="ui black cancel button">
+                <i class="fa fa-sign-out"></i>
+                Zrušiť
+            </div>
+            <div class="ui positive ok right button">
+                <i class="fa fa-check"></i>
+                Uložiť
+            </div>
+        </div>
+        <input hidden type="text" name="category-id" value="">
+    </div>
+
+    <div id="category-discount-modal" class="ui mini modal customModal">
+        <div class="header">
+            Zľavy
         </div>
         <div class="ui form content">
             <div class="one field">

@@ -1,6 +1,7 @@
 package dataAccessObjects;
 
 import entities.*;
+import entities.customEntities.Discount;
 import org.hibernate.Session;
 
 import utilities.HibernateUtil;
@@ -301,42 +302,41 @@ public class BaseDaoImplement implements BaseDao {
                     case PERSON:
                         criteriaQuery.multiselect(rootAccount, rootPerson, rootCity, rootRegion, rootState, rootCountry);
                         criteriaQuery.where(
-                                builder.equal(rootAccount.get("rodCislo"), rootPerson.get("rodCislo"))
-                                , builder.equal(rootPerson.get("psc"), rootCity.get("psc"))
-                                , builder.equal(rootCity.get("idOkresu"), rootRegion.get("idOkresu"))
-                                , builder.equal(rootRegion.get("idKraja"), rootState.get("idKraja"))
-                                , builder.equal(rootState.get("idKrajiny"), rootCountry.get("idKrajiny"))
-                                , builder.equal(rootAccount.get("idUzivatela"), adminId)
+                                builder.equal(rootAccount.get("rodCislo"), rootPerson.get("rodCislo")),
+                                builder.equal(rootPerson.get("psc"), rootCity.get("psc")),
+                                builder.equal(rootCity.get("idOkresu"), rootRegion.get("idOkresu")),
+                                builder.equal(rootRegion.get("idKraja"), rootState.get("idKraja")),
+                                builder.equal(rootState.get("idKrajiny"), rootCountry.get("idKrajiny")),
+                                builder.equal(rootAccount.get("idUzivatela"), adminId)
                         );
                         break;
                     case COMPANY:
                         Root<FirmaEntity> rootCompany = criteriaQuery.from(FirmaEntity.class);
                         criteriaQuery.multiselect(rootAccount, rootCompany, rootCity, rootRegion, rootState, rootCountry);
                         criteriaQuery.where(
-                                builder.equal(rootAccount.get("ico"), rootCompany.get("ico"))
-                                , builder.equal(rootCompany.get("psc"), rootCity.get("psc"))
-                                , builder.equal(rootCity.get("idOkresu"), rootRegion.get("idOkresu"))
-                                , builder.equal(rootRegion.get("idKraja"), rootState.get("idKraja"))
-                                , builder.equal(rootState.get("idKrajiny"), rootCountry.get("idKrajiny"))
-                                , builder.equal(rootAccount.get("idUzivatela"), adminId)
+                                builder.equal(rootAccount.get("ico"), rootCompany.get("ico")),
+                                builder.equal(rootCompany.get("psc"), rootCity.get("psc")),
+                                builder.equal(rootCity.get("idOkresu"), rootRegion.get("idOkresu")),
+                                builder.equal(rootRegion.get("idKraja"), rootState.get("idKraja")),
+                                builder.equal(rootState.get("idKrajiny"), rootCountry.get("idKrajiny")),
+                                builder.equal(rootAccount.get("idUzivatela"), adminId)
                         );
                         break;
                     case SELF_EMPLOYED:
                         rootCompany = criteriaQuery.from(FirmaEntity.class);
                         criteriaQuery.multiselect(rootAccount, rootPerson, rootCompany, rootCity, rootRegion, rootState, rootCountry);
                         criteriaQuery.where(
-                                builder.equal(rootAccount.get("rodCislo"), rootPerson.get("rodCislo"))
-                                , builder.equal(rootAccount.get("ico"), rootCompany.get("ico"))
-                                , builder.equal(rootCompany.get("ico"), rootPerson.get("ico"))
-                                , builder.equal(rootPerson.get("psc"), rootCity.get("psc"))
-                                , builder.equal(rootCity.get("idOkresu"), rootRegion.get("idOkresu"))
-                                , builder.equal(rootRegion.get("idKraja"), rootState.get("idKraja"))
-                                , builder.equal(rootState.get("idKrajiny"), rootCountry.get("idKrajiny"))
-                                , builder.equal(rootAccount.get("idUzivatela"), adminId)
+                                builder.equal(rootAccount.get("rodCislo"), rootPerson.get("rodCislo")),
+                                builder.equal(rootAccount.get("ico"), rootCompany.get("ico")),
+                                builder.equal(rootCompany.get("ico"), rootPerson.get("ico")),
+                                builder.equal(rootPerson.get("psc"), rootCity.get("psc")),
+                                builder.equal(rootCity.get("idOkresu"), rootRegion.get("idOkresu")),
+                                builder.equal(rootRegion.get("idKraja"), rootState.get("idKraja")),
+                                builder.equal(rootState.get("idKrajiny"), rootCountry.get("idKrajiny")),
+                                builder.equal(rootAccount.get("idUzivatela"), adminId)
                         );
                         break;
                 }
-
 
                 userAllInformation = session.createQuery(criteriaQuery).getSingleResult();
             } catch (NoResultException exception) {
@@ -416,6 +416,93 @@ public class BaseDaoImplement implements BaseDao {
                 criteriaQuery.select(typeRoot);
 
                 list = session.createQuery(criteriaQuery).getResultList();
+            } catch (NoResultException exception) {
+                System.out.println("Object not found"
+                        + exception.getMessage());
+                return null;
+            } catch (Exception exception) {
+                System.out.println("Exception occred while reading user data: "
+                        + exception.getMessage());
+                return null;
+            } finally {
+                session.close();
+            }
+        } else {
+            System.out.println("DB server down.....");
+        }
+        return list;
+    }
+
+    @Override
+    public List<Discount> getDiscounts(DiscountTypes discountType) {
+        Session session = HibernateUtil.getSessionByTenant(getStringId());
+
+        List<Discount> list = new ArrayList<>();
+        if (session != null && discountType != null) {
+            try {
+                CriteriaBuilder builder = session.getCriteriaBuilder();
+
+                // Using FROM and JOIN
+                CriteriaQuery<Object[]> criteriaQuery = builder.createQuery(Object[].class);
+                Root<TypZlavyEntity> rootType = criteriaQuery.from(TypZlavyEntity.class);
+                Root<ZlavaEntity> rootDiscount = criteriaQuery.from(ZlavaEntity.class);
+
+                switch (discountType) {
+                    case PRICE_DISCOUNT:
+                        Root<CenovaZlavaEntity> rootPriceDiscount = criteriaQuery.from(CenovaZlavaEntity.class);
+                        criteriaQuery.multiselect(rootType, rootDiscount, rootPriceDiscount);
+                        criteriaQuery.where(
+                                builder.equal(rootType.get("idTypu"), rootDiscount.get("idTypu")),
+                                builder.equal(rootDiscount.get("idCenovejZlavy"), rootPriceDiscount.get("idCenovejZlavy"))
+                        );
+                        break;
+                    case QUANTITY_DISCOUNT:
+                        Root<KvantitovaZlavaEntity> rootQuantityDiscount = criteriaQuery.from(KvantitovaZlavaEntity.class);
+                        criteriaQuery.multiselect(rootType, rootDiscount, rootQuantityDiscount);
+                        criteriaQuery.where(
+                                builder.equal(rootType.get("idTypu"), rootDiscount.get("idTypu")),
+                                builder.equal(rootDiscount.get("idKvantity"), rootQuantityDiscount.get("idKvantity"))
+                        );
+                        break;
+                    case PERCENT_DISCOUNT:
+                        Root<PercentualnaZlavaEntity> rootPercentDiscount = criteriaQuery.from(PercentualnaZlavaEntity.class);
+                        criteriaQuery.multiselect(rootType, rootDiscount, rootPercentDiscount);
+                        criteriaQuery.where(
+                                builder.equal(rootType.get("idTypu"), rootDiscount.get("idTypu")),
+                                builder.equal(rootDiscount.get("idPerZlavy"), rootPercentDiscount.get("idPerZlavy"))
+                        );
+                        break;
+                    case DATE_DISCOUNT:
+                        Root<DatumovaZlavaEntity> rootDateDiscount = criteriaQuery.from(DatumovaZlavaEntity.class);
+                        criteriaQuery.multiselect(rootType, rootDiscount, rootDateDiscount);
+                        criteriaQuery.where(
+                                builder.equal(rootType.get("idTypu"), rootDiscount.get("idTypu")),
+                                builder.equal(rootDiscount.get("idDatumu"), rootDateDiscount.get("idDatumu"))
+                        );
+                        break;
+                }
+
+                Object[] resultList = session.createQuery(criteriaQuery).getResultList().toArray();
+
+                for (Object item : resultList) {
+                    Object[] objects = (Object[]) item;
+                    Discount discount = new Discount((ZlavaEntity) objects[1], (TypZlavyEntity) objects[0]);
+                    if (objects[2] instanceof CenovaZlavaEntity) {
+                        discount.setCenovaZlavaEntity((CenovaZlavaEntity) objects[2]);
+                    }
+                    if (objects[2] instanceof KvantitovaZlavaEntity) {
+                        discount.setKvantitovaZlavaEntity((KvantitovaZlavaEntity) objects[2]);
+                    }
+                    if (objects[2] instanceof PercentualnaZlavaEntity) {
+                        discount.setPercentualnaZlavaEntity((PercentualnaZlavaEntity) objects[2]);
+                    }
+                    if (objects[2] instanceof DatumovaZlavaEntity) {
+                        discount.setDatumovaZlavaEntity((DatumovaZlavaEntity) objects[2]);
+                    }
+
+                    list.add(discount);
+                }
+
             } catch (NoResultException exception) {
                 System.out.println("Object not found"
                         + exception.getMessage());

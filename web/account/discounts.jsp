@@ -1,17 +1,17 @@
 <%--
   Created by IntelliJ IDEA.
-  User: Michal
-  Date: 22.06.2018
-  Time: 14:21
-  To change this template use File | Settings | File Templates.
+  User: Bugy
+  Date: 11.01.2020
+  Time: 15:04
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="mt" tagdir="/WEB-INF/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <mt:mainTamplate title="Zlavy">
   <jsp:attribute name="content">
 <html>
 <header>
-    <script src="../js/discounts/dicount.js"></script>
+    <script src="../js/discounts/discount.js"></script>
 </header>
 <body>
 <div class="search-background">
@@ -109,74 +109,58 @@
 
 </form>
 
-<div class="col-md-10">
-    <div class="column">
-        <table class="ui celled selectable right aligned table">
-            <thead>
-            <th class="left aligned">ID</th>
-            <th>Typ zľavy</th>
-            <th>Hodnota</th>
-            <th>Validná</th>
-            </thead>
-            <tbody>
-            <tr>
-                <td class="left aligned">1</td>
-                <td>cenova</td>
-                <td>10</td>
-                <td>ano</td>
-            </tr>
-            <tr>
-                <td class="left aligned">3</td>
-                <td>cenova</td>
-                <td>25</td>
-                <td>ano</td>
-            </tr>
-            <tr>
-                <td class="left aligned">4</td>
-                <td>cenova</td>
-                <td>50</td>
-                <td>ano</td>
-            </tr>
-            <tr>
-                <td class="left aligned">5</td>
-                <td>cenova</td>
-                <td>20</td>
-                <td>ano</td>
-            </tr>
-            <tr>
-                <td class="left aligned">6</td>
-                <td>cenova</td>
-                <td>6</td>
-                <td>nie</td>
-            </tr>
-            </tbody>
-        </table>
+<div class="group-contajner ">
+    <div class="col-md-10">
+        <div class="column">
+            <table class="ui celled selectable right aligned table">
+                <thead>
+                <th class="left aligned">Typ zľavy</th>
+                <th>${discountType == "price" ? "Hodnota zlavy" :
+                        discountType == "percent" ? "Počet percent" :
+                                discountType == "quantity" ?  "Množstvo" :
+                                        discountType == "date" ? "Počet dní" : "Hodnota"}
+                </th>
+                <th>Dátum od</th>
+                <th>Dátum do</th>
+                </thead>
+                <tbody>
+                <c:forEach items="${discounts}" var="discount">
+                <tr data-id="${discount.zlavaEntity.idZlavy}">
+                    <td class="left aligned">${discount.typZlavyEntity.nazovTypu}</td>
+                    <td>${discountType == "price" ? discount.cenovaZlavaEntity.hodnotaZlavy :
+                            discountType == "percent" ? discount.percentualnaZlavaEntity.percentZlavy :
+                                    discountType == "quantity" ?  discount.kvantitovaZlavaEntity.mnozstvo :
+                                            discountType == "date" ? discount.datumovaZlavaEntity.den : "-"}</td>
+                    <td>${discount.zlavaEntity.datOd}</td>
+                    <td>${discount.zlavaEntity.datDo}</td>
+                </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
-<div class="col-md-2">
-    <div class="container-button">
-        <button class="ui labeled inverted green icon button zelenac">
-            <div class="middle">
-                <i class="fa fa-plus"></i>
-                Pridaj
-            </div>
-        </button>
-        <button class="ui labeled inverted red icon button cervenak">
-            <div class="middle">
-                <i class="fa fa-minus"></i>
-                Odstran
-            </div>
-        </button>
-        <button class="ui labeled inverted blue icon button belasa">
-            <div class="middle">
-                <i class="fa fa-pencil"></i>
-                Edituj
-            </div>
-        </button>
-
-        </button>
+    <div class="col-md-2">
+        <div class="container-button m-b-20">
+            <button class="ui labeled green inverted icon button zelenac">
+                <div class="middle">
+                    <i class="fa fa-plus"></i>
+                    Pridaj
+                </div>
+            </button>
+            <button class="ui labeled red inverted icon button cervenak">
+                <div class="middle">
+                    <i class="fa fa-minus"></i>
+                    Odstran
+                </div>
+            </button>
+            <button class="ui labeled blue inverted icon button belasa">
+                <div class="middle">
+                    <i class="fa fa-pencil"></i>
+                    Edituj
+                </div>
+            </button>
+        </div>
     </div>
-
 </div>
 </body>
 </html>

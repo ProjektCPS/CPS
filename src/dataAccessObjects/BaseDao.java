@@ -1,6 +1,7 @@
 package dataAccessObjects;
 
 import entities.*;
+import entities.customEntities.Discount;
 
 import java.util.List;
 import java.util.Map;
@@ -30,4 +31,6 @@ public interface BaseDao {
     Map<String, String> updateMainCategory(String mainCategoryId, Map<String, String> data);
 
     List<TypZlavyEntity> getAllDiscountsTypes();
+
+    List<Discount> getDiscounts(DiscountTypes discountType);
 }

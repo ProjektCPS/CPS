@@ -1,7 +1,9 @@
 package services;
 
 import dataAccessObjects.BusinessStates;
+import dataAccessObjects.DiscountTypes;
 import entities.*;
+import entities.customEntities.Discount;
 
 import java.util.List;
 import java.util.Map;
@@ -33,4 +35,6 @@ public interface BaseService {
     Map<String, String> insertMainCategory(Map<String, String> data);
 
     Map<String, String> updateMainCategory(String mainCategoryId, Map<String, String> data);
+
+    List<Discount> getDiscounts(DiscountTypes discountType);
 }

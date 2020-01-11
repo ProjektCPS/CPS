@@ -11,13 +11,13 @@
   <jsp:attribute name="content">
 <html>
 <header>
-    <script src="../js/discounts/discount_categories.js"></script>
+    <script src="../js/discounts/discountCategories.js"></script>
 </header>
 <body>
 <div class="container m-t-15">
     <div class="ui three stackable cards">
             <div class="ui card">
-                <a href="discount.jsp">
+                <a id="priceDiscount">
                     <div class="image">
                         <div class="ui blurring inverted dimmer">
                             <div class="content">
@@ -35,7 +35,7 @@
             </div>
 
             <div class="ui card">
-                <a href="discount.jsp">
+                <a id="percentDiscount">
                     <div class="image">
                         <div class="ui blurring inverted dimmer">
                             <div class="content">
@@ -53,7 +53,7 @@
             </div>
 
             <div class="ui card">
-                <a href="discount.jsp">
+                <a id="quantityDiscount">
                     <div class="image">
                         <div class="ui blurring inverted dimmer">
                             <div class="content">

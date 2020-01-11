@@ -16,7 +16,10 @@ warningMessages.fillAllFieldsCorectly = "Výplňte správne všetky údaje pros�
 //info
 
 //constants
-
+constants.quantityDiscount = "quantity";
+constants.percentDiscount = "percent";
+constants.priceDiscount = "price";
+constants.dateDiscount = "date";
 
 Object.freeze(errorMessages);
 Object.freeze(warningMessages);

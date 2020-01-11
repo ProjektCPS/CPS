@@ -2,6 +2,7 @@ package services;
 
 import dataAccessObjects.*;
 import entities.*;
+import entities.customEntities.Discount;
 
 import java.util.List;
 import java.util.Map;
@@ -75,5 +76,10 @@ public class BaseServiceImplement implements BaseService {
     @Override
     public Map<String, String> updateMainCategory(String mainCategoryId, Map<String, String> data) {
         return baseDao.updateMainCategory(mainCategoryId, data);
+    }
+
+    @Override
+    public List<Discount> getDiscounts(DiscountTypes discountType) {
+        return baseDao.getDiscounts(discountType);
     }
 }
