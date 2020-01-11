@@ -13,8 +13,9 @@
 <html>
 <head>
     <head>
-        <script src="../js/profile/profile.js"></script>
+        <script src="../js/profile/main.js"></script>
         <script src="../js/profile/discountsType.js"></script>
+        <script src="../js/profile/mainCategories.js"></script>
     </head>
 </head>
 <body>
@@ -110,8 +111,6 @@
                             <i class="fa fa-pencil"></i>
                             Edituj
                         </div>
-                    </button>
-
                     </button>
                 </div>
             </div>

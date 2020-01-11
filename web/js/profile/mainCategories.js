@@ -1,27 +1,22 @@
-let DiscountType = function ($) {
-    const TABLE_ID_DISCOUNT = "#main-discountType-table";
-    const MODAL_DETAIL_ID_DISCOUNT = "#discounts-type-modal";
-    const MODAL_DELETE_ID_DISCOUNT = "#delete-discounts-type-modal";
-    const EDIT_BUTTON_ID_DISCOUNT = "#edit-main-discount-type";
-    const DELETE_BUTTON_ID_DISCOUNT = "#delete-main-discout-type";
-    const NEW_BUTTON_ID_DISCOUNT = "#new-main-discount-type";
+let MainCategories = function ($) {
+    const TABLE_ID = "#main-categories-table";
+    const MODAL_DETAIL_ID = "#main-category-modal";
+    const MODAL_DELETE_ID = "#delete-main-category-modal";
+    const EDIT_BUTTON_ID = "#edit-main-category";
+    const DELETE_BUTTON_ID = "#delete-main-category";
+    const NEW_BUTTON_ID = "#new-main-category";
 
-    const MODAL_DETAIL_SELECTED_ITEM_NAME_ID_DISCOUNT = "discounts-type-id";
+    const MODAL_DETAIL_SELECTED_ITEM_NAME_ID = "main-category-id";
 
-    const URL_PARAM_DISCOUNT = "discount-type-id";
-
-    function isUpdate() {
-        let id = getMainCategoryId();
-        return id && !isNaN(parseInt(id))
-    }
+    const URL_PARAM = "mainCategoryId";
 
     const onNew = function () {
-        $(MODAL_DETAIL_ID_DISCOUNT + ".ui.modal")
+        $(MODAL_DETAIL_ID + ".ui.modal")
             .modal('show');
     };
 
     const onEdit = function () {
-        let selectedRow = $(TABLE_ID_DISCOUNT + " tr.selected");
+        let selectedRow = $(TABLE_ID + " tr.selected");
 
         let selectedRowId = selectedRow.data("id");
         if (selectedRowId !== undefined) {
@@ -32,23 +27,23 @@ let DiscountType = function ($) {
     };
 
     const onDelete = function () {
-        let selectedRow = $(TABLE_ID_DISCOUNT + " tr.selected");
+        let selectedRow = $(TABLE_ID + " tr.selected");
 
         let selectedRowId = selectedRow.data("id");
         if (selectedRowId !== undefined) {
-            $(MODAL_DELETE_ID_DISCOUNT + ".ui.modal")
+            $(MODAL_DELETE_ID + ".ui.modal")
                 .modal('show');
         } else {
             alert(warningMessages.selectRow);
         }
     };
 
-    onHideTenantModal = function () {
-        $(MODAL_DETAIL_ID_DISCOUNT + ' input[name=main-category-name]').val("");
-        $(MODAL_DETAIL_ID_DISCOUNT + ' input[name=' + MODAL_DETAIL_SELECTED_ITEM_NAME_ID_DISCOUNT + ']').val("");
+    const onHideTenantModal = function () {
+        $(MODAL_DETAIL_ID + ' input[name=main-category-name]').val("");
+        $(MODAL_DETAIL_ID + ' input[name=' + MODAL_DETAIL_SELECTED_ITEM_NAME_ID + ']').val("");
     };
 
-    onApproveModalDetail = function () {
+    const onApproveModalDetail = function () {
         let validateResults = validateAll();
 
         if (validateResults.length > 0) {
@@ -70,27 +65,39 @@ let DiscountType = function ($) {
         }
     };
 
+
+    const onApproveModalDelete = function () {
+        alert("TODO: implementuj delete akciu");
+        return false;
+    };
+
+
+    function isUpdate() {
+        let id = getMainCategoryId();
+        return id && !isNaN(parseInt(id))
+    }
+
     function getMainCategory(selectedRowId) {
         $.ajax({
             type: "GET",
-            url: '../../account/productType?' + URL_PARAM_DISCOUNT + '=' + selectedRowId,
+            url: '../../account/productType?' + URL_PARAM + '=' + selectedRowId,
             beforeSend: function () {
                 console.log("beforeSend");
             },
             success: function (response) {
-                $(MODAL_DETAIL_ID_DISCOUNT + ' input[name=main-category-name]').val(response.nazov);
-                $(MODAL_DETAIL_ID_DISCOUNT + ' input[name=' + MODAL_DETAIL_SELECTED_ITEM_NAME_ID_DISCOUNT + ']').val(response.idTypu);
-                $(MODAL_DETAIL_ID_DISCOUNT)
+                $(MODAL_DETAIL_ID + ' input[name=main-category-name]').val(response.nazov);
+                $(MODAL_DETAIL_ID + ' input[name=' + MODAL_DETAIL_SELECTED_ITEM_NAME_ID + ']').val(response.idTypu);
+                $(MODAL_DETAIL_ID)
                     .modal('show');
             },
             error: function (err) {
-                alert("Nepodarilo sa nacitat tenanta.")
+                alert("Nepodarilo sa nacitat hlavnu kategoriu.")
             }
         })
     }
 
     function getMainCategoryId() {
-        return $(MODAL_DETAIL_ID_DISCOUNT + ' input[name=' + MODAL_DETAIL_SELECTED_ITEM_NAME_ID_DISCOUNT + ']').val();
+        return $(MODAL_DETAIL_ID + ' input[name=' + MODAL_DETAIL_SELECTED_ITEM_NAME_ID + ']').val();
     }
 
     function updateMainCategory(id) {
@@ -98,13 +105,12 @@ let DiscountType = function ($) {
         console.log(data);
         $.ajax({
             type: "POST",
-            url: '../../account/productType?' + URL_PARAM_DISCOUNT + '=' + id,
+            url: '../../account/productType?' + URL_PARAM + '=' + id,
             data: data,
             beforeSend: function () {
             },
             success: function (response) {
-                alert("updated");
-                window.location.href = "../account/profile";
+                reloadPage();
             },
             error: function (err) {
                 console.log(err);
@@ -126,8 +132,7 @@ let DiscountType = function ($) {
             beforeSend: function () {
             },
             success: function (response) {
-                alert("inserted");
-                window.location.href = "../account/profile";
+                reloadPage()
             },
             error: function (err) {
                 console.log(err);
@@ -150,7 +155,7 @@ let DiscountType = function ($) {
 
         data.push({
             name: "mainCategoryId",
-            value: $(MODAL_DETAIL_ID_DISCOUNT + ' input[name=' + MODAL_DETAIL_SELECTED_ITEM_NAME_ID_DISCOUNT + ']').val()
+            value: $(MODAL_DETAIL_ID + ' input[name=' + MODAL_DETAIL_SELECTED_ITEM_NAME_ID + ']').val()
         });
 
         return data;
@@ -190,29 +195,22 @@ let DiscountType = function ($) {
         return result;
     }
 
-    onApproveModalDelete = function () {
-        alert("TODO: implementuj delete akciu");
-        return false;
-    };
+    $(TABLE_ID + " tr").click(function () {
+        $(this).addClass('selected').siblings().removeClass('selected');
+    });
 
-    // listeners have to be on end of the file
-    $(MODAL_DETAIL_ID_DISCOUNT).modal({
+    $(MODAL_DETAIL_ID).modal({
         onHidden: onHideTenantModal,
         onApprove: onApproveModalDetail
     });
 
-    $(MODAL_DELETE_ID_DISCOUNT).modal({
+    $(MODAL_DELETE_ID).modal({
         onApprove: onApproveModalDelete
     });
 
-    $(NEW_BUTTON_ID_DISCOUNT).click(onNew);
+    $(NEW_BUTTON_ID).click(onNew);
 
-    $(EDIT_BUTTON_ID_DISCOUNT).click(onEdit);
+    $(EDIT_BUTTON_ID).click(onEdit);
 
-    $(DELETE_BUTTON_ID_DISCOUNT).click(onDelete);
-
-    $(TABLE_ID_DISCOUNT + " tr").click(function () {
-        $(this).addClass('selected').siblings().removeClass('selected');
-    });
+    $(DELETE_BUTTON_ID).click(onDelete);
 };
-
