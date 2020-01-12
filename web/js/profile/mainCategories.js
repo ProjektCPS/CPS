@@ -195,6 +195,7 @@ let MainCategories = function ($) {
         return result;
     }
 
+    // listeners have to be on end of the file
     $(TABLE_ID + " tr").click(function () {
         $(this).addClass('selected').siblings().removeClass('selected');
     });

@@ -1,22 +1,30 @@
-const DISCOUNT_BUTTON_SELECTOR = ".category-discount-edit";
+let categoryDicount = function ($) {
+    const MODAL_DISCOUNT_ID = "#category-discount-modal";
+    const DISCOUNT_BUTTON_SELECTOR = ".category-discount-edit";
 
-const MODAL_DISCOUNT_ID = "#category-discount-modal";
+    const onEdit = function () {
+        let productCategoryId = $(this).data(DATA_PRODUCT_CATEGORY);
+        showModal()
+        //getCategoryDicount(productCategoryId);
+    };
 
-jQuery(document).ready(function ($) {
+    function showModal() {
+        $(MODAL_DISCOUNT_ID + ".ui.modal").modal('show');
+    }
 
-    $(DISCOUNT_BUTTON_SELECTOR).click(onEditDiscount);
+    function onHideModal() {
+        // $(MODAL_DETAIL_ID + ' input[name=category-name]').val("");
+        // $(MODAL_DETAIL_ID + ' input[name=' + MODAL_DETAIL_SELECTED_ITEM_NAME_ID + ']').val("");
+    }
+
+    function onApproveModalDetail() {
+
+    }
+
+    $(DISCOUNT_BUTTON_SELECTOR).click(onEdit);
 
     $(MODAL_DISCOUNT_ID).modal({
-        onHidden: onHideTenantModal,
+        onHidden: onHideModal,
         onApprove: onApproveModalDetail
     });
-});
-
-const onEditDiscount = function () {
-    let productCategoryId = $(this).data(DATA_PRODUCT_CATEGORY);
-    getCategoryDicount(productCategoryId);
 };
-
-function showModal() {
-    $(MODAL_DISCOUNT_ID + ".ui.modal").modal('show');
-}

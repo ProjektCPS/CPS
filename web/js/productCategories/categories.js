@@ -2,6 +2,7 @@ const DELETE_BUTTON_SELECTOR = ".delete-category";
 const EDIT_BUTTON_SELECTOR = ".edit-category";
 const NEW_BUTTON_ID = "#new-category";
 const ALL_CATEGORIES_ID = "#allCategories";
+
 const MODAL_DELETE_ID = "#delete-category-modal";
 const MODAL_DETAIL_ID = "#category-modal";
 
@@ -18,7 +19,7 @@ function isUpdate() {
 }
 
 jQuery(document).ready(function ($) {
-    init();
+    init($);
 
     $(NEW_BUTTON_ID).click(onNew);
 
@@ -27,17 +28,17 @@ jQuery(document).ready(function ($) {
     $(DELETE_BUTTON_SELECTOR).click(onDelete);
 
     $(MODAL_DETAIL_ID).modal({
-        onHidden: onHideTenantModal,
+        onHidden: onHideModal,
         onApprove: onApproveModalDetail
     });
 
     $(MODAL_DELETE_ID).modal({
         onApprove: onApproveModalDelete
     });
-
 });
 
-function init() {
+function init($) {
+    new categoryDicount($);
     $('#products').addClass('highlighted');
 }
 
@@ -60,7 +61,8 @@ function onApproveModalDelete() {
     return false;
 }
 
-function onHideTenantModal() {
+function onHideModal() {
+    alert("janko");
     $(MODAL_DETAIL_ID + ' input[name=category-name]').val("");
     $(MODAL_DETAIL_ID + ' input[name=' + MODAL_DETAIL_SELECTED_ITEM_NAME_ID + ']').val("");
 }
