@@ -62,7 +62,6 @@ function onApproveModalDelete() {
 }
 
 function onHideModal() {
-    alert("janko");
     $(MODAL_DETAIL_ID + ' input[name=category-name]').val("");
     $(MODAL_DETAIL_ID + ' input[name=' + MODAL_DETAIL_SELECTED_ITEM_NAME_ID + ']').val("");
 }

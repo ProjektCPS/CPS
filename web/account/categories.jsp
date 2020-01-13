@@ -133,7 +133,7 @@
             <div class="one field">
                 <div class="field required">
                     <label>Názov</label>
-                    <input type="text" name="category-name" placeholder="Názov kategórie"
+                    <input type="text" name="category-discount-name" placeholder="Názov kategórie"
                            value="">
                 </div>
             </div>
