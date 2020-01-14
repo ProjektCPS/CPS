@@ -34,7 +34,14 @@ public interface BaseService {
 
     Map<String, String> insertMainCategory(Map<String, String> data);
 
+
+    Map<String, String> insertMainDiscountType(Map<String, String> data);
+
     Map<String, String> updateMainCategory(String mainCategoryId, Map<String, String> data);
 
+    Map<String, String> updateMainDiscountType(String mainCategoryId, Map<String, String> data);
+
     List<Discount> getDiscounts(DiscountTypes discountType);
+
+    Map<String,String> deleteMainDiscountType(String mainDiscountTzpe);
 }

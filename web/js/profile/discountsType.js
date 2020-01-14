@@ -6,6 +6,8 @@ let DiscountType = function ($) {
     const DELETE_BUTTON_ID_DISCOUNT = "#delete-main-discout-type";
     const NEW_BUTTON_ID_DISCOUNT = "#new-main-discount-type";
 
+    const ENDPOINT_TYPE = "discout-type";
+
     const MODAL_DETAIL_SELECTED_ITEM_NAME_ID_DISCOUNT = "discounts-type-id";
 
     const URL_PARAM_DISCOUNT = "discount-type-id";
@@ -44,7 +46,7 @@ let DiscountType = function ($) {
     };
 
     onHideTenantModal = function () {
-        $(MODAL_DETAIL_ID_DISCOUNT + ' input[name=main-category-name]').val("");
+        $(MODAL_DETAIL_ID_DISCOUNT + ' input[name=discount-type-name]').val("");
         $(MODAL_DETAIL_ID_DISCOUNT + ' input[name=' + MODAL_DETAIL_SELECTED_ITEM_NAME_ID_DISCOUNT + ']').val("");
     };
 
@@ -73,12 +75,12 @@ let DiscountType = function ($) {
     function getMainCategory(selectedRowId) {
         $.ajax({
             type: "GET",
-            url: '../../account/productType?' + URL_PARAM_DISCOUNT + '=' + selectedRowId,
+            url: '../../account/' + ENDPOINT_TYPE + '?' + URL_PARAM_DISCOUNT + '=' + selectedRowId,
             beforeSend: function () {
                 console.log("beforeSend");
             },
             success: function (response) {
-                $(MODAL_DETAIL_ID_DISCOUNT + ' input[name=main-category-name]').val(response.nazov);
+                $(MODAL_DETAIL_ID_DISCOUNT + ' input[name=discount-type-name]').val(response.nazov);
                 $(MODAL_DETAIL_ID_DISCOUNT + ' input[name=' + MODAL_DETAIL_SELECTED_ITEM_NAME_ID_DISCOUNT + ']').val(response.idTypu);
                 $(MODAL_DETAIL_ID_DISCOUNT)
                     .modal('show');
@@ -98,7 +100,7 @@ let DiscountType = function ($) {
         console.log(data);
         $.ajax({
             type: "POST",
-            url: '../../account/productType?' + URL_PARAM_DISCOUNT + '=' + id,
+            url: '../../account/' + ENDPOINT_TYPE + '?' + URL_PARAM_DISCOUNT + '=' + id,
             data: data,
             beforeSend: function () {
             },
@@ -121,7 +123,7 @@ let DiscountType = function ($) {
         let data = getData();
         $.ajax({
             type: "POST",
-            url: '../../account/productType',
+            url: '../../account/' + ENDPOINT_TYPE,
             data: data,
             beforeSend: function () {
             },
@@ -170,7 +172,7 @@ let DiscountType = function ($) {
             $(item).removeClass("error");
 
             switch (itemInput.attr("name")) {
-                case "main-category-name":
+                case "discount-type-name":
                     if (itemValue === "") {
                         messages.push("Vyplňte názov kategórie")
                     }

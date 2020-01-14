@@ -179,6 +179,15 @@
     </servlet>
 
     <servlet-mapping>
+        <servlet-name>discountTypeController</servlet-name>
+        <url-pattern>/account/discout-type</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>discountTypeController</servlet-name>
+        <servlet-class>controllers.discountTypeControler</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
         <servlet-name>discountsController</servlet-name>
         <url-pattern>/account/discounts</url-pattern>
     </servlet-mapping>

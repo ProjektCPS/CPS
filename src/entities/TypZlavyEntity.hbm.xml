@@ -12,7 +12,7 @@
             <column name="nazov_typu" sql-type="varchar(30)" length="30"/>
         </property>
         <property name="popis">
-            <column name="popis" sql-type="varchar(2000)" length="2000" not-null="true"/>
+            <column name="popis" sql-type="varchar(2000)" length="2000"/>
         </property>
     </class>
 </hibernate-mapping>

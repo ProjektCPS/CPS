@@ -74,12 +74,27 @@ public class BaseServiceImplement implements BaseService {
     }
 
     @Override
+    public Map<String, String> insertMainDiscountType(Map<String, String> data) {
+        return baseDao.insertMainDiscountType(data);
+    }
+
+    @Override
     public Map<String, String> updateMainCategory(String mainCategoryId, Map<String, String> data) {
         return baseDao.updateMainCategory(mainCategoryId, data);
     }
 
     @Override
+    public Map<String, String> updateMainDiscountType(String mainCategoryId, Map<String, String> data) {
+        return baseDao.updateMainDiscountType(mainCategoryId, data);
+    }
+
+    @Override
     public List<Discount> getDiscounts(DiscountTypes discountType) {
         return baseDao.getDiscounts(discountType);
+    }
+
+    @Override
+    public Map<String, String> deleteMainDiscountType(String mainDiscountTzpe) {
+        return baseDao.deleteMainDiscountType(mainDiscountTzpe);
     }
 }

@@ -33,4 +33,10 @@ public interface BaseDao {
     List<TypZlavyEntity> getAllDiscountsTypes();
 
     List<Discount> getDiscounts(DiscountTypes discountType);
+
+    Map<String,String> insertMainDiscountType(Map<String,String> data);
+
+    Map<String,String> updateMainDiscountType(String mainCategoryId, Map<String,String> data);
+
+    Map<String,String> deleteMainDiscountType(String mainDiscountTzpe);
 }

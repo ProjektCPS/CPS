@@ -519,4 +519,76 @@ public class BaseDaoImplement implements BaseDao {
         }
         return list;
     }
+
+    @Override
+    public Map<String, String> insertMainDiscountType(Map<String, String> data) {
+        Map<String, String> response = new HashMap<>();
+
+        try (Session session = HibernateUtil.getSessionByTenant(getStringId())) {
+            TypZlavyEntity newMainCategory = new TypZlavyEntity();
+            newMainCategory.setNazovTypu(data.get("discount-type-name"));
+            System.out.println("Inserting: " + newMainCategory.getNazovTypu());
+            session.beginTransaction();
+            session.save(newMainCategory);
+            session.getTransaction().commit();
+        } catch (Exception exception) {
+            System.out.println("Exception occurred while reading discount data: "
+                    + exception.getMessage());
+            response.put("err", "Nepodarilo sa vlozit hlavnu zlavu.");
+            return response;
+        }
+
+        return response;
+    }
+
+    @Override
+    public Map<String, String> updateMainDiscountType(String mainCategoryId, Map<String, String> data) {
+        Map<String, String> response = new HashMap<>();
+
+        try (Session session = HibernateUtil.getSessionByTenant(getStringId())) {
+            TypZlavyEntity mainDiscountType = new TypZlavyEntity();
+            mainDiscountType.setNazovTypu(data.get("discount-type-name"));
+            mainDiscountType.setIdTypu(Integer.parseInt(data.get("discount-type-id")));
+
+            System.out.println("Updating: " + mainDiscountType.getNazovTypu());
+            session.beginTransaction();
+            session.update(mainDiscountType);
+            session.getTransaction().commit();
+        } catch (Exception exception) {
+            System.out.println("Exception occurred while reading discount data: "
+                    + exception.getMessage());
+            response.put("err", "Nepodarilo sa editovat hlavnu zlavu.");
+            return response;
+        }
+
+        return response;
+    }
+
+    @Override
+    public Map<String, String> deleteMainDiscountType(String mainDiscountTzpe) {
+        Map<String, String> response = new HashMap<>();
+        try (Session session = HibernateUtil.getSessionByTenant(getStringId())) {
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+
+            // Using FROM and JOIN
+            CriteriaQuery<TypZlavyEntity> criteriaQuery = builder.createQuery(TypZlavyEntity.class);
+            Root<TypZlavyEntity> typeRoot = criteriaQuery.from(TypZlavyEntity.class);
+            criteriaQuery.select(typeRoot)
+                    .where(builder.equal(typeRoot.get("idtypuZlavy"), mainDiscountTzpe));
+
+            TypZlavyEntity mainDiscountType = (TypZlavyEntity) session.createQuery(criteriaQuery).getResultList();
+            System.out.println("Deleting: " + mainDiscountType.getNazovTypu());
+            session.beginTransaction();
+            session.delete(mainDiscountType);
+            session.getTransaction().commit();
+        } catch (Exception exception) {
+            System.out.println("Exception occurred while trying delete discout type: "
+                    + exception.getMessage());
+            response.put("err", "Nepodarilo sa vymazat zlavu.");
+            return response;
+        }
+
+        return response;
+    }
 }
+
