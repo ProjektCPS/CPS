@@ -43,5 +43,7 @@ public interface BaseService {
 
     List<Discount> getDiscounts(DiscountTypes discountType);
 
-    Map<String,String> deleteMainDiscountType(String mainDiscountTzpe);
+    Map<String,String> deleteMainDiscountType(int mainDiscountTypeId);
+
+    TypZlavyEntity getMainDiscountType(int mainDiscountTypeId);
 }

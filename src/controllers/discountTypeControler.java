@@ -2,8 +2,7 @@ package controllers;
 
 import com.google.gson.Gson;
 import config.Constants;
-import entities.PredmetPredajaEntity;
-import entities.TypPredmetuEntity;
+import entities.TypZlavyEntity;
 import services.BaseService;
 import services.BaseServiceImplement;
 import utilities.Validator;
@@ -57,7 +56,7 @@ public class discountTypeControler extends HttpServlet {
         String mainDiscountTzpe = request.getParameter("discount-type-id") != null ?  request.getParameter("discount-type-id").trim() : null;
 
         if (!Validator.isStringNullOrEmpty(mainDiscountTzpe) && Validator.isStringNumber(mainDiscountTzpe)) {
-            TypPredmetuEntity typPredmetuEntity = baseService.getMainCategory(Integer.parseInt(mainDiscountTzpe));
+            TypZlavyEntity typPredmetuEntity = baseService.getMainDiscountType(Integer.parseInt(mainDiscountTzpe));
             String json = new Gson().toJson(typPredmetuEntity);
 
             response.setContentType("application/json");
@@ -70,7 +69,7 @@ public class discountTypeControler extends HttpServlet {
         HttpSession currentSession = request.getSession(false);
         BaseService baseService = new BaseServiceImplement((Integer) currentSession.getAttribute(Constants.TENANT_ID));
         String mainDiscountTzpe = request.getParameter("discount-type-id");
-        if(mainDiscountTzpe == null)
+        if(Validator.isStringNullOrEmpty(mainDiscountTzpe) && !Validator.isStringNumber(mainDiscountTzpe))
         {
             PrintWriter pw = response.getWriter();
             response.setContentType("application/json");
@@ -79,7 +78,7 @@ public class discountTypeControler extends HttpServlet {
         }
 
         Map<String, String> serviceResponse;
-        serviceResponse = baseService.deleteMainDiscountType(mainDiscountTzpe);
+        serviceResponse = baseService.deleteMainDiscountType(Integer.parseInt(mainDiscountTzpe));
 
         if(serviceResponse.get("err") != null) {
             PrintWriter pw = response.getWriter();

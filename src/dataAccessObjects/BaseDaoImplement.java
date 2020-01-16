@@ -565,7 +565,7 @@ public class BaseDaoImplement implements BaseDao {
     }
 
     @Override
-    public Map<String, String> deleteMainDiscountType(String mainDiscountTzpe) {
+    public Map<String, String> deleteMainDiscountType(int mainDiscountTypeId) {
         Map<String, String> response = new HashMap<>();
         try (Session session = HibernateUtil.getSessionByTenant(getStringId())) {
             CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -574,9 +574,9 @@ public class BaseDaoImplement implements BaseDao {
             CriteriaQuery<TypZlavyEntity> criteriaQuery = builder.createQuery(TypZlavyEntity.class);
             Root<TypZlavyEntity> typeRoot = criteriaQuery.from(TypZlavyEntity.class);
             criteriaQuery.select(typeRoot)
-                    .where(builder.equal(typeRoot.get("idtypuZlavy"), mainDiscountTzpe));
+                    .where(builder.equal(typeRoot.get("idTypu"), mainDiscountTypeId));
 
-            TypZlavyEntity mainDiscountType = (TypZlavyEntity) session.createQuery(criteriaQuery).getResultList();
+            TypZlavyEntity mainDiscountType = session.createQuery(criteriaQuery).getSingleResult();
             System.out.println("Deleting: " + mainDiscountType.getNazovTypu());
             session.beginTransaction();
             session.delete(mainDiscountType);
@@ -589,6 +589,39 @@ public class BaseDaoImplement implements BaseDao {
         }
 
         return response;
+    }
+
+    @Override
+    public TypZlavyEntity getMainDiscountType(int mainDiscountTypeId) {
+        Session session = HibernateUtil.getSessionByTenant(getStringId());
+
+        TypZlavyEntity mainDiscountType = null;
+        if (session != null) {
+            try {
+                CriteriaBuilder builder = session.getCriteriaBuilder();
+
+                CriteriaQuery<TypZlavyEntity> criteriaQuery = builder.createQuery(TypZlavyEntity.class);
+                Root<TypZlavyEntity> typeRoot = criteriaQuery.from(TypZlavyEntity.class);
+                criteriaQuery.select(typeRoot)
+                        .where(builder.equal(typeRoot.get("idTypu"), mainDiscountTypeId));
+
+                mainDiscountType = session.createQuery(criteriaQuery).getSingleResult();
+            } catch (NoResultException exception) {
+                System.out.println("Object not found"
+                        + exception.getMessage());
+                return null;
+            } catch (Exception exception) {
+                System.out.println("Exception occred while reading user data: "
+                        + exception.getMessage());
+                return null;
+            } finally {
+                session.close();
+            }
+
+        } else {
+            System.out.println("DB server down.....");
+        }
+        return mainDiscountType;
     }
 }
 

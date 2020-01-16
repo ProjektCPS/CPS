@@ -38,5 +38,7 @@ public interface BaseDao {
 
     Map<String,String> updateMainDiscountType(String mainCategoryId, Map<String,String> data);
 
-    Map<String,String> deleteMainDiscountType(String mainDiscountTzpe);
+    Map<String,String> deleteMainDiscountType(int mainDiscountTypeId);
+
+    TypZlavyEntity getMainDiscountType(int mainDiscountTypeId);
 }

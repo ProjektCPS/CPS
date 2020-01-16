@@ -23,9 +23,7 @@ let DiscountType = function ($) {
     };
 
     const onEdit = function () {
-        let selectedRow = $(TABLE_ID_DISCOUNT + " tr.selected");
-
-        let selectedRowId = selectedRow.data("id");
+        let selectedRowId = getSelectedRowId();
         if (selectedRowId !== undefined) {
             getMainCategory(selectedRowId);
         } else {
@@ -33,17 +31,39 @@ let DiscountType = function ($) {
         }
     };
 
-    const onDelete = function () {
+    function getSelectedRowId() {
         let selectedRow = $(TABLE_ID_DISCOUNT + " tr.selected");
 
-        let selectedRowId = selectedRow.data("id");
-        if (selectedRowId !== undefined) {
+        return selectedRow.data("id");
+    }
+
+    const onDelete = function () {
+        if (getSelectedRowId() !== undefined) {
             $(MODAL_DELETE_ID_DISCOUNT + ".ui.modal")
                 .modal('show');
         } else {
             alert(warningMessages.selectRow);
         }
     };
+
+    function deleteItem(selectedRowId) {
+        $.ajax({
+            type: "DELETE",
+            url: '../../account/' + ENDPOINT_TYPE + '?' + URL_PARAM_DISCOUNT + '=' + selectedRowId,
+            beforeSend: function () {
+                console.log("beforeSend");
+            },
+            success: function (response) {
+                $(MODAL_DETAIL_ID_DISCOUNT)
+                    .modal('hide');
+                reloadPage();
+            },
+            error: function (err) {
+                console.log(err);
+                alert("Nepodarilo sa odstranit typ zlavy.")
+            }
+        })
+    }
 
     onHideTenantModal = function () {
         $(MODAL_DETAIL_ID_DISCOUNT + ' input[name=discount-type-name]').val("");
@@ -80,7 +100,7 @@ let DiscountType = function ($) {
                 console.log("beforeSend");
             },
             success: function (response) {
-                $(MODAL_DETAIL_ID_DISCOUNT + ' input[name=discount-type-name]').val(response.nazov);
+                $(MODAL_DETAIL_ID_DISCOUNT + ' input[name=discount-type-name]').val(response.nazovTypu);
                 $(MODAL_DETAIL_ID_DISCOUNT + ' input[name=' + MODAL_DETAIL_SELECTED_ITEM_NAME_ID_DISCOUNT + ']').val(response.idTypu);
                 $(MODAL_DETAIL_ID_DISCOUNT)
                     .modal('show');
@@ -193,8 +213,7 @@ let DiscountType = function ($) {
     }
 
     onApproveModalDelete = function () {
-        alert("TODO: implementuj delete akciu");
-        return false;
+        deleteItem(getSelectedRowId());
     };
 
     // listeners have to be on end of the file

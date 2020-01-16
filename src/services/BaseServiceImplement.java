@@ -94,7 +94,12 @@ public class BaseServiceImplement implements BaseService {
     }
 
     @Override
-    public Map<String, String> deleteMainDiscountType(String mainDiscountTzpe) {
-        return baseDao.deleteMainDiscountType(mainDiscountTzpe);
+    public Map<String, String> deleteMainDiscountType(int mainDiscountTypeId) {
+        return baseDao.deleteMainDiscountType(mainDiscountTypeId);
+    }
+
+    @Override
+    public TypZlavyEntity getMainDiscountType(int mainDiscountTypeId) {
+        return baseDao.getMainDiscountType(mainDiscountTypeId);
     }
 }
