@@ -196,4 +196,13 @@
         <servlet-class>controllers.discountsController</servlet-class>
     </servlet>
 
+    <servlet-mapping>
+        <servlet-name>discountTypesController</servlet-name>
+        <url-pattern>/account/discountTypes</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>discountTypesController</servlet-name>
+        <servlet-class>controllers.discountTypesController</servlet-class>
+    </servlet>
+
 </web-app>

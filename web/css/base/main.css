@@ -1618,6 +1618,10 @@ table.ui {
     bottom: auto;
 }
 
+.modal.overflow-v {
+    overflow: visible;
+}
+
 .fab.icon,
 .fas.icon,
 .fa.icon {

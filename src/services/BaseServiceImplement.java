@@ -24,8 +24,8 @@ public class BaseServiceImplement implements BaseService {
     }
 
     @Override
-    public List<TypZlavyEntity> getAllDiscount() {
-        return baseDao.getAllDiscountsTypes();
+    public List<TypZlavyEntity> getMainDiscountTypes() {
+        return baseDao.getMainDiscountTypes();
     }
 
     @Override

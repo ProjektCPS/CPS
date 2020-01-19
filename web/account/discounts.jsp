@@ -12,6 +12,7 @@
 <html>
 <header>
     <script src="../js/discounts/discount.js"></script>
+    <script src="../js/discounts/main.js"></script>
 </header>
 <body>
 <div class="search-background">
@@ -112,7 +113,7 @@
 <div class="group-contajner ">
     <div class="col-md-10">
         <div class="column">
-            <table class="ui celled selectable right aligned table">
+            <table id="discounts-table" class="ui celled selectable right aligned table">
                 <thead>
                 <th class="left aligned">Typ zľavy</th>
                 <th>${discountType == "price" ? "Hodnota zlavy" :
@@ -159,6 +160,85 @@
                     Edituj
                 </div>
             </button>
+        </div>
+    </div>
+</div>
+
+    <%--modals--%>
+<div id="discount-modal" class="ui small modal customModal overflow-v">
+    <div class="header">
+        Zľava
+    </div>
+    <div class="ui form content">
+        <div class="two fields">
+            <div class="field required">
+                <label>Kraj</label>
+                <div class="ui fluid search selection dropdown">
+                    <input type="hidden" name="mainDiscountType" value="">
+                    <i class="dropdown icon"></i>
+                    <div class="default text">Vyber typ zľavy</div>
+                </div>
+            </div>
+            <div class="field required">
+                <label>${discountType == "price" ? "Hodnota zlavy" :
+                        discountType == "percent" ? "Počet percent" :
+                                discountType == "quantity" ?  "Množstvo" :
+                                        discountType == "date" ? "Počet dní" : "Hodnota"}</label>
+                <input type="text" name="discount-from" placeholder=${discountType == "price" ? "Hodnota zlavy" :
+                        discountType == "percent" ? "Počet percent" :
+                                discountType == "quantity" ?  "Množstvo" :
+                                        discountType == "date" ? "Počet dní" : "Hodnota"} value="">
+            </div>
+        </div>
+
+        <div class="two fields">
+            <div class="field required">
+                <label>Dátum od</label>
+                <div class="ui calendar" id="dateRangeStart">
+                    <div class="ui input left icon">
+                        <i class="calendar icon"></i>
+                        <input type="text" placeholder="Začiatok">
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <label>Dátum do</label>
+                <div class="ui calendar" id="dateRangeEnd">
+                    <div class="ui input left icon">
+                        <i class="calendar icon"></i>
+                        <input type="text" placeholder="Koniec">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui black cancel button">
+            <i class="fa fa-sign-out"></i>
+            Zrušiť
+        </div>
+        <div class="ui positive ok right button">
+            <i class="fa fa-check"></i>
+            Uložiť
+        </div>
+    </div>
+    <input hidden type="text" name="discount-id" value="">
+</div>
+<div id="delete-discount-modal" class="ui basic modal customModal">
+    <div class="header">
+        Odstrániť zľavu
+    </div>
+    <div class="content">
+        <p>Naozaj chcete odstrániť vybranú zľavu?</p>
+    </div>
+    <div class="actions">
+        <div class="ui red basic cancel inverted button">
+            <i class="fa fa-sign-out"></i>
+            Nie
+        </div>
+        <div class="ui green ok inverted button">
+            <i class="fa fa-trash"></i>
+            Áno
         </div>
     </div>
 </div>

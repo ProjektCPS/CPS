@@ -402,7 +402,7 @@ public class BaseDaoImplement implements BaseDao {
     }
 
     @Override
-    public List<TypZlavyEntity> getAllDiscountsTypes() {
+    public List<TypZlavyEntity> getMainDiscountTypes() {
         Session session = HibernateUtil.getSessionByTenant(getStringId());
 
         List<TypZlavyEntity> list = null;

@@ -30,7 +30,7 @@ public interface BaseDao {
 
     Map<String, String> updateMainCategory(String mainCategoryId, Map<String, String> data);
 
-    List<TypZlavyEntity> getAllDiscountsTypes();
+    List<TypZlavyEntity> getMainDiscountTypes();
 
     List<Discount> getDiscounts(DiscountTypes discountType);
 

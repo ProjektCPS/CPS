@@ -44,6 +44,8 @@
     <script src="../../js/base/popup.js"></script>
     <script src="../../js/base/constants/constants.js"></script>
     <script src="../../js/utils/helpers.js"></script>
+    <script src="../../node_modules/semantic-ui-calendar/dist/calendar.min.js"></script>
+    <script src="../../node_modules/semantic-ui-calendar/dist/calendar.min.css"></script>
 
 
     <!-- jQuery easing -->
