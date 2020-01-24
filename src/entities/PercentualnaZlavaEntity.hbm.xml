@@ -6,7 +6,7 @@
 
     <class name="entities.PercentualnaZlavaEntity" table="percentualna_zlava">
         <id name="idPerZlavy">
-            <column name="id_per_zlavy" sql-type="varchar(30)" length="30"/>
+            <column name="id_per_zlavy" sql-type="int(11)"/>
         </id>
         <property name="percentZlavy">
             <column name="percent_zlavy" sql-type="double" precision="-1"/>

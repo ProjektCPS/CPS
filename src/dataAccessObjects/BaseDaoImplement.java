@@ -4,6 +4,7 @@ import entities.*;
 import entities.customEntities.Discount;
 import org.hibernate.Session;
 
+import utilities.DateUtil;
 import utilities.HibernateUtil;
 
 import javax.persistence.NoResultException;
@@ -622,6 +623,161 @@ public class BaseDaoImplement implements BaseDao {
             System.out.println("DB server down.....");
         }
         return mainDiscountType;
+    }
+
+    @Override
+    public Map<String, String> insertDiscount(Map<String, String> data) {
+        Map<String, String> response = new HashMap<>();
+
+        try (Session session = HibernateUtil.getSessionByTenant(getStringId())) {
+            ZlavaEntity newDiscount = new ZlavaEntity();
+            newDiscount.setIdTypu(Integer.parseInt(data.get("mainDiscountType")));
+            newDiscount.setDatOd(DateUtil.createSqlDate(data.get("discount-from")));
+            newDiscount.setDatDo(DateUtil.createSqlDate(data.get("discount-to")));
+
+            double discountValue = Double.parseDouble(data.get("discount-value"));
+
+            switch (DiscountTypes.getIfExists(data.get("discountType"))){
+                case DATE_DISCOUNT:
+                    //TODO: implementuj
+                    break;
+                case PRICE_DISCOUNT:
+                    CenovaZlavaEntity newPriceDiscount = new CenovaZlavaEntity();
+                    newPriceDiscount.setHodnotaZlavy(discountValue);
+
+                    CenovaZlavaEntity priceDiscount = insertPriceDiscountIfNotExist(newPriceDiscount);
+                    newDiscount.setIdCenovejZlavy(priceDiscount.getIdCenovejZlavy());
+                    break;
+                case PERCENT_DISCOUNT:
+                    PercentualnaZlavaEntity newPercentDiscount = new PercentualnaZlavaEntity();
+                    newPercentDiscount.setPercentZlavy(discountValue);
+
+                    PercentualnaZlavaEntity percentDiscount = insertPercentDiscountIfNotExist(newPercentDiscount);
+                    newDiscount.setIdPerZlavy(percentDiscount.getIdPerZlavy());
+                    break;
+                case QUANTITY_DISCOUNT:
+                    KvantitovaZlavaEntity newQuantityDiscount = new KvantitovaZlavaEntity();
+                    newQuantityDiscount.setMnozstvo(discountValue);
+
+                    KvantitovaZlavaEntity quantityDiscount = insertQuantityDiscountIfNotExist(newQuantityDiscount);
+                    newDiscount.setIdKvantity(quantityDiscount.getIdKvantity());
+                    break;
+            }
+
+            System.out.println("Inserting: zlavu s id-" + newDiscount.getIdZlavy());
+            session.beginTransaction();
+            session.save(newDiscount);
+            session.getTransaction().commit();
+        } catch (Exception exception) {
+            System.out.println("Exception occurred while reading discount data: "
+                    + exception.getMessage());
+            response.put("err", "Nepodarilo sa vlozit zlavu.");
+            return response;
+        }
+
+        return response;
+    }
+
+    private CenovaZlavaEntity insertPriceDiscountIfNotExist(CenovaZlavaEntity newDiscount) {
+        Session session = HibernateUtil.getSessionByTenant(getStringId());
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+
+        CriteriaQuery<CenovaZlavaEntity> query = builder.createQuery(CenovaZlavaEntity.class);
+        Root<CenovaZlavaEntity> root = query.from(CenovaZlavaEntity.class);
+        query.select(root).where(builder.equal(root.get("hodnotaZlavy"), newDiscount.getHodnotaZlavy()));
+
+        CenovaZlavaEntity cenovaZlavaEntity;
+
+        try {
+            cenovaZlavaEntity = session.createQuery(query).getSingleResult();
+        } catch (NoResultException exception) {
+            System.out.println("Object not found"
+                    + exception.getMessage());
+
+            System.out.println("Inserting nova cenova zlava s hodnotou: " + newDiscount.getHodnotaZlavy());
+            session.beginTransaction();
+            session.save(newDiscount);
+            session.getTransaction().commit();
+
+            // after insert return new entity
+            return session.createQuery(query).getSingleResult();
+        } catch (Exception exception) {
+            System.out.println("Exception occurred while reading user data: "
+                    + exception.getMessage());
+            return null;
+        } finally {
+            session.close();
+        }
+
+        return cenovaZlavaEntity;
+    }
+
+    private PercentualnaZlavaEntity insertPercentDiscountIfNotExist(PercentualnaZlavaEntity newDiscount) {
+        Session session = HibernateUtil.getSessionByTenant(getStringId());
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+
+        CriteriaQuery<PercentualnaZlavaEntity> query = builder.createQuery(PercentualnaZlavaEntity.class);
+        Root<PercentualnaZlavaEntity> root = query.from(PercentualnaZlavaEntity.class);
+        query.select(root).where(builder.equal(root.get("percentZlavy"), newDiscount.getPercentZlavy()));
+
+        PercentualnaZlavaEntity percentualnaZlavaEntity;
+
+        try {
+            percentualnaZlavaEntity = session.createQuery(query).getSingleResult();
+        } catch (NoResultException exception) {
+            System.out.println("Object not found"
+                    + exception.getMessage());
+
+            System.out.println("Inserting nova cenova zlava s hodnotou: " + newDiscount.getPercentZlavy());
+            session.beginTransaction();
+            session.save(newDiscount);
+            session.getTransaction().commit();
+
+            // after insert return new entity
+            return session.createQuery(query).getSingleResult();
+        } catch (Exception exception) {
+            System.out.println("Exception occurred while reading user data: "
+                    + exception.getMessage());
+            return null;
+        } finally {
+            session.close();
+        }
+
+        return percentualnaZlavaEntity;
+    }
+
+    private KvantitovaZlavaEntity insertQuantityDiscountIfNotExist(KvantitovaZlavaEntity newDiscount) {
+        Session session = HibernateUtil.getSessionByTenant(getStringId());
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+
+        CriteriaQuery<KvantitovaZlavaEntity> query = builder.createQuery(KvantitovaZlavaEntity.class);
+        Root<KvantitovaZlavaEntity> root = query.from(KvantitovaZlavaEntity.class);
+        query.select(root).where(builder.equal(root.get("mnozstvo"), newDiscount.getMnozstvo()));
+
+        KvantitovaZlavaEntity kvantitovaZlavaEntity;
+
+        try {
+            kvantitovaZlavaEntity = session.createQuery(query).getSingleResult();
+        } catch (NoResultException exception) {
+            System.out.println("Object not found"
+                    + exception.getMessage());
+
+            System.out.println("Inserting nova cenova zlava s hodnotou: " + newDiscount.getMnozstvo());
+            session.beginTransaction();
+            session.save(newDiscount);
+            session.getTransaction().commit();
+
+            // after insert return new entity
+            return session.createQuery(query).getSingleResult();
+        } catch (Exception exception) {
+            System.out.println("Exception occurred while reading user data: "
+                    + exception.getMessage());
+            return null;
+        } finally {
+            session.close();
+        }
+
+        return kvantitovaZlavaEntity;
     }
 }
 

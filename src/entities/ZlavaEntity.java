@@ -11,8 +11,8 @@ public class ZlavaEntity {
     private Integer idKvantity;
     private int idTypu;
     private Integer idDatumu;
-    private String idCenovejZlavy;
-    private String idPerZlavy;
+    private Integer idCenovejZlavy;
+    private Integer idPerZlavy;
     private Date datOd;
     private Date datDo;
 
@@ -57,22 +57,22 @@ public class ZlavaEntity {
     }
 
     @Basic
-    @Column(name = "id_cenovej_zlavy", nullable = true, length = 30)
-    public String getIdCenovejZlavy() {
+    @Column(name = "id_cenovej_zlavy", nullable = true)
+    public Integer getIdCenovejZlavy() {
         return idCenovejZlavy;
     }
 
-    public void setIdCenovejZlavy(String idCenovejZlavy) {
+    public void setIdCenovejZlavy(Integer idCenovejZlavy) {
         this.idCenovejZlavy = idCenovejZlavy;
     }
 
     @Basic
-    @Column(name = "id_per_zlavy", nullable = true, length = 30)
-    public String getIdPerZlavy() {
+    @Column(name = "id_per_zlavy", nullable = true)
+    public Integer getIdPerZlavy() {
         return idPerZlavy;
     }
 
-    public void setIdPerZlavy(String idPerZlavy) {
+    public void setIdPerZlavy(Integer idPerZlavy) {
         this.idPerZlavy = idPerZlavy;
     }
 

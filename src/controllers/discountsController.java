@@ -23,12 +23,13 @@ public class discountsController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String discountType = request.getParameter("type").trim();
         List<Discount> discounts = new ArrayList<>();
-        if(!Validator.isStringNullOrEmpty(discountType) || !DiscountTypes.contains(discountType)){
+        if(!Validator.isStringNullOrEmpty(discountType) && DiscountTypes.contains(discountType)){
             HttpSession currentSession = request.getSession(false);
             BaseService baseService = new BaseServiceImplement((Integer) currentSession.getAttribute(Constants.TENANT_ID));
             discounts = baseService.getDiscounts(DiscountTypes.getIfExists(discountType));
         } else {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            return;
         }
 
         request.setAttribute("discounts", discounts);

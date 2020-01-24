@@ -205,4 +205,13 @@
         <servlet-class>controllers.discountTypesController</servlet-class>
     </servlet>
 
+    <servlet-mapping>
+        <servlet-name>discountController</servlet-name>
+        <url-pattern>/account/discount</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>discountController</servlet-name>
+        <servlet-class>controllers.discountController</servlet-class>
+    </servlet>
+
 </web-app>

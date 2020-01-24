@@ -184,7 +184,7 @@
                         discountType == "percent" ? "Počet percent" :
                                 discountType == "quantity" ?  "Množstvo" :
                                         discountType == "date" ? "Počet dní" : "Hodnota"}</label>
-                <input type="text" name="discount-from" placeholder=${discountType == "price" ? "Hodnota zlavy" :
+                <input type="text" name="discount-value" placeholder=${discountType == "price" ? "Hodnota zlavy" :
                         discountType == "percent" ? "Počet percent" :
                                 discountType == "quantity" ?  "Množstvo" :
                                         discountType == "date" ? "Počet dní" : "Hodnota"} value="">
@@ -197,7 +197,7 @@
                 <div class="ui calendar" id="dateRangeStart">
                     <div class="ui input left icon">
                         <i class="calendar icon"></i>
-                        <input type="text" placeholder="Začiatok">
+                        <input name="discount-from" type="text" placeholder="Začiatok">
                     </div>
                 </div>
             </div>
@@ -206,7 +206,7 @@
                 <div class="ui calendar" id="dateRangeEnd">
                     <div class="ui input left icon">
                         <i class="calendar icon"></i>
-                        <input type="text" placeholder="Koniec">
+                        <input name="discount-to" type="text" placeholder="Koniec">
                     </div>
                 </div>
             </div>

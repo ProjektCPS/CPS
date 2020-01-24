@@ -6,16 +6,16 @@ import java.util.Objects;
 @Entity
 @Table(name = "cenova_zlava")
 public class CenovaZlavaEntity {
-    private String idCenovejZlavy;
+    private int idCenovejZlavy;
     private double hodnotaZlavy;
 
     @Id
-    @Column(name = "id_cenovej_zlavy", nullable = false, length = 30)
-    public String getIdCenovejZlavy() {
+    @Column(name = "id_cenovej_zlavy", nullable = false)
+    public int getIdCenovejZlavy() {
         return idCenovejZlavy;
     }
 
-    public void setIdCenovejZlavy(String idCenovejZlavy) {
+    public void setIdCenovejZlavy(int idCenovejZlavy) {
         this.idCenovejZlavy = idCenovejZlavy;
     }
 
@@ -35,7 +35,7 @@ public class CenovaZlavaEntity {
         if (o == null || getClass() != o.getClass()) return false;
         CenovaZlavaEntity that = (CenovaZlavaEntity) o;
         return Double.compare(that.hodnotaZlavy, hodnotaZlavy) == 0 &&
-                Objects.equals(idCenovejZlavy, that.idCenovejZlavy);
+                idCenovejZlavy == that.idCenovejZlavy;
     }
 
     @Override

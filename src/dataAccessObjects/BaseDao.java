@@ -41,4 +41,6 @@ public interface BaseDao {
     Map<String,String> deleteMainDiscountType(int mainDiscountTypeId);
 
     TypZlavyEntity getMainDiscountType(int mainDiscountTypeId);
+
+    Map<String, String> insertDiscount(Map<String, String> data);
 }

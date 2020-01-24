@@ -94,6 +94,11 @@ public class BaseServiceImplement implements BaseService {
     }
 
     @Override
+    public Map<String, String> insertDiscount(Map<String, String> data) {
+        return baseDao.insertDiscount(data);
+    }
+
+    @Override
     public Map<String, String> deleteMainDiscountType(int mainDiscountTypeId) {
         return baseDao.deleteMainDiscountType(mainDiscountTypeId);
     }
