@@ -9,6 +9,11 @@ public class TypPredmetuEntity {
     private int idTypu;
     private String nazov;
 
+    public enum Fields {
+        idTypu,
+        nazov
+    }
+
     @Id
     @Column(name = "id_typu", nullable = false)
     public int getIdTypu() {

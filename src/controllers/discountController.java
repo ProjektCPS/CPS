@@ -1,7 +1,9 @@
 package controllers;
 
+import com.google.gson.Gson;
 import config.Constants;
 import dataAccessObjects.DiscountTypes;
+import entities.customEntities.Discount;
 import services.BaseService;
 import services.BaseServiceImplement;
 import utilities.Validator;
@@ -40,7 +42,7 @@ public class discountController extends HttpServlet {
         if (discountIdNumber == -1) {
             serviceResponse = baseService.insertDiscount(data);
         } else {
-            serviceResponse = baseService.updateProductCategory(discountIdNumber, data);
+            serviceResponse = baseService.updateDiscount(discountIdNumber, data);
         }
         if (serviceResponse.get("err") != null) {
             PrintWriter pw = response.getWriter();
@@ -52,18 +54,21 @@ public class discountController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        HttpSession currentSession = request.getSession(false);
-//        BaseService baseService = new BaseServiceImplement((Integer) currentSession.getAttribute(Constants.TENANT_ID));
-//
-//        String productCategoryId = request.getParameter("productCategoryId") != null ?  request.getParameter("productCategoryId").trim() : null;
-//
-//        if (!Validator.isStringNullOrEmpty(productCategoryId) && Validator.isStringNumber(productCategoryId)) {
-//            KategorieEntity kategorieEntity = baseService.getProductCategory(Integer.parseInt(productCategoryId));
-//            String json = new Gson().toJson(kategorieEntity);
-//
-//            response.setContentType("application/json");
-//            response.setCharacterEncoding("UTF-8");
-//            response.getWriter().write(json);
-//        }
+        HttpSession currentSession = request.getSession(false);
+        BaseService baseService = new BaseServiceImplement((Integer) currentSession.getAttribute(Constants.TENANT_ID));
+
+        String discountId = request.getParameter("discountId") != null ?  request.getParameter("discountId").trim() : null;
+
+        if (!Validator.isStringNullOrEmpty(discountId) && Validator.isStringNumber(discountId)) {
+            Discount zlavaEntity = baseService.getDiscount(Integer.parseInt(discountId));
+            String json = new Gson().toJson(zlavaEntity);
+
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(json);
+        } else {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
+
     }
 }

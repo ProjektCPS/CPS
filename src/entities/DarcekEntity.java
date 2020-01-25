@@ -11,6 +11,13 @@ public class DarcekEntity {
     private Double mnozstvo;
     private String popis;
 
+    public enum Fields {
+        idDarceku,
+        idPredmetu,
+        mnozstvo,
+        popis
+    }
+
     @Id
     @Column(name = "id_darceku", nullable = false)
     public int getIdDarceku() {

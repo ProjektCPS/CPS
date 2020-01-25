@@ -9,6 +9,11 @@ public class TenantEntity {
     private int tenantId;
     private String nazov;
 
+    public enum Fields {
+        tenantId,
+        nazov
+    }
+
     @Id
     @Column(name = "tenant_id", nullable = false)
     public int getTenantId() {

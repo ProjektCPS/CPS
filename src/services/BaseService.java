@@ -48,4 +48,8 @@ public interface BaseService {
     Map<String,String> deleteMainDiscountType(int mainDiscountTypeId);
 
     TypZlavyEntity getMainDiscountType(int mainDiscountTypeId);
+
+    Discount getDiscount(int discountId);
+
+    Map<String, String> updateDiscount(int discountIdNumber, Map<String, String> data);
 }

@@ -10,6 +10,13 @@ public class TypZlavyEntity {
     private String nazovTypu;
     private String popis;
 
+    public enum Fields {
+        idTypu,
+        nazovTypu,
+        mnozstvo,
+        popis
+    }
+
     @Id
     @Column(name = "id_typu", nullable = false)
     public int getIdTypu() {

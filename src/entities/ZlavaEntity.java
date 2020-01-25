@@ -16,6 +16,17 @@ public class ZlavaEntity {
     private Date datOd;
     private Date datDo;
 
+    public enum Fields {
+        idZlavy,
+        idKvantity,
+        idTypu,
+        idDatumu,
+        idCenovejZlavy,
+        idPerZlavy,
+        datOd,
+        datDo
+    }
+
     @Id
     @Column(name = "id_zlavy", nullable = false)
     public int getIdZlavy() {

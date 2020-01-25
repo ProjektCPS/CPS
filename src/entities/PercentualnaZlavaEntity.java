@@ -9,6 +9,11 @@ public class PercentualnaZlavaEntity {
     private int idPerZlavy;
     private double percentZlavy;
 
+    public enum Fields {
+        idPerZlavy,
+        percentZlavy
+    }
+
     @Id
     @Column(name = "id_per_zlavy", nullable = false)
     public int getIdPerZlavy() {

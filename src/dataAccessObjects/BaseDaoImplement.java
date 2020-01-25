@@ -8,7 +8,9 @@ import utilities.DateUtil;
 import utilities.HibernateUtil;
 
 import javax.persistence.NoResultException;
+import javax.persistence.Tuple;
 import javax.persistence.criteria.*;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -448,58 +450,41 @@ public class BaseDaoImplement implements BaseDao {
                 Root<TypZlavyEntity> rootType = criteriaQuery.from(TypZlavyEntity.class);
                 Root<ZlavaEntity> rootDiscount = criteriaQuery.from(ZlavaEntity.class);
 
+                Predicate predicate = null;
                 switch (discountType) {
                     case PRICE_DISCOUNT:
                         Root<CenovaZlavaEntity> rootPriceDiscount = criteriaQuery.from(CenovaZlavaEntity.class);
                         criteriaQuery.multiselect(rootType, rootDiscount, rootPriceDiscount);
-                        criteriaQuery.where(
-                                builder.equal(rootType.get("idTypu"), rootDiscount.get("idTypu")),
-                                builder.equal(rootDiscount.get("idCenovejZlavy"), rootPriceDiscount.get("idCenovejZlavy"))
-                        );
+                        predicate = builder.equal(rootDiscount.get(ZlavaEntity.Fields.idCenovejZlavy.name()), rootPriceDiscount.get(CenovaZlavaEntity.Fields.idCenovejZlavy.name()));
                         break;
                     case QUANTITY_DISCOUNT:
                         Root<KvantitovaZlavaEntity> rootQuantityDiscount = criteriaQuery.from(KvantitovaZlavaEntity.class);
                         criteriaQuery.multiselect(rootType, rootDiscount, rootQuantityDiscount);
-                        criteriaQuery.where(
-                                builder.equal(rootType.get("idTypu"), rootDiscount.get("idTypu")),
-                                builder.equal(rootDiscount.get("idKvantity"), rootQuantityDiscount.get("idKvantity"))
-                        );
+                        predicate = builder.equal(rootDiscount.get(ZlavaEntity.Fields.idKvantity.name()), rootQuantityDiscount.get(KvantitovaZlavaEntity.Fields.idKvantity.name()));
                         break;
                     case PERCENT_DISCOUNT:
                         Root<PercentualnaZlavaEntity> rootPercentDiscount = criteriaQuery.from(PercentualnaZlavaEntity.class);
                         criteriaQuery.multiselect(rootType, rootDiscount, rootPercentDiscount);
-                        criteriaQuery.where(
-                                builder.equal(rootType.get("idTypu"), rootDiscount.get("idTypu")),
-                                builder.equal(rootDiscount.get("idPerZlavy"), rootPercentDiscount.get("idPerZlavy"))
-                        );
+                        predicate = builder.equal(rootDiscount.get(ZlavaEntity.Fields.idPerZlavy.name()), rootPercentDiscount.get(PercentualnaZlavaEntity.Fields.idPerZlavy.name()));
                         break;
                     case DATE_DISCOUNT:
                         Root<DatumovaZlavaEntity> rootDateDiscount = criteriaQuery.from(DatumovaZlavaEntity.class);
                         criteriaQuery.multiselect(rootType, rootDiscount, rootDateDiscount);
-                        criteriaQuery.where(
-                                builder.equal(rootType.get("idTypu"), rootDiscount.get("idTypu")),
-                                builder.equal(rootDiscount.get("idDatumu"), rootDateDiscount.get("idDatumu"))
-                        );
+                        predicate = builder.equal(rootDiscount.get(ZlavaEntity.Fields.idDatumu.name()), rootDateDiscount.get(DatumovaZlavaEntity.Fields.idDatumu.name()));
                         break;
                 }
+
+                criteriaQuery.where(
+                        builder.equal(rootType.get(TypZlavyEntity.Fields.idTypu.name()), rootDiscount.get(ZlavaEntity.Fields.idTypu.name())),
+                        predicate
+                );
 
                 Object[] resultList = session.createQuery(criteriaQuery).getResultList().toArray();
 
                 for (Object item : resultList) {
                     Object[] objects = (Object[]) item;
                     Discount discount = new Discount((ZlavaEntity) objects[1], (TypZlavyEntity) objects[0]);
-                    if (objects[2] instanceof CenovaZlavaEntity) {
-                        discount.setCenovaZlavaEntity((CenovaZlavaEntity) objects[2]);
-                    }
-                    if (objects[2] instanceof KvantitovaZlavaEntity) {
-                        discount.setKvantitovaZlavaEntity((KvantitovaZlavaEntity) objects[2]);
-                    }
-                    if (objects[2] instanceof PercentualnaZlavaEntity) {
-                        discount.setPercentualnaZlavaEntity((PercentualnaZlavaEntity) objects[2]);
-                    }
-                    if (objects[2] instanceof DatumovaZlavaEntity) {
-                        discount.setDatumovaZlavaEntity((DatumovaZlavaEntity) objects[2]);
-                    }
+                    discount.setDiscountType(objects[2]);
 
                     list.add(discount);
                 }
@@ -630,39 +615,7 @@ public class BaseDaoImplement implements BaseDao {
         Map<String, String> response = new HashMap<>();
 
         try (Session session = HibernateUtil.getSessionByTenant(getStringId())) {
-            ZlavaEntity newDiscount = new ZlavaEntity();
-            newDiscount.setIdTypu(Integer.parseInt(data.get("mainDiscountType")));
-            newDiscount.setDatOd(DateUtil.createSqlDate(data.get("discount-from")));
-            newDiscount.setDatDo(DateUtil.createSqlDate(data.get("discount-to")));
-
-            double discountValue = Double.parseDouble(data.get("discount-value"));
-
-            switch (DiscountTypes.getIfExists(data.get("discountType"))){
-                case DATE_DISCOUNT:
-                    //TODO: implementuj
-                    break;
-                case PRICE_DISCOUNT:
-                    CenovaZlavaEntity newPriceDiscount = new CenovaZlavaEntity();
-                    newPriceDiscount.setHodnotaZlavy(discountValue);
-
-                    CenovaZlavaEntity priceDiscount = insertPriceDiscountIfNotExist(newPriceDiscount);
-                    newDiscount.setIdCenovejZlavy(priceDiscount.getIdCenovejZlavy());
-                    break;
-                case PERCENT_DISCOUNT:
-                    PercentualnaZlavaEntity newPercentDiscount = new PercentualnaZlavaEntity();
-                    newPercentDiscount.setPercentZlavy(discountValue);
-
-                    PercentualnaZlavaEntity percentDiscount = insertPercentDiscountIfNotExist(newPercentDiscount);
-                    newDiscount.setIdPerZlavy(percentDiscount.getIdPerZlavy());
-                    break;
-                case QUANTITY_DISCOUNT:
-                    KvantitovaZlavaEntity newQuantityDiscount = new KvantitovaZlavaEntity();
-                    newQuantityDiscount.setMnozstvo(discountValue);
-
-                    KvantitovaZlavaEntity quantityDiscount = insertQuantityDiscountIfNotExist(newQuantityDiscount);
-                    newDiscount.setIdKvantity(quantityDiscount.getIdKvantity());
-                    break;
-            }
+            ZlavaEntity newDiscount = prepareDiscount(data);
 
             System.out.println("Inserting: zlavu s id-" + newDiscount.getIdZlavy());
             session.beginTransaction();
@@ -676,6 +629,176 @@ public class BaseDaoImplement implements BaseDao {
         }
 
         return response;
+    }
+
+    private ZlavaEntity prepareDiscount(Map<String, String> data) {
+        ZlavaEntity newDiscount = new ZlavaEntity();
+        newDiscount.setIdTypu(Integer.parseInt(data.get("mainDiscountType")));
+        try {
+            newDiscount.setDatOd(DateUtil.createSqlDate(data.get("discount-from")));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        try {
+            newDiscount.setDatDo(DateUtil.createSqlDate(data.get("discount-to")));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        double discountValue = Double.parseDouble(data.get("discount-value"));
+
+        switch (DiscountTypes.getIfExists(data.get("discountType"))) {
+            case DATE_DISCOUNT:
+                //TODO: implementuj
+                break;
+            case PRICE_DISCOUNT:
+                CenovaZlavaEntity newPriceDiscount = new CenovaZlavaEntity();
+                newPriceDiscount.setHodnotaZlavy(discountValue);
+
+                CenovaZlavaEntity priceDiscount = insertPriceDiscountIfNotExist(newPriceDiscount);
+                newDiscount.setIdCenovejZlavy(priceDiscount.getIdCenovejZlavy());
+                break;
+            case PERCENT_DISCOUNT:
+                PercentualnaZlavaEntity newPercentDiscount = new PercentualnaZlavaEntity();
+                newPercentDiscount.setPercentZlavy(discountValue);
+
+                PercentualnaZlavaEntity percentDiscount = insertPercentDiscountIfNotExist(newPercentDiscount);
+                newDiscount.setIdPerZlavy(percentDiscount.getIdPerZlavy());
+                break;
+            case QUANTITY_DISCOUNT:
+                KvantitovaZlavaEntity newQuantityDiscount = new KvantitovaZlavaEntity();
+                newQuantityDiscount.setMnozstvo(discountValue);
+
+                KvantitovaZlavaEntity quantityDiscount = insertQuantityDiscountIfNotExist(newQuantityDiscount);
+                newDiscount.setIdKvantity(quantityDiscount.getIdKvantity());
+                break;
+        }
+
+        return newDiscount;
+    }
+
+    @Override
+    public Discount getDiscount(int discountId) {
+        Session session = HibernateUtil.getSessionByTenant(getStringId());
+
+        ZlavaEntity zlavaEntity = checkIfDiscountExists(discountId);
+        if (zlavaEntity == null) {
+            return null;
+        }
+
+        Discount result = null;
+
+        if (session != null) {
+            try {
+                CriteriaBuilder builder = session.getCriteriaBuilder();
+
+                // Using FROM and JOIN
+                CriteriaQuery<Tuple> criteriaQuery = builder.createTupleQuery();
+                Root<TypZlavyEntity> rootType = criteriaQuery.from(TypZlavyEntity.class);
+                Root<ZlavaEntity> rootDiscount = criteriaQuery.from(ZlavaEntity.class);
+
+                Predicate predicate = null;
+                if (zlavaEntity.getIdCenovejZlavy() != null) {
+                    Root<CenovaZlavaEntity> rootPriceDiscount = criteriaQuery.from(CenovaZlavaEntity.class);
+                    criteriaQuery.multiselect(rootType, rootDiscount, rootPriceDiscount);
+                    predicate = builder.equal(rootDiscount.get(ZlavaEntity.Fields.idCenovejZlavy.name()), rootPriceDiscount.get(CenovaZlavaEntity.Fields.idCenovejZlavy.name()));
+                } else if (zlavaEntity.getIdKvantity() != null) {
+                    Root<KvantitovaZlavaEntity> rootQuantityDiscount = criteriaQuery.from(KvantitovaZlavaEntity.class);
+                    criteriaQuery.multiselect(rootType, rootDiscount, rootQuantityDiscount);
+                    predicate = builder.equal(rootDiscount.get(ZlavaEntity.Fields.idKvantity.name()), rootQuantityDiscount.get(KvantitovaZlavaEntity.Fields.idKvantity.name()));
+                } else if (zlavaEntity.getIdPerZlavy() != null) {
+                    Root<PercentualnaZlavaEntity> rootPercentDiscount = criteriaQuery.from(PercentualnaZlavaEntity.class);
+                    criteriaQuery.multiselect(rootType, rootDiscount, rootPercentDiscount);
+                    predicate = builder.equal(rootDiscount.get(ZlavaEntity.Fields.idPerZlavy.name()), rootPercentDiscount.get(PercentualnaZlavaEntity.Fields.idPerZlavy.name()));
+                } else if (zlavaEntity.getIdDatumu() != null) {
+                    Root<DatumovaZlavaEntity> rootDateDiscount = criteriaQuery.from(DatumovaZlavaEntity.class);
+                    criteriaQuery.multiselect(rootType, rootDiscount, rootDateDiscount);
+                    predicate = builder.equal(rootDiscount.get(ZlavaEntity.Fields.idDatumu.name()), rootDateDiscount.get(DatumovaZlavaEntity.Fields.idDatumu.name()));
+                }
+
+                criteriaQuery.where(
+                        builder.equal(rootType.get(ZlavaEntity.Fields.idTypu.name()), rootDiscount.get("idTypu")),
+                        builder.equal(rootDiscount.get(ZlavaEntity.Fields.idZlavy.name()), discountId),
+                        predicate
+                );
+
+                Tuple queryResult = session.createQuery(criteriaQuery).getSingleResult();
+
+                result = new Discount((ZlavaEntity) queryResult.get(1), (TypZlavyEntity) queryResult.get(0));
+                result.setDiscountType(queryResult.get(2));
+
+            } catch (NoResultException exception) {
+                System.out.println("Object not found"
+                        + exception.getMessage());
+                return null;
+            } catch (Exception exception) {
+                System.out.println("Exception occred while reading user data: "
+                        + exception.getMessage());
+                return null;
+            } finally {
+                session.close();
+            }
+
+        } else {
+            System.out.println("DB server down.....");
+        }
+        return result;
+    }
+
+    @Override
+    public Map<String, String> updateDiscount(int discountIdNumber, Map<String, String> data) {
+        Map<String, String> response = new HashMap<>();
+
+        try (Session session = HibernateUtil.getSessionByTenant(getStringId())) {
+            ZlavaEntity discount = prepareDiscount(data);
+            discount.setIdZlavy(discountIdNumber);
+
+            System.out.println("Updating discount id: " + discount.getIdZlavy());
+            session.beginTransaction();
+            session.update(discount);
+            session.getTransaction().commit();
+        } catch (Exception exception) {
+            System.out.println("Exception occurred while reading user data: "
+                    + exception.getMessage());
+            response.put("err", "Nepodarilo sa editovat zlavu.");
+            return response;
+        }
+
+        return response;
+    }
+
+    private ZlavaEntity checkIfDiscountExists(int discountId) {
+        Session session = HibernateUtil.getSessionByTenant(getStringId());
+
+        ZlavaEntity result = null;
+        if (session != null) {
+            try {
+                CriteriaBuilder builder = session.getCriteriaBuilder();
+
+                CriteriaQuery<ZlavaEntity> criteriaQuery = builder.createQuery(ZlavaEntity.class);
+                Root<ZlavaEntity> rootDiscount = criteriaQuery.from(ZlavaEntity.class);
+
+                criteriaQuery.select(rootDiscount)
+                        .where(builder.equal(rootDiscount.get("idZlavy"), discountId));
+
+                result = session.createQuery(criteriaQuery).getSingleResult();
+
+            } catch (NoResultException exception) {
+                System.out.println("Object not found"
+                        + exception.getMessage());
+                return null;
+            } catch (Exception exception) {
+                System.out.println("Exception occred while reading user data: "
+                        + exception.getMessage());
+                return null;
+            } finally {
+                session.close();
+            }
+
+        } else {
+            System.out.println("DB server down.....");
+        }
+        return result;
     }
 
     private CenovaZlavaEntity insertPriceDiscountIfNotExist(CenovaZlavaEntity newDiscount) {

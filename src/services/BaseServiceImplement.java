@@ -107,4 +107,14 @@ public class BaseServiceImplement implements BaseService {
     public TypZlavyEntity getMainDiscountType(int mainDiscountTypeId) {
         return baseDao.getMainDiscountType(mainDiscountTypeId);
     }
+
+    @Override
+    public Discount getDiscount(int discountId) {
+        return baseDao.getDiscount(discountId);
+    }
+
+    @Override
+    public Map<String, String> updateDiscount(int discountIdNumber, Map<String, String> data) {
+        return baseDao.updateDiscount(discountIdNumber, data);
+    }
 }

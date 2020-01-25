@@ -12,6 +12,14 @@ public class DatumovaZlavaEntity {
     private Double hodina;
     private Integer frekvencia;
 
+    public enum Fields {
+        idDatumu,
+        den,
+        dlzkaTrvania,
+        hodina,
+        frekvencia
+    }
+
     @Id
     @Column(name = "id_datumu", nullable = false)
     public int getIdDatumu() {

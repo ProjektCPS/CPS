@@ -9,9 +9,13 @@ public class Discount {
     private PercentualnaZlavaEntity percentualnaZlavaEntity;
     private CenovaZlavaEntity cenovaZlavaEntity;
     private DatumovaZlavaEntity datumovaZlavaEntity;
+    private String dateFrom;
+    private String dateTo;
 
     public Discount(ZlavaEntity zlavaEntity, TypZlavyEntity typZlavyEntity) {
         this.zlavaEntity = zlavaEntity;
+        this.dateFrom = zlavaEntity.getDatOd() != null ? zlavaEntity.getDatOd().toString() : null;
+        this.dateTo = zlavaEntity.getDatDo() != null ? zlavaEntity.getDatDo().toString() : null;
         this.typZlavyEntity = typZlavyEntity;
     }
 
@@ -85,5 +89,20 @@ public class Discount {
 
     public void setDatumovaZlavaEntity(DatumovaZlavaEntity datumovaZlavaEntity) {
         this.datumovaZlavaEntity = datumovaZlavaEntity;
+    }
+
+    public void setDiscountType(Object discountType) {
+        if (discountType instanceof CenovaZlavaEntity) {
+            this.setCenovaZlavaEntity((CenovaZlavaEntity) discountType);
+        }
+        if (discountType instanceof KvantitovaZlavaEntity) {
+            this.setKvantitovaZlavaEntity((KvantitovaZlavaEntity) discountType);
+        }
+        if (discountType instanceof PercentualnaZlavaEntity) {
+            this.setPercentualnaZlavaEntity((PercentualnaZlavaEntity) discountType);
+        }
+        if (discountType instanceof DatumovaZlavaEntity) {
+            this.setDatumovaZlavaEntity((DatumovaZlavaEntity) discountType);
+        }
     }
 }

@@ -9,6 +9,11 @@ public class CenovaZlavaEntity {
     private int idCenovejZlavy;
     private double hodnotaZlavy;
 
+    public enum Fields {
+        idCenovejZlavy,
+        hodnotaZlavy
+    }
+
     @Id
     @Column(name = "id_cenovej_zlavy", nullable = false)
     public int getIdCenovejZlavy() {

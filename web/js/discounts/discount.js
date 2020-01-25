@@ -36,7 +36,6 @@ let Discount = function ($) {
             }
         });
 
-        console.log(dropdownItems);
         $('.ui.dropdown')
             .dropdown({
                 values: dropdownItems,
@@ -49,7 +48,7 @@ let Discount = function ($) {
 
         let selectedRowId = selectedRow.data("id");
         if (selectedRowId !== undefined) {
-            getMainCategory(selectedRowId);
+            getDiscount(selectedRowId);
         } else {
             alert(warningMessages.selectRow);
         }
@@ -140,18 +139,45 @@ let Discount = function ($) {
         return id && !isNaN(parseInt(id))
     }
 
-    function getMainCategory(selectedRowId) {
+    function getDiscount(selectedRowId) {
         $.ajax({
             type: "GET",
-            url: '../../account/' + ENDPOINT_TYPE + '?' + URL_PARAM_DISCOUNT + '=' + selectedRowId,
+            url: '../../account/' + ENDPOINT_TYPES[0] + '?' + URL_PARAMS[0] + '=' + selectedRowId,
             beforeSend: function () {
                 console.log("beforeSend");
             },
-            success: function (response) {
-                $(MODAL_DETAIL_ID + ' input[name=main-category-name]').val(response.nazov);
-                $(MODAL_DETAIL_ID + ' input[name=' + MODAL_DETAIL_SELECTED_ITEM_NAME_ID + ']').val(response.idTypu);
-                $(MODAL_DETAIL_ID)
-                    .modal('show');
+            success: function (getDiscountResponse) {
+                getDiscountTypes((response) => {
+                    fillDropdownItems(response);
+
+                    let discountVal;
+                    switch (getParamFromUrl(URL_PARAMS[1])) {
+                        case constants.priceDiscount:
+                            discountVal = getDiscountResponse.cenovaZlavaEntity.hodnotaZlavy;
+                            break;
+                        case constants.percentDiscount:
+                            discountVal = getDiscountResponse.percentualnaZlavaEntity.percentZlavy;
+                            break;
+                        case constants.quantityDiscount:
+                            discountVal = getDiscountResponse.kvantitovaZlavaEntity.mnozstvo;
+                            break;
+                        case constants.dateDiscount:
+                            discountVal = getDiscountResponse.datumovaZlavaEntity.den;
+                            break;
+                    }
+
+                    $(MODAL_DETAIL_ID + ' input[name=discount-value]').val(discountVal);
+                    $(MODAL_DETAIL_ID + ' input[name=' + MODAL_DETAIL_SELECTED_ITEM_NAME_ID + ']').val(getDiscountResponse.zlavaEntity.idZlavy);
+                    $('.ui.dropdown')
+                        .dropdown("set selected", getDiscountResponse.zlavaEntity.idTypu);
+
+                    $(MODAL_DETAIL_ID)
+                        .modal('show');
+                    // set dates
+                    $('#dateRangeStart').calendar("set date", new Date(getDiscountResponse.dateFrom));
+                    $('#dateRangeEnd').calendar("set date", new Date(getDiscountResponse.dateTo));
+
+                });
             },
             error: function (err) {
                 alert("Nepodarilo sa nacitat hlavnu kategoriu.")
@@ -165,10 +191,9 @@ let Discount = function ($) {
 
     function update(id) {
         let data = getData();
-        console.log(data);
         $.ajax({
             type: "POST",
-            url: '../../account/productType?' + URL_PARAM + '=' + id,
+            url: '../../account/' + ENDPOINT_TYPES[0] + '?' + URL_PARAMS[0] + '=' + id,
             data: data,
             beforeSend: function () {
             },

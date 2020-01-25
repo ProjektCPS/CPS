@@ -15,6 +15,16 @@ public class PolozkaEntity {
     private double mnozstvo;
     private double cena;
 
+    public enum Fields {
+        idPolozky,
+        idPredmetu,
+        idZlavy,
+        idObjednavky,
+        idDarceku,
+        mnozstvo,
+        cena
+    }
+
     @Id
     @Column(name = "id_polozky", nullable = false)
     public int getIdPolozky() {

@@ -17,6 +17,18 @@ public class PredmetPredajaEntity {
     private String serioveCislo;
     private String popis;
 
+    public enum Fields {
+        idPredmetu,
+        idKategorie,
+        nazov,
+        cena,
+        jednotka,
+        datumExpiracie,
+        znacka,
+        serioveCislo,
+        popis
+    }
+
     @Id
     @Column(name = "id_predmetu", nullable = false)
     public int getIdPredmetu() {

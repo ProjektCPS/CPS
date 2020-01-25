@@ -11,6 +11,13 @@ public class KategorieEntity {
     private String nazov;
     private String popis;
 
+    public enum Fields {
+        idKategorie,
+        idTypu,
+        nazov,
+        popis
+    }
+
     @Id
     @Column(name = "id_kategorie", nullable = false)
     public int getIdKategorie() {
