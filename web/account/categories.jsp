@@ -41,12 +41,14 @@
                                      </button>
                                  </div>
                                  <div class="action">
-                                     <button data-product-category-id="${item.idKategorie}" class="circular ui edit icon button edit-category">
+                                     <button data-product-category-id="${item.idKategorie}"
+                                             class="circular ui edit icon button edit-category">
                                          <i class="fa fa-edit"></i>
                                      </button>
                                  </div>
                                  <div class="action">
-                                     <button data-product-category-id="${item.idKategorie}" class="circular ui linkedin icon button category-discount-edit">
+                                     <button data-product-category-id="${item.idKategorie}"
+                                             class="circular ui linkedin icon button category-discount-edit">
                                          <i class="fa fa-percent"></i>
                                      </button>
                                  </div>
@@ -125,16 +127,43 @@
         <input hidden type="text" name="category-id" value="">
     </div>
 
-    <div id="category-discount-modal" class="ui mini modal customModal">
+    <div id="category-discount-modal" class="ui modal customModal overflow-v">
         <div class="header">
             Zľavy
         </div>
         <div class="ui form content">
             <div class="one field">
                 <div class="field required">
-                    <label>Názov</label>
-                    <input type="text" name="category-discount-name" placeholder="Názov kategórie"
-                           value="">
+                    <label>Typ zľavy</label>
+                    <div class="ui fluid search selection dropdown">
+                        <input type="hidden" name="mainDiscountType" value="">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Vyber typ zľavy</div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row dis-flex">
+                    <div class="col-md-9 p-l-0">
+                        <table id="discounts-table" class="ui celled selectable right aligned table">
+                            <thead>
+                            <th class="left aligned">Názov</th>
+                            <th>Hodnota</th>
+                            <th>Dátum od</th>
+                            <th>Dátum do</th>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="col-md-3 p-r-0 flex-c-t">
+                        <div class="container-button m-t-78">
+                            <button id="apply-discount" class="ui labeled inverted green icon button  zelenac">
+                                <div class="middle">
+                                    <i class="fa fa-plus"></i>
+                                    Aplikuj
+                                </div>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -172,7 +172,7 @@
     <div class="ui form content">
         <div class="two fields">
             <div class="field required">
-                <label>Kraj</label>
+                <label>Typ zľavy</label>
                 <div class="ui fluid search selection dropdown">
                     <input type="hidden" name="mainDiscountType" value="">
                     <i class="dropdown icon"></i>

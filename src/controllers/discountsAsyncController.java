@@ -1,5 +1,6 @@
 package controllers;
 
+import com.google.gson.Gson;
 import config.Constants;
 import dataAccessObjects.DiscountTypes;
 import entities.customEntities.Discount;
@@ -17,8 +18,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "discountsController")
-public class discountsController extends HttpServlet {
+@WebServlet(name = "discountsAsyncController")
+public class discountsAsyncController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String discountType = request.getParameter("type").trim();
@@ -31,8 +32,10 @@ public class discountsController extends HttpServlet {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST);
         }
 
-        request.setAttribute("discounts", discounts);
-        request.setAttribute("discountType", discountType);
-        request.getRequestDispatcher("/account/discounts.jsp").forward(request, response);
+        String json = new Gson().toJson(discounts);
+
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
     }
 }

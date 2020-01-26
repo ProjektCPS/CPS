@@ -46,7 +46,9 @@
     <script src="../../js/utils/helpers.js"></script>
     <script src="../../node_modules/semantic-ui-calendar/dist/calendar.min.js"></script>
     <script src="../../node_modules/semantic-ui-calendar/dist/calendar.min.css"></script>
-
+<%--    <script src="../../node_modules/datatables.net-se/js/dataTables.semanticui.min.js"></script>--%>
+<%--    <script src="../../node_modules/datatables.net-se/css/dataTables.semanticui.min.css"></script>--%>
+    <script src="../../node_modules/datatables.net/js/jquery.dataTables.min.js"></script>
 
     <!-- jQuery easing -->
     <script src="../../js/base/jquery/jquery.easing.1.3.min.js"></script>

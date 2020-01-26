@@ -38,7 +38,7 @@ jQuery(document).ready(function ($) {
 });
 
 function init($) {
-    new categoryDicount($);
+    new categoryDiscount($);
     $('#products').addClass('highlighted');
 }
 

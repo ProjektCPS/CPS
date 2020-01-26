@@ -197,6 +197,15 @@
     </servlet>
 
     <servlet-mapping>
+        <servlet-name>discountsAsyncController</servlet-name>
+        <url-pattern>/account/discountsAsync</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>discountsAsyncController</servlet-name>
+        <servlet-class>controllers.discountsAsyncController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
         <servlet-name>discountTypesController</servlet-name>
         <url-pattern>/account/discountTypes</url-pattern>
     </servlet-mapping>
