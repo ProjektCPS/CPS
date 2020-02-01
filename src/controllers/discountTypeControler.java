@@ -21,8 +21,8 @@ import java.util.Map;
 @WebServlet(name = "discountTypeControler")
 public class discountTypeControler extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String mainDiscountTzpe = request.getParameter("discount-type-id");
-        int mainDiscountTzpeNumber = Validator.isStringNumber(mainDiscountTzpe) ? Integer.parseInt(mainDiscountTzpe) : -1;
+        String mainDiscountType = request.getParameter("discount-type-id");
+        int mainDiscountTypeNumber = Validator.isStringNumber(mainDiscountType) ? Integer.parseInt(mainDiscountType) : -1;
 
         Map<String, String> data = new HashMap<>();
         request.getParameterMap().forEach((key, item) -> data.put(key, item[0]));
@@ -33,10 +33,10 @@ public class discountTypeControler extends HttpServlet {
         Map<String, String> serviceResponse;
 
 
-        if(mainDiscountTzpeNumber == -1) {
+        if(mainDiscountTypeNumber == -1) {
             serviceResponse = baseService.insertMainDiscountType(data);
         } else {
-            serviceResponse = baseService.updateMainDiscountType(mainDiscountTzpe, data);
+            serviceResponse = baseService.updateMainDiscountType(mainDiscountType, data);
         }
         if(serviceResponse.get("err") != null) {
             PrintWriter pw = response.getWriter();

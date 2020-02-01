@@ -32,6 +32,8 @@ let categoryDiscount = function ($) {
         }
     );
 
+    let productCategoryId;
+
     function createTable(response) {
         table.clear();
 
@@ -109,7 +111,8 @@ let categoryDiscount = function ($) {
     }
 
     const onEdit = function () {
-        let productCategoryId = $(this).data(DATA_PRODUCT_CATEGORY);
+        productCategoryId = $(this).data(DATA_PRODUCT_CATEGORY);
+
         getAppliedDiscounts(productCategoryId, (response) => {
             fillAppliedDiscounts(response);
             showModal()
@@ -160,6 +163,8 @@ let categoryDiscount = function ($) {
 
         let appliedDiscounts = $(APPLIED_DISCOUNTS_CONTAINER_ID);
         appliedDiscounts.empty();
+
+        productCategoryId = "";
     }
 
     function onApply() {
@@ -209,8 +214,38 @@ let categoryDiscount = function ($) {
         return tag;
     }
 
+    function updateCategoryDiscounts(id) {
+        let data = {
+            ids: getData().slice()
+        };
+
+        $.ajax({
+            type: "POST",
+            url: '../../account/' + ENDPOINT_TYPES[1] + '?' + URL_PARAMS[0] + '=' + id,
+            data: data,
+            beforeSend: function () {
+            },
+            success: function (response) {
+                reloadPage();
+            },
+            error: function (err) {
+                console.log(err);
+                let msg = err.responseText ? err.responseText : 'nespecifikovana chyba';
+
+                alert("Nepodarilo sa aplikovat zlavy na hlavnu kategoriu. Nastala chyba status: " + err.status + "."
+                    + "\r\nChyba info: " + msg);
+            }
+        });
+    }
+
     function onApproveModalDetail() {
 
+        updateCategoryDiscounts(productCategoryId);
+    }
+
+    function getData() {
+        let appliedDiscounts = $(APPLIED_DISCOUNTS_CONTAINER_ID + " a");
+        return appliedDiscounts.toArray().map( item => $(item).data('id'))
     }
 
     function getDiscountTypeName(discountType) {

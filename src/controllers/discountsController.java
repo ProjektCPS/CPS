@@ -29,6 +29,7 @@ public class discountsController extends HttpServlet {
             discounts = baseService.getDiscounts(DiscountTypes.getIfExists(discountType));
         } else {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            return;
         }
 
         request.setAttribute("discounts", discounts);

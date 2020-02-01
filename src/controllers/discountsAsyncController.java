@@ -30,6 +30,7 @@ public class discountsAsyncController extends HttpServlet {
             discounts = baseService.getDiscounts(DiscountTypes.getIfExists(discountType));
         } else {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            return;
         }
 
         String json = new Gson().toJson(discounts);

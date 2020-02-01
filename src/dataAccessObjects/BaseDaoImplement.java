@@ -804,11 +804,11 @@ public class BaseDaoImplement implements BaseDao {
                     Object[] objects = (Object[]) item;
                     Discount discount = new Discount((ZlavaEntity) objects[1], (TypZlavyEntity) objects[2]);
 
-                    if(discount.getZlavaEntity().getIdPerZlavy() != null){
+                    if (discount.getZlavaEntity().getIdPerZlavy() != null) {
                         discount.setPercentualnaZlavaEntity(getPercentDiscount(discount.getZlavaEntity().getIdPerZlavy()));
-                    } else if(discount.getZlavaEntity().getIdCenovejZlavy() != null) {
+                    } else if (discount.getZlavaEntity().getIdCenovejZlavy() != null) {
                         discount.setCenovaZlavaEntity(getPriceDiscount(discount.getZlavaEntity().getIdCenovejZlavy()));
-                    } else if(discount.getZlavaEntity().getIdKvantity() != null) {
+                    } else if (discount.getZlavaEntity().getIdKvantity() != null) {
                         discount.setKvantitovaZlavaEntity(getQuantityDiscount(discount.getZlavaEntity().getIdKvantity()));
                     }
                     list.add(discount);
@@ -831,6 +831,32 @@ public class BaseDaoImplement implements BaseDao {
         return list;
     }
 
+    @Override
+    public Map<String, String> applyDiscounts(int id, List<Integer> discounts, AppliedDiscountTypes appliedDiscountType) {
+        Map<String, String> response = new HashMap<>();
+
+        discounts.forEach(discountsId -> {
+            try (Session session = HibernateUtil.getSessionByTenant(getStringId())) {
+                KumulaciaZliavEntity entity = new KumulaciaZliavEntity();
+                entity.setIdZlavy(discountsId);
+                entity.setIdKategorie(id);
+
+                if (checkIfDiscountIsApplied(id, discountsId, appliedDiscountType) == null) {
+                    System.out.println("Inserting discount id: " + entity.getIdZlavy());
+                    session.beginTransaction();
+                    session.save(entity);
+                    session.getTransaction().commit();
+                }
+            } catch (Exception exception) {
+                System.out.println("Exception occurred while reading user data: "
+                        + exception.getMessage());
+                response.put("err", "Nepodarilo sa aplikovat zlavu s id: " + discountsId);
+            }
+        });
+
+        return response;
+    }
+
     private ZlavaEntity checkIfDiscountExists(int discountId) {
         Session session = HibernateUtil.getSessionByTenant(getStringId());
 
@@ -844,6 +870,53 @@ public class BaseDaoImplement implements BaseDao {
 
                 criteriaQuery.select(rootDiscount)
                         .where(builder.equal(rootDiscount.get("idZlavy"), discountId));
+
+                result = session.createQuery(criteriaQuery).getSingleResult();
+
+            } catch (NoResultException exception) {
+                System.out.println("Object not found"
+                        + exception.getMessage());
+                return null;
+            } catch (Exception exception) {
+                System.out.println("Exception occred while reading user data: "
+                        + exception.getMessage());
+                return null;
+            } finally {
+                session.close();
+            }
+
+        } else {
+            System.out.println("DB server down.....");
+        }
+        return result;
+    }
+
+    private KumulaciaZliavEntity checkIfDiscountIsApplied(int categoryOrProductId, int discountId, AppliedDiscountTypes appliedDiscountType) {
+        Session session = HibernateUtil.getSessionByTenant(getStringId());
+
+        KumulaciaZliavEntity result = null;
+        if (session != null) {
+            try {
+                CriteriaBuilder builder = session.getCriteriaBuilder();
+
+                CriteriaQuery<KumulaciaZliavEntity> criteriaQuery = builder.createQuery(KumulaciaZliavEntity.class);
+                Root<KumulaciaZliavEntity> rootDiscount = criteriaQuery.from(KumulaciaZliavEntity.class);
+
+                Predicate predicate = null;
+                switch (appliedDiscountType) {
+                    case productCategory:
+                        predicate = builder.equal(rootDiscount.get(KumulaciaZliavEntity.Fields.idKategorie.name()), categoryOrProductId);
+                        break;
+                    case product:
+                        predicate = builder.equal(rootDiscount.get(KumulaciaZliavEntity.Fields.idPredmetu.name()), categoryOrProductId);
+                        break;
+                }
+
+                criteriaQuery.select(rootDiscount)
+                        .where(
+                                builder.equal(rootDiscount.get(KumulaciaZliavEntity.Fields.idZlavy.name()), discountId),
+                                predicate
+                        );
 
                 result = session.createQuery(criteriaQuery).getSingleResult();
 

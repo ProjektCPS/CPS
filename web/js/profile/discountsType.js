@@ -117,7 +117,6 @@ let DiscountType = function ($) {
 
     function updateMainCategory(id) {
         let data = getData();
-        console.log(data);
         $.ajax({
             type: "POST",
             url: '../../account/' + ENDPOINT_TYPE + '?' + URL_PARAM_DISCOUNT + '=' + id,
@@ -135,8 +134,7 @@ let DiscountType = function ($) {
                 alert("Nepodarilo sa ulozit hlavnu kategoriu. Nastala chyba status: " + err.status + "."
                     + "\r\nChyba info: " + msg);
             }
-        })
-        ;
+        });
     }
 
     function insertMainCategory() {

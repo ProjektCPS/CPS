@@ -49,4 +49,6 @@ public interface BaseDao {
     Map<String, String> updateDiscount(int discountIdNumber, Map<String, String> data);
 
     List<Discount> getAppliedDiscounts(int id, AppliedDiscountTypes appliedDiscountType);
+
+    Map<String, String> applyDiscounts(int id, List<Integer> discounts, AppliedDiscountTypes productCategory);
 }
