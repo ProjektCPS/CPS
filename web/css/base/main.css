@@ -1634,7 +1634,7 @@ button.circular .fa {
 
 .ui.card .actions {
     position: absolute;
-    z-index: 11;
+    z-index: 10;
     right: 0;
 }
 
@@ -1653,4 +1653,8 @@ button.ui.icon.edit {
 
 button.ui.icon.edit:hover {
     background-color: #98d734;
+}
+
+.ui.label.customTag {
+   margin: 4px;
 }

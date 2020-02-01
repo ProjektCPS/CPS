@@ -2,15 +2,21 @@ package entities;
 
 import javax.persistence.*;
 import java.util.Objects;
-
+//Todo: treba spravit kompozitny kluc(id, id_zlavy) v databaze ho mame. Teraz moze nastat situacia ze rovaka zlava moze byt v tabulke viac krat. Avsak toto na aplikacnej urovni osetrujeme. Hadzalo to error.
 @Entity
 @Table(name = "kumulacia_zliav")
-@IdClass(KumulaciaZliavEntityPK.class)
 public class KumulaciaZliavEntity {
     private int id;
     private int idZlavy;
     private Integer idKategorie;
     private Integer idPredmetu;
+
+    public enum Fields {
+        id,
+        idZlavy,
+        idKategorie,
+        idPredmetu
+    }
 
     @Id
     @Column(name = "id", nullable = false)
@@ -22,7 +28,7 @@ public class KumulaciaZliavEntity {
         this.id = id;
     }
 
-    @Id
+    @Basic
     @Column(name = "id_zlavy", nullable = false)
     public int getIdZlavy() {
         return idZlavy;

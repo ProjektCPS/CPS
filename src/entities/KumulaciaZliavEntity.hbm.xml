@@ -1,23 +1,21 @@
 <?xml version='1.0' encoding='utf-8'?>
 <!DOCTYPE hibernate-mapping PUBLIC
-    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-
+<!--todo: treba spravit kompozitny kluc(id, id_zlavy) v databaze ho mame. Teraz moze nastat situacia ze rovaka zlava moze byt v tabulke viac krat. Avsak toto na aplikacnej urovni osetrujeme. Hadzalo to error.-->
     <class name="entities.KumulaciaZliavEntity" table="kumulacia_zliav">
-        <composite-id mapped="true" class="entities.KumulaciaZliavEntityPK">
-            <key-property name="id">
-                <column name="id" sql-type="int(11)"/>
-            </key-property>
-            <key-property name="idZlavy">
-                <column name="id_zlavy" sql-type="int(11)"/>
-            </key-property>
-        </composite-id>
+        <id name="id">
+            <column name="id" sql-type="int(11)"/>
+        </id>
+        <property name="idZlavy">
+            <column name="id_zlavy" sql-type="int(11)"/>
+        </property>
         <property name="idKategorie">
-            <column name="id_kategorie" sql-type="int(11)" not-null="true"/>
+            <column name="id_kategorie" sql-type="int(11)"/>
         </property>
         <property name="idPredmetu">
-            <column name="id_predmetu" sql-type="int(11)" not-null="true"/>
+            <column name="id_predmetu" sql-type="int(11)"/>
         </property>
     </class>
 </hibernate-mapping>

@@ -34,8 +34,8 @@
         <mapping class="entities.KrajEntity"/>
         <mapping resource="entities/KrajinaEntity.hbm.xml"/>
         <mapping class="entities.KrajinaEntity"/>
-        <!--<mapping resource="entities/KumulaciaZliavEntity.hbm.xml"/>
-        <mapping class="entities.KumulaciaZliavEntity"/>-->
+        <mapping resource="entities/KumulaciaZliavEntity.hbm.xml"/>
+        <mapping class="entities.KumulaciaZliavEntity"/>
         <mapping resource="entities/KvantitovaZlavaEntity.hbm.xml"/>
         <mapping class="entities.KvantitovaZlavaEntity"/>
         <mapping resource="entities/MestoEntity.hbm.xml"/>

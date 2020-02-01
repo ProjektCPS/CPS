@@ -117,4 +117,9 @@ public class BaseServiceImplement implements BaseService {
     public Map<String, String> updateDiscount(int discountIdNumber, Map<String, String> data) {
         return baseDao.updateDiscount(discountIdNumber, data);
     }
+
+    @Override
+    public List<Discount> getAppliedDiscounts(int id, AppliedDiscountTypes appliedDiscountType) {
+        return baseDao.getAppliedDiscounts(id, appliedDiscountType);
+    }
 }

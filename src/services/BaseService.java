@@ -1,5 +1,6 @@
 package services;
 
+import dataAccessObjects.AppliedDiscountTypes;
 import dataAccessObjects.BusinessStates;
 import dataAccessObjects.DiscountTypes;
 import entities.*;
@@ -34,7 +35,6 @@ public interface BaseService {
 
     Map<String, String> insertMainCategory(Map<String, String> data);
 
-
     Map<String, String> insertMainDiscountType(Map<String, String> data);
 
     Map<String, String> updateMainCategory(String mainCategoryId, Map<String, String> data);
@@ -52,4 +52,6 @@ public interface BaseService {
     Discount getDiscount(int discountId);
 
     Map<String, String> updateDiscount(int discountIdNumber, Map<String, String> data);
+
+    List<Discount> getAppliedDiscounts(int id, AppliedDiscountTypes appliedDiscountType);
 }

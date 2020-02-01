@@ -223,4 +223,13 @@
         <servlet-class>controllers.discountController</servlet-class>
     </servlet>
 
+    <servlet-mapping>
+        <servlet-name>appliedDiscountsCategoryController</servlet-name>
+        <url-pattern>/account/appliedDiscountsCategory</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>appliedDiscountsCategoryController</servlet-name>
+        <servlet-class>controllers.appliedDiscountsCategoryController</servlet-class>
+    </servlet>
+
 </web-app>

@@ -767,6 +767,70 @@ public class BaseDaoImplement implements BaseDao {
         return response;
     }
 
+    @Override
+    public List<Discount> getAppliedDiscounts(int id, AppliedDiscountTypes appliedDiscountType) {
+        Session session = HibernateUtil.getSessionByTenant(getStringId());
+
+        List<Discount> list = new ArrayList<>();
+        if (session != null) {
+            try {
+                CriteriaBuilder builder = session.getCriteriaBuilder();
+
+                // Using FROM and JOIN
+                CriteriaQuery<Object[]> criteriaQuery = builder.createQuery(Object[].class);
+                Root<KumulaciaZliavEntity> rootAppliedDiscount = criteriaQuery.from(KumulaciaZliavEntity.class);
+                Root<ZlavaEntity> rootDiscount = criteriaQuery.from(ZlavaEntity.class);
+                Root<TypZlavyEntity> rootType = criteriaQuery.from(TypZlavyEntity.class);
+
+                Predicate predicate = null;
+                switch (appliedDiscountType) {
+                    case productCategory:
+                        predicate = builder.equal(rootAppliedDiscount.get(KumulaciaZliavEntity.Fields.idKategorie.name()), id);
+                        break;
+                    case product:
+                        predicate = builder.equal(rootAppliedDiscount.get(KumulaciaZliavEntity.Fields.idPredmetu.name()), id);
+                        break;
+                }
+                criteriaQuery.multiselect(rootAppliedDiscount, rootDiscount, rootType);
+                criteriaQuery.where(
+                        builder.equal(rootType.get(ZlavaEntity.Fields.idTypu.name()), rootDiscount.get("idTypu")),
+                        builder.equal(rootAppliedDiscount.get(ZlavaEntity.Fields.idZlavy.name()), rootDiscount.get(KumulaciaZliavEntity.Fields.idZlavy.name())),
+                        predicate
+                );
+
+                Object[] resultList = session.createQuery(criteriaQuery).getResultList().toArray();
+
+                for (Object item : resultList) {
+                    Object[] objects = (Object[]) item;
+                    Discount discount = new Discount((ZlavaEntity) objects[1], (TypZlavyEntity) objects[2]);
+
+                    if(discount.getZlavaEntity().getIdPerZlavy() != null){
+                        discount.setPercentualnaZlavaEntity(getPercentDiscount(discount.getZlavaEntity().getIdPerZlavy()));
+                    } else if(discount.getZlavaEntity().getIdCenovejZlavy() != null) {
+                        discount.setCenovaZlavaEntity(getPriceDiscount(discount.getZlavaEntity().getIdCenovejZlavy()));
+                    } else if(discount.getZlavaEntity().getIdKvantity() != null) {
+                        discount.setKvantitovaZlavaEntity(getQuantityDiscount(discount.getZlavaEntity().getIdKvantity()));
+                    }
+                    list.add(discount);
+                }
+
+            } catch (NoResultException exception) {
+                System.out.println("Object not found"
+                        + exception.getMessage());
+                return null;
+            } catch (Exception exception) {
+                System.out.println("Exception occred while reading user data: "
+                        + exception.getMessage());
+                return null;
+            } finally {
+                session.close();
+            }
+        } else {
+            System.out.println("DB server down.....");
+        }
+        return list;
+    }
+
     private ZlavaEntity checkIfDiscountExists(int discountId) {
         Session session = HibernateUtil.getSessionByTenant(getStringId());
 
@@ -901,6 +965,99 @@ public class BaseDaoImplement implements BaseDao {
         }
 
         return kvantitovaZlavaEntity;
+    }
+
+    private CenovaZlavaEntity getPriceDiscount(int id) {
+        Session session = HibernateUtil.getSessionByTenant(getStringId());
+
+        CenovaZlavaEntity result = null;
+        if (session != null) {
+            try {
+                CriteriaBuilder builder = session.getCriteriaBuilder();
+
+                CriteriaQuery<CenovaZlavaEntity> criteriaQuery = builder.createQuery(CenovaZlavaEntity.class);
+                Root<CenovaZlavaEntity> root = criteriaQuery.from(CenovaZlavaEntity.class);
+                criteriaQuery.select(root).where(builder.equal(root.get(CenovaZlavaEntity.Fields.idCenovejZlavy.name()), id));
+
+                result = session.createQuery(criteriaQuery).getSingleResult();
+            } catch (NoResultException exception) {
+                System.out.println("Object not found"
+                        + exception.getMessage());
+                return null;
+            } catch (Exception exception) {
+                System.out.println("Exception occred while reading user data: "
+                        + exception.getMessage());
+                return null;
+            } finally {
+                session.close();
+            }
+
+        } else {
+            System.out.println("DB server down.....");
+        }
+        return result;
+    }
+
+    private PercentualnaZlavaEntity getPercentDiscount(int id) {
+        Session session = HibernateUtil.getSessionByTenant(getStringId());
+
+        PercentualnaZlavaEntity result = null;
+        if (session != null) {
+            try {
+                CriteriaBuilder builder = session.getCriteriaBuilder();
+
+                CriteriaQuery<PercentualnaZlavaEntity> criteriaQuery = builder.createQuery(PercentualnaZlavaEntity.class);
+                Root<PercentualnaZlavaEntity> root = criteriaQuery.from(PercentualnaZlavaEntity.class);
+                criteriaQuery.select(root).where(builder.equal(root.get(PercentualnaZlavaEntity.Fields.idPerZlavy.name()), id));
+
+                result = session.createQuery(criteriaQuery).getSingleResult();
+            } catch (NoResultException exception) {
+                System.out.println("Object not found"
+                        + exception.getMessage());
+                return null;
+            } catch (Exception exception) {
+                System.out.println("Exception occred while reading user data: "
+                        + exception.getMessage());
+                return null;
+            } finally {
+                session.close();
+            }
+
+        } else {
+            System.out.println("DB server down.....");
+        }
+        return result;
+    }
+
+    private KvantitovaZlavaEntity getQuantityDiscount(int id) {
+        Session session = HibernateUtil.getSessionByTenant(getStringId());
+
+        KvantitovaZlavaEntity result = null;
+        if (session != null) {
+            try {
+                CriteriaBuilder builder = session.getCriteriaBuilder();
+
+                CriteriaQuery<KvantitovaZlavaEntity> criteriaQuery = builder.createQuery(KvantitovaZlavaEntity.class);
+                Root<KvantitovaZlavaEntity> root = criteriaQuery.from(KvantitovaZlavaEntity.class);
+                criteriaQuery.select(root).where(builder.equal(root.get(KvantitovaZlavaEntity.Fields.idKvantity.name()), id));
+
+                result = session.createQuery(criteriaQuery).getSingleResult();
+            } catch (NoResultException exception) {
+                System.out.println("Object not found"
+                        + exception.getMessage());
+                return null;
+            } catch (Exception exception) {
+                System.out.println("Exception occred while reading user data: "
+                        + exception.getMessage());
+                return null;
+            } finally {
+                session.close();
+            }
+
+        } else {
+            System.out.println("DB server down.....");
+        }
+        return result;
     }
 }
 

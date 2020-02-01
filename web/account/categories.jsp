@@ -145,12 +145,14 @@
             <div class="container-fluid">
                 <div class="row dis-flex">
                     <div class="col-md-9 p-l-0">
-                        <table id="discounts-table" class="ui celled selectable right aligned table">
+                        <table id="discounts-table" class="ui celled selectable right aligned table w-full-i">
                             <thead>
+                            <th>hidden column</th>
                             <th class="left aligned">Názov</th>
                             <th>Hodnota</th>
                             <th>Dátum od</th>
                             <th>Dátum do</th>
+                            <th>Typ zľavy</th>
                             </thead>
                         </table>
                     </div>
@@ -159,12 +161,14 @@
                             <button id="apply-discount" class="ui labeled inverted green icon button  zelenac">
                                 <div class="middle">
                                     <i class="fa fa-plus"></i>
-                                    Aplikuj
+                                    Pridaj
                                 </div>
                             </button>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div id="applied-discounts">
             </div>
         </div>
         <div class="actions">
