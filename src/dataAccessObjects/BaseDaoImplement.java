@@ -3,6 +3,7 @@ package dataAccessObjects;
 import entities.*;
 import entities.customEntities.CategoryProducts;
 import entities.customEntities.Discount;
+import entities.customEntities.Product;
 import org.hibernate.Session;
 
 import utilities.DateUtil;
@@ -220,9 +221,9 @@ public class BaseDaoImplement implements BaseDao {
     }
 
     @Override
-    public List<PredmetPredajaEntity> getProduct(String categoryName) {
+    public List<Product> getProducts(String categoryName) {
         Session session = HibernateUtil.getSessionByTenant(getStringId());
-        List<PredmetPredajaEntity> list = new ArrayList<>();
+        List<Product> list = new ArrayList<>();
         if (session != null) {
             try {
                 CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -239,7 +240,11 @@ public class BaseDaoImplement implements BaseDao {
                 )
                         .distinct(true);
 
-                list = session.createQuery(criteriaQuery).getResultList();
+                List<PredmetPredajaEntity> response = session.createQuery(criteriaQuery).getResultList();
+                response.forEach(product -> {
+                    List<String> appliedDiscountTypes = getAppliedDiscountTypes(product.getIdPredmetu(), AppliedDiscountTypes.product);
+                    list.add(new Product(product, !appliedDiscountTypes.isEmpty(), appliedDiscountTypes));
+                });
             } catch (NoResultException exception) {
                 System.out.println("Object not found"
                         + exception.getMessage());
@@ -256,6 +261,28 @@ public class BaseDaoImplement implements BaseDao {
             System.out.println("DB server down.....");
         }
         return list;
+    }
+
+    @Override
+    public List<String> getAppliedDiscountTypes(int id, AppliedDiscountTypes appliedDiscountType) {
+       List<Discount> appliedDiscounts = getAppliedDiscounts(id, appliedDiscountType);
+      return appliedDiscounts
+                .stream()
+                .map(
+                        item -> {
+                            if (item.getCenovaZlavaEntity() != null) {
+                                return DiscountTypes.PRICE_DISCOUNT.toString();
+                            } else if (item.getPercentualnaZlavaEntity() != null) {
+                                return DiscountTypes.PERCENT_DISCOUNT.toString();
+                            } else if (item.getKvantitovaZlavaEntity() != null) {
+                                return DiscountTypes.QUANTITY_DISCOUNT.toString();
+                            } else if (item.getDatumovaZlavaEntity() != null) {
+                                //TODO:
+                            }
+                            return null;
+                        })
+                .distinct()
+                .collect(Collectors.toList());
     }
 
     @Override

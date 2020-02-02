@@ -30,7 +30,7 @@
                             </c:when>
                          </c:choose>
                          <div class="flex-row">
-                             <a href="products?categoryName=${item.category.nazov}">
+                             <a href="products?categoryName=${item.category.nazov}&productCategoryId=${item.category.idKategorie}">
                                  <div class="image">
                                      <div class="ui blurring inverted dimmer">
                                          <div class="content">

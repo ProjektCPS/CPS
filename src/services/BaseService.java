@@ -6,6 +6,7 @@ import dataAccessObjects.DiscountTypes;
 import entities.*;
 import entities.customEntities.CategoryProducts;
 import entities.customEntities.Discount;
+import entities.customEntities.Product;
 
 import java.util.List;
 import java.util.Map;
@@ -28,7 +29,7 @@ public interface BaseService {
 
     Map<String, String> updateProductCategory(int id, Map<String, String> data);
 
-    List<PredmetPredajaEntity> getProduct(String categoryName);
+    List<Product> getProducts(String categoryName);
 
     List<RegistrovanyUzivatelEntity> getExternalSystemAccounts();
 
@@ -55,6 +56,8 @@ public interface BaseService {
     Map<String, String> updateDiscount(int discountIdNumber, Map<String, String> data);
 
     List<Discount> getAppliedDiscounts(int id, AppliedDiscountTypes appliedDiscountType);
+
+    List<String> getAppliedDiscountTypes(int id, AppliedDiscountTypes appliedDiscountType);
 
     Map<String, String> applyOnlyDiscounts(int id, List<Integer> discounts, AppliedDiscountTypes productCategory);
 

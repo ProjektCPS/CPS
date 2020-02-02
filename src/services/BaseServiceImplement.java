@@ -4,6 +4,7 @@ import dataAccessObjects.*;
 import entities.*;
 import entities.customEntities.CategoryProducts;
 import entities.customEntities.Discount;
+import entities.customEntities.Product;
 
 import java.util.List;
 import java.util.Map;
@@ -55,8 +56,8 @@ public class BaseServiceImplement implements BaseService {
     }
 
     @Override
-    public List<PredmetPredajaEntity> getProduct(String categoryName) {
-        return baseDao.getProduct(categoryName);
+    public List<Product> getProducts(String categoryName) {
+        return baseDao.getProducts(categoryName);
     }
 
     @Override
@@ -117,6 +118,11 @@ public class BaseServiceImplement implements BaseService {
     @Override
     public Map<String, String> updateDiscount(int discountIdNumber, Map<String, String> data) {
         return baseDao.updateDiscount(discountIdNumber, data);
+    }
+
+    @Override
+    public List<String> getAppliedDiscountTypes(int id, AppliedDiscountTypes appliedDiscountType) {
+        return baseDao.getAppliedDiscountTypes(id, appliedDiscountType);
     }
 
     @Override

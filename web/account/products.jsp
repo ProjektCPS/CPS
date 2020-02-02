@@ -123,6 +123,32 @@
 <div class="group-contajner ">
     <div class="col-md-10">
         <div class="column">
+            <c:choose>
+                <c:when test="${appliedCategoryDiscountsTypes != '[]'}">
+                    <h3 class="ui header">Applikované zľavy katategórie</h3>
+                    <div class="ui section">
+                         <c:forEach items="${appliedCategoryDiscountsTypes}" var="appliedDiscountCategory">
+                             <c:choose>
+                                <c:when test="${appliedDiscountCategory == 'percent'}">
+                                     <a class="ui red tag label">
+                                         <i class="fa fa-percent"></i>
+                                     </a>
+                                </c:when>
+                                <c:when test="${appliedDiscountCategory == 'price'}">
+                                     <a class="ui red tag label">
+                                         <i class="fa fa-euro"></i>
+                                     </a>
+                                </c:when>
+                                <c:when test="${appliedDiscountCategory == 'quantity'}">
+                                     <a class="ui red tag label">
+                                         <i class="fa fa-balance-scale"></i>
+                                     </a>
+                                </c:when>
+                             </c:choose>
+                         </c:forEach>
+                    </div>
+                </c:when>
+            </c:choose>
             <table id="products-table" class="ui celled selectable right aligned table">
                 <thead>
                 <th class="left aligned">Nazov</th>
@@ -130,15 +156,37 @@
                 <th>Seriové číslo</th>
                 <th>Jednotka</th>
                 <th>Cena</th>
+                <th class="center aligned">Zľavy produktu</th>
                 </thead>
                 <tbody>
                 <c:forEach items="${productsItems}" var="product">
-                <tr data-id=${product.idPredmetu}>
-                    <td class="left aligned">${product.nazov}</td>
-                    <td>${product.znacka}</td>
-                    <td>${product.serioveCislo}</td>
-                    <td>${product.jednotka}</td>
-                    <td>${product.cena}</td>
+                <tr data-id=${product.product.idPredmetu}>
+                    <td class="left aligned">${product.product.nazov}</td>
+                    <td>${product.product.znacka}</td>
+                    <td>${product.product.serioveCislo}</td>
+                    <td>${product.product.jednotka}</td>
+                    <td>${product.product.cena}</td>
+                    <td class="center aligned">
+                    <c:forEach items="${product.appliedDiscountTypes}" var="item">
+                         <c:choose>
+                                <c:when test="${item == 'percent'}">
+                                     <a class="ui black tag label">
+                                         <i class="fa fa-percent"></i>
+                                     </a>
+                                </c:when>
+                                <c:when test="${item == 'price'}">
+                                     <a class="ui black tag label">
+                                         <i class="fa fa-euro"></i>
+                                     </a>
+                                </c:when>
+                                <c:when test="${item == 'quantity'}">
+                                     <a class="ui black tag label">
+                                         <i class="fa fa-balance-scale"></i>
+                                     </a>
+                                </c:when>
+                         </c:choose>
+                    </c:forEach>
+                    </td>
                 </tr>
                 </c:forEach>
                 </tbody>
@@ -242,6 +290,31 @@
                 </div>
             </div>
         </div>
+        <h4 class="ui header">Applikované zľavy katategórie</h4>
+        <div>
+             <c:forEach items="${appliedCategoryDiscounts}" var="appliedDiscountCategory">
+                <a class="ui label red customTag">
+                    <i>${appliedDiscountCategory.typZlavyEntity.nazovTypu}</i>
+                    <i> - </i>
+                    <i>${appliedDiscountCategory.cenovaZlavaEntity != null ? appliedDiscountCategory.cenovaZlavaEntity.hodnotaZlavy :
+                            appliedDiscountCategory.percentualnaZlavaEntity != null ? appliedDiscountCategory.percentualnaZlavaEntity.percentZlavy :
+                                    appliedDiscountCategory.kvantitovaZlavaEntity != null ?  appliedDiscountCategory.kvantitovaZlavaEntity.mnozstvo :
+                                            appliedDiscountCategory.datumovaZlavaEntity != null ? appliedDiscountCategory.datumovaZlavaEntity.den : "-"}</i>
+                    <i> ( </i>
+                    <i>${appliedDiscountCategory.cenovaZlavaEntity != null ? "Hodnota zlavy" :
+                            appliedDiscountCategory.percentualnaZlavaEntity != null ? "Počet percent" :
+                                    appliedDiscountCategory.kvantitovaZlavaEntity != null ?  "Množstvo" :
+                                            appliedDiscountCategory.datumovaZlavaEntity != null ? "Počet dní" : "Hodnota"}</i>
+                    <i> ) </i>
+                </a>
+             </c:forEach>
+        </div>
+        <c:choose>
+            <c:when test="${appliedCategoryDiscountsTypes != '[]'}">
+                <h4 class="ui header">Applikované zľavy katategórie</h4>
+                <div class="ui section divider"></div>
+            </c:when>
+        </c:choose>
         <div id="applied-discounts">
         </div>
     </div>
