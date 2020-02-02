@@ -1,18 +1,19 @@
-let categoryDiscount = function ($) {
-    const MODAL_DISCOUNT_ID = "#category-discount-modal";
-    const DISCOUNT_BUTTON_SELECTOR = ".category-discount-edit";
+let productDiscounts = function ($) {
+    const MODAL_DISCOUNT_ID = "#product-discount-modal";
+    const DISCOUNT_BUTTON_SELECTOR = "#edit-discounts";
     const DELETE_APPLIED_DISCOUNT_SELECTOR = "a.label i.delete";
     const APPLIED_DISCOUNTS_CONTAINER_ID = "#applied-discounts";
     const TABLE_ID = "#discounts-table";
+    const TABLE_PRODUCTS_ID = "#products-table";
     const APPLY_BUTTON_ID = "#apply-discount";
 
     const ENDPOINT_TYPES = [
         "discountsAsync",
-        "appliedDiscountsCategory"
+        "appliedDiscountsProduct"
     ];
 
     const URL_PARAMS = [
-        "productCategoryId",
+        "productId",
         "type",
     ];
 
@@ -32,7 +33,7 @@ let categoryDiscount = function ($) {
         }
     );
 
-    let productCategoryId;
+    let productId;
 
     function createTable(response) {
         table.clear();
@@ -112,14 +113,23 @@ let categoryDiscount = function ($) {
     }
 
     const onEdit = function () {
-        productCategoryId = $(this).data(DATA_PRODUCT_CATEGORY);
+        productId = getSelectedProductRowId();
 
-        getAppliedDiscounts(productCategoryId, (response) => {
-            fillAppliedDiscounts(response);
-            showModal()
-        })
+        if (productId !== undefined) {
+            getAppliedDiscounts(productId, (response) => {
+                fillAppliedDiscounts(response);
+                showModal()
+            })
+        } else {
+            alert(warningMessages.selectRow);
+        }
     };
 
+    function getSelectedProductRowId() {
+        let selectedRow = $(TABLE_PRODUCTS_ID + " tr.selected");
+
+        return selectedRow.data("id");
+    }
 
     function getDiscountsByType(type, callback) {
         $.ajax({
@@ -137,10 +147,10 @@ let categoryDiscount = function ($) {
         })
     }
 
-    function getAppliedDiscounts(productCategoryId, callback) {
+    function getAppliedDiscounts(productId, callback) {
         $.ajax({
             type: "GET",
-            url: '../../account/' + ENDPOINT_TYPES[1] + '?' + URL_PARAMS[0] + '=' + productCategoryId,
+            url: '../../account/' + ENDPOINT_TYPES[1] + '?' + URL_PARAMS[0] + '=' + productId,
             beforeSend: function () {
                 console.log("beforeSend");
             },
@@ -165,7 +175,7 @@ let categoryDiscount = function ($) {
         let appliedDiscounts = $(APPLIED_DISCOUNTS_CONTAINER_ID);
         appliedDiscounts.empty();
 
-        productCategoryId = "";
+        productId = "";
     }
 
     function onApply() {
@@ -241,12 +251,12 @@ let categoryDiscount = function ($) {
 
     function onApproveModalDetail() {
 
-        updateCategoryDiscounts(productCategoryId);
+        updateCategoryDiscounts(productId);
     }
 
     function getData() {
         let appliedDiscounts = $(APPLIED_DISCOUNTS_CONTAINER_ID + " a");
-        return appliedDiscounts.toArray().map( item => $(item).data('id'))
+        return appliedDiscounts.toArray().map(item => $(item).data('id'))
     }
 
     function getDiscountTypeName(discountType) {

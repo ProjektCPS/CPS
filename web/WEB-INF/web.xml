@@ -232,4 +232,13 @@
         <servlet-class>controllers.appliedDiscountsCategoryController</servlet-class>
     </servlet>
 
+    <servlet-mapping>
+        <servlet-name>appliedDiscountsProductController</servlet-name>
+        <url-pattern>/account/appliedDiscountsProduct</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>appliedDiscountsProductController</servlet-name>
+        <servlet-class>controllers.appliedDiscountsProductController</servlet-class>
+    </servlet>
+
 </web-app>

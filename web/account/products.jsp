@@ -11,6 +11,11 @@
 <mt:mainTamplate title="Produkty">
   <jsp:attribute name="content">
 <html>
+<head>
+    <!---Javascript -->
+    <script src="../js/products/main.js"></script>
+    <script src="../js/products/productDiscounts.js"></script>
+</head>
 <body>
 <div class="search-background">
     <div class="group-contajner">
@@ -118,7 +123,7 @@
 <div class="group-contajner ">
     <div class="col-md-10">
         <div class="column">
-            <table class="ui celled selectable right aligned table">
+            <table id="products-table" class="ui celled selectable right aligned table">
                 <thead>
                 <th class="left aligned">Nazov</th>
                 <th>Značka</th>
@@ -128,7 +133,7 @@
                 </thead>
                 <tbody>
                 <c:forEach items="${productsItems}" var="product">
-                <tr>
+                <tr data-id=${product.idPredmetu}>
                     <td class="left aligned">${product.nazov}</td>
                     <td>${product.znacka}</td>
                     <td>${product.serioveCislo}</td>
@@ -160,11 +165,97 @@
                     Edituj
                 </div>
             </button>
-
+            <button id="edit-discounts" class="ui labeled blue inverted icon button belasa">
+                <div class="middle">
+                    <i class="fa fa-percent"></i>
+                    Zľavy
+                </div>
+            </button>
             </button>
         </div>
-
     </div>
+</div>
+<div id="category-modal" class="ui mini modal customModal">
+    <div class="header">
+        Hlavná kategória
+    </div>
+    <div class="ui form content">
+        <div class="one field">
+            <div class="field required">
+                <label>Názov</label>
+                <input type="text" name="category-name" placeholder="Názov kategórie"
+                       value="">
+            </div>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui black cancel button">
+            <i class="fa fa-sign-out"></i>
+            Zrušiť
+        </div>
+        <div class="ui positive ok right button">
+            <i class="fa fa-check"></i>
+            Uložiť
+        </div>
+    </div>
+    <input hidden type="text" name="category-id" value="">
+</div>
+
+<div id="product-discount-modal" class="ui modal customModal overflow-v">
+    <div class="header">
+        Zľavy
+    </div>
+    <div class="ui form content">
+        <div class="one field">
+            <div class="field required">
+                <label>Typ zľavy</label>
+                <div class="ui fluid search selection dropdown">
+                    <input type="hidden" name="mainDiscountType" value="">
+                    <i class="dropdown icon"></i>
+                    <div class="default text">Vyber typ zľavy</div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row dis-flex">
+                <div class="col-md-9 p-l-0">
+                    <table id="discounts-table" class="ui celled selectable right aligned table w-full-i">
+                        <thead>
+                        <th>hidden column</th>
+                        <th class="left aligned">Názov</th>
+                        <th>Hodnota</th>
+                        <th>Dátum od</th>
+                        <th>Dátum do</th>
+                        <th>Typ zľavy</th>
+                        </thead>
+                    </table>
+                </div>
+                <div class="col-md-3 p-r-0 flex-c-t">
+                    <div class="container-button m-t-78">
+                        <button id="apply-discount" class="ui labeled inverted green icon button  zelenac">
+                            <div class="middle">
+                                <i class="fa fa-plus"></i>
+                                Pridaj
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="applied-discounts">
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui black cancel button">
+            <i class="fa fa-sign-out"></i>
+            Zrušiť
+        </div>
+        <div class="ui positive ok right button">
+            <i class="fa fa-check"></i>
+            Uložiť
+        </div>
+    </div>
+    <input hidden type="text" name="product-id" value="">
 </div>
 </body>
 </html>

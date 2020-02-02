@@ -858,7 +858,14 @@ public class BaseDaoImplement implements BaseDao {
             try (Session session = HibernateUtil.getSessionByTenant(getStringId())) {
                 KumulaciaZliavEntity entity = new KumulaciaZliavEntity();
                 entity.setIdZlavy(discountsId);
-                entity.setIdKategorie(id);
+                switch (appliedDiscountType) {
+                    case productCategory:
+                        entity.setIdKategorie(id);
+                        break;
+                    case product:
+                        entity.setIdPredmetu(id);
+                        break;
+                }
 
                 if (checkIfDiscountIsApplied(id, discountsId, appliedDiscountType) == null) {
                     System.out.println("Inserting discount id: " + entity.getIdZlavy());

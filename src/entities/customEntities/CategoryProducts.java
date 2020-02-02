@@ -15,7 +15,7 @@ public class CategoryProducts {
         return category;
     }
 
-    public boolean hasAppliedDiscount() {
+    public boolean isHasAppliedDiscount() {
         return hasAppliedDiscount;
     }
 }
