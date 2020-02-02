@@ -63,7 +63,7 @@ public class appliedDiscountsCategoryController extends HttpServlet {
         HttpSession currentSession = request.getSession(false);
         BaseService baseService = new BaseServiceImplement((Integer) currentSession.getAttribute(Constants.TENANT_ID));
 
-        Map<String, String> serviceResponse = baseService.applyDiscounts(Integer.parseInt(productCategoryId), discountsIDs, AppliedDiscountTypes.productCategory);
+        Map<String, String> serviceResponse = baseService.applyOnlyDiscounts(Integer.parseInt(productCategoryId), discountsIDs, AppliedDiscountTypes.productCategory);
 
         if (serviceResponse.get("err") != null) {
             PrintWriter pw = response.getWriter();

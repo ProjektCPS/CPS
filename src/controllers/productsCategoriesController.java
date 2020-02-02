@@ -1,7 +1,7 @@
 package controllers;
 
 import config.Constants;
-import entities.KategorieEntity;
+import entities.customEntities.CategoryProducts;
 import services.BaseService;
 import services.BaseServiceImplement;
 import utilities.Validator;
@@ -26,7 +26,7 @@ public class productsCategoriesController extends HttpServlet {
         String categoryName = request.getParameter("categoryName").trim();
         String categoryId = request.getParameter("categoryId").trim();
 
-        List<KategorieEntity> categoryItems = new ArrayList<>();
+        List<CategoryProducts> categoryItems = new ArrayList<>();
         if(!Validator.isStringNullOrEmpty(categoryName)){
             HttpSession curentSession = request.getSession(false);
             BaseService baseService = new BaseServiceImplement((Integer) curentSession.getAttribute(Constants.TENANT_ID));
@@ -34,6 +34,7 @@ public class productsCategoriesController extends HttpServlet {
         } else {
             response.setStatus(HttpServletResponse.SC_OK);
         }
+
         request.setAttribute("categories", categoryItems);
         request.setAttribute("categoryId", categoryId);
         request.getRequestDispatcher("/account/categories.jsp").forward(request, response);

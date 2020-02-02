@@ -1,9 +1,9 @@
 package API;
 
 import com.google.gson.Gson;
-import entities.KategorieEntity;
 import entities.PredmetPredajaEntity;
 import entities.TypPredmetuEntity;
+import entities.customEntities.CategoryProducts;
 import services.BaseService;
 import services.BaseServiceImplement;
 
@@ -33,7 +33,7 @@ public class SecuredResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String getProductCategories(@QueryParam("productTypeName") String productTypeName) {
         BaseService baseService = new BaseServiceImplement();
-        List<KategorieEntity> listCategoriesObjects = baseService.getProductCategories(productTypeName);
+        List<CategoryProducts> listCategoriesObjects = baseService.getProductCategories(productTypeName);
         String json = new Gson().toJson(listCategoriesObjects);
         return json;
     }

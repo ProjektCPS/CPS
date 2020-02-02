@@ -1,6 +1,7 @@
 package dataAccessObjects;
 
 import entities.*;
+import entities.customEntities.CategoryProducts;
 import entities.customEntities.Discount;
 import org.hibernate.Session;
 
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class BaseDaoImplement implements BaseDao {
     private int tenantId;
@@ -96,9 +98,9 @@ public class BaseDaoImplement implements BaseDao {
     }
 
     @Override
-    public List<KategorieEntity> getProductCategories(String categoryName) {
+    public List<CategoryProducts> getProductCategories(String categoryName) {
         Session session = HibernateUtil.getSessionByTenant(getStringId());
-        List<KategorieEntity> list = new ArrayList<>();
+        List<CategoryProducts> list = new ArrayList<>();
         if (session != null) {
             try {
                 CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -114,7 +116,12 @@ public class BaseDaoImplement implements BaseDao {
                 )
                         .distinct(true);
 
-                list = session.createQuery(criteriaQuery).getResultList();
+                List<KategorieEntity> response = session.createQuery(criteriaQuery).getResultList();
+                response.forEach(category -> {
+                    boolean hasAppliedDiscount = hasAppliedDiscount(category.getIdKategorie(), AppliedDiscountTypes.productCategory);
+                    list.add(new CategoryProducts(category, hasAppliedDiscount));
+                });
+
             } catch (NoResultException exception) {
                 System.out.println("Object not found"
                         + exception.getMessage());
@@ -803,6 +810,7 @@ public class BaseDaoImplement implements BaseDao {
                 for (Object item : resultList) {
                     Object[] objects = (Object[]) item;
                     Discount discount = new Discount((ZlavaEntity) objects[1], (TypZlavyEntity) objects[2]);
+                    discount.setKumulaciaZliavEntity((KumulaciaZliavEntity) objects[0]);
 
                     if (discount.getZlavaEntity().getIdPerZlavy() != null) {
                         discount.setPercentualnaZlavaEntity(getPercentDiscount(discount.getZlavaEntity().getIdPerZlavy()));
@@ -832,8 +840,19 @@ public class BaseDaoImplement implements BaseDao {
     }
 
     @Override
-    public Map<String, String> applyDiscounts(int id, List<Integer> discounts, AppliedDiscountTypes appliedDiscountType) {
+    public Map<String, String> applyOnlyDiscounts(int id, List<Integer> discounts, AppliedDiscountTypes appliedDiscountType) {
         Map<String, String> response = new HashMap<>();
+
+        List<Discount> appliedDiscounts = getAppliedDiscounts(id, appliedDiscountType);
+        List<KumulaciaZliavEntity> excludedDiscounts = appliedDiscounts.stream()
+                .filter(item -> !discounts.contains(item.getZlavaEntity().getIdZlavy()))
+                .map(Discount::getKumulaciaZliavEntity)
+                .collect(Collectors.toList());
+
+        String excludedDiscountsResponse = removeAppliedDiscounts(excludedDiscounts).get("err");
+        if(excludedDiscountsResponse != null) {
+            response.put("err", excludedDiscountsResponse);
+        }
 
         discounts.forEach(discountsId -> {
             try (Session session = HibernateUtil.getSessionByTenant(getStringId())) {
@@ -853,6 +872,27 @@ public class BaseDaoImplement implements BaseDao {
                 response.put("err", "Nepodarilo sa aplikovat zlavu s id: " + discountsId);
             }
         });
+
+        return response;
+    }
+
+    private Map<String, String> removeAppliedDiscounts(List<KumulaciaZliavEntity> excludedDiscountsIds) {
+        Map<String, String> response = new HashMap<>();
+
+        excludedDiscountsIds.forEach( item -> {
+            try (Session session = HibernateUtil.getSessionByTenant(getStringId())) {
+
+                System.out.println("Deleting plikovanu zlavu s id: " + item.getIdZlavy());
+                session.beginTransaction();
+                session.delete(item);
+                session.getTransaction().commit();
+            } catch (Exception exception) {
+                System.out.println("Exception occurred while trying delete discout type: "
+                        + exception.getMessage());
+                response.put("err", "Nepodarilo sa odobrat zlavu s id: " + item.getIdZlavy());
+            }
+        });
+
 
         return response;
     }
@@ -1131,6 +1171,11 @@ public class BaseDaoImplement implements BaseDao {
             System.out.println("DB server down.....");
         }
         return result;
+    }
+
+    @Override
+    public boolean hasAppliedDiscount(int id, AppliedDiscountTypes appliedDiscountType) {
+        return !getAppliedDiscounts(id, appliedDiscountType).isEmpty();
     }
 }
 

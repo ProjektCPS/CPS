@@ -2,6 +2,7 @@ package services;
 
 import dataAccessObjects.*;
 import entities.*;
+import entities.customEntities.CategoryProducts;
 import entities.customEntities.Discount;
 
 import java.util.List;
@@ -34,7 +35,7 @@ public class BaseServiceImplement implements BaseService {
     }
 
     @Override
-    public List<KategorieEntity> getProductCategories(String categoryName) {
+    public List<CategoryProducts> getProductCategories(String categoryName) {
         return baseDao.getProductCategories(categoryName);
     }
 
@@ -124,7 +125,12 @@ public class BaseServiceImplement implements BaseService {
     }
 
     @Override
-    public Map<String, String> applyDiscounts(int id, List<Integer> discounts, AppliedDiscountTypes productCategory) {
-        return baseDao.applyDiscounts(id, discounts, productCategory);
+    public Map<String, String> applyOnlyDiscounts(int id, List<Integer> discounts, AppliedDiscountTypes productCategory) {
+        return baseDao.applyOnlyDiscounts(id, discounts, productCategory);
+    }
+
+    @Override
+    public boolean hasAppliedDiscount(int id, AppliedDiscountTypes appliedDiscountType) {
+        return baseDao.hasAppliedDiscount(id, appliedDiscountType);
     }
 }

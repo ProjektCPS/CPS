@@ -1,6 +1,7 @@
 package dataAccessObjects;
 
 import entities.*;
+import entities.customEntities.CategoryProducts;
 import entities.customEntities.Discount;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public interface BaseDao {
 
     List<TypPredmetuEntity> getProductsTypes();
 
-    List<KategorieEntity> getProductCategories(String categoryName);
+    List<CategoryProducts> getProductCategories(String categoryName);
 
     KategorieEntity getProductCategory(int categoryId);
 
@@ -50,5 +51,7 @@ public interface BaseDao {
 
     List<Discount> getAppliedDiscounts(int id, AppliedDiscountTypes appliedDiscountType);
 
-    Map<String, String> applyDiscounts(int id, List<Integer> discounts, AppliedDiscountTypes productCategory);
+    Map<String, String> applyOnlyDiscounts(int id, List<Integer> discounts, AppliedDiscountTypes productCategory);
+
+    boolean hasAppliedDiscount(int id, AppliedDiscountTypes appliedDiscountType);
 }

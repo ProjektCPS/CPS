@@ -21,8 +21,16 @@
         <div class="ui four stackable cards">
             <c:forEach items="${categories}" var="item">
                      <div class="ui card">
+                         <c:choose>
+                            <c:when test="${item.hasAppliedDiscount == true}">
+                                 <a class="ui black ribbon label appliedDiscount">
+                                     <i class="fa fa-tag" aria-hidden="true"></i>
+                                     Zľava
+                                 </a>
+                            </c:when>
+                         </c:choose>
                          <div class="flex-row">
-                             <a href="products?categoryName=${item.nazov}">
+                             <a href="products?categoryName=${item.category.nazov}">
                                  <div class="image">
                                      <div class="ui blurring inverted dimmer">
                                          <div class="content">
@@ -30,7 +38,7 @@
                                              </div>
                                          </div>
                                      </div>
-                                     <img src="../image/${item.nazov}.jpg"
+                                     <img src="../image/${item.category.nazov}.jpg"
                                           onerror="this.onerror=null;this.src='../image/placeholder-image.jpg';">
                                  </div>
                              </a>
@@ -41,13 +49,13 @@
                                      </button>
                                  </div>
                                  <div class="action">
-                                     <button data-product-category-id="${item.idKategorie}"
+                                     <button data-product-category-id="${item.category.idKategorie}"
                                              class="circular ui edit icon button edit-category">
                                          <i class="fa fa-edit"></i>
                                      </button>
                                  </div>
                                  <div class="action">
-                                     <button data-product-category-id="${item.idKategorie}"
+                                     <button data-product-category-id="${item.category.idKategorie}"
                                              class="circular ui linkedin icon button category-discount-edit">
                                          <i class="fa fa-percent"></i>
                                      </button>
@@ -55,7 +63,7 @@
                              </div>
                          </div>
                          <div class="content">
-                             <div class="header"> ${item.nazov}</div>
+                             <div class="header"> ${item.category.nazov}</div>
                          </div>
                      </div>
                <br>

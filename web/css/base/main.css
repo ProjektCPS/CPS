@@ -1658,3 +1658,7 @@ button.ui.icon.edit:hover {
 .ui.label.customTag {
    margin: 4px;
 }
+
+.ui.ribbon.label.appliedDiscount {
+    left: -14px;
+}

@@ -4,6 +4,7 @@ import dataAccessObjects.AppliedDiscountTypes;
 import dataAccessObjects.BusinessStates;
 import dataAccessObjects.DiscountTypes;
 import entities.*;
+import entities.customEntities.CategoryProducts;
 import entities.customEntities.Discount;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public interface BaseService {
     // Daj vsetky hlavne typy zlav
     List<TypZlavyEntity> getMainDiscountTypes();
 
-    List<KategorieEntity> getProductCategories(String categoryName);
+    List<CategoryProducts> getProductCategories(String categoryName);
 
     KategorieEntity getProductCategory(int categoryId);
 
@@ -55,5 +56,7 @@ public interface BaseService {
 
     List<Discount> getAppliedDiscounts(int id, AppliedDiscountTypes appliedDiscountType);
 
-    Map<String, String> applyDiscounts(int id, List<Integer> discounts, AppliedDiscountTypes productCategory);
+    Map<String, String> applyOnlyDiscounts(int id, List<Integer> discounts, AppliedDiscountTypes productCategory);
+
+    boolean hasAppliedDiscount(int id, AppliedDiscountTypes appliedDiscountType);
 }

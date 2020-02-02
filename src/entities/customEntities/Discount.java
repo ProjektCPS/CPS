@@ -11,6 +11,7 @@ public class Discount {
     private DatumovaZlavaEntity datumovaZlavaEntity;
     private String dateFrom;
     private String dateTo;
+    private KumulaciaZliavEntity kumulaciaZliavEntity;
 
     public Discount(ZlavaEntity zlavaEntity, TypZlavyEntity typZlavyEntity) {
         this.zlavaEntity = zlavaEntity;
@@ -104,5 +105,13 @@ public class Discount {
         if (discountType instanceof DatumovaZlavaEntity) {
             this.setDatumovaZlavaEntity((DatumovaZlavaEntity) discountType);
         }
+    }
+
+    public void setKumulaciaZliavEntity(KumulaciaZliavEntity kumulaciaZliavEntity) {
+        this.kumulaciaZliavEntity = kumulaciaZliavEntity;
+    }
+
+    public KumulaciaZliavEntity getKumulaciaZliavEntity() {
+        return kumulaciaZliavEntity;
     }
 }
