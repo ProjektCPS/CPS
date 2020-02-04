@@ -97,7 +97,7 @@ let categoryDiscount = function ($) {
                     !isEmpty(item.datumovaZlavaEntity) ? getDiscountTypeName(constants.dateDiscount) : "-";
         let dateTo = isEmpty(item.dateTo) ? "" : item.dateTo;
 
-        return new RowData(
+        return new RowDataDiscount(
             item.zlavaEntity.idZlavy,
             item.typZlavyEntity.nazovTypu,
             discountValue,
@@ -170,16 +170,16 @@ let categoryDiscount = function ($) {
 
     function onApply() {
         let selectedRow = table.rows('.selected').data()[0];
-        let rowData = new RowData(
-            selectedRow[0],
-            selectedRow[1],
-            selectedRow[2],
-            selectedRow[3],
-            selectedRow[4],
-            selectedRow[5]
-        );
 
-        if (rowData.id !== undefined) {
+        if (selectedRow !== undefined) {
+            let rowData = new RowDataDiscount(
+                selectedRow[0],
+                selectedRow[1],
+                selectedRow[2],
+                selectedRow[3],
+                selectedRow[4],
+                selectedRow[5]
+            );
             applyDiscount(rowData);
         } else {
             alert(warningMessages.selectRow);
@@ -194,8 +194,11 @@ let categoryDiscount = function ($) {
         let appliedDiscounts = $(APPLIED_DISCOUNTS_CONTAINER_ID + " a");
 
         let exists = appliedDiscounts.toArray().filter(item => $(item).data('id') === rowData.id).length > 0;
+        let existsType = appliedDiscounts.toArray().filter(item => $(item).data('type') === rowData.discountType).length > 0;
         if (exists) {
             alert("Zľava je už applikovaná.")
+        } else if (existsType) {
+            alert(" Zľava typu: " + rowData.discountTypeFormatted + " je už aplikovaná.")
         } else {
             let appliedDiscountsBox = $(APPLIED_DISCOUNTS_CONTAINER_ID);
             appliedDiscountsBox.append(createDiscountTag(rowData))
@@ -203,9 +206,10 @@ let categoryDiscount = function ($) {
     }
 
     function createDiscountTag(rowData) {
-        let tag = $("<a></a>").text(rowData.name + " - " + rowData.value + " ( " + rowData.discountType + " )");
+        let tag = $("<a></a>").text(rowData.name + " - " + rowData.value + " ( " + rowData.discountTypeFormatted + " )");
         tag.addClass("ui label customTag");
         tag.data('id', rowData.id);
+        tag.data('type', rowData.discountType);
 
         let icon = $("<i></i>");
         icon.addClass("delete icon");
@@ -246,23 +250,23 @@ let categoryDiscount = function ($) {
 
     function getData() {
         let appliedDiscounts = $(APPLIED_DISCOUNTS_CONTAINER_ID + " a");
-        return appliedDiscounts.toArray().map( item => $(item).data('id'))
+        return appliedDiscounts.toArray().map(item => $(item).data('id'))
     }
 
     function getDiscountTypeName(discountType) {
-        let name = "Neznáma";
+        let name = constants.unknownDiscountName;
         switch (discountType) {
             case constants.priceDiscount:
-                name = "Cenová";
+                name = constants.priceDiscountName;
                 break;
             case constants.percentDiscount:
-                name = "Percentuálna";
+                name = constants.percentDiscountName;
                 break;
             case constants.dateDiscount:
-                name = "Dátumová";
+                name = constants.dateDiscountName;
                 break;
             case constants.quantityDiscount:
-                name = "Kvatitová";
+                name = constants.quantityDiscountName;
                 break;
         }
 
@@ -280,15 +284,15 @@ let categoryDiscount = function ($) {
     function createDropdown() {
         let dropdownItems = [
             {
-                name: "Cenová",
+                name: constants.priceDiscountName,
                 value: constants.priceDiscount
             },
             {
-                name: "Percentuálna",
+                name: constants.percentDiscountName,
                 value: constants.percentDiscount
             },
             {
-                name: "Kvatitová",
+                name: constants.quantityDiscountName,
                 value: constants.quantityDiscount
             }
         ];
@@ -321,39 +325,3 @@ let categoryDiscount = function ($) {
 
     createDropdown();
 };
-
-class RowData {
-    constructor(id, name, value, dateFrom, dateTo, discountType) {
-        this._id = id;
-        this._name = name;
-        this._value = value;
-        this._dateFrom = dateFrom;
-        this._dateTo = dateTo;
-        this._discountType = discountType;
-    }
-
-
-    get id() {
-        return this._id;
-    }
-
-    get name() {
-        return this._name;
-    }
-
-    get value() {
-        return this._value;
-    }
-
-    get dateFrom() {
-        return this._dateFrom;
-    }
-
-    get dateTo() {
-        return this._dateTo;
-    }
-
-    get discountType() {
-        return this._discountType;
-    }
-}

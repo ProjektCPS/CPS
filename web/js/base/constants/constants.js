@@ -20,6 +20,11 @@ constants.quantityDiscount = "quantity";
 constants.percentDiscount = "percent";
 constants.priceDiscount = "price";
 constants.dateDiscount = "date";
+constants.quantityDiscountName = "Kvatitová";
+constants.percentDiscountName = "Percentuálna";
+constants.priceDiscountName = "Cenová";
+constants.dateDiscountName = "Dátumová";
+constants.unknownDiscountName = "Neznáma";
 
 Object.freeze(errorMessages);
 Object.freeze(warningMessages);

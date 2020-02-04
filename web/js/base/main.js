@@ -57,3 +57,59 @@ jQuery(document).ready(function ($) {
         }
     );
 });
+
+class RowDataDiscount {
+    constructor(id, name, value, dateFrom, dateTo, discountTypeFormatted) {
+        this._id = id;
+        this._name = name;
+        this._value = value;
+        this._dateFrom = dateFrom;
+        this._dateTo = dateTo;
+        this._discountTypeFormatted = discountTypeFormatted;
+    }
+
+
+    get id() {
+        return this._id;
+    }
+
+    get name() {
+        return this._name;
+    }
+
+    get value() {
+        return this._value;
+    }
+
+    get dateFrom() {
+        return this._dateFrom;
+    }
+
+    get dateTo() {
+        return this._dateTo;
+    }
+
+    get discountTypeFormatted() {
+        return this._discountTypeFormatted;
+    }
+
+    get discountType() {
+        let name = constants.unknownDiscountName;
+        switch (this._discountTypeFormatted) {
+            case constants.priceDiscountName:
+                name = constants.priceDiscount;
+                break;
+            case constants.percentDiscountName:
+                name = constants.percentDiscount;
+                break;
+            case constants.dateDiscountName:
+                name = constants.dateDiscount;
+                break;
+            case constants.quantityDiscountName:
+                name = constants.quantityDiscount;
+                break;
+        }
+
+        return name;
+    }
+}

@@ -304,7 +304,7 @@
                     <i> - </i>
                     <i>${appliedDiscountCategory.cenovaZlavaEntity != null ? appliedDiscountCategory.cenovaZlavaEntity.hodnotaZlavy :
                             appliedDiscountCategory.percentualnaZlavaEntity != null ? appliedDiscountCategory.percentualnaZlavaEntity.percentZlavy :
-                                    appliedDiscountCategory.kvantitovaZlavaEntity != null ?  appliedDiscountCategory.kvantitovaZlavaEntity.mnozstvo :
+                                    appliedDiscountCategory.kvantitovaZlavaEntity != null ? appliedDiscountCategory.kvantitovaZlavaEntity.mnozstvo :
                                             appliedDiscountCategory.datumovaZlavaEntity != null ? appliedDiscountCategory.datumovaZlavaEntity.den : "-"}</i>
                     <i> ( </i>
                     <i>${appliedDiscountCategory.cenovaZlavaEntity != null ? "Hodnota zlavy" :
@@ -317,8 +317,8 @@
         </div>
         <c:choose>
             <c:when test="${appliedCategoryDiscountsTypes != '[]'}">
-                <h4 class="ui header">Applikované zľavy katategórie</h4>
                 <div class="ui section divider"></div>
+                <h4 class="ui header">Applikované zľavy produktu</h4>
             </c:when>
         </c:choose>
         <div id="applied-discounts">
