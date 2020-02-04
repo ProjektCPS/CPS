@@ -1211,5 +1211,66 @@ public class BaseDaoImplement implements BaseDao {
     public boolean hasAppliedDiscount(int id, AppliedDiscountTypes appliedDiscountType) {
         return !getAppliedDiscounts(id, appliedDiscountType).isEmpty();
     }
+
+    @Override
+    public Map<String, String> insertProduct(Map<String, String> data) {
+        Map<String, String> response = new HashMap<>();
+
+        try (Session session = HibernateUtil.getSessionByTenant(getStringId())) {
+            PredmetPredajaEntity newPredmet = prepareProduct(data);
+
+            System.out.println("Inserting: product s id-" + newPredmet.getIdPredmetu());
+            session.beginTransaction();
+            session.save(newPredmet);
+            session.getTransaction().commit();
+        } catch (Exception exception) {
+            System.out.println("Exception occurred while reading product data: "
+                    + exception.getMessage());
+            response.put("err", "Nepodarilo sa vlozit product.");
+            return response;
+        }
+
+        return response;
+    }
+
+    @Override
+    public Map<String, String> updateProduct(int productIdNumber, Map<String, String> data) {
+        Map<String, String> response = new HashMap<>();
+
+        try (Session session = HibernateUtil.getSessionByTenant(getStringId())) {
+            PredmetPredajaEntity product = prepareProduct(data);
+            product.setIdPredmetu(productIdNumber);
+
+            System.out.println("Updating product id: " + product.getIdPredmetu());
+            session.beginTransaction();
+            session.update(product);
+            session.getTransaction().commit();
+        } catch (Exception exception) {
+            System.out.println("Exception occurred while update product data: "
+                    + exception.getMessage());
+            response.put("err", "Nepodarilo sa editovat product.");
+            return response;
+        }
+
+        return response;
+    }
+
+    private PredmetPredajaEntity prepareProduct(Map<String,String> data) {
+        PredmetPredajaEntity newProduct = new PredmetPredajaEntity();
+        newProduct.setIdKategorie(Integer.parseInt(data.get("categoryId")));
+        newProduct.setCena(Double.parseDouble(data.get("price")));
+        newProduct.setNazov(data.get("price"));
+        newProduct.setJednotka(data.get("jednotka"));
+        try {
+            newProduct.setDatumExpiracie(DateUtil.createSqlDate(data.get("date-expiracion")));
+            newProduct.setSerioveCislo(data.get("serial-number"));
+            newProduct.setPopis(data.get("description"));
+            newProduct.setZnacka(data.get("brand"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return newProduct;
+    }
 }
 

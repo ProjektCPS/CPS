@@ -195,24 +195,28 @@
     </div>
     <div class="col-md-2">
         <div class="container-button m-b-20">
-            <button class="ui labeled green inverted icon button zelenac">
-                <div class="middle">
-                    <i class="fa fa-plus"></i>
-                    Pridaj
-                </div>
-            </button>
+            <a href="./AddOrUpdateProduct.jsp">
+                <button class="ui labeled inverted green icon button  zelenac">
+                    <div class="middle">
+                        <i class="fa fa-plus"></i>
+                        Pridaj
+                    </div>
+                </button>
+            </a>
             <button class="ui labeled red inverted icon button cervenak">
                 <div class="middle">
                     <i class="fa fa-minus"></i>
                     Odstran
                 </div>
             </button>
-            <button class="ui labeled blue inverted icon button belasa">
-                <div class="middle">
-                    <i class="fa fa-pencil"></i>
-                    Edituj
-                </div>
-            </button>
+            <a href="./AddOrUpdateProduct.jsp">
+                <button class="ui labeled inverted green icon button belasa">
+                    <div class="middle">
+                        <i class="fa fa-plus"></i>
+                        Edituj
+                    </div>
+                </button>
+            </a>
             <button id="edit-discounts" class="ui labeled blue inverted icon button belasa">
                 <div class="middle">
                     <i class="fa fa-percent"></i>
@@ -280,12 +284,14 @@
                 </div>
                 <div class="col-md-3 p-r-0 flex-c-t">
                     <div class="container-button m-t-78">
-                        <button id="apply-discount" class="ui labeled inverted green icon button  zelenac">
-                            <div class="middle">
-                                <i class="fa fa-plus"></i>
-                                Pridaj
-                            </div>
-                        </button>
+                        <a href="./AddOrUpdateProduct.jsp">
+                            <button class="ui labeled inverted green icon button  zelenac">
+                                <div class="middle">
+                                    <i class="fa fa-plus"></i>
+                                    Pridaj
+                                </div>
+                            </button>
+                        </a>
                     </div>
                 </div>
             </div>

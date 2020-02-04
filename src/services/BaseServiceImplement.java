@@ -139,4 +139,14 @@ public class BaseServiceImplement implements BaseService {
     public boolean hasAppliedDiscount(int id, AppliedDiscountTypes appliedDiscountType) {
         return baseDao.hasAppliedDiscount(id, appliedDiscountType);
     }
+
+    @Override
+    public Map<String, String> insertProduct(Map<String, String> data) {
+        return baseDao.insertProduct(data);
+    }
+
+    @Override
+    public Map<String, String> updateProduct(int productIdNumber, Map<String, String> data) {
+        return baseDao.updateProduct(productIdNumber, data);
+    }
 }
