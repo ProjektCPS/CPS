@@ -1259,8 +1259,8 @@ public class BaseDaoImplement implements BaseDao {
         PredmetPredajaEntity newProduct = new PredmetPredajaEntity();
         newProduct.setIdKategorie(Integer.parseInt(data.get("categoryId")));
         newProduct.setCena(Double.parseDouble(data.get("price")));
-        newProduct.setNazov(data.get("price"));
-        newProduct.setJednotka(data.get("jednotka"));
+        newProduct.setNazov(data.get("name"));
+        newProduct.setJednotka(data.get("unit"));
         try {
             newProduct.setDatumExpiracie(DateUtil.createSqlDate(data.get("date-expiracion")));
             newProduct.setSerioveCislo(data.get("serial-number"));

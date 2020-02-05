@@ -7,3 +7,7 @@ function getParamFromUrl(paramName) {
 function reloadPage() {
     return window.location.reload()
 }
+
+function goBackAndReloadPage(){
+    window.location.href = document.referrer;
+}

@@ -21,16 +21,16 @@
             <column name="jednotka" sql-type="varchar(20)" length="20"/>
         </property>
         <property name="datumExpiracie">
-            <column name="datum_expiracie" sql-type="date" not-null="true"/>
+            <column name="datum_expiracie" sql-type="date"/>
         </property>
         <property name="znacka">
-            <column name="znacka" sql-type="varchar(30)" length="30" not-null="true"/>
+            <column name="znacka" sql-type="varchar(30)" length="30"/>
         </property>
         <property name="serioveCislo">
-            <column name="seriove_cislo" sql-type="varchar(30)" length="30" not-null="true"/>
+            <column name="seriove_cislo" sql-type="varchar(30)" length="30"/>
         </property>
         <property name="popis">
-            <column name="popis" sql-type="varchar(4000)" length="4000" not-null="true"/>
+            <column name="popis" sql-type="varchar(4000)" length="4000"/>
         </property>
     </class>
 </hibernate-mapping>

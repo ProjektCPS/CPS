@@ -195,7 +195,7 @@
     </div>
     <div class="col-md-2">
         <div class="container-button m-b-20">
-            <a href="./AddOrUpdateProduct.jsp">
+            <a href="./product?productCategoryId=${productCategoryId}">
                 <button class="ui labeled inverted green icon button  zelenac">
                     <div class="middle">
                         <i class="fa fa-plus"></i>
@@ -284,14 +284,12 @@
                 </div>
                 <div class="col-md-3 p-r-0 flex-c-t">
                     <div class="container-button m-t-78">
-                        <a href="./AddOrUpdateProduct.jsp">
-                            <button class="ui labeled inverted green icon button  zelenac">
-                                <div class="middle">
-                                    <i class="fa fa-plus"></i>
-                                    Pridaj
-                                </div>
-                            </button>
-                        </a>
+                        <button id="apply-discount" class="ui labeled inverted green icon button  zelenac">
+                            <div class="middle">
+                                <i class="fa fa-plus"></i>
+                                Pridaj
+                            </div>
+                        </button>
                     </div>
                 </div>
             </div>

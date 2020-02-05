@@ -179,6 +179,15 @@
     </servlet>
 
     <servlet-mapping>
+        <servlet-name>productController</servlet-name>
+        <url-pattern>/account/product</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>productController</servlet-name>
+        <servlet-class>controllers.productController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
         <servlet-name>discountTypeController</servlet-name>
         <url-pattern>/account/discout-type</url-pattern>
     </servlet-mapping>

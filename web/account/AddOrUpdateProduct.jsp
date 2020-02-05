@@ -12,7 +12,7 @@
   <jsp:attribute name="content">
 <html>
 <header>
-    <script src="../../js/AddOrUpdateProduct.js"></script>
+    <script src="../js/products/AddOrUpdateProduct.js"></script>
 </header>
 <body>
 <div class="ui form container m-t-15 p-t-15 p-b-15">
@@ -21,14 +21,15 @@
         <h3 class="ui dividing header">Pridanie produktu</h3>
         <div class="two fields">
             <div class="field required">
-                <label>Názov produktu <i class="red-star">*</i></label>
-                <input type="text" name="nazov" placeholder="Názov"
+                <label>Názov produktu</label>
+                <input type="text" name="name" placeholder="Názov"
                        value="${account != null ? account.uzivatel : ''}">
             </div>
 
             <div class="field required">
-                <label>Jednotka <i class="red-star">*</i></label>
+                <label>Jednotka</label>
                 <div class="ui fluid search selection dropdown">
+                    <input type="hidden" name="unit" value="${account != null ? account.tenantId : ''}">
                     <i class="dropdown icon"></i>
                     <div class="default text">ks</div>
                     <div class="menu">
@@ -47,8 +48,8 @@
                 <input type="text" name="brand" placeholder="Názov firmy">
             </div>
             <div class="field required">
-                <label>Cena <i class="red-star">*</i></label>
-                <input type="number" name="cena" placeholder="50 ">
+                <label>Cena</label>
+                <input type="number" name="price" placeholder="50 ">
             </div>
         </div>
 
@@ -67,18 +68,15 @@
 
         <label>Description</label>
         <div class="fields">
-                <input type="text" name="description" placeholder="Detailne popiš svoj product"
-                       value="${account != null ? account.email : ''}">
+            <input type="text" name="description" placeholder="Detailne popiš svoj product"
+                   value="${account != null ? account.email : ''}">
         </div>
     </div>
 
     <div class="modal-footer">
-        <a href="./products">
-            <div class="ui inverted blue button">Zrušiť</div>
-        </a>
+            <div id="discard" class="ui inverted blue button">Zrušiť</div>
         <div id="product-save" class="ui positive button">Uložiť</div>
     </div>
-
 </div>
 </body>
 </html>

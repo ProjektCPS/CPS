@@ -1,8 +1,10 @@
 jQuery(document).ready(function ($) {
-    init();
 
     //save
     $('#product-save').click(onAccountSave);
+
+    //discard
+    $('#discard').click(onDiscard);
 });
 
 function isUpdate() {
@@ -15,14 +17,14 @@ function updateAccount(id) {
     console.log(data);
     $.ajax({
         type: "POST",
-        url: '../../account/products?productId=' + id,
+        url: '../../account/product?productId=' + id,
         data: data,
         beforeSend: function() {
             console.log("beforeSend");
         },
         success: function (response) {
             alert("updated");
-            window.location.href = "./accounts";
+            goBackAndReloadPage();
         },
         error: function (err) {
             console.log(err);
@@ -39,14 +41,14 @@ function insertAccount() {
     let data = getData();
     $.ajax({
         type: "POST",
-        url: '../../account/products',
+        url: '../../account/product',
         data: data,
         beforeSend: function() {
             console.log("beforeSend");
         },
         success: function (response) {
             alert("inserted");
-            window.location.href = "./accounts";
+            goBackAndReloadPage();
         },
         error: function (err) {
             console.log(err);
@@ -58,6 +60,10 @@ function insertAccount() {
     })
     ;
 }
+
+onDiscard = function () {
+    goBackAndReloadPage();
+};
 
 onAccountSave = function () {
     let validateResults = validateAll();
@@ -88,6 +94,11 @@ function getData() {
             value: $(item).find("input").val().trim()
         }
     });
+
+    data.push({
+       name: "categoryId",
+        value: getParamFromUrl("productCategoryId")
+    });
     return data;
 }
 
@@ -105,22 +116,17 @@ function validateAll() {
         $(item).removeClass("error");
 
         switch (itemInput.attr("name")) {
-            case "nazov":
+            case "name":
                 if (itemValue === "") {
-                    messages.push("Vyplňte tenanta")
+                    messages.push("Vyplňte nazov produktu")
                 }
                 break;
-            case "jednotka":
+            case "unit":
                 if (itemValue === "") {
-                    messages.push("Vyplňte krstné meno")
+                    messages.push("Vyplňte jednotku")
                 }
                 break;
-            case "last-name":
-                if (itemValue === "") {
-                    messages.push("Vyplňte priezvisko")
-                }
-                break;
-            case "cena":
+            case "price":
                 if (itemValue === "") {
                     messages.push("Vyplňte cenu")
                 }
