@@ -1,6 +1,8 @@
 package controllers;
 
+import com.google.gson.Gson;
 import config.Constants;
+import entities.PredmetPredajaEntity;
 import services.BaseService;
 import services.BaseServiceImplement;
 import utilities.Validator;
@@ -21,11 +23,23 @@ public class productController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String productCategoryId = request.getParameter("productCategoryId") != null ? request.getParameter("productCategoryId").trim() : null;
+        String productId = request.getParameter("productId") != null ? request.getParameter("productId").trim() : null;
 
-        if (Validator.isStringNullOrEmpty(productCategoryId) || !Validator.isStringNumber(productCategoryId)) {
+        HttpSession currentSession = request.getSession(false);
+        BaseService baseService = new BaseServiceImplement((Integer) currentSession.getAttribute(Constants.TENANT_ID));
+
+        if (Validator.isStringNullOrEmpty(productCategoryId) || !Validator.isStringNumber(productCategoryId)
+                || Validator.isStringNullOrEmpty(productId) || !Validator.isStringNumber(productId)) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             request.getRequestDispatcher("/account/home.jsp").forward(request, response);
         } else {
+            PredmetPredajaEntity predmetPredajaEntity = baseService.getProductById(Integer.parseInt(productId));
+            String json = new Gson().toJson(predmetPredajaEntity);
+
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(json);
+
             request.setAttribute("productCategoryId", productCategoryId);
             request.getRequestDispatcher("/account/AddOrUpdateProduct.jsp").forward(request, response);
         }

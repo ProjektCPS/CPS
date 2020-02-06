@@ -1255,6 +1255,39 @@ public class BaseDaoImplement implements BaseDao {
         return response;
     }
 
+    @Override
+    public PredmetPredajaEntity getProductById(int productId) {
+        Session session = HibernateUtil.getSessionByTenant(getStringId());
+
+        PredmetPredajaEntity predmetPredaja = null;
+        if (session != null) {
+            try {
+                CriteriaBuilder builder = session.getCriteriaBuilder();
+
+                CriteriaQuery<PredmetPredajaEntity> criteriaQuery = builder.createQuery(PredmetPredajaEntity.class);
+                Root<PredmetPredajaEntity> typeRoot = criteriaQuery.from(PredmetPredajaEntity.class);
+                criteriaQuery.select(typeRoot)
+                        .where(builder.equal(typeRoot.get("idPredmetu"), productId));
+
+                predmetPredaja = session.createQuery(criteriaQuery).getSingleResult();
+            } catch (NoResultException exception) {
+                System.out.println("Predmet not found"
+                        + exception.getMessage());
+                return null;
+            } catch (Exception exception) {
+                System.out.println("Exception occred while reading user data: "
+                        + exception.getMessage());
+                return null;
+            } finally {
+                session.close();
+            }
+
+        } else {
+            System.out.println("DB server down.....");
+        }
+        return predmetPredaja;
+    }
+
     private PredmetPredajaEntity prepareProduct(Map<String,String> data) {
         PredmetPredajaEntity newProduct = new PredmetPredajaEntity();
         newProduct.setIdKategorie(Integer.parseInt(data.get("categoryId")));

@@ -149,4 +149,9 @@ public class BaseServiceImplement implements BaseService {
     public Map<String, String> updateProduct(int productIdNumber, Map<String, String> data) {
         return baseDao.updateProduct(productIdNumber, data);
     }
+
+    @Override
+    public PredmetPredajaEntity getProductById(int productId) {
+        return baseDao.getProductById(productId);
+    }
 }

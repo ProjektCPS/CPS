@@ -61,4 +61,6 @@ public interface BaseDao {
     Map<String,String> insertProduct(Map<String,String> data);
 
     Map<String,String> updateProduct(int productIdNumber, Map<String,String> data);
+
+    PredmetPredajaEntity getProductById(int productId);
 }
