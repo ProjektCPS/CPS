@@ -25,23 +25,31 @@ public class productController extends HttpServlet {
         String productCategoryId = request.getParameter("productCategoryId") != null ? request.getParameter("productCategoryId").trim() : null;
         String productId = request.getParameter("productId") != null ? request.getParameter("productId").trim() : null;
 
-        HttpSession currentSession = request.getSession(false);
-        BaseService baseService = new BaseServiceImplement((Integer) currentSession.getAttribute(Constants.TENANT_ID));
-
-        if (Validator.isStringNullOrEmpty(productCategoryId) || !Validator.isStringNumber(productCategoryId)
-                || Validator.isStringNullOrEmpty(productId) || !Validator.isStringNumber(productId)) {
+        if (Validator.isStringNullOrEmpty(productCategoryId) || !Validator.isStringNumber(productCategoryId)) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            request.getRequestDispatcher("/account/home.jsp").forward(request, response);
-        } else {
-            PredmetPredajaEntity predmetPredajaEntity = baseService.getProductById(Integer.parseInt(productId));
-            String json = new Gson().toJson(predmetPredajaEntity);
+        } else if (productId != null) {
+            // chcem produkt podla id z databazy
+            if (Validator.isStringNullOrEmpty(productId) || !Validator.isStringNumber(productId)) {
+                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            } else {
+                HttpSession currentSession = request.getSession(false);
+                BaseService baseService = new BaseServiceImplement((Integer) currentSession.getAttribute(Constants.TENANT_ID));
+                PredmetPredajaEntity predmetPredajaEntity = baseService.getProductById(Integer.parseInt(productId));
 
-            response.setContentType("application/json");
-            response.setCharacterEncoding("UTF-8");
-            response.getWriter().write(json);
+                if (predmetPredajaEntity == null) {
+                    response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+                } else {
+                    request.setAttribute("product", predmetPredajaEntity);
+                }
+            }
+        }
 
+        if (response.getStatus() != HttpServletResponse.SC_OK) {
+            request.setAttribute("responseCode", response.getStatus());
+            request.getRequestDispatcher("/account/errorPage.jsp").forward(request, response);
+        } else { // chcem pridavat produkt takze na clenta poslem len productcategoryId
             request.setAttribute("productCategoryId", productCategoryId);
-            request.getRequestDispatcher("/account/AddOrUpdateProduct.jsp").forward(request, response);
+            request.getRequestDispatcher("/account/product.jsp").forward(request, response);
         }
     }
 
@@ -62,7 +70,8 @@ public class productController extends HttpServlet {
                 || Validator.isStringNullOrEmpty(categoryId)
                 || !Validator.isStringDouble(price)
                 || !Validator.isStringNumber(categoryId)
-                || Double.parseDouble(price) < 0 || Integer.parseInt(categoryId) < 1)  {
+                || Double.parseDouble(price) < 0
+                || Integer.parseInt(categoryId) < 1) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return;
         }

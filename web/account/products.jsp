@@ -209,14 +209,12 @@
                     Odstran
                 </div>
             </button>
-            <a href="./AddOrUpdateProduct.jsp">
-                <button class="ui labeled inverted green icon button belasa">
-                    <div class="middle">
-                        <i class="fa fa-plus"></i>
-                        Edituj
-                    </div>
-                </button>
-            </a>
+            <button id="edit-product" class="ui labeled blue inverted icon button belasa">
+                <div class="middle">
+                    <i class="fa fa-plus"></i>
+                    Edituj
+                </div>
+            </button>
             <button id="edit-discounts" class="ui labeled blue inverted icon button belasa">
                 <div class="middle">
                     <i class="fa fa-percent"></i>

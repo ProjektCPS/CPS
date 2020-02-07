@@ -8,7 +8,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="mt" tagdir="/WEB-INF/tags" %>
-<mt:mainTamplate title="Detail účtu">
+<mt:mainTamplate title="Produkt">
   <jsp:attribute name="content">
 <html>
 <header>
@@ -23,13 +23,13 @@
             <div class="field required">
                 <label>Názov produktu</label>
                 <input type="text" name="name" placeholder="Názov"
-                       value="${account != null ? account.uzivatel : ''}">
+                       value="${product != null ? product.nazov : ''}">
             </div>
 
             <div class="field required">
                 <label>Jednotka</label>
                 <div class="ui fluid search selection dropdown">
-                    <input type="hidden" name="unit" value="${account != null ? account.tenantId : ''}">
+                    <input type="hidden" name="unit" value="${product != null ? product.jednotka : ''}">
                     <i class="dropdown icon"></i>
                     <div class="default text">ks</div>
                     <div class="menu">
@@ -45,11 +45,11 @@
         <div class="two fields">
             <div class="field">
                 <label>Značka</label>
-                <input type="text" name="brand" placeholder="Názov firmy">
+                <input type="text" name="brand" placeholder="Názov firmy" value="${product != null ? product.znacka : ''}">
             </div>
             <div class="field required">
                 <label>Cena</label>
-                <input type="number" name="price" placeholder="50 ">
+                <input type="number" name="price" placeholder="50" value="${product != null ? product.cena : ''}">
             </div>
         </div>
 
@@ -57,19 +57,19 @@
             <div class="field">
                 <label>Seriové číslo</label>
                 <input type="text" name="serial-number" placeholder="Seriove čislo"
-                       value="${person != null ? person.meno : ''}">
+                       value="${product != null ? product.serioveCislo : ''}">
             </div>
             <div class="field">
                 <label>Datum expirácie</label>
                 <input type="text" name="date-expiracion" placeholder="01.01.2020"
-                       value="${person != null ? person.priezvisko : ''}">
+                       value="${product != null ? product.datumExpiracie : ''}">
             </div>
         </div>
 
         <label>Description</label>
-        <div class="fields">
+        <div class="field">
             <input type="text" name="description" placeholder="Detailne popiš svoj product"
-                   value="${account != null ? account.email : ''}">
+                   value="${product != null ? product.popis : ''}">
         </div>
     </div>
 
