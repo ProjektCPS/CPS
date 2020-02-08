@@ -156,6 +156,7 @@
                 <th>Seriové číslo</th>
                 <th>Jednotka</th>
                 <th>Cena</th>
+                <th>Cena po aplikovani zliav</th>
                 <th class="center aligned">Zľavy produktu</th>
                 </thead>
                 <tbody>
@@ -166,6 +167,7 @@
                     <td>${product.product.serioveCislo}</td>
                     <td>${product.product.jednotka}</td>
                     <td>${product.product.cena}</td>
+                    <td>${product.afterDiscountsPrice}</td>
                     <td class="center aligned">
                     <c:forEach items="${product.appliedDiscountTypes}" var="item">
                          <c:choose>

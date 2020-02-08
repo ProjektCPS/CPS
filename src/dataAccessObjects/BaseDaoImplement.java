@@ -18,6 +18,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static utilities.Converter.round;
 
 public class BaseDaoImplement implements BaseDao {
     private int tenantId;
@@ -243,7 +246,8 @@ public class BaseDaoImplement implements BaseDao {
                 List<PredmetPredajaEntity> response = session.createQuery(criteriaQuery).getResultList();
                 response.forEach(product -> {
                     List<String> appliedDiscountTypes = getAppliedDiscountTypes(product.getIdPredmetu(), AppliedDiscountTypes.product);
-                    list.add(new Product(product, !appliedDiscountTypes.isEmpty(), appliedDiscountTypes));
+                    double afterDiscountsPrice = getAfterDiscountsPrice(product);
+                    list.add(new Product(product, !appliedDiscountTypes.isEmpty(), appliedDiscountTypes, afterDiscountsPrice));
                 });
             } catch (NoResultException exception) {
                 System.out.println("Object not found"
@@ -263,10 +267,33 @@ public class BaseDaoImplement implements BaseDao {
         return list;
     }
 
+    private double getAfterDiscountsPrice(PredmetPredajaEntity product) {
+        List<Discount> appliedDiscountsByCategory = getAppliedDiscounts(product.getIdKategorie(), AppliedDiscountTypes.productCategory);
+        List<Discount> appliedDiscountsByProduct = getAppliedDiscounts(product.getIdPredmetu(), AppliedDiscountTypes.product);
+        List<Discount> allAppliedDiscounts = Stream.concat(appliedDiscountsByCategory.stream(), appliedDiscountsByProduct.stream()).collect(Collectors.toList());
+
+        double originalPrice = product.getCena();
+        double discountPrice = 0;
+        for (Discount discount : allAppliedDiscounts) {
+            if (discount.getCenovaZlavaEntity() != null) {
+                discountPrice = discountPrice + discount.getCenovaZlavaEntity().getHodnotaZlavy();
+            } else if (discount.getPercentualnaZlavaEntity() != null) {
+                discountPrice = discountPrice + (discount.getPercentualnaZlavaEntity().getPercentZlavy() / 100 * originalPrice);
+            } else if (discount.getKvantitovaZlavaEntity() != null) {
+               // TODO:
+            } else if (discount.getDatumovaZlavaEntity() != null) {
+                //TODO:
+            }
+        }
+        final double defaultResult = 0.01;
+        double result = originalPrice - discountPrice;
+        return result > 0 ? round(result, 2) : defaultResult;
+    }
+
     @Override
     public List<String> getAppliedDiscountTypes(int id, AppliedDiscountTypes appliedDiscountType) {
-       List<Discount> appliedDiscounts = getAppliedDiscounts(id, appliedDiscountType);
-      return appliedDiscounts
+        List<Discount> appliedDiscounts = getAppliedDiscounts(id, appliedDiscountType);
+        return appliedDiscounts
                 .stream()
                 .map(
                         item -> {
@@ -877,7 +904,7 @@ public class BaseDaoImplement implements BaseDao {
                 .collect(Collectors.toList());
 
         String excludedDiscountsResponse = removeAppliedDiscounts(excludedDiscounts).get("err");
-        if(excludedDiscountsResponse != null) {
+        if (excludedDiscountsResponse != null) {
             response.put("err", excludedDiscountsResponse);
         }
 
@@ -913,7 +940,7 @@ public class BaseDaoImplement implements BaseDao {
     private Map<String, String> removeAppliedDiscounts(List<KumulaciaZliavEntity> excludedDiscountsIds) {
         Map<String, String> response = new HashMap<>();
 
-        excludedDiscountsIds.forEach( item -> {
+        excludedDiscountsIds.forEach(item -> {
             try (Session session = HibernateUtil.getSessionByTenant(getStringId())) {
 
                 System.out.println("Deleting plikovanu zlavu s id: " + item.getIdZlavy());
@@ -1288,7 +1315,7 @@ public class BaseDaoImplement implements BaseDao {
         return predmetPredaja;
     }
 
-    private PredmetPredajaEntity prepareProduct(Map<String,String> data) {
+    private PredmetPredajaEntity prepareProduct(Map<String, String> data) {
         PredmetPredajaEntity newProduct = new PredmetPredajaEntity();
         newProduct.setIdKategorie(Integer.parseInt(data.get("categoryId")));
         newProduct.setCena(Double.parseDouble(data.get("price")));
