@@ -154,4 +154,14 @@ public class BaseServiceImplement implements BaseService {
     public PredmetPredajaEntity getProductById(int productId) {
         return baseDao.getProductById(productId);
     }
+
+    @Override
+    public List<Product> getProductAllProduct() {
+        return baseDao.getProductAllProducts();
+    }
+
+    @Override
+    public Map<String, String> deleteProduct(Integer id) {
+        return baseDao.deleteProduct(id);
+    }
 }

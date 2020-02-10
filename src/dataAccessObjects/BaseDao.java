@@ -63,4 +63,8 @@ public interface BaseDao {
     Map<String,String> updateProduct(int productIdNumber, Map<String,String> data);
 
     PredmetPredajaEntity getProductById(int productId);
+
+    List<Product> getProductAllProducts();
+
+    Map<String,String> deleteProduct(Integer id);
 }

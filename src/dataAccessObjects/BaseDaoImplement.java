@@ -163,7 +163,7 @@ public class BaseDaoImplement implements BaseDao {
                         + exception.getMessage());
                 return null;
             } catch (Exception exception) {
-                System.out.println("Exception occred while reading user data: "
+                System.out.println("Exception occred while reading category data: "
                         + exception.getMessage());
                 return null;
             } finally {
@@ -1253,7 +1253,7 @@ public class BaseDaoImplement implements BaseDao {
         } catch (Exception exception) {
             System.out.println("Exception occurred while reading product data: "
                     + exception.getMessage());
-            response.put("err", "Nepodarilo sa vlozit product.");
+                response.put("err", "Nepodarilo sa vlozit product.");
             return response;
         }
 
@@ -1315,7 +1315,83 @@ public class BaseDaoImplement implements BaseDao {
         return predmetPredaja;
     }
 
-    private PredmetPredajaEntity prepareProduct(Map<String, String> data) {
+    @Override
+    public List<Product> getProductAllProducts() {
+        Session session = HibernateUtil.getSessionByTenant(getStringId());
+        List<Product> list = new ArrayList<>();
+        if (session != null) {
+            try {
+                CriteriaBuilder builder = session.getCriteriaBuilder();
+
+                // Using FROM and JOIN
+                CriteriaQuery<PredmetPredajaEntity> criteriaQuery = builder.createQuery(PredmetPredajaEntity.class);
+                Root<PredmetPredajaEntity> predmetRoot = criteriaQuery.from(PredmetPredajaEntity.class);
+                Root<KategorieEntity> catRoot = criteriaQuery.from(KategorieEntity.class);
+
+                criteriaQuery.select(predmetRoot);
+
+                List<PredmetPredajaEntity> response = session.createQuery(criteriaQuery).getResultList();
+                response.forEach(product -> {
+                    double afterDiscountsPrice = getAfterDiscountsPrice(product);
+                    List<String> appliedDiscountTypes = getAppliedDiscountTypes(product.getIdPredmetu(), AppliedDiscountTypes.product);
+                    list.add(new Product(product, !appliedDiscountTypes.isEmpty(), appliedDiscountTypes, afterDiscountsPrice));
+                });
+            } catch (NoResultException exception) {
+                System.out.println("Object not found"
+                        + exception.getMessage());
+                return null;
+            } catch (Exception exception) {
+                System.out.println("Exception occred while reading user data: "
+                        + exception.getMessage());
+                return null;
+            } finally {
+                session.close();
+            }
+
+        } else {
+            System.out.println("DB server down.....");
+        }
+        return list;
+    }
+
+    @Override
+    public Map<String, String> deleteProduct(Integer id) {
+        Map<String, String> response = new HashMap<>();
+        try (Session session = HibernateUtil.getSessionByTenant(getStringId())) {
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+
+            // Using FROM and JOIN
+            CriteriaQuery<PredmetPredajaEntity> criteriaQuery = builder.createQuery(PredmetPredajaEntity.class);
+            Root<PredmetPredajaEntity> typeRoot = criteriaQuery.from(PredmetPredajaEntity.class);
+            criteriaQuery.select(typeRoot)
+                    .where(builder.equal(typeRoot.get("idPredmetu"), id));
+
+            CriteriaQuery<KumulaciaZliavEntity> criteriaQueryDiscount = builder.createQuery(KumulaciaZliavEntity.class);
+            Root<KumulaciaZliavEntity> usedInDiscount = criteriaQueryDiscount.from(KumulaciaZliavEntity.class);
+            criteriaQueryDiscount.select(usedInDiscount)
+                    .where(builder.equal(usedInDiscount.get("idPredmetu"), id));
+
+            KumulaciaZliavEntity productDiscount = session.createQuery(criteriaQueryDiscount).getSingleResult();
+            if (productDiscount != null) {
+                response.put("conflict", "Produkt " + id + " je referencovany v ostanych tabulkach");
+                return response;
+            }
+
+            PredmetPredajaEntity product = session.createQuery(criteriaQuery).getSingleResult();
+            System.out.println("Deleting: " + product.getNazov());
+            session.beginTransaction();
+            session.delete(product);
+            session.getTransaction().commit();
+        } catch (Exception exception) {
+            System.out.println("Exception occurred while trying delete discout type: "
+                    + exception.getMessage());
+            response.put("err", "Nepodarilo sa vymazat zlavu.");
+            return response;
+        }
+        return response;
+    }
+
+    private PredmetPredajaEntity prepareProduct(Map<String,String> data) {
         PredmetPredajaEntity newProduct = new PredmetPredajaEntity();
         newProduct.setIdKategorie(Integer.parseInt(data.get("categoryId")));
         newProduct.setCena(Double.parseDouble(data.get("price")));

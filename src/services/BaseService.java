@@ -68,4 +68,8 @@ public interface BaseService {
     Map<String,String> updateProduct(int productIdNumber, Map<String,String> data);
 
     PredmetPredajaEntity getProductById(int productId);
+
+    List<Product> getProductAllProduct();
+
+    Map<String,String> deleteProduct(Integer id);
 }
