@@ -6,6 +6,7 @@ let productDiscounts = function ($) {
     const TABLE_ID = "#discounts-table";
     const TABLE_PRODUCTS_ID = "#products-table";
     const APPLY_BUTTON_ID = "#apply-discount";
+    const AFTER_DISCOUNTS_PRICE_PREVIEW = "#price-after-discounts";
 
     const ENDPOINT_TYPES = [
         "discountsAsync",
@@ -34,6 +35,7 @@ let productDiscounts = function ($) {
     );
 
     let productId;
+    let originalPrice;
 
     function createTable(response) {
         table.clear();
@@ -75,6 +77,16 @@ let productDiscounts = function ($) {
             ]);
         });
         table.draw();
+    }
+
+    function showAfterDiscountsPrice(afterDiscountsPrice) {
+        $(AFTER_DISCOUNTS_PRICE_PREVIEW).empty();
+        $(AFTER_DISCOUNTS_PRICE_PREVIEW).parent().removeClass('text-red');
+
+        $(AFTER_DISCOUNTS_PRICE_PREVIEW).append(afterDiscountsPrice);
+        if (afterDiscountsPrice <= 0) {
+            $(AFTER_DISCOUNTS_PRICE_PREVIEW).parent().addClass('text-red');
+        }
     }
 
     function fillAppliedDiscounts(response) {
@@ -119,7 +131,9 @@ let productDiscounts = function ($) {
             getAppliedDiscounts(productId, (response) => {
                 fillAppliedDiscounts(response);
                 showModal()
-            })
+            });
+            showAfterDiscountsPrice(getPriceAfterDiscountsBySelectedProductRow());
+            originalPrice = getOriginalPriceBySelectedProductRow();
         } else {
             alert(warningMessages.selectRow);
         }
@@ -129,6 +143,18 @@ let productDiscounts = function ($) {
         let selectedRow = $(TABLE_PRODUCTS_ID + " tr.selected");
 
         return selectedRow.data("id");
+    }
+
+    function getPriceAfterDiscountsBySelectedProductRow() {
+        let selectedRow = $(TABLE_PRODUCTS_ID + " tr.selected");
+
+        return selectedRow.data("price-after-discounts");
+    }
+
+    function getOriginalPriceBySelectedProductRow() {
+        let selectedRow = $(TABLE_PRODUCTS_ID + " tr.selected");
+
+        return selectedRow.data("original-price");
     }
 
     function getDiscountsByType(type, callback) {
@@ -195,8 +221,34 @@ let productDiscounts = function ($) {
         }
     }
 
-    function odDeleteAppliedDiscount() {
+    function onDeleteAppliedDiscount() {
+        let rowData = new RowDataDiscount($(this).parent().data('id'), null, $(this).parent().data('value'), null, null, getDiscountTypeName($(this).parent().data('type')));
+        calculateAndShowPrice(rowData, false);
         $(this).parent().remove();
+    }
+
+    function calculateAndShowPrice(rowData, applyDiscount) {
+        let discountPrice = 0;
+
+        switch (rowData.discountType) {
+            case constants.priceDiscount:
+                discountPrice = discountPrice + rowData.value;
+                break;
+            case constants.percentDiscount:
+                discountPrice = discountPrice + (rowData.value / 100 * originalPrice);
+                break;
+            case constants.dateDiscount:
+                // TODO
+                break;
+            case constants.quantityDiscount:
+                // TODO
+                break;
+        }
+
+        let calculatedDiscount = parseFloat($(AFTER_DISCOUNTS_PRICE_PREVIEW).text());
+
+        let result = applyDiscount ? calculatedDiscount - discountPrice : calculatedDiscount + discountPrice;
+        showAfterDiscountsPrice(result.toFixed(2));
     }
 
     function applyDiscount(rowData) {
@@ -210,7 +262,8 @@ let productDiscounts = function ($) {
             alert(" Zľava typu: " + rowData.discountTypeFormatted + " je už aplikovaná.")
         } else {
             let appliedDiscountsBox = $(APPLIED_DISCOUNTS_CONTAINER_ID);
-            appliedDiscountsBox.append(createDiscountTag(rowData))
+            appliedDiscountsBox.append(createDiscountTag(rowData));
+            calculateAndShowPrice(rowData, true);
         }
     }
 
@@ -219,6 +272,7 @@ let productDiscounts = function ($) {
         tag.addClass("ui label customTag");
         tag.data('id', rowData.id);
         tag.data('type', rowData.discountType);
+        tag.data('value', rowData.value);
 
         let icon = $("<i></i>");
         icon.addClass("delete icon");
@@ -253,7 +307,9 @@ let productDiscounts = function ($) {
     }
 
     function onApproveModalDetail() {
-
+        if ($(AFTER_DISCOUNTS_PRICE_PREVIEW).text() <= 0) {
+            alert("Cena je záporná a preto bude nastavená ako 0.01€");
+        }
         updateCategoryDiscounts(productId);
     }
 
@@ -266,16 +322,16 @@ let productDiscounts = function ($) {
         let name = "Neznáma";
         switch (discountType) {
             case constants.priceDiscount:
-                name = "Cenová";
+                name = constants.priceDiscountName;
                 break;
             case constants.percentDiscount:
-                name = "Percentuálna";
+                name = constants.percentDiscountName;
                 break;
             case constants.dateDiscount:
-                name = "Dátumová";
+                name = constants.dateDiscountName;
                 break;
             case constants.quantityDiscount:
-                name = "Kvatitová";
+                name = constants.quantityDiscountName;
                 break;
         }
 
@@ -330,7 +386,7 @@ let productDiscounts = function ($) {
     });
 
     $(APPLY_BUTTON_ID).click(onApply);
-    $(APPLIED_DISCOUNTS_CONTAINER_ID).on("click", DELETE_APPLIED_DISCOUNT_SELECTOR, odDeleteAppliedDiscount);
+    $(APPLIED_DISCOUNTS_CONTAINER_ID).on("click", DELETE_APPLIED_DISCOUNT_SELECTOR, onDeleteAppliedDiscount);
 
     createDropdown();
 };

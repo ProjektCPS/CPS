@@ -47,7 +47,7 @@ public class productController extends HttpServlet {
         if (response.getStatus() != HttpServletResponse.SC_OK) {
             request.setAttribute("responseCode", response.getStatus());
             request.getRequestDispatcher("/account/errorPage.jsp").forward(request, response);
-        } else { // chcem pridavat produkt takze na clenta poslem len productcategoryId
+        } else { // chcem pridavat produkt takze na clienta poslem len productcategoryId
             request.setAttribute("productCategoryId", productCategoryId);
             request.getRequestDispatcher("/account/product.jsp").forward(request, response);
         }

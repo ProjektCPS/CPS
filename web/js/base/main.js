@@ -68,7 +68,6 @@ class RowDataDiscount {
         this._discountTypeFormatted = discountTypeFormatted;
     }
 
-
     get id() {
         return this._id;
     }

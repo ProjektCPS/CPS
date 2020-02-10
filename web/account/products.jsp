@@ -161,13 +161,13 @@
                 </thead>
                 <tbody>
                 <c:forEach items="${productsItems}" var="product">
-                <tr data-id=${product.product.idPredmetu}>
+                <tr data-id=${product.product.idPredmetu} data-original-price=${product.product.cena} data-price-after-discounts=${product.afterDiscountsPrice}>
                     <td class="left aligned">${product.product.nazov}</td>
                     <td>${product.product.znacka}</td>
                     <td>${product.product.serioveCislo}</td>
                     <td>${product.product.jednotka}</td>
                     <td>${product.product.cena}</td>
-                    <td>${product.afterDiscountsPrice}</td>
+                    <td>${product.afterDiscountsPriceNonNegative}</td>
                     <td class="center aligned">
                     <c:forEach items="${product.appliedDiscountTypes}" var="item">
                          <c:choose>
@@ -294,32 +294,41 @@
                 </div>
             </div>
         </div>
-        <h4 class="ui header">Applikované zľavy katategórie</h4>
-        <div>
-             <c:forEach items="${appliedCategoryDiscounts}" var="appliedDiscountCategory">
-                <a class="ui label red customTag">
-                    <i>${appliedDiscountCategory.typZlavyEntity.nazovTypu}</i>
-                    <i> - </i>
-                    <i>${appliedDiscountCategory.cenovaZlavaEntity != null ? appliedDiscountCategory.cenovaZlavaEntity.hodnotaZlavy :
-                            appliedDiscountCategory.percentualnaZlavaEntity != null ? appliedDiscountCategory.percentualnaZlavaEntity.percentZlavy :
-                                    appliedDiscountCategory.kvantitovaZlavaEntity != null ? appliedDiscountCategory.kvantitovaZlavaEntity.mnozstvo :
-                                            appliedDiscountCategory.datumovaZlavaEntity != null ? appliedDiscountCategory.datumovaZlavaEntity.den : "-"}</i>
-                    <i> ( </i>
-                    <i>${appliedDiscountCategory.cenovaZlavaEntity != null ? "Hodnota zlavy" :
-                            appliedDiscountCategory.percentualnaZlavaEntity != null ? "Počet percent" :
-                                    appliedDiscountCategory.kvantitovaZlavaEntity != null ?  "Množstvo" :
-                                            appliedDiscountCategory.datumovaZlavaEntity != null ? "Počet dní" : "Hodnota"}</i>
-                    <i> ) </i>
-                </a>
-             </c:forEach>
-        </div>
-        <c:choose>
-            <c:when test="${appliedCategoryDiscountsTypes != '[]'}">
-                <div class="ui section divider"></div>
-                <h4 class="ui header">Applikované zľavy produktu</h4>
-            </c:when>
-        </c:choose>
-        <div id="applied-discounts">
+        <div class="container-fluid">
+            <div class="row dis-flex">
+                <div class="col-md-9 p-l-0">
+                    <div>
+                         <c:choose>
+                            <c:when test="${appliedCategoryDiscountsTypes != '[]'}">
+                                <h4 class="ui header">Applikované zľavy katategórie</h4>
+                                <div class="ui section divider"></div>
+                            </c:when>
+                         </c:choose>
+                        <c:forEach items="${appliedCategoryDiscounts}" var="appliedDiscountCategory">
+                            <a class="ui label red customTag">
+                                <i>${appliedDiscountCategory.typZlavyEntity.nazovTypu}</i>
+                                <i> - </i>
+                                <i>${appliedDiscountCategory.cenovaZlavaEntity != null ? appliedDiscountCategory.cenovaZlavaEntity.hodnotaZlavy :
+                                        appliedDiscountCategory.percentualnaZlavaEntity != null ? appliedDiscountCategory.percentualnaZlavaEntity.percentZlavy :
+                                                appliedDiscountCategory.kvantitovaZlavaEntity != null ? appliedDiscountCategory.kvantitovaZlavaEntity.mnozstvo :
+                                                        appliedDiscountCategory.datumovaZlavaEntity != null ? appliedDiscountCategory.datumovaZlavaEntity.den : "-"}</i>
+                                <i> ( </i>
+                                <i>${appliedDiscountCategory.cenovaZlavaEntity != null ? "Hodnota zlavy" :
+                                        appliedDiscountCategory.percentualnaZlavaEntity != null ? "Počet percent" :
+                                                appliedDiscountCategory.kvantitovaZlavaEntity != null ?  "Množstvo" :
+                                                        appliedDiscountCategory.datumovaZlavaEntity != null ? "Počet dní" : "Hodnota"}</i>
+                                <i> ) </i>
+                            </a>
+                         </c:forEach>
+                    </div>
+                    <h4 class="ui header">Applikované zľavy produktu</h4>
+                    <div id="applied-discounts">
+                    </div>
+                </div>
+                <div class="col-md-3 p-r-0 flex-c-m">
+                    <span class="fs-50"><i id="price-after-discounts">-</i><i> €</i></span>
+                </div>
+            </div>
         </div>
     </div>
     <div class="actions">

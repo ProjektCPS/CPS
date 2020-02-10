@@ -267,6 +267,12 @@ public class BaseDaoImplement implements BaseDao {
         return list;
     }
 
+    private double getAfterDiscountsPriceNonNegative(PredmetPredajaEntity product) {
+        final double defaultResult = 0.01;
+        double result = getAfterDiscountsPrice(product);
+        return  result > 0 ? result : defaultResult;
+    }
+
     private double getAfterDiscountsPrice(PredmetPredajaEntity product) {
         List<Discount> appliedDiscountsByCategory = getAppliedDiscounts(product.getIdKategorie(), AppliedDiscountTypes.productCategory);
         List<Discount> appliedDiscountsByProduct = getAppliedDiscounts(product.getIdPredmetu(), AppliedDiscountTypes.product);
@@ -285,9 +291,9 @@ public class BaseDaoImplement implements BaseDao {
                 //TODO:
             }
         }
-        final double defaultResult = 0.01;
+
         double result = originalPrice - discountPrice;
-        return result > 0 ? round(result, 2) : defaultResult;
+        return round(result, 2);
     }
 
     @Override
