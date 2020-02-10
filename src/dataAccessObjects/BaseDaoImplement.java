@@ -1326,7 +1326,6 @@ public class BaseDaoImplement implements BaseDao {
                 // Using FROM and JOIN
                 CriteriaQuery<PredmetPredajaEntity> criteriaQuery = builder.createQuery(PredmetPredajaEntity.class);
                 Root<PredmetPredajaEntity> predmetRoot = criteriaQuery.from(PredmetPredajaEntity.class);
-                Root<KategorieEntity> catRoot = criteriaQuery.from(KategorieEntity.class);
 
                 criteriaQuery.select(predmetRoot);
 
