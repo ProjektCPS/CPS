@@ -22,7 +22,7 @@ let productDiscounts = function ($) {
         {
             "select": true,
             "paging": false,
-            "ordering": false,
+            "ordering": true,
             "info": false,
             "columnDefs": [
                 {

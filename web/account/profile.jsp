@@ -72,7 +72,7 @@
         <div class="col-md-6">
             <h2 class="ui header">
                 <div class="content">
-                    <i class="fa fa-2x fa-object-group"></i>
+                    <i class="fa fa-2x fa-cubes"></i>
                     Typy zliav
                 </div>
             </h2>

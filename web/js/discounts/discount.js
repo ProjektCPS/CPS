@@ -5,6 +5,16 @@ let Discount = function ($) {
     const EDIT_BUTTON_ID = "#edit-discount";
     const DELETE_BUTTON_ID = "#delete-discount";
     const NEW_BUTTON_ID = "#new-discount";
+    const SEARCHER_SELECTOR = ".searcher";
+
+    let table = $(TABLE_ID).DataTable(
+        {
+            "select": true,
+            "paging": false,
+            "ordering": true,
+            "info": false
+        }
+    );
 
     const ENDPOINT_TYPES = [
         "discount",
@@ -336,6 +346,14 @@ let Discount = function ($) {
         });
     };
 
+    function onSearch() {
+        let searchTerm = $(SEARCHER_SELECTOR + ' input').val();
+
+        let tableFilter = $(TABLE_ID + "_filter input");
+        tableFilter.val(searchTerm);
+        tableFilter.trigger('search');
+    }
+
     // listeners have to be on end of the file
     $(TABLE_ID + " tr").click(function () {
         $(this).addClass('selected').siblings().removeClass('selected');
@@ -356,4 +374,11 @@ let Discount = function ($) {
     $(EDIT_BUTTON_ID).click(onEdit);
 
     $(DELETE_BUTTON_ID).click(onDelete);
+
+    $(SEARCHER_SELECTOR).on("click", 'button', onSearch);
+    $(SEARCHER_SELECTOR).on("keypress", 'input', function (e) {
+        if (e.which === 13) {
+            onSearch();
+        }
+    });
 };

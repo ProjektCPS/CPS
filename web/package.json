@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "datatables.net": "^1.10.20",
+    "datatables.net-dt": "^1.10.20",
     "datatables.net-se": "^1.10.20",
     "semantic-ui-calendar": "0.0.8"
   }

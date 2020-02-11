@@ -1662,3 +1662,7 @@ button.ui.icon.edit:hover {
 .ui.ribbon.label.appliedDiscount {
     left: -14px;
 }
+
+.hiddenSearchBox .dataTables_filter {
+    display: none;
+}

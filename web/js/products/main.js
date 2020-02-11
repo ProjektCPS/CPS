@@ -3,6 +3,7 @@ jQuery(document).ready(function ($) {
     init();
 });
 
+const SEARCHER_SELECTOR = ".searcher";
 const TABLE_ID = "#products-table";
 const EDIT_PRODUCT_BUTTON_ID = "#edit-product";
 const PARAMS_URL = [
@@ -11,6 +12,16 @@ const PARAMS_URL = [
 ];
 
 function init() {
+
+    let table = $(TABLE_ID).DataTable(
+        {
+            "select": true,
+            "paging": false,
+            "ordering": true,
+            "info": false
+        }
+    );
+
     $("#products").addClass('highlighted');
 
     $(EDIT_PRODUCT_BUTTON_ID).click(onEdit);
@@ -19,6 +30,21 @@ function init() {
         // let row = table.row($(this)).data();
         $(this).addClass('selected').siblings().removeClass('selected');
     });
+
+    $(SEARCHER_SELECTOR).on("click", 'button', onSearch);
+    $(SEARCHER_SELECTOR).on("keypress", 'input', function (e) {
+        if (e.which === 13) {
+            onSearch();
+        }
+    });
+}
+
+function onSearch() {
+    let searchTerm = $(SEARCHER_SELECTOR + ' input').val();
+
+    let tableFilter = $(TABLE_ID + "_filter input");
+    tableFilter.val(searchTerm);
+    tableFilter.trigger('search');
 }
 
 const onEdit = function () {

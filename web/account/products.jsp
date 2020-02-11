@@ -23,132 +23,47 @@
             <div class="col-md-12">
                 <h1>Vyhľadávanie</h1>
                 <div class="ui action input searcher">
-                    <input type="text" placeholder="Search...">
+                    <input type="text" placeholder="Vyhľadaj...">
                     <button class="ui button black">
                         <i class="fa fa-search"></i>
                     </button>
                 </div>
             </div>
         </div>
-
-        <div class="row m-b-25">
-            <div class="col-md-12">
-                <div class="center-align">
-                    <a data-toggle="collapse" href="#filter-background" aria-expanded="false"
-                       aria-controls="filter-background">Pokročilé
-                        vyhľádavanie</a>
-                    <i class="fa fa-arrow-down"></i>
-                </div>
-            </div>
-        </div>
-
     </div>
 </div>
-<form id="filter-background" class="collapse" method="post">
-    <hr class="horizontal-separator">
-    <div class="row m-b-30">
-        <div class="col-md-3 m-b-10">
-            <div class="ui selection dropdown">
-                <input type="hidden" name="gender">
-                <i class="dropdown icon"></i>
-                <div class="default text">Značka</div>
-                <div class="menu">
-                    <div class="item" data-value="1">Male</div>
-                    <div class="item" data-value="0">Female</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3 m-b-5">
-            <div class="ui selection dropdown">
-                <input type="hidden" name="gender">
-                <i class="dropdown icon"></i>
-                <div class="default text">Cena</div>
-                <div class="menu">
-                    <div class="item" data-value="1">100- 200</div>
-                    <div class="item" data-value="0">200 a viac</div>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="ui checkbox m-r-20">
-                <input type="checkbox" name="example"/>
-                <label>Zľavnené</label>
-            </div>
-
-            <div class="ui checkbox">
-                <input type="checkbox" name="example"/>
-                <label>Nezľavnené</label>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-3">
-
-        </div>
-
-        <div class="col-md-3">
-            <div class="container-button">
-                <button class="ui labeled icon button border-button">
-                    <div class="middle">
-                        <i class="fa fa-search"></i>
-                        Hľadaj
-                    </div>
-                </button>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="container-button">
-                <button class="ui labeled icon button border-button">
-                    <div class="middle">
-                        <i class="fa fa-remove"></i>
-                        Resetni
-                    </div>
-                </button>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-
-        </div>
-    </div>
-</form>
 
 <div class="group-contajner ">
     <div class="col-md-10">
-        <div class="column">
-            <c:choose>
-                <c:when test="${appliedCategoryDiscountsTypes != '[]'}">
-                    <h3 class="ui header">Applikované zľavy katategórie</h3>
-                    <div class="ui section">
-                         <c:forEach items="${appliedCategoryDiscountsTypes}" var="appliedDiscountCategory">
-                             <c:choose>
-                                <c:when test="${appliedDiscountCategory == 'percent'}">
-                                     <a class="ui red tag label">
-                                         <i class="fa fa-percent"></i>
-                                     </a>
-                                </c:when>
-                                <c:when test="${appliedDiscountCategory == 'price'}">
-                                     <a class="ui red tag label">
-                                         <i class="fa fa-euro"></i>
-                                     </a>
-                                </c:when>
-                                <c:when test="${appliedDiscountCategory == 'quantity'}">
-                                     <a class="ui red tag label">
-                                         <i class="fa fa-balance-scale"></i>
-                                     </a>
-                                </c:when>
-                             </c:choose>
-                         </c:forEach>
-                    </div>
-                </c:when>
-            </c:choose>
+        <c:choose>
+            <c:when test="${appliedCategoryDiscountsTypes != '[]'}">
+                <h3 class="ui header">Applikované zľavy katategórie</h3>
+                <div class="ui section m-b-8">
+                     <c:forEach items="${appliedCategoryDiscountsTypes}" var="appliedDiscountCategory">
+                         <c:choose>
+                            <c:when test="${appliedDiscountCategory == 'percent'}">
+                                 <a class="ui red tag label">
+                                     <i class="fa fa-percent"></i>
+                                 </a>
+                            </c:when>
+                            <c:when test="${appliedDiscountCategory == 'price'}">
+                                 <a class="ui red tag label">
+                                     <i class="fa fa-euro"></i>
+                                 </a>
+                            </c:when>
+                            <c:when test="${appliedDiscountCategory == 'quantity'}">
+                                 <a class="ui red tag label">
+                                     <i class="fa fa-balance-scale"></i>
+                                 </a>
+                            </c:when>
+                         </c:choose>
+                     </c:forEach>
+                </div>
+            </c:when>
+        </c:choose>
+    </div>
+    <div class="col-md-10">
+        <div class="column hiddenSearchBox">
             <table id="products-table" class="ui celled selectable right aligned table">
                 <thead>
                 <th class="left aligned">Nazov</th>
@@ -161,7 +76,8 @@
                 </thead>
                 <tbody>
                 <c:forEach items="${productsItems}" var="product">
-                <tr data-id=${product.product.idPredmetu} data-original-price=${product.product.cena} data-price-after-discounts=${product.afterDiscountsPrice}>
+                <tr data-id=${product.product.idPredmetu} data-original-price=${product.product.cena}
+                    data-price-after-discounts=${product.afterDiscountsPrice}>
                     <td class="left aligned">${product.product.nazov}</td>
                     <td>${product.product.znacka}</td>
                     <td>${product.product.serioveCislo}</td>

@@ -23,19 +23,23 @@
     <link rel="stylesheet" type="text/css" href="../../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 
     <!--- Component CSS -->
-    <link rel="stylesheet" href="../../css/base/semantic.css">
+    <link rel="stylesheet" type="text/css" href="../../css/base/semantic.css">
+
+    <!--- Node modules CSS -->
+    <link rel="stylesheet" href="../../node_modules/semantic-ui-calendar/dist/calendar.min.css">
+    <link rel="stylesheet" type="text/css" href="../../node_modules/datatables.net-se/css/dataTables.semanticui.min.css">
 
     <!-- Custom CSS -->
     <!-- <link rel="stylesheet" href="css/owl.carousel.css"> -->
     <link rel="stylesheet" href="../../css/base/main.css">
     <link rel="stylesheet" href="../../css/base/util.css">
     <link rel="stylesheet" href="../../css/base/responsive.css">
-    <link rel="stylesheet" href="../../css/base/customSemantic..css">
+    <link rel="stylesheet" href="../../css/base/customSemantic.css">
 
     <!-- Latest jQuery form server -->
     <script src="../../js/base/jquery/jquery.min.js"></script>
     <!-- Bootstrap JS form CDN -->
-    <script src="../../js/base/bootstrap/bootstrap.min.js"></script>
+
     <!-- jQuery sticky menu -->
     <script src="../../js/base/owl.carousel.min.js"></script>
     <script src="../../js/base/semantic.min.js"></script>
@@ -45,9 +49,7 @@
     <script src="../../js/base/constants/constants.js"></script>
     <script src="../../js/utils/helpers.js"></script>
     <script src="../../node_modules/semantic-ui-calendar/dist/calendar.min.js"></script>
-    <script src="../../node_modules/semantic-ui-calendar/dist/calendar.min.css"></script>
-<%--    <script src="../../node_modules/datatables.net-se/js/dataTables.semanticui.min.js"></script>--%>
-<%--    <script src="../../node_modules/datatables.net-se/css/dataTables.semanticui.min.css"></script>--%>
+    <script src="../../node_modules/datatables.net-se/js/dataTables.semanticui.min.js"></script>
     <script src="../../node_modules/datatables.net/js/jquery.dataTables.min.js"></script>
 
     <!-- jQuery easing -->
