@@ -12,11 +12,16 @@
   <jsp:attribute name="content">
     <html>
     <head>
-      <!---Javascript -->
-      <script src="../js/home/home.js"></script>
+        <!---Javascript -->
+        <script src="../js/home/home.js"></script>
     </head>
     <body>
-      Content pre home page
+    <div>
+        <div class="welcomeBg">
+            <span class="welcomeText">Vitajte...</span>
+        </div>
+    </div>
+
     </body>
     </html>
 

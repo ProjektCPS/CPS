@@ -1666,3 +1666,22 @@ button.ui.icon.edit:hover {
 .hiddenSearchBox .dataTables_filter {
     display: none;
 }
+
+.welcomeBg {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../../image/welcome.jpg"); /* The image used */
+    background-color: #cccccc; /* Used if the image is unavailable */
+    height: 130%; /* You must set a specified height */
+    width: 100%;
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+}
+
+.welcomeText{
+    font-size: 55px;
+    font-weight: bold;
+}
