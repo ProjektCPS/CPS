@@ -103,8 +103,6 @@
                     </div>
                 </div>
                 <a id="discounts" class="blue item " href="/account/discount_categories.jsp">Zľavy</a>
-                <a id="orders" class="blue item " href="/account/order.jsp">Objednávky</a>
-                <a id="profit" class="blue item " href="#">Profit</a>
                 <a id="externalSystemAccounts" class="blue item "
                    href="/account/externalSystemAccounts/externalSystemAccounts">Účty</a>
             </c:if>
@@ -138,7 +136,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="copyright">
-                        <p>&copy; 2018 eShop. All Rights Reserved. Coded with <i class="fa fa-heart"></i> by <a
+                        <p>&copy; 2019 eSpravaCien. All Rights Reserved. Coded with <i class="fa fa-heart"></i> by <a
                                 href="http://wpexpand.com" target="_blank">the best students</a></p>
                     </div>
                 </div>
